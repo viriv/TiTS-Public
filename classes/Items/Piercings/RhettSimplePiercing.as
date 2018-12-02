@@ -17,6 +17,8 @@ package classes.Items.Piercings
 			this.quantity = 1;
 			this.stackSize = 1;
 			this.type = GLOBAL.PIERCING;
+			this.color = color;
+			this.piercingType = piercingType;
 			
 			this.shortName = StringUtil.capitalize(color.substring(0, 4)) + "." + StringUtil.capitalize(piercingType) + "P.";
 			this.longName = color + " " + piercingType + " piercing";
@@ -35,6 +37,7 @@ package classes.Items.Piercings
 			addFlag(GLOBAL.ITEM_FLAG_PIERCING_RING);
 			
 			this.version = _latestVersion;
+			this.hasRandomProperties = true;
 		}
 	}
 }
