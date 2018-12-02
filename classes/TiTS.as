@@ -228,6 +228,7 @@
 		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
+		include "../includes/tavros/kinkyInksInc.as";
 		include "../includes/tavros/nursery.as";
 		include "../includes/tavros/oviliumBonus.as";
 		include "../includes/tavros/ramis.as";

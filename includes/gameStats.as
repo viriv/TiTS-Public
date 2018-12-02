@@ -4560,6 +4560,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Kinky Inks
+			if(flags["MET_RHETT"] != undefined)
+			{
+				output2("\n<b><u>Kinky Inks Inc</u></b>");
+				output2("\n<b>* Rhett:</b> Met him");
+			}
 			// Nyaaaaan, TamaniCorp
 			if(flags["MET_LERRIS"] != undefined)
 			{

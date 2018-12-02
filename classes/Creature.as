@@ -1225,6 +1225,15 @@
 			}
 			return (!(breastRows[idx].piercing is EmptySlot));
 		}
+		public function hasPiercedEveryNipple():Boolean
+		{
+			if(breastRows.length <= 0) return true;//if no breasts then no nipple so 0 is technically all? so true? keeps people with 0 nipples from getting pierced
+			for(var i:int = 0; i < breastRows.length; i++)
+			{
+				if(breastRows[i].piercing is EmptySlot) return false;
+			}
+			return true;
+		}
 		public function hasCockPiercing(idx:int = -1):Boolean
 		{
 			return (hasPiercedCocks(idx));
@@ -1241,6 +1250,15 @@
 				return false;
 			}
 			return (!(cocks[idx].piercing is EmptySlot));
+		}
+		public function hasPiercedEveryCock():Boolean
+		{
+			if(cocks.length <= 0) return true;//0 is technically all? so true? keeps people with 0 cocks from getting pierced
+			for(var i:int = 0; i < cocks.length; i++)
+			{
+				if(cocks[i].piercing is EmptySlot) return false;
+			}
+			return true;
 		}
 		public function hasVaginaPiercing(idx:int = -1):Boolean
 		{
@@ -1259,6 +1277,15 @@
 			}
 			return (!(vaginas[idx].piercing is EmptySlot));
 		}
+		public function hasPiercedEveryVagina():Boolean
+		{
+			if(vaginas.length <= 0) return true;//0 is technically all? so true? keeps people with 0 vaginas from getting pierced
+			for(var i:int = 0; i < vaginas.length; i++)
+			{
+				if(breastRows[i].piercing is EmptySlot) return false;
+			}
+			return true;
+		}
 		public function hasClitPiercing(idx:int = -1):Boolean
 		{
 			return (hasPiercedClits(idx));
@@ -1275,6 +1302,15 @@
 				return false;
 			}
 			return (!(vaginas[idx].clitPiercing is EmptySlot));
+		}
+		public function hasPiercedEveryClit():Boolean
+		{
+			if(vaginas.length <= 0) return true;//if no vaginas then no clits so 0 is technically all? so true? keeps people with 0 clits from getting pierced
+			for(var i:int = 0; i < vaginas.length; i++)
+			{
+				if(vaginas[i].clitPiercing is EmptySlot) return false;
+			}
+			return true;
 		}
 		// Cock-socks
 		public function hasCocksock(idx:int = -1, sockType:Class = null):Boolean

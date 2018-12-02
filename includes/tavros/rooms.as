@@ -139,6 +139,17 @@ public function initTavrosRooms():void
 	rooms["SHEAR BEAUTY"].addFlag(GLOBAL.PUBLIC);
 	//rooms["SHEAR BEAUTY"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["SHEAR BEAUTY"].addFlag(GLOBAL.COMMERCE);
+	
+	rooms["KINKY INKS INC"] = new RoomClass(this);
+	rooms["KINKY INKS INC"].description = "";
+	rooms["KINKY INKS INC"].planet = "TAVROS STATION";
+	rooms["KINKY INKS INC"].system = "SYSTEM: KALAS";
+	rooms["KINKY INKS INC"].northExit = "9015";
+	rooms["KINKY INKS INC"].moveMinutes = 1;
+	rooms["KINKY INKS INC"].runOnEnter = kinkyInksIncBonusFunc;
+	rooms["KINKY INKS INC"].addFlag(GLOBAL.INDOOR);
+	rooms["KINKY INKS INC"].addFlag(GLOBAL.PUBLIC);
+	rooms["KINKY INKS INC"].addFlag(GLOBAL.COMMERCE);
 
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
@@ -432,6 +443,7 @@ public function initTavrosRooms():void
 	rooms["9015"].westExit = "9016";
 	rooms["9015"].eastExit = "9014";
 	rooms["9015"].northExit = "SHEAR BEAUTY";
+	rooms["9015"].southExit = "KINKY INKS INC";
 	rooms["9015"].moveMinutes = 1;
 	rooms["9015"].addFlag(GLOBAL.INDOOR);
 	rooms["9015"].addFlag(GLOBAL.PUBLIC);

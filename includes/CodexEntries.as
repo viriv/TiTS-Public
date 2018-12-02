@@ -20,6 +20,7 @@ public function configureCodex():void
 
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Planets", "Panara", panaraCodex);
 	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Akhid", akhidCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Anatae", anataeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Cundarians", cundarianCodexEntry);
@@ -542,6 +543,34 @@ public function galotianCodexEntry():void
 	outputCodex("The Church of the One God maintains that galotians, and creatures like them, are demons given flesh to tempt us in this mortal realm. Many marriages have collapsed in response to galotian immigrations. Some worlds ban them from securing residency in order to prevent the disastrous effect they can have on monogamy. Others require troubled trios to enter into counseling together. Such treatments are reported to save 90% of marriages, even if the galotian winds up living with (and servicing) both partners.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Galotians");
+}
+public function akhidCodexEntry():void
+{
+	clearOutputCodex();
+	outputCodex("9999");
+	outputCodex(header("Akhid"));
+	outputCodex("<b>Name (Singular & Plural):</b> Akhid");
+	outputCodex("\n<b>Sexes:</b> Male and female");
+	outputCodex("\n<b>Height:</b> Generally six feet high with a total body length of twelve feet.");
+	outputCodex("\n<b>Weight:</b> Over one hundred kilos.");
+	outputCodex("\n<b>Hair:</b> White or silver");
+	outputCodex("\n<b>Eyes:</b> White or silver irises");
+	outputCodex("\n<b>Skin:</b> Black");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Physical Features"));
+	outputCodex("The akhid are naga-like beings with entirely serpentine lower halves, covered in glittering black scales. This half of their body is much larger than the other, dragging out behind them, and possessing great muscular strength.");
+	outputCodex("\n\nThe upper half of an akhid is humanoid in shape, covered in equally black skin. Some of the species have scales on portions of their upper body as well, such as the breast or chest, shoulders, or arms. Their hair and irises are strikingly different from their skin, always a snowy white or silver.");
+	outputCodex("\n\nDespite their serpentine appearance, female akhid possess four mammary glands; two pairs on top of each other, the bottom pair notably smaller. Their genitals are contained below their waist and underneath their scales. These scales part to expose the genitals when aroused.");
+	outputCodex("\n\nThe akhid penis is pitch black, has a bulbous glans and internally stored testes. They have a globular growth directly above their penis, designed to rub against a female's clitoris during penetration. In fact, this hypersensitive gland is made of similar tissue and is colloquially known as a 'man clit'.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Akhid are notably fast breeders. Pregnancy lasts for three months, after which they give birth. The resulting child, typically singular, grows to young adulthood in three more months. This hasty reproduction system seems to be a result of the akhid's hostile home-world, where breeding was their primary survival mechanism.");
+	outputCodex("\n\nAkhid are remarkably compatible with other species, and very willing to experiment with them. Half-akhid are very common, particularly with terrans. Most half-akhid seem to keep the lower-body of their akhid parent, while their upper body closely resembles the non-akhid parent. ");
+	outputCodex(blockHeader("History and Environment"));
+	outputCodex("The akhid are typically prolific lovers and hedonists, living fast and hard, like there is no tomorrow. On their home world of Caartha, there often wasn't. Until they were uplifted, the species survived on a planet with an abnormally large body of mineral satellites around it. Rockfall on the planet was common, decimating anything in the nearby vicinity.");
+	outputCodex("A mineral survey of the planet revealed precious metals embedded both in the planet's satellites and in Caartha's surface. During the last rush, Steele Industries struck a deal with the akhid natives, promising to rid them of the troublesome planetary debris. The akhid felt deeply indebted to both Steele Industries and the UGC for their uplifting, and have adjusted well to life in galactic society.");
+	outputCodex("Caartha is now an incredibly prosperous mining planet and a core provider of rare metals to the galactic community. The akhid workforce are able to easily navigate underground tunnels due to their serpentine form, used to historically avoiding the surface. They are also able to easily see in the dark.");
+	CodexManager.viewedEntry("Akhid");
 }
 public function anataeCodexEntry():void
 {
