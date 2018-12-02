@@ -7,8 +7,8 @@ package classes.Items.Piercings
 	
 	public class RhettSimplePiercing extends ItemSlotClass
 	{
-		public var color:String;
-		public var piercingType:String;
+		public var color:String;//color of piercing
+		public var piercingType:String;//ring/bar/stud
 		
 		public function RhettSimplePiercing(piercingType:String = "ring", color:String = "black") 
 		{
@@ -34,10 +34,10 @@ package classes.Items.Piercings
 			this.basePrice = 100;
 			
 			
-			addFlag(GLOBAL.ITEM_FLAG_PIERCING_RING);
+			addFlag(GLOBAL.ITEM_FLAG_PIERCING_RING);//TODO: not make every piercing flagged as a ring
 			
 			this.version = _latestVersion;
-			this.hasRandomProperties = true;
+			this.hasRandomProperties = true;//forces save/load/coping to carry over color and piercingType fields
 		}
 	}
 }
