@@ -1,5 +1,4 @@
-﻿import classes.Characters.EMPonyLuver;
-import classes.Items.Piercings.RhettSimplePiercing;
+﻿import classes.Items.Piercings.RhettSimplePiercing;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Engine.Utility.IncrementFlag;
 //AUTHOR - JimThermic
@@ -12,7 +11,7 @@ public function kinkyInksIncBonusFunc():Boolean
 	output("This store is filled with floating holo-pictures, each of a different kind of skin mods or piercing. They line the walls in all directions. With the click of a button, the displays can scan you and show you a digital mockup of what the different body mods will look like on you.");
 	output("\n\nThere's a long, sleek black counter with a totally tattooed out VI droid. However, it seems to just be there to do transactions. The real work appears to happen in the back room, through an archway with no door. There's a tattoo table slash seat, along with a ton of different skin-modding equipment.");
 	
-	addButton(0, "Rhett", approachRhett);
+	addButton(0, flags["MET_RHETT"] == undefined ? "ShopKeep" : "Rhett", approachRhett);
 	return false;
 }
 
@@ -24,7 +23,7 @@ public function approachRhett():void
 	
 	if(flags["MET_RHETT"] == undefined)
 	{
-		flags["MET_RHETT"] = 1;
+		IncrementFlag("MET_RHETT");
 		
 		output("A shirtless, utterly tattooed man slithers towards you—slithers because his entire lower half seems to be entirely naga-like. His midnight serpent scales are lined with silver tribal tattoos, while his pale, humanoid torso is conversely covered in black wicked-looking ink. You get the impression he's staring at you, but it's hard to tell; the well-toned man is wearing a pair of mirrored shades, and he's stony-faced, making him hard to read.");
 		output("\n\n<i>“... Here for some ink?”</i> he asks, whipping out a thin, white stick. He lights it up and no smoke comes out, though the end glows.");
@@ -69,12 +68,13 @@ public function firstTimeRhettMeet():void
 public function rhettMenu():void
 {
 	clearMenu();
-	addButton(0, "Appearance", rhettAppearance, undefined, "Look", "Look the shopkeep over.");
-	addButton(1, "Talk", rhettTalk, undefined, "Talk", "Talk with the shopkeep.");
+	addButton(0, "Appearance", rhettAppearance, undefined, "Appearance", "Checkout the tattooed snakeman.");
+	addButton(1, "Talk", rhettTalk, undefined, "Talk", "Talk with Rhett.");
 	//addButton(2, "Tattoos", rhettTattoo, undefined, "Tattoo", "Get a tattoo");
-	addButton(3, "Piercings", rhettPiercings, undefined, "Pierce", "Get a piercing.");
+	addButton(3, "Piercings", rhettPiercings, undefined, "Piercings", "Get a piercing.");
 	//addbutton(4, "Removal", rhettRemoval, undefined, "Removal", "Remove a piercing.");
-	addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");
+	if(pc.lust() >= 33) addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");
+	else addDisabledButton(5, "Sex", "Sex", "You aren’t aroused enough for sex right now.");
 	addButton(14, "Leave", mainGameMenu);
 }
 
@@ -86,8 +86,7 @@ public function rhettAppearance():void
 	
 	output("Rhett is a half-akhid, but <i>all</i> tattoo. His whole naga-like lower half—a shining expanse of black scales—is coated in silver, tribal like markings. Meanwhile, his well-toned, human-like upper half is conversely covered in black, wicked-looking ink.");
 	output("\n\nHis black hair, barely an inch long, covers his scalp in a slight fuzz. The stoic-faced man is also rarely without his mirrored shades, making it even harder to read his expressions. In his lips is usually a white cigarette filled with harmless nim leaf, burning away smokelessly.");
-	output("\n\n")
-	output("Although Rhett is essentially naked—since he refuses to wear a shirt on his toned upper half—his genitals are nowhere to be seen. He apparently <i>does</i> have them, they're just hidden behind his scales, protruding only when he's aroused. There's still a light fuzz of pubic hair on his human half and hanging above his crotch. ");
+	output("\n\nAlthough Rhett is essentially naked—since he refuses to wear a shirt on his toned upper half—his genitals are nowhere to be seen. He apparently <i>does</i> have them, they're just hidden behind his scales, protruding only when he's aroused. There's still a light fuzz of pubic hair on his human half and hanging above his crotch. ");
 	
 	processTime(1);
 	clearMenu();
@@ -155,7 +154,7 @@ public function talkToRhettAboutSpecies():void
 	{
 		output("You ask him about what species he is, assuming it isn't the result of modding.");
 		output("\n\n<i>“Nope. Born this way. Half-akhid,”</i> he answers, taking a drag from his smokeless cigarette.");
-		flags["MET_AKHID"] = 1;
+		IncrementFlag("MET_AKHID");
 	}
 	else
 	{
@@ -505,6 +504,7 @@ public function rhettOuch(vars:Array):void
 		case "vagina": pc.vaginas[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]); break;
 		case "clit": pc.vaginas[vars[3]].clitPiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
 	}
+	
 	output("After you transfer the credits, you follow Rhett into his parlor in the back.");
 	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)//This flag gets set later
 	{
@@ -517,6 +517,7 @@ public function rhettOuch(vars:Array):void
 		output("You sit down in the familiar, sleek tattooist's chair");
 		if(pc.isTaur()) output("—after it's morphed to be taur friendly, of course");
 	}
+	
 	output(".");
 	output("\n\nRhett shifts up to you and takes a genetic sample from you, then throws it up on holo-display. Silently, he begins typing away, working on the proper composition of skin-mod formula to give you. His eyes are intensely locked on the screen, and his fingers light up the air at a lightning pace.");
 	output("\n\n<i>“... Got the measurements. Should be a few minutes as the batch cooks up,”</i> he bluntly informs you. You sit and wait until one of his machines dispenses a single canister. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet. ");
@@ -524,7 +525,7 @@ public function rhettOuch(vars:Array):void
 	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)
 	{
 		output("Huh. It's like your body just soaks in the mods.”</i>");
-		flags["RHETT_HAS_PIERCED_BEFORE"] = 1;
+		IncrementFlag("RHETT_HAS_PIERCED_BEFORE")
 	}
 	else output("As usual, your body just soaks up the mods.”</i>");
 	
