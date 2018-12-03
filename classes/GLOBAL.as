@@ -1176,8 +1176,9 @@
 		public static const ITEM_FLAG_PIERCING_STUD:int 				= 29; //Piercings of the "stud" type.
 		public static const ITEM_FLAG_PIERCING_RING:int 				= 30; //Piercings of the "ring" type.
 		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 31; //Piercings of the "chain" type.
-		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
-		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
+		public static const ITEM_FLAG_PIERCING_BAR:int					= 32  //Piercings of the "" bar type.
+		public static const ITEM_FLAG_NO_REMOVE:int 					= 33; //Worn items that the PC cannot remove by themself.
+		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 34; //Cocksock can only be equipped by smol
 
 		
 		public static const ITEM_FLAG_NAMES:Array = [

@@ -33,8 +33,13 @@ package classes.Items.Piercings
 			
 			this.basePrice = 100;
 			
+			switch(piercingType)
+			{
+				case "ring": addFlag(GLOBAL.ITEM_FLAG_PIERCING_RING); break;
+				case "bar": addFlag(GLOBAL.ITEM_FLAG_PIERCING_BAR); break;
+				case "stud": addFlag(GLOBAL.ITEM_FLAG_PIERCING_STUD); break;
+			}
 			
-			addFlag(GLOBAL.ITEM_FLAG_PIERCING_RING);//TODO: not make every piercing flagged as a ring
 			
 			this.version = _latestVersion;
 			this.hasRandomProperties = true;//forces save/load/coping to carry over color and piercingType fields

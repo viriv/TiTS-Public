@@ -170,6 +170,8 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 		output(" - <b>(EMPTY)</b>");
 	}
 	if(pc.eyebrowPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Brows",(button) + ": Eyebrows","You cannot remove that piercing without outside assistance.");
+	else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_RING)) addDisabledButton(button++, (button) + ": Brows", (button) + ": Eyebrows", "You cannot pierce eyebrows with ring piercings.")
+	else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_STUD)) addDisabledButton(button++, (button) + ": Brows", (button) + ": Eyebrows", "You cannot pierce eyebrows with stud piercings.")
 	else addButton(button++,(button) + ": Brows",actuallyPierceYourself,[item,"brows"]);
 
 	//Nose
@@ -183,6 +185,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 		output(" - <b>(EMPTY)</b>");
 	}
 	if(pc.nosePiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Nose",(button) + ": Nose","You cannot remove that piercing without outside assistance.");
+	else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_BAR)) addDisabledButton(button++, (button) + ": Nose", (button) + ": Nose", "You cannot pierce noses with bar piercings.")
 	else addButton(button++,(button) + ": Nose",actuallyPierceYourself,[item,"nose"]);
 
 	//Lip
@@ -193,6 +196,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 		output(" - <b>(EMPTY)</b>");
 	}
 	if(pc.lipPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Lip",(button) + ": Lip","You cannot remove that piercing without outside assistance.");
+		else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_BAR)) addDisabledButton(button++, (button) + ": Lip", (button) + ": Lip", "You cannot lips noses with bar piercings.")
 	else addButton(button++,(button) + ": Lip",actuallyPierceYourself,[item,"lip"]);
 
 	//Tongue
@@ -203,6 +207,8 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 		output(" - <b>(EMPTY)</b>");
 	}
 	if(pc.tonguePiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Tongue",(button) + ": Tongue","You cannot remove that piercing without outside assistance.");
+	else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_RING)) addDisabledButton(button++, (button) + ": Tongue", (button) + ": Tongue", "You cannot pierce tongues with ring piercings.")
+	else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_BAR)) addDisabledButton(button++, (button) + ": Tongue", (button) + ": Tongue", "You cannot pierce tongues with bar piercings.")
 	else addButton(button++,(button) + ": Tongue",actuallyPierceYourself,[item,"tongue"]);
 
 	//Bewbs
@@ -226,6 +232,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 			output(" - <b>(EMPTY)</b>");
 		}
 		if(pc.breastRows[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_STUD)) addDisabledButton(button++, (button) + ": " + btnName, btnTitle, "You cannot pierce nipples with stud piercings.")
 		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,"nipples",x]);
 	}
 
@@ -237,6 +244,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 		output(" - <b>(EMPTY)</b>");
 	}
 	if(pc.bellyPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Belly",(button) + ": Belly","You cannot remove that piercing without outside assistance.");
+	else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_BAR)) addDisabledButton(button++, (button) + ": Belly", (button) + ": Belly", "You cannot pierce navels with bar piercings.")
 	else addButton(button++,(button) + ": Belly",actuallyPierceYourself,[item,"belly"]);
 	//Dix
 	for(x = 0; x < pc.cockTotal(); x++)
@@ -259,6 +267,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 			output(" - <b>(EMPTY)</b>");
 		}
 		if(pc.cocks[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_BAR)) addDisabledButton(button++, (button) + ": " + btnName, btnTitle, "You cannot pierce cocks with bar piercings.")
 		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,"cock",x]);
 	}
 	//Vaginas/Clits
@@ -283,6 +292,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 			output(" - <b>(EMPTY)</b>");
 		}
 		if(pc.vaginas[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_BAR)) addDisabledButton(button++, (button) + ": " + btnName, btnTitle, "You cannot pierce labias with bar piercings.")
 		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,"vagina",x]);
 		//Clits
 		if(pc.totalVaginas() > 1)
@@ -304,6 +314,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 			output(" - <b>(EMPTY)</b>");
 		}
 		if(pc.vaginas[x].clitPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else if(item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_BAR)) addDisabledButton(button++, (button) + ": " + btnName, btnTitle, "You cannot pierce clits with bar piercings.")
 		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,(pc.vaginas[x].clits == 1 ? "clit" : "clits"),x]);
 	}
 	
