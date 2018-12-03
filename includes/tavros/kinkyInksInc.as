@@ -290,18 +290,22 @@ public function rhettRingPiercingMenu(vars:Array):void
 	
 	//special method to check if every nipple is already pierced and thus make Nipples button disabled before going to row select
 	if(!pc.hasPiercedEveryNipple()) addButton(6, "Nipples", rhettPiercingBRowSelection, [vars[0], vars[1], "nipples"]);
+	else if(!pc.hasNipples()) addDisabledButton(6, "Nipples", "Nipples", "You don't have any nipples to pierce!");
 	else addDisabledButton(6, "Nipples", "Nipples", "Rhett can't pierce your nipples when they are" + (pc.bRows() > 1 ? " all" : "") + " already pierced!");
 	
 	//special method to check if every cock is already pierced and thus make Cock button disabled before going to cock select
 	if(!pc.hasPiercedEveryCock()) addButton(7, "Cock", rhettPiercingCockSelection, [vars[0], vars[1], "cock"]);
+	else if(!pc.hasCock()) addDisabledButton(7, "Cock", "Cock", "You don't have a cock to pierce!");
 	else addDisabledButton(7, "Cock", "Cock", "Rhett can't pierce your" + (pc.hasCocks() ? " cocks when they are all" : " cock when it's") + " already pierced!");
 	
 	//special method to check if every vagina is already pierced and thus make Vagina button disabled before going to vagina select
 	if(!pc.hasPiercedEveryVagina()) addButton(8, "Vagina", rhettPiercingVaginaSelection, [vars[0], vars[1], "vagina"]);
+	else if(!pc.hasVagina()) addDisabledButton(8, "Vagina", "Vagina", "You don't have a vagina to pierce!");
 	else addDisabledButton(8, "Vagina", "Vagina", "Rhett can't pierce your" + (pc.hasVaginas() ? " vaginas when they are all" : " vagina when it's") + " already pierced!");
 	
 	//special method to check if every clit is already pierced and thus make Clit button disabled before going to row select
 	if(!pc.hasPiercedEveryClit()) addButton(9, "Clit", rhettPiercingClitVaginaSelection, [vars[0], vars[1], "clit"]);
+	else if(!pc.hasVagina()) addDisabledButton(9, "Clit", "Clit", "You don't have a clit to pierce!");
 	else addDisabledButton(9, "Clit", "Clit", "Rhett can't pierce your" + (pc.hasVaginas() ? " clits when they are all" : " clit when it's") + " already pierced!");
 }
 
@@ -332,14 +336,17 @@ public function rhettStudPiercingMenu(vars:Array):void
 	
 	//special method to check if every cock is already pierced and thus make Cock button disabled before going to cock select
 	if(!pc.hasPiercedEveryCock()) addButton(7, "Cock", rhettPiercingCockSelection, [vars[0], vars[1], "cock"]);
+	else if(!pc.hasCock()) addDisabledButton(7, "Cock", "Cock", "You don't have a cock to pierce!");
 	else addDisabledButton(7, "Cock", "Cock", "Rhett can't pierce your" + (pc.hasCocks() ? " cocks when they are all" : " cock when it's") + " already pierced!");
 	
 	//special method to check if every vagina is already pierced and thus make Vagina button disabled before going to vagina select
 	if(!pc.hasPiercedEveryVagina()) addButton(8, "Vagina", rhettPiercingVaginaSelection, [vars[0], vars[1], "vagina"]);
+	else if(!pc.hasVagina()) addDisabledButton(8, "Vagina", "Vagina", "You don't have a vagina to pierce!");
 	else addDisabledButton(8, "Vagina", "Vagina", "Rhett can't pierce your" + (pc.hasVaginas() ? " vaginas when they are all" : " vagina when it's") + " already pierced!");
 	
 	//special method to check if every clit is already pierced and thus make Clit button disabled before going to row select
 	if(!pc.hasPiercedEveryClit()) addButton(9, "Clit", rhettPiercingClitVaginaSelection, [vars[0], vars[1], "clit"]);
+	else if(!pc.hasClit()) addDisabledButton(9, "Clit", "Clit", "You don't have a clit to pierce!");
 	else addDisabledButton(9, "Clit", "Clit", "Rhett can't pierce your" + (pc.hasVaginas() ? " clits when they are all" : " clit when it's") + " already pierced!");
 }
 
@@ -362,6 +369,7 @@ public function rhettBarPiercingMenu(vars:Array):void
 	
 	//special method to check if every nipple is already pierced and thus make Nipples button disabled before going to row select
 	if(!pc.hasPiercedEveryNipple()) addButton(6, "Nipples", rhettPiercingBRowSelection, [vars[0], vars[1], "nipples"]);
+	else if(!pc.hasNipples()) addDisabledButton(6, "Nipples", "Nipples", "You don't have any nipples to pierce!");
 	else addDisabledButton(6, "Nipples", "Nipples", "Rhett can't pierce your nipples when they are" + (pc.bRows() > 1 ? " all" : "") + " already pierced!");
 	
 	addDisabledButton(7, "Cock", "Cock", "Rhett can't do cock bar piercings.");
@@ -474,7 +482,7 @@ public function rhettPiercingPayment(vars:Array):void
 //Get pierced
 public function rhettOuch(vars:Array):void
 {
-	var piercingIsAre:String = " is";//most body parts are singular except ears and nipples? unless uniboob with single nipple? edge case unaccounted for TODO: account for that
+	var piercingIsAre:String = " is";//most body parts are singular except ears and nipples? unless uniboob with single nipple?
 	clearOutput();
 	author("Jim T");
 	
@@ -491,7 +499,7 @@ public function rhettOuch(vars:Array):void
 		case "tongue": pc.tonguePiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
 		case "nipples":
 			pc.breastRows[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]);//pierce body part [vars[3] = multipleBodyPartIndex] with ([var[0] = piercingType, var[1] = color])
-			piercingIsAre = " are";//plural nipples get are
+			if(pc.breastRows[3].nipples != 1) piercingIsAre = " are";//plural nipples get are
 		break;
 		case "cock": pc.cocks[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]); break;
 		case "vagina": pc.vaginas[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]); break;
@@ -874,8 +882,9 @@ public function rhettBlowjob():void
 			if(!pc.hasCocks()) output(" a");//singluar cock
 			
 			output(" [pc.cumColor]");
-			
-			output(" stream");//TODO: cum volume adj splutter/stream/surge
+			if(pc.cumQ() < 100) output(" splutter");
+			else if(pc.cumQ() < 400) output(" stream");
+			else output(" surge");
 			
 			if(pc.hasCocks()) output("s");//multiple cocks
 			
@@ -980,8 +989,9 @@ public function rhettAssFuck():void
 		if(pc.hasCock())//pc has cock
 		{
 			output(" shooting");
-			
-			output(" sloppy streams");//TODO: switch on cum volume
+			if(pc.cumQ() < 100) output(" tiny spurts");
+			else if(pc.cumQ() < 400) output(" gooey ropes");
+			else output(" sloppy streams");
 			
 			output(" of hot [pc.cumNoun] through the air and up against your own belly");
 			if(pc.hasVagina())//pc is herm
