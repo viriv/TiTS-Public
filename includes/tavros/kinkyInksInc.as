@@ -498,7 +498,6 @@ public function rhettOuch(vars:Array):void
 		case "tongue": pc.tonguePiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
 		case "nipples":
 			pc.breastRows[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]);//pierce body part [vars[3] = multipleBodyPartIndex] with ([var[0] = piercingType, var[1] = color])
-			if(pc.breastRows[3].nipples != 1) piercingIsAre = " are";//plural nipples get are
 		break;
 		case "cock": pc.cocks[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]); break;
 		case "vagina": pc.vaginas[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]); break;
@@ -567,7 +566,7 @@ public function rhettSexMenu():void
 	}
 	else
 	{
-		if(flags["PC_HAS_FUCKED_RHETT"] == undefined)//is pc first timer with Rhett
+		if(flags["RHETT_FUCKED"] == undefined)//is pc first timer with Rhett
 		{
 			output("You saucily suggest to Rhett that you get better acquainted. You're left staring at his perfectly formed, yet utterly unreadable face. After a moment of what you <i>assume</i> is consideration, the half-akhid man flicks away his nim-leaf into an ashtray, then gives a curt nod.");
 			if(pc.isNaga())//snek on snek action how does it work?
@@ -835,7 +834,9 @@ public function rhettOrgasmDenial():void
 	else output(" tingling and hot");//pc is neuter
 	
 	output(". Once you're finally able to stand again, the half-akhid man releases you from his scales. Your heart beats at a million miles an hour as you leave the back room, feeling on cloud nine. Meanwhile, <i>he</i> slips out after you, looking totally cool and composed, as if nothing had even happened! Still, he does seem to check out your ass as you walk out, his mouth quirking into the tiniest, self-satisfied smile.");
+	if(flags["RHETT_FUCKED"] == undefined) IncrementFlag("RHETT_FUCKED");
 	
+	IncrementFlag("RHETT_ORGASM_DENIAL");
 	processTime(60);
 	pc.orgasm();
 	clearMenu();
@@ -849,10 +850,9 @@ public function rhettBlowjob():void
 	author("Jim T");
 	
 	output("While keeping your [pc.legs] and [pc.hands] pinned, Rhett's serpentine body loosens around your upper body. The tattooed man raises his body, until your face-first with his scaled loins. ");
-	if(flags["SUCKED_RHETT"] == undefined)
+	if(flags["RHETT_SUCKED"] == undefined)
 	{
 		output(" You blush, wondering exactly what he has planned—there's nothing there, right? You're proven wrong as a slight slit appears in his midnight scales, and a black phallus slides out from the crack. It just keeps coming and coming; where does it end? When it's finally out, your gobsmacked at the size of his <i>second</i> snake.");
-		flags["SUCKED_RHETT"] = 1;
 	}
 	
 	output("\n\n<i>“Suck it,”</i> Rhett orders you, bringing his bulbous black head right to your wettened lips. With a tiny bit of trepidation, you wrap your mouth around his glans. As you timidly suck on the tip of his manhood, it begins to stiffen and rise. Encouraged, you suck on it harder, watching it twitch and ascend, getting even thicker—if such a thing were <i>possible</i>. It tastes a tiny bit sweaty, and manly, and all around delicious. As you breathe heavily through your nose, you suck in and swoon at his his exquisitely musky scent. <i>“Good");
@@ -927,7 +927,9 @@ public function rhettBlowjob():void
 	else output(" on your [pc.feet].");
 	
 	output(" Wandering out to the store, you touch your lips with a dreamy expression, followed by the tattoed half-akhid. When you look behind you, you swear you see a hint of a satisfied grin on his face.");
+	if(flags["RHETT_FUCKED"] == undefined) IncrementFlag("RHETT_FUCKED");
 	
+	IncrementFlag("RHETT_SUCKED");//set/increment for stat tracker
 	processTime(30);
 	pc.orgasm();
 	clearMenu();
@@ -950,7 +952,7 @@ public function rhettAssFuck():void
 	
 	output(" His squeezing serpentine body seems to be tighter around your [pc.legs], keeping them particularly pinned. Loosening around your upper half, you can't see the taut, tattooed man anywhere. <i>Where has he gone,</i> you wonder?");
 	output("\n\nYou gasp as you feel a deliciously stiff body pressing against your back, intimately close. A pair of strong arms slip around your waist, and there's a biting at your [pc.ear]. Just a nip, followed by a whisper. <i>“... ");
-	if(flags["PC_HAS_FUCKED_RHETT"] == undefined) output("Time to put that sweet ass of yours to work.”</i>");//gets set/incremented at end of method
+	if(flags["RHETT_FUCKED"] == undefined) output("Time to put that sweet ass of yours to work.”</i>");//gets set/incremented at end of method
 	else output("I told you, I'm going to use your ass.”</i>");
 	
 	output("\n\nYou can feel a stiffness even <i>harder</i> than his chiseled pecs, pointedly pressing between your buttocks. With your [pc.legs] caught and coiled, and your hips now seized, you're utterly at Rhett's mercy! The serpentine man seizes the chance to slip his rigidity up and into your [pc.asshole], slowly sheathing himself inside of your");
@@ -958,7 +960,7 @@ public function rhettAssFuck():void
 	else output(" rump.");
 	
 	output(" You gasp at the");
-	if(flags["PC_HAS_FUCKED_RHETT"] == undefined) output(" surprisingly");//gets set/incremented at end of method
+	if(flags["RHETT_ANAL_FUCKED"] == undefined) output(" surprisingly");//gets set/incremented at end of method
 	else output(" amazingly");
 	
 	output(" <i>long</i> and <i>thick</i> intruder as it inches upward, until his bulbous cockhead is flexing inside the deepest depths of your [pc.skinColor] butt.");
@@ -1041,8 +1043,9 @@ public function rhettAssFuck():void
 	output("\n\nWhen he finally pulls out of you, there's a delicious 'plopping' noise, and you feel a hot, streamy dribble running down and out of your slightly gaping butthole. Instinctively, you try to clench and keep it in—you want as much of <i>him</i> to stay inside you as possible! There's a fierce kissing at the nape of your neck, followed by a pointed suckling. Is-is he leaving hickeys on you? You let out a dreamy moan as you're marked by Rhett, possessively littered with tiny, kiss-sized bruises.");
 	output("\n\nAfter a long, sensually-spent afterglow, you're released from his coils. Collecting your things, you head out first, feeling giddy and a little wobbly on your [pc.feet]. You're followed by the surprisingly composed looking half-akhid, who is already slipping back on his mirrored shades. He does give your leaking ass a quick look; it seems he's appreciating his handiwork!");
 	
-	IncrementFlag("PC_HAS_FUCKED_RHETT");//set/increment for stat tracker
+	if(flags["RHETT_FUCKED"] == undefined) IncrementFlag("RHETT_FUCKED");
 	
+	IncrementFlag("RHETT_ANAL_FUCKED");//set/increment for stat tracker
 	processTime(30);
 	pc.orgasm();
 	clearMenu();

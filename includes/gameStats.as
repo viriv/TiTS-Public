@@ -4686,6 +4686,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Kinky Inks Inc</u></b>");
 				output2("\n<b>* Rhett:</b> Met him");
 			}
+			if(flags["RHETT_ORGASM_DENIAL"] != undefined) output2("\n<b>* Rhett, Times Orgasm Denied:</b> " + flags["RHETT_ORGASM_DENIAL"]);
+			if(flags["RHETT_SUCKED"] != undefined) output2("\n<b>* Rhett, Times Given Him Blowjobs:</b> " + flags["RHETT_SUCKED"]);
+			if(flags["RHETT_ANAL_FUCKED"] != undefined) output2("\n<b>* Rhett, Times Anal Sexed:</b> " + flags["RHETT_ANAL_FUCKED"]);
 			// Nyaaaaan, TamaniCorp
 			if(flags["MET_LERRIS"] != undefined)
 			{
