@@ -481,7 +481,7 @@ public function rhettPiercingPayment(vars:Array):void
 //Get pierced
 public function rhettOuch(vars:Array):void
 {
-	var piercingIsAre:String = " is";//most body parts are singular except ears and nipples? unless uniboob with single nipple?
+	var piercingIsAre:String = " is";//most body parts are singular except ears and nipples
 	clearOutput();
 	author("Jim T");
 	
@@ -498,6 +498,7 @@ public function rhettOuch(vars:Array):void
 		case "tongue": pc.tonguePiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
 		case "nipples":
 			pc.breastRows[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]);//pierce body part [vars[3] = multipleBodyPartIndex] with ([var[0] = piercingType, var[1] = color])
+			piercingIsAre = " are";//plural nipples get are
 		break;
 		case "cock": pc.cocks[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]); break;
 		case "vagina": pc.vaginas[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]); break;
