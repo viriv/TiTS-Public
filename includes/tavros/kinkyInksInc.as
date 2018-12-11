@@ -933,6 +933,7 @@ public function rhettBlowjob():void
 	IncrementFlag("RHETT_SUCKED");//set/increment for stat tracker
 	processTime(30);
 	pc.orgasm();
+	pc.loadInMouth(chars["RHETT"]);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1049,6 +1050,7 @@ public function rhettAssFuck():void
 	IncrementFlag("RHETT_ANAL_FUCKED");//set/increment for stat tracker
 	processTime(30);
 	pc.orgasm();
+	pc.loadInAss(chars["RHETT"]);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

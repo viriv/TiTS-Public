@@ -1705,6 +1705,11 @@
 		{
 			return chars["DRYAD"];
 		}
+		
+		public function get rhett():Rhett
+		{
+			return chars["RHETT"]
+		}
 
 		public function testShipCombat():void
 		{
