@@ -909,6 +909,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.LIFTDOWN);
 	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYELEVATOR"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYSTAIRS1F"] = new RoomClass(this);
 	rooms["NURSERYSTAIRS1F"].roomName = "NURSERY:\n1F STAIRWELL";
@@ -924,6 +925,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYSTAIRS1F"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYE14"] = new RoomClass(this);
 	rooms["NURSERYE14"].roomName = "NURSERY\nFOYER";
@@ -940,6 +942,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYE14"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYE14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYE14"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYE14"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYE12"] = new RoomClass(this);
 	rooms["NURSERYE12"].roomName = "NURSERY:\nCOMMON AREA";
@@ -954,6 +957,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYE12"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYE12"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYE12"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYE12"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYG12"] = new RoomClass(this);
 	rooms["NURSERYG12"].roomName = "NURSERY\nCAFETERIA";
@@ -967,6 +971,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYG12"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYG12"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYG12"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYG12"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYG14"] = new RoomClass(this);
 	rooms["NURSERYG14"].roomName = "\nNURSERY";
@@ -981,6 +986,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYG14"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYG14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYG14"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYG14"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYI14"] = new RoomClass(this);
 	rooms["NURSERYI14"].roomName = "\nNURSERY";
@@ -996,6 +1002,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYI14"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYI14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYI14"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYI14"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYI16"] = new RoomClass(this);
 	rooms["NURSERYI16"].roomName = "NURSERY:\nCHILDREN";
@@ -1010,6 +1017,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYI16"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYI16"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYI16"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYI16"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYI18"] = new RoomClass(this);
 	rooms["NURSERYI18"].roomName = "NURSERY:\nSPECIALIST";
@@ -1023,6 +1031,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYI18"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYI18"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYI18"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYI18"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYK14"] = new RoomClass(this);
 	rooms["NURSERYK14"].roomName = "NURSERY:\nEDU. CENTER";
@@ -1036,6 +1045,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYK14"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYK14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYK14"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYK14"].addFlag(GLOBAL.NURSERY);
 
 	// Second floor
 	rooms["NURSERYSTAIRS2F"] = new RoomClass(this);
@@ -1052,6 +1062,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYSTAIRS2F"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYC6"] = new RoomClass(this);
 	rooms["NURSERYC6"].roomName = "NURSERY:\nSTAFF ROOM";
@@ -1066,6 +1077,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYC6"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYC6"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYC6"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYC6"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYE6"] = new RoomClass(this);
 	rooms["NURSERYE6"].roomName = "\nNURSERY";
@@ -1082,6 +1094,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYE6"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYE6"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYE6"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYE6"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYE4"] = new RoomClass(this);
 	rooms["NURSERYE4"].roomName = "NURSERY:\nMILKING STATION";
@@ -1095,6 +1108,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYE4"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYE4"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYE4"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYE4"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYE8"] = new RoomClass(this);
 	rooms["NURSERYE8"].roomName = "NURSERY:\nBIO-SCIENCES";
@@ -1108,6 +1122,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYE8"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYE8"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYE8"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYE8"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYG6"] = new RoomClass(this);
 	rooms["NURSERYG6"].roomName = "\nNURSERY";
@@ -1124,6 +1139,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYG6"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYG6"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYG6"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYG6"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYG4"] = new RoomClass(this);
 	rooms["NURSERYG4"].roomName = "NURSERY:\nYOUR APT.";
@@ -1136,6 +1152,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYG4"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYG4"].addFlag(GLOBAL.PRIVATE);
 	rooms["NURSERYG4"].addFlag(GLOBAL.BED);
+	rooms["NURSERYG4"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYG8"] = new RoomClass(this);
 	rooms["NURSERYG8"].roomName = "NURSERY:\nBRIGET’S APT.";
@@ -1149,6 +1166,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYG8"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYG8"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYG8"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYG8"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYI6"] = new RoomClass(this);
 	rooms["NURSERYI6"].roomName = "NURSERY:\nTEMP. HOUSING";
@@ -1162,6 +1180,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYI6"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYI6"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYI6"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+	rooms["NURSERYI6"].addFlag(GLOBAL.NURSERY);
 
 	rooms["NURSERYSERA"] = new RoomClass(this);
 	rooms["NURSERYSERA"].roomName = "NURSERY:\nSERA’S APT.";
@@ -1174,6 +1193,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYSERA"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYSERA"].addFlag(GLOBAL.PRIVATE);
 	rooms["NURSERYSERA"].addFlag(GLOBAL.NPC);
+	rooms["NURSERYSERA"].addFlag(GLOBAL.NURSERY);
 	
 	//Random Ramis Bar
 	//Time forward 1 ½ hours, move to standalone Some Club, Somewhere On The Merchant Deck,
@@ -1187,4 +1207,23 @@ public function initTavrosRooms():void
 	rooms["RAMISBAR"].addFlag(GLOBAL.INDOOR);
 	rooms["RAMISBAR"].addFlag(GLOBAL.PRIVATE);
 	rooms["RAMISBAR"].addFlag(GLOBAL.NPC);
+	
+	// Riya locations
+	rooms["RIYAQUEST"] = new RoomClass(this);
+	rooms["RIYAQUEST"].roomName = "PIRATE\nBASE";
+	rooms["RIYAQUEST"].description = "";
+	rooms["RIYAQUEST"].planet = "TAVROS STATION";
+	rooms["RIYAQUEST"].system = "SYSTEM: KALAS";
+	rooms["RIYAQUEST"].moveMinutes = 1;
+	rooms["RIYAQUEST"].runOnEnter = undefined;
+	rooms["RIYAQUEST"].addFlag(GLOBAL.INDOOR);
+	
+	rooms["RIYAPARTY"] = new RoomClass(this);
+	rooms["RIYAPARTY"].roomName = "\nDECK 4";
+	rooms["RIYAPARTY"].description = "";
+	rooms["RIYAPARTY"].planet = "TAVROS STATION";
+	rooms["RIYAPARTY"].system = "SYSTEM: KALAS";
+	rooms["RIYAPARTY"].moveMinutes = 2;
+	rooms["RIYAPARTY"].runOnEnter = undefined;
+	rooms["RIYAPARTY"].addFlag(GLOBAL.INDOOR);
 }
