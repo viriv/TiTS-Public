@@ -1184,7 +1184,7 @@
 		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
 		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
 		public static const ITEM_FLAG_SHELTER:int						= 34; // For items that regulate environmental effects.
-		public static const ITEM_FLAG_PIERCING_BAR:int					= 32  //Piercings of the "bar" type.
+		public static const ITEM_FLAG_PIERCING_BAR:int					= 35; //Piercings of the "bar" type.
 
 		
 		public static const ITEM_FLAG_NAMES:Array = [
