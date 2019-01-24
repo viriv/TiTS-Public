@@ -256,9 +256,9 @@ public function rhettPiercingBodySelection(vars:Array):void
 	output("<i>“What part you looking at getting pierced?”</i>");
 	
 	clearMenu();
-	switch(vars[0])//functions generate base menus based off type at first then add further restricts within the function itself
+	switch(vars[0])//functions generate selection and restrict unusable body part buttons menus based off type
 	{
-		case "ring":rhettRingPiercingMenu(vars);break;
+		case "ring": rhettRingPiercingMenu(vars); break;
 		case "stud": rhettStudPiercingMenu(vars); break;
 		case "bar": rhettBarPiercingMenu(vars); break;
 	}
@@ -269,8 +269,8 @@ public function rhettPiercingBodySelection(vars:Array):void
 public function rhettRingPiercingMenu(vars:Array):void
 {
 	//vars = [type, color, placement]
-	//if piercing is unable to go in body part it is given a disabled button from start
-	//other checks done to see if body part is already pierced
+	//if piercing is unable to go in body part then it is just given a disabled button
+	//otherwise checks done to see if body part is already pierced
 	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingPayment, [vars[0], vars[1], "ears"]);
 	else addDisabledButton(0, "Ears", "Ears", "Rhett can't pierce your ears when they already have a piercing in them!");
 	
@@ -474,14 +474,14 @@ public function rhettPiercingPayment(vars:Array):void
 	output("<i>“That'll be 100 credits,”</i> Rhett announces, gesturing to the tattooed android manning the counter. <i>“Just give it to him, and we'll get started.”</i>");
 	
 	clearMenu();
-	addButton(0, "Pay", rhettOuch, vars);
+	addButton(0, "Pay", rhettPierceOuch, vars);
 	addButton(1, "Don't", rhettBackOut);
 }
 
 //Get pierced
-public function rhettOuch(vars:Array):void
+public function rhettPierceOuch(vars:Array):void
 {
-	var piercingIsAre:String = " is";//most body parts are singular except ears and nipples
+	var piercingIsAre:String = " is";//most body parts are singular except ears and nipples TODO: can use the flag types for this instead? ITEM_FLAG_PIERCING_MULTIPLE
 	clearOutput();
 	author("Jim T");
 	
@@ -525,11 +525,11 @@ public function rhettOuch(vars:Array):void
 	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)
 	{
 		output("Huh. It's like your body just soaks in the mods.”</i>");
-		IncrementFlag("RHETT_HAS_PIERCED_BEFORE")
+		IncrementFlag("RHETT_HAS_PIERCED_BEFORE");
 	}
 	else output("As usual, your body just soaks up the mods.”</i>");
 	
-	output("\n\n<b>Your " + vars[2] + piercingIsAre + " now pierced!</b>")
+	output("\n\n<b>Your " + vars[2] + piercingIsAre + " now pierced!</b>");
 	
 	pc.credits -= 100;
 	processTime(5);
