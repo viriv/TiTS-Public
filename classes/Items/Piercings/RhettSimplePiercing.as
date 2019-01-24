@@ -42,7 +42,8 @@ package classes.Items.Piercings
 			
 			
 			this.version = _latestVersion;
-			this.hasRandomProperties = true;//forces save/load/coping to carry over color and piercingType fields
+			this.hasRandomProperties = true;//keeps color piercingsType fields consistent between save/load/copying
+			this.hasUniqueName = true;//keeps shortname consistent between save/load/copying
 		}
 	}
 }
