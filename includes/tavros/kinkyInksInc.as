@@ -25,7 +25,7 @@ public function approachRhett():void
 	{
 		IncrementFlag("MET_RHETT");
 		
-		output("A shirtless, utterly tattooed man slithers towards you—slithers because his entire lower half seems to be entirely naga-like. His midnight serpent scales are lined with silver tribal tattoos, while his pale, humanoid torso is conversely covered in black wicked-looking ink. You get the impression he's staring at you, but it's hard to tell; the well-toned man is wearing a pair of mirrored shades, and he's stony-faced, making him hard to read.");
+		output("A shirtless, utterly tattooed man slithers towards you–slithers because his entire lower half seems to be entirely naga-like. His midnight serpent scales are lined with silver tribal tattoos, while his pale, humanoid torso is conversely covered in black wicked-looking ink. You get the impression he's staring at you, but it's hard to tell; the well-toned man is wearing a pair of mirrored shades, and he's stony-faced, making him hard to read.");
 		output("\n\n<i>“... Here for some ink?”</i> he asks, whipping out a thin, white stick. He lights it up and no smoke comes out, though the end glows.");
 		output("\n\n<i>“Ink? Don't tell me you actually paint people's bodies with ink here,”</i> you answer, then gesture to the object in his mouth. <i>“...And what's that?”</i>")
 		output("\n\nThe tattooed, naga-like man grins. <i>“Nah. It's an old expression. Archaic, I know.”</i> He then plucks the pale stick from his mouth and lifting it with two fingers. <i>“... and it's nim leaf.”</i>");
@@ -84,9 +84,9 @@ public function rhettAppearance():void
 	clearOutput();
 	author("Jim T");
 	
-	output("Rhett is a half-akhid, but <i>all</i> tattoo. His whole naga-like lower half—a shining expanse of black scales—is coated in silver, tribal like markings. Meanwhile, his well-toned, human-like upper half is conversely covered in black, wicked-looking ink.");
+	output("Rhett is a half-akhid, but <i>all</i> tattoo. His whole naga-like lower half–a shining expanse of black scales–is coated in silver, tribal like markings. Meanwhile, his well-toned, human-like upper half is conversely covered in black, wicked-looking ink.");
 	output("\n\nHis black hair, barely an inch long, covers his scalp in a slight fuzz. The stoic-faced man is also rarely without his mirrored shades, making it even harder to read his expressions. In his lips is usually a white cigarette filled with harmless nim leaf, burning away smokelessly.");
-	output("\n\nAlthough Rhett is essentially naked—since he refuses to wear a shirt on his toned upper half—his genitals are nowhere to be seen. He apparently <i>does</i> have them, they're just hidden behind his scales, protruding only when he's aroused. There's still a light fuzz of pubic hair on his human half and hanging above his crotch. ");
+	output("\n\nAlthough Rhett is essentially naked–since he refuses to wear a shirt on his toned upper half–his genitals are nowhere to be seen. He apparently <i>does</i> have them, they're just hidden behind his scales, protruding only when he's aroused. There's still a light fuzz of pubic hair on his human half and hanging above his crotch. ");
 	
 	processTime(1);
 	clearMenu();
@@ -195,7 +195,7 @@ public function talkToRhettAboutSkinMods():void
 	output("\n\n<i>“Medical Science. Used to be people actually drew on or punctured each other with needles. Pretty hard to believe. Still, you get a few piercing purists or BDSM lovers doing things the old way.”</i>");
 	output("\n\n<i>“Nowadays, we take a sample of your genes, then cook up a localized mod to spray directly on your skin, designed to only affect the dermis... goo, scales, what have you. That way we can even painlessly tattoo rahn without hassles.”</i>");
 	output("\n\nYou ask if there's any other benefits. Rhett's eyes light up and he shows you his arm, running his hand along it. The artwork is sheened to perfection, like a painting.");
-	output("\n\n<i>“Oh, tons. Unlike the old school tattoos, skin mods don't fade. They can be bioluminous, and —best part in my opinion—they can be made to <b>feel</b> and <b>smell</b> like whatever you're tattooing on.”</i>");
+	output("\n\n<i>“Oh, tons. Unlike the old school tattoos, skin mods don't fade. They can be bioluminous, and –best part in my opinion–they can be made to <b>feel</b> and <b>smell</b> like whatever you're tattooing on.”</i>");
 	output("\n\n<i>“Can't wait until they figure out taste, because I'd love to have a tattoo on the back of my hand that tastes like rocky road. I'd lick my hand more than a kaithrit with fluffy ears.”</i>");
 	
 	processTime(3);
@@ -515,7 +515,7 @@ public function rhettPierceOuch(vars:Array):void
 	else
 	{
 		output("You sit down in the familiar, sleek tattooist's chair");
-		if(pc.isTaur()) output("—after it's morphed to be taur friendly, of course");
+		if(pc.isTaur()) output("–after it's morphed to be taur friendly, of course");
 	}
 	
 	output(".");
@@ -601,7 +601,7 @@ public function rhettSexMenu():void
 				}
 				else output(" Once out of the common area, he");
 				
-				output(" wraps his gigantic midnight coils around your humanoid upper half, and you let out a surprised gasp—you're half snake, but you're being squeezed by <i>him!</i>");
+				output(" wraps his gigantic midnight coils around your humanoid upper half, and you let out a surprised gasp–you're half snake, but you're being squeezed by <i>him!</i>");
 				output("\n\nCaught utterly off guard by his sudden swoop, you ask him what he's doing, trying not to tremble as your" + (wasWearingClothes ? " now": "") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction from your fellow naga caresses your nipples and presses");
 				
 				if(pc.hasBreasts()) output(" in your breasts.");
@@ -696,7 +696,7 @@ public function rhettSexMenu():void
 				}
 				else output(" Once out of the common area, he");//pc is nude
 				
-				output(" wraps his gigantic midnight coils around your humanoid upper half, and you gasp with pleasure—as a half snake, it's always interesting to be the one <i>squeezed</i> for a change.");
+				output(" wraps his gigantic midnight coils around your humanoid upper half, and you gasp with pleasure–as a half snake, it's always interesting to be the one <i>squeezed</i> for a change.");
 				output("\n\nYou try not to tremble as your" + (wasWearingClothes ? " now" : "") + "naked body rubs sensuously against his shifting scales. The slow squeezing friction from your fellow naga caresses your nipples and presses ");
 				if(pc.hasBreasts()) output(" in your breasts.");
 				else output(" against your chest.");
@@ -804,16 +804,16 @@ public function rhettOrgasmDenial():void
 	else output(" clenching ridge.");
 	
 	output(" <i>“On the brink of orgasm. Without release.”</i>");
-	output("\n\n<i>“Y-you wouldn't—!”</i> you whimper, your mind already swimming with pleasure, thoughts a total jumbled mess.");
+	output("\n\n<i>“Y-you wouldn't–!”</i> you whimper, your mind already swimming with pleasure, thoughts a total jumbled mess.");
 	output("\n\n<i>“I would. No. I WILL,”</i> Rhett informs you, his deep voice informing you from <i>somewhere</i> beyond the scale wall. True to his word, the serpentine man keeps you in");
 	if(pc.isNaga()) output(" an almost");
 	else output(" a");
 	
-	output(" total body clutch, your nipples mercilessly rubbed and your loins tortured and teased. You feel like you're going to go <i>mad</i> with pleasure—and just as you begin to spasmically quake, <i>right</i> on the brink of orgasm, he puts on the breaks... letting you cool down <i>just</i> long enough to wind you right back up again! The gap between breaks seem to become smaller and smaller, until the tiniest, teensiest brush against your loins is nearly enough to make you cream yourself on the spot!");
-	output("\n\n <i>“Puh-please, sir, let me cuuumm~!”</i> you deliriously whimper, lavishing with praise, ANYTHING, so long as it lets you get off. You'd sign away your fortune, make yourself his slave, just to make this torturous pleasure end and gasp the glorious, body-wracking pleasure that he keeps pulling <i>just</i> out of your reach! You're physically crying now, your whole body quaking—you've totally lost control of it after being brought, time and again, to that orgasmic brink.");
+	output(" total body clutch, your nipples mercilessly rubbed and your loins tortured and teased. You feel like you're going to go <i>mad</i> with pleasure–and just as you begin to spasmically quake, <i>right</i> on the brink of orgasm, he puts on the breaks... letting you cool down <i>just</i> long enough to wind you right back up again! The gap between breaks seem to become smaller and smaller, until the tiniest, teensiest brush against your loins is nearly enough to make you cream yourself on the spot!");
+	output("\n\n <i>“Puh-please, sir, let me cuuumm~!”</i> you deliriously whimper, lavishing with praise, ANYTHING, so long as it lets you get off. You'd sign away your fortune, make yourself his slave, just to make this torturous pleasure end and gasp the glorious, body-wracking pleasure that he keeps pulling <i>just</i> out of your reach! You're physically crying now, your whole body quaking–you've totally lost control of it after being brought, time and again, to that orgasmic brink.");
 	output("\n\n <i>“Oh? I'm not sure you want it,”</i> Rhett intones, flicking his tail oh-so-gently right next to your loins. Just that tiny brush is enough to make you babble and whimper uncontrollably. No shame is left. Nothing else is left except for the maddening maelstrom of <i>pleasure</i> sweeping through your body and soul, leaving a shattered little [pc.name] in its wake.");
-	output("\n\n <i>“~I'm going to go crazy! Please, please, I'll love you forever, I'll live with your cock in my mouth, I'll do anything—juh-just let me get off~!”</i>");
-	output("\n\nThere's the slightest and most merciful <i>stroke</i> against your privates. Everything—EVERYTHING—goes white. You let out a erotic scream and convulse uncontrollably in his clutches");
+	output("\n\n <i>“~I'm going to go crazy! Please, please, I'll love you forever, I'll live with your cock in my mouth, I'll do anything–juh-just let me get off~!”</i>");
+	output("\n\nThere's the slightest and most merciful <i>stroke</i> against your privates. Everything–EVERYTHING–goes white. You let out a erotic scream and convulse uncontrollably in his clutches");
 	
 	if(pc.hasVagina())//pc has vagina
 	{
@@ -828,7 +828,7 @@ public function rhettOrgasmDenial():void
 	else output(",");//pc is neuter
 	
 	output(" You're left feeling like you're floating in some unspeakably infinite space... filled with love and pleasure... a mindless happiness that just never, ever seems to end...");
-	output("\n\n... When you finally slip out of that unspeakably happy place, you feel like you crash hard—like an angel falling back to earth. You're shivering a lot, but you feel strangely warm and hugged. It takes you a long while to realise you're still in Rhett's scales, and he's lightly stroking your [pc.hair], speaking to you in surprisingly soothing tones.");
+	output("\n\n... When you finally slip out of that unspeakably happy place, you feel like you crash hard–like an angel falling back to earth. You're shivering a lot, but you feel strangely warm and hugged. It takes you a long while to realise you're still in Rhett's scales, and he's lightly stroking your [pc.hair], speaking to you in surprisingly soothing tones.");
 	output("\n\n<i>“There there, kid. You're okay. I've got you,”</i> Rhett tells you, and you blink dazedly. <i>“... You were in sub-space. Happens after a lot of play like that. Big highs come with big falls, you know.”</i>");
 	output("\n\nYou flush, your whole lower body");
 	if(pc.hasVagina() || pc.hasCock()) output(" impossibly sticky");//pc is not neuter
@@ -853,17 +853,17 @@ public function rhettBlowjob():void
 	output("While keeping your [pc.legs] and [pc.hands] pinned, Rhett's serpentine body loosens around your upper body. The tattooed man raises his body, until your face-first with his scaled loins. ");
 	if(flags["RHETT_SUCKED"] == undefined)
 	{
-		output(" You blush, wondering exactly what he has planned—there's nothing there, right? You're proven wrong as a slight slit appears in his midnight scales, and a black phallus slides out from the crack. It just keeps coming and coming; where does it end? When it's finally out, your gobsmacked at the size of his <i>second</i> snake.");
+		output(" You blush, wondering exactly what he has planned–there's nothing there, right? You're proven wrong as a slight slit appears in his midnight scales, and a black phallus slides out from the crack. It just keeps coming and coming; where does it end? When it's finally out, your gobsmacked at the size of his <i>second</i> snake.");
 	}
 	
-	output("\n\n<i>“Suck it,”</i> Rhett orders you, bringing his bulbous black head right to your wettened lips. With a tiny bit of trepidation, you wrap your mouth around his glans. As you timidly suck on the tip of his manhood, it begins to stiffen and rise. Encouraged, you suck on it harder, watching it twitch and ascend, getting even thicker—if such a thing were <i>possible</i>. It tastes a tiny bit sweaty, and manly, and all around delicious. As you breathe heavily through your nose, you suck in and swoon at his his exquisitely musky scent. <i>“Good");
+	output("\n\n<i>“Suck it,”</i> Rhett orders you, bringing his bulbous black head right to your wettened lips. With a tiny bit of trepidation, you wrap your mouth around his glans. As you timidly suck on the tip of his manhood, it begins to stiffen and rise. Encouraged, you suck on it harder, watching it twitch and ascend, getting even thicker–if such a thing were <i>possible</i>. It tastes a tiny bit sweaty, and manly, and all around delicious. As you breathe heavily through your nose, you suck in and swoon at his his exquisitely musky scent. <i>“Good");
 	if(pc.isFeminine()) output(" girl");
 	else output(" boy");
 	
 	output(",”</i> he groans, reaching out and stroking your bobbing head.");
-	output("\n\nFor some reason, Rhett's encouragement makes your heart flutter, and you redouble your oral efforts. Wrapping your [pc.lips] fully around his swollen glans, you lash and lick it with your tongue. It tastes a tiny bit salty, and yet somehow delicious; definitely the taste of a man. Filled with lascivious greed, you stick your tongue in his cock hole, trying to lick along every last bit of his dick, not wanting a single inch of his magnificent tool to go unsavoured. A throaty groan from above fills you with pride; he's enjoying it! A tiny dribble of pre-cum dribbles onto your tongue, slathering it with his slick spunk. Gulping it down, you draw his throbbing staff forward and against the back of your throat—you want more!");
+	output("\n\nFor some reason, Rhett's encouragement makes your heart flutter, and you redouble your oral efforts. Wrapping your [pc.lips] fully around his swollen glans, you lash and lick it with your tongue. It tastes a tiny bit salty, and yet somehow delicious; definitely the taste of a man. Filled with lascivious greed, you stick your tongue in his cock hole, trying to lick along every last bit of his dick, not wanting a single inch of his magnificent tool to go unsavoured. A throaty groan from above fills you with pride; he's enjoying it! A tiny dribble of pre-cum dribbles onto your tongue, slathering it with his slick spunk. Gulping it down, you draw his throbbing staff forward and against the back of your throat–you want more!");
 	output("\n\nYou're not the only one; the half serpent man is pressing his hips instinctively forward, trying to break the barrier separating him and your throat. You gag and splutter, copious amounts of drool sloppily running out your mouth and down your cheeks. He pulls back an inch, and you take a moment to breathe, before <i>you</i> try and push his sizable glans down your throat! Another gag, but you <i>swear</i> you got an inch further this time! A few more attempts, and your face must be a mess; your spit-slicked mouth now wetter than any pussy. When you press forward this time, you feel a slight resistance... and then your throat give way! His throbbing manhood suddenly slips deep into your throat, and you let out a muffled moan; <i>now</i> your mouth is a perfect sheathe for his dick!");
-	output("\n\nLetting out a loud, enthusiastic groan, Rhett begins to slip in and out of your mouth, his cock head plumbing deep within your throat. Something's beating against your upper lip, and when you go cross eyed, you see a small lump on his upper dick. It kind of looks like a dusky clit! As he rubs it against you, his moans intensify, and even more slick goodness slips down your eagerly open throat. You press yourself forward, deliberately trying to brush and stimulate his bump, feeling his cock head flex excitedly in your gullet each and every time. You're so excited that you can't hold back, and begin to tremble—right on the verge of creaming your poor");
+	output("\n\nLetting out a loud, enthusiastic groan, Rhett begins to slip in and out of your mouth, his cock head plumbing deep within your throat. Something's beating against your upper lip, and when you go cross eyed, you see a small lump on his upper dick. It kind of looks like a dusky clit! As he rubs it against you, his moans intensify, and even more slick goodness slips down your eagerly open throat. You press yourself forward, deliberately trying to brush and stimulate his bump, feeling his cock head flex excitedly in your gullet each and every time. You're so excited that you can't hold back, and begin to tremble–right on the verge of creaming your poor");
 	if(pc.hasCock() || pc.hasVagina())//pc not neuter
 	{
 		if(pc.hasCock())//pc has cock
@@ -958,7 +958,7 @@ public function rhettAssFuck():void
 	else output("I told you, I'm going to use your ass.”</i>");
 	
 	output("\n\nYou can feel a stiffness even <i>harder</i> than his chiseled pecs, pointedly pressing between your buttocks. With your [pc.legs] caught and coiled, and your hips now seized, you're utterly at Rhett's mercy! The serpentine man seizes the chance to slip his rigidity up and into your [pc.asshole], slowly sheathing himself inside of your");
-	if(pc.analVirgin) output(" virgin rump. Gasping at the strange intruder—the first you've ever felt—you blush and realize this will be a moment you will remember for the rest of your life!");
+	if(pc.analVirgin) output(" virgin rump. Gasping at the strange intruder–the first you've ever felt–you blush and realize this will be a moment you will remember for the rest of your life!");
 	else output(" rump.");
 	
 	output(" You gasp at the");
@@ -971,7 +971,7 @@ public function rhettAssFuck():void
 	output("\n\nYou instinctively clench at his cock base with your pucker, but it's so thick it's like trying to grip a baseball bat. Feeling impossibly stuffed with twitching muscled cock, you can't even move your hands, since they're pinned down with your hips. All you can do is take his massively long dick, not even able to touch yourself down <i>there</i>");
 	if(pc.hasCock() || pc.hasVagina())
 	{
-		output("—though you can feel your");
+		output("–though you can feel your");
 		
 		if(pc.hasCock())
 		{
@@ -987,7 +987,7 @@ public function rhettAssFuck():void
 	if(pc.hasCock()) output(" prostate.");
 	else output(" rectum.");
 	
-	output("\n\nWith each and every thrust, your defense wavers, and your pucker loosens another inch—allowing him to claim you deeper and more totally. Your mind is swooning with ass-induced pleasure. All you can think about, again and again, is how totally and one-sidedly you're being fucked by this muscular man. As his dick delves into you, right up to the hilt, he gives a pointed squeeze of his shaft and tip, sending you right over the edge! With a quivering cry, you cream yourself right there and then");
+	output("\n\nWith each and every thrust, your defense wavers, and your pucker loosens another inch–allowing him to claim you deeper and more totally. Your mind is swooning with ass-induced pleasure. All you can think about, again and again, is how totally and one-sidedly you're being fucked by this muscular man. As his dick delves into you, right up to the hilt, he gives a pointed squeeze of his shaft and tip, sending you right over the edge! With a quivering cry, you cream yourself right there and then");
 	if(pc.hasCock() || pc.hasVagina())//pc is not neuter
 	{
 		output(",");
@@ -1041,8 +1041,8 @@ public function rhettAssFuck():void
 		}
 	}
 	
-	output(". You tremble in his grasp, spasmically squeezing his masculine rod. It twitches all of a sudden, and there's a hot, creamy rush up inside your rectum—Rhett is cumming inside of you! All you can do is moan your pleasure as you are filled with his gooey naga spunk, your completely plugged hole filled up to the brink.");	
-	output("\n\nWhen he finally pulls out of you, there's a delicious 'plopping' noise, and you feel a hot, streamy dribble running down and out of your slightly gaping butthole. Instinctively, you try to clench and keep it in—you want as much of <i>him</i> to stay inside you as possible! There's a fierce kissing at the nape of your neck, followed by a pointed suckling. Is-is he leaving hickeys on you? You let out a dreamy moan as you're marked by Rhett, possessively littered with tiny, kiss-sized bruises.");
+	output(". You tremble in his grasp, spasmically squeezing his masculine rod. It twitches all of a sudden, and there's a hot, creamy rush up inside your rectum–Rhett is cumming inside of you! All you can do is moan your pleasure as you are filled with his gooey naga spunk, your completely plugged hole filled up to the brink.");	
+	output("\n\nWhen he finally pulls out of you, there's a delicious 'plopping' noise, and you feel a hot, streamy dribble running down and out of your slightly gaping butthole. Instinctively, you try to clench and keep it in–you want as much of <i>him</i> to stay inside you as possible! There's a fierce kissing at the nape of your neck, followed by a pointed suckling. Is-is he leaving hickeys on you? You let out a dreamy moan as you're marked by Rhett, possessively littered with tiny, kiss-sized bruises.");
 	output("\n\nAfter a long, sensually-spent afterglow, you're released from his coils. Collecting your things, you head out first, feeling giddy and a little wobbly on your [pc.feet]. You're followed by the surprisingly composed looking half-akhid, who is already slipping back on his mirrored shades. He does give your leaking ass a quick look; it seems he's appreciating his handiwork!");
 	
 	if(flags["RHETT_FUCKED"] == undefined) IncrementFlag("RHETT_FUCKED");
