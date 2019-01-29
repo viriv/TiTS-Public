@@ -3,6 +3,7 @@
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.GameData.SingleCombatAttack;
+	import classes.Tattoo.EmptyTattoo;
 	import classes.Items.Accessories.*;
 	import classes.Items.Apparel.SavicitePanties;
 	import classes.Items.Armor.*;
@@ -761,6 +762,222 @@
 		//New piercing hotness:
 		public var earPiercing:ItemSlotClass = new EmptySlot();
 
+		public var faceTattoo:TattooClass = new EmptyTattoo();
+		public var neckTattoo:TattooClass = new EmptyTattoo();
+		public var upperBackTattoo:TattooClass = new EmptyTattoo();
+		public var lowerBackTattoo:TattooClass = new EmptyTattoo();
+		public var leftChestTattoo:TattooClass = new EmptyTattoo();
+		public var rightChestTattoo:TattooClass = new EmptyTattoo();
+		public var fullChestTattoo:TattooClass = new EmptyTattoo();
+		public var leftArmTattoo:TattooClass = new EmptyTattoo();
+		public var rightArmTattoo:TattooClass = new EmptyTattoo();
+		public var leftLegTattoo:TattooClass = new EmptyTattoo();
+		public var rightLegTattoo:TattooClass = new EmptyTattoo();
+		public var leftButtTattoo:TattooClass = new EmptyTattoo();
+		public var rightButtTattoo:TattooClass = new EmptyTattoo();
+		public var fullButtTattoo:TattooClass = new EmptyTattoo();
+		public var aboveCrotchTattoo:TattooClass = new EmptyTattoo();
+		
+		public function hasFaceTattoo():Boolean
+		{
+			return !(faceTattoo is EmptyTattoo);
+		}
+		
+		public function hasFaceTattooOfType(tattooType:int):Boolean
+		{
+			return faceTattoo.tattooType == tattooType;
+		}
+		
+		public function hasNeckTattoo():Boolean
+		{
+			return !(neckTattoo is EmptyTattoo);
+		}
+		
+		public function hasNeckTattooOfType(tattooType:int):Boolean
+		{
+			return neckTattoo.tattooType == tattooType;
+		}
+		
+		public function hasUpperBackTattoo():Boolean
+		{
+			return !(upperBackTattoo is EmptyTattoo);
+		}
+		
+		public function hasUpperBackTattooOfType(tattooType:int):Boolean
+		{
+			return upperBackTattoo.tattooType == tattooType;
+		}
+		
+		public function hasLowerBackTattoo():Boolean
+		{
+			return !(lowerBackTattoo is EmptyTattoo);
+		}
+		
+		public function haslowerBackTattooOfType(tattooType:int):Boolean
+		{
+			return lowerBackTattoo.tattooType == tattooType;
+		}
+		
+		public function hasBackTattoo():Boolean
+		{
+			return hasLowerBackTattoo() || hasUpperBackTattoo();
+		}
+		
+		public function hasLeftChestTattoo():Boolean
+		{
+			return !(leftChestTattoo is EmptyTattoo);
+		}
+		
+		public function hasLeftChestTattooOfType(tattooType:int):Boolean
+		{
+			return leftChestTattoo.tattooType == tattooType;
+		}
+		
+		public function hasRightChestTattoo():Boolean
+		{
+			return !(rightChestTattoo is EmptyTattoo);
+		}
+		
+		public function hasRightChestTattooOfType(tattooType:int):Boolean
+		{
+			return rightChestTattoo.tattooType == tattooType;
+		}
+		
+		public function hasBothChestTattoo():Boolean//check if left and right both have a tattoo. might not be same type
+		{
+			return !(leftChestTattoo is EmptyTattoo) && !(rightChestTattoo is EmptyTattoo);
+		}
+		
+		public function hasBothSameChestTattoo():Boolean//check if left and right both have same type tattoo
+		{
+			return !(leftChestTattoo is EmptyTattoo) && (leftChestTattoo.tattooType == rightChestTattoo.tattooType);
+		}
+		
+		public function hasFullChestTattoo():Boolean
+		{
+			return !(fullChestTattoo is EmptyTattoo);
+		}
+		
+		public function hasFullChestTattooOfType(tattooType:int):Boolean
+		{
+			return fullChestTattoo.tattooType == tattooType;
+		}
+		
+		public function hasChestTattoo():Boolean
+		{
+			return hasLeftChestTattoo() || hasRightChestTattoo() || hasFullChestTattoo();
+		}
+		
+		public function hasLeftArmTattoo():Boolean
+		{
+			return !(leftArmTattoo is EmptyTattoo);
+		}
+		
+		public function hasLeftArmTattooOfType(tattooType:int):Boolean
+		{
+			return leftArmTattoo.tattooType == tattooType;
+		}
+		
+		public function hasRightArmTattoo():Boolean
+		{
+			return !(rightArmTattoo is EmptyTattoo);
+		}
+		
+		public function hasRightArmTattooOfType(tattooType:int):Boolean
+		{
+			return rightArmTattoo.tattooType == tattooType;
+		}
+		
+		public function hasArmTattoo():Boolean
+		{
+			return hasLeftArmTattoo() || hasRightArmTattoo();
+		}
+		
+		public function hasLeftLegTattoo():Boolean
+		{
+			return !(leftLegTattoo is EmptyTattoo);
+		}
+		
+		public function hasLeftLegTattooOfType(tattooType:int):Boolean
+		{
+			return leftLegTattoo.tattooType == tattooType;
+		}
+		
+		public function hasRightLegTattoo():Boolean
+		{
+			return !(rightLegTattoo is EmptyTattoo);
+		}
+		
+		public function hasRightLegTattooOfType(tattooType:int):Boolean
+		{
+			return rightLegTattoo.tattooType == tattooType;
+		}
+		
+		public function hasLegTattoo():Boolean
+		{
+			return hasLeftLegTattoo() || hasRightLegTattoo();
+		}
+		
+		public function hasLeftButtTattoo():Boolean
+		{
+			return !(leftButtTattoo is EmptyTattoo);
+		}
+		
+		public function hasLeftButtTattooOfType(tattooType:int):Boolean
+		{
+			return leftButtTattoo.tattooType == tattooType;
+		}
+		
+		public function hasRightButtTattoo():Boolean
+		{
+			return !(rightButtTattoo is EmptyTattoo);
+		}
+		
+		public function hasRightButtTattooOfType(tattooType:int):Boolean
+		{
+			return rightButtTattoo.tattooType == tattooType;
+		}
+		
+		public function hasBothButtTattoo():Boolean//check if left and right both have a tattoo. might not be same type
+		{
+			return !(leftButtTattoo is EmptyTattoo) && !(rightButtTattoo is EmptyTattoo);
+		}
+		
+		public function hasBothSameButtTattoo():Boolean//check if left and right both have same type tattoo
+		{
+			return !(leftButtTattoo is EmptyTattoo) && (leftButtTattoo.tattooType == rightButtTattoo.tattooType);
+		}
+		
+		public function hasFullButtTattoo():Boolean
+		{
+			return !(fullButtTattoo is EmptyTattoo);
+		}
+		
+		public function hasFullButtTattooOfType(tattooType:int):Boolean
+		{
+			return fullButtTattoo.tattooType == tattooType;
+		}
+		
+		public function hasButtTattoo():Boolean
+		{
+			return hasLeftButtTattoo() || hasRightButtTattoo() || hasFullButtTattoo();
+		}
+		
+		public function hasAboveCrotchTattoo():Boolean
+		{
+			return !(aboveCrotchTattoo is EmptyTattoo);
+		}
+		
+		public function hasAboveCrotchTattooOfType(tattooType:int):Boolean
+		{
+			return aboveCrotchTattoo.tattooType == tattooType;
+		}
+		
+		public function hasTattoo():Boolean
+		{
+			return hasFaceTattoo() || hasNeckTattoo() || hasBackTattoo() || hasChestTattoo() || hasArmTattoo() || hasLegTattoo() || hasButtTattoo() || hasAboveCrotchTattoo();
+		}
+		
 		public var antennae: Number = 0;
 		public function antennaeUnlocked(newAntennaeNumber:Number):Boolean
 		{
@@ -22103,3 +22320,4 @@
 	}
 }
 
+

@@ -1,6 +1,13 @@
-﻿import classes.Items.Piercings.RhettSimplePiercing;
+﻿import classes.Tattoo.DragonTattoo;
+import classes.Tattoo.FloralTattoo;
+import classes.Tattoo.SkullTattoo;
+import classes.Tattoo.TribalTattoo;
+import classes.Tattoo.WingTattoo;
+import classes.Items.Piercings.RhettSimplePiercing;
 import classes.Items.Miscellaneous.EmptySlot;
+import classes.GLOBAL;
 import classes.Engine.Utility.IncrementFlag;
+import classes.TattooClass;
 //AUTHOR - JimThermic
 
 //Piercing Salon
@@ -70,9 +77,9 @@ public function rhettMenu():void
 	clearMenu();
 	addButton(0, "Appearance", rhettAppearance, undefined, "Appearance", "Checkout the tattooed snakeman.");
 	addButton(1, "Talk", rhettTalk, undefined, "Talk", "Talk with Rhett.");
-	//addButton(2, "Tattoos", rhettTattoo, undefined, "Tattoo", "Get a tattoo");
+	addButton(2, "Tattoos", rhettTattoos, undefined, "Tattoo", "Get a tattoo");
 	addButton(3, "Piercings", rhettPiercings, undefined, "Piercings", "Get a piercing.");
-	//addbutton(4, "Removal", rhettRemoval, undefined, "Removal", "Remove a piercing.");
+	//addbutton(4, "Removal", rhettRemoval, undefined, "Removal", "Remove a piercing.");//TODO: tattoo removal
 	if(pc.lust() >= 33) addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");
 	else addDisabledButton(5, "Sex", "Sex", "You aren’t aroused enough for sex right now.");
 	addButton(14, "Leave", mainGameMenu);
@@ -203,7 +210,358 @@ public function talkToRhettAboutSkinMods():void
 	addButton(14, "Back", rhettTalk);
 }
 
-//public function rhettTattoo():void
+//Ask to get a tattoo
+public function rhettTattoos():void
+{
+	clearOutput();
+	author("Jim T");
+	
+	output("You tell Rhett you'd like a tattoo. The half-akhid man puts out his cigarette and gives a little nod.");
+	output("\n\n<i>“... What kind you after?”</i> he asks.");
+	
+	clearMenu();
+	//vars = [type, (wing type), location, color]
+	addButton(0, "Tribal", rhettTattoosBodyPartSelection, [new TribalTattoo(), undefined]);
+	addButton(1, "Floral", rhettTattoosBodyPartSelection, [new FloralTattoo(), undefined]);
+	addButton(2, "Skull", rhettTattoosBodyPartSelection, [new SkullTattoo(), undefined]);
+	addButton(3, "Dragon", rhettTattoosBodyPartSelection, [new DragonTattoo(), undefined]);
+	addButton(4, "Wings", rhettTattoosWingsOptions, [new WingTattoo()]);
+	//addButton(5, "Text", rhettTattooTextOptions, ["text"]);
+	addButton(14, "Back", rhettBackOut);
+}
+
+public function rhettTattoosWingsOptions(tattooVars:Array):void
+{
+	clearOutput();
+	author("Jim T");
+	
+	output("<i>“Wings, huh–what kind?”<\i>");
+	
+	clearMenu();
+	addButton(0, "Bat", rhettTattoosBodyPartSelection, [tattooVars[0], "bat"]);
+	addButton(1, "Feather", rhettTattoosBodyPartSelection, [tattooVars[0], "feather"]);
+	addButton(2, "Butterfly", rhettTattoosBodyPartSelection, [tattooVars[0], "butterfly"]);
+	addButton(14, "Back", rhettBackOut);
+}
+
+public function rhettTattoosBodyPartSelection(tattooVars:Array):void
+{
+	function btnInc():void
+	{
+		btnIdx++;
+		if(btnIdx % 14 == 0)//if number of buttons would overwrite the back button in the bottom rigth slot
+		{
+			addButton(btnIdx + 15, "Back", rhettBackOut);//add back button to next page of buttons
+			btnIdx++;//skip the bottom right slot
+		}
+	}
+	var btnIdx:int = 0;
+	clearOutput();
+	author("Jim T");
+	
+	output("<i>“Alright. Where do you want it?”<\i>");
+	
+	clearMenu();
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FACE))
+	{
+		if(!pc.hasFaceTattoo()) addButton(btnIdx, "Face", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "face"]);
+		else addDisabledButton(btnIdx, "Face", "Face", "Rhett can't tattoo your face when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_NECK))
+	{
+		if(!pc.hasNeckTattoo()) addButton(btnIdx, "Neck", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "neck"]);
+		else addDisabledButton(btnIdx, "Neck", "Neck", "Rhett can't tattoo your neck when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_UPPER_BACK))
+	{
+		if(!pc.hasUpperBackTattoo()) addButton(btnIdx, "Upper Back", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "upper back"]);
+		else addDisabledButton(btnIdx, "Upper Back", "Upper Back", "Rhett can't tattoo your upper back when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LOWER_BACK))
+	{
+		if(!pc.hasLowerBackTattoo()) addButton(btnIdx, "Lower Back", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "lower back"]);
+		else addDisabledButton(btnIdx, "Lower Back", "Lower Back", "Rhett can't tattoo your lower back when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_CHEST))
+	{
+		if(!pc.hasLeftChestTattoo() && !pc.hasFullChestTattoo()) addButton(btnIdx, "Left Chest", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "left chest"]);
+		else addDisabledButton(btnIdx, "Left Chest", "Left Chest", "Rhett can't tattoo your left chest when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_RIGHT_CHEST))
+	{
+		if(!pc.hasRightChestTattoo() && !pc.hasFullChestTattoo()) addButton(btnIdx, "Right Chest", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right chest"]);
+		else addDisabledButton(btnIdx, "Right Chest", "Right Chest", "Rhett can't tattoo your right chest when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FULL_CHEST))//disallow left right and full tattoos even if left+right = full because colors can be different on left and right and merging them causes a mix up
+	{
+		if(!pc.hasChestTattoo()) addButton(btnIdx, "Full Chest", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "full chest"]);
+		else addDisabledButton(btnIdx, "Full Chest", "Full Chest", "Rhett can't tattoo your full chest when it already has a tattoo!")
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_ARM))
+	{
+		if(!pc.hasLeftArmTattoo()) addButton(btnIdx, "Left Arm", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "left arm"]);
+		else addDisabledButton(btnIdx, "Left Arm", "Left Arm", "Rhett can't tattoo your left arm when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_RIGHT_ARM))
+	{
+		if(!pc.hasRightArmTattoo()) addButton(btnIdx, "Right Arm", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right arm"]);
+		else addDisabledButton(btnIdx, "Right Arm", "Right Arm", "Rhett can't tattoo your right arm when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_LEG))
+	{
+		if(!pc.hasLeftLegTattoo()) addButton(btnIdx, "Left Leg", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "left leg"]);
+		else addDisabledButton(btnIdx, "Left Leg", "Left Leg", "Rhett can't tattoo your left leg when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_RIGHT_LEG))
+	{
+		if(!pc.hasRightLegTattoo()) addButton(btnIdx, "Right Leg", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right leg"]);
+		else addDisabledButton(btnIdx, "Right Leg", "Right Leg", "Rhett can't tattoo your right leg when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_BUTT))
+	{
+		if(!pc.hasLeftButtTattoo() && !pc.hasFullButtTattoo()) addButton(btnIdx, "Left Buttock", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "left buttock"]);
+		else addDisabledButton(btnIdx, "Left Buttock", "Left Buttock", "Rhett can't tattoo your left buttock when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_RIGHT_BUTT))
+	{
+		if(!pc.hasRightButtTattoo() && !pc.hasFullButtTattoo()) addButton(btnIdx, "Right Buttock", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right buttock"]);
+		else addDisabledButton(btnIdx, "Right Buttock", "Right Buttock", "Rhett can't tattoo your right buttock when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FULL_BUTT))
+	{
+		if(!pc.hasButtTattoo()) addButton(btnIdx, "Full Butt", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "full butt"]);//disallow left right and full tattoos even if left+right = full because colors can be different on left and right and merging them causes a mix up
+		else addDisabledButton(btnIdx, "Full Butt", "Full Butt", "Rhett can't tattoo your full butt when it already has a tattoo!");
+		btnInc();
+	}
+	
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_ABOVE_CROTCH))
+	{
+		if(!pc.hasAboveCrotchTattoo()) addButton(btnIdx, "Above Crotch", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "crotch"]);
+		else addDisabledButton(btnIdx, "Above Crotch", "Above Crotch", "Rhett can't tattoo your above crotch when it already has a tattoo!");
+		btnInc();
+	}
+	
+	addButton(14, "Back", rhettBackOut);
+}
+
+public function rhettTattoosColorSelection(tattooVars:Array):void
+{
+	clearOutput();
+	author("Jim T");
+	
+	output("<i>“... And the color?”<\i>");
+	
+	clearMenu();
+	addButton(0, "Black",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "black"]);
+	addButton(1, "White",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "white"]);
+	addButton(2, "Silver",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "silver"]);
+	addButton(3, "Copper",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "copper"]);
+	addButton(4, "Gold",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "gold"]);
+	addButton(5, "Red",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "red"]);
+	addButton(6, "Blue",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "blue"]);
+	addButton(7, "Green",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "green"]);
+	addButton(8, "Orange",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "orange"]);
+	addButton(9, "Yellow",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "yellow"]);
+	addButton(10, "Purple",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "purple"]);
+	addButton(11, "Pink",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "pink"]);
+	addButton(14, "Back", rhettBackOut);
+}
+
+//Confirm payment
+public function rhettTattoosPayment(tattooVars:Array):void
+{
+	clearOutput();
+	author("Jim T");
+	
+	output("<i>“That'll be 100 credits,”</i> Rhett announces, gesturing to the tattooed android manning the counter. <i>“Just give it to him, and we'll get started.”</i>");
+	
+	clearMenu();
+	addButton(0, "Pay", rhettTatOuch, tattooVars);
+	addButton(1, "Don't", rhettBackOut);
+}
+
+public function rhettTatOuch(tattooVars:Array):void
+{
+	clearOutput();
+	author("Jim T");
+	//vars = [type, (optional attribute), location, color]
+	var tattooDescription:String = "";//long description for apperance
+	
+	switch(tattooVars[2])
+	{
+		case "face":
+			pc.faceTattoo = tattooVars[0];//set pc tattoo slot to tattoo type
+			pc.faceTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.faceTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.faceTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "neck":
+			pc.neckTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.neckTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.neckTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.neckTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "upper back":
+			pc.upperBackTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.upperBackTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.upperBackTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.upperBackTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "lower back":
+			pc.lowerBackTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.lowerBackTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.lowerBackTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.lowerBackTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "left chest":
+			pc.leftChestTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.leftChestTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.leftChestTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.leftChestTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "right chest":
+			pc.rightChestTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.rightChestTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.rightChestTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.rightChestTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "full chest":
+			pc.fullChestTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.fullChestTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.fullChestTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.fullChestTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "left arm":
+			pc.leftArmTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.leftArmTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.leftArmTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.leftArmTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "right arm":
+			pc.rightArmTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.rightArmTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.rightArmTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.rightArmTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "left leg":
+			pc.leftLegTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.leftLegTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.leftLegTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.leftLegTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "right leg":
+			pc.rightLegTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.rightLegTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.rightLegTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.rightLegTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "left buttock":
+			pc.leftButtTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.leftButtTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.leftButtTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.leftButtTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "right buttock":
+			pc.rightButtTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.rightButtTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.rightButtTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.rightButtTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "full butt":
+			pc.fullButtTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.fullButtTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.fullButtTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.fullButtTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+		
+		case "crotch":
+			pc.aboveCrotchTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
+			pc.aboveCrotchTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+			pc.aboveCrotchTattoo.tattooLocation = tattooVars[2];//add location to tattoo
+			pc.aboveCrotchTattoo.color = tattooVars[3];//add color to tattoo
+		break;
+	}
+	
+	output("After you transfer the credits, you follow Rhett into his parlor in the back. ");
+	if(flags["RHETT_HAS_TATTED_BEFORE"] == undefined)
+	{
+		output("It's surprisingly sterile and white, with plenty of medical science devices. There's an expensive looking centrifuge and a large steel-lined fridge labelled 'Medical Materials'. In the center is a sleek looking tattooist's chair, which ");
+		if(pc.isTaur())
+		{
+			output("morphs suddenly to be taur-friendly. He then instructs you to get on it.");
+		}
+		else
+		{
+			output("you're  instructed to sit down in.");
+		}
+	}
+	else
+	{
+		output("You sit down in the familiar, sleek tattooist's chair");
+		if(pc.isTaur())
+		{
+			output("–after it's morphed to be taur friendly, of course");
+		}
+		output(".");
+	}
+	
+	output("\n\nRhett shifts up to you and takes a genetic sample from you, then throws it up on holo-display. Silently, he begins typing away, working on the proper composition of skin-mod formulae to give you. His eyes are intensely locked on the screen, and his fingers light up the air at a lightning pace.")
+	output("\n\n<i>“... Got the measurements. Should be a few minutes as the batch cooks up,”</i> he bluntly informs you. You sit and wait until one of his machines dispenses several small canisters. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet. He traces around the region, every so often stopping to switch canisters.");
+	output("\n\nSuddenly, the half-akhid man stops, looking at his holo-watch. <i>“... Should be a minute more,”</i> he states. He's dead on. Sixty seconds later, you feel the sprayed area begin to warm, followed by a prickling sensation. Rhett checks the area, then pulls out a mirror to show you your new ink.");
+	output("\n\n<i>“Complete success. ");
+	if(flags["RHETT_HAS_TATTED_BEFORE"] == undefined)
+	{
+		output("You're pretty easy to skin graft for. It's like your body just soaks in the mods.”</i>");
+		IncrementFlag("RHETT_HAS_TATTED_BEFORE");
+	}
+	else output("As usual, your body just soaks up the mods. You're an easy client.”</i>");
+	
+	output("\n\n<b>You now have a new tattoo on your " + tattooVars[2] +"!</b>")
+	pc.credits -= 100;
+	processTime(5);
+	clearMenu();
+	addButton(0, "Next", approachRhett);
+}
 
 //Ask to get a piercing
 public function rhettPiercings():void

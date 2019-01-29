@@ -2862,6 +2862,68 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	crotchStuff(forTarget);
 	//Reset target since crotch/boobs clear it at the end.
 	setTarget(forTarget);
+	//tats
+	if(target.hasTattoo()) outputRouter("\n\n");
+	if(target.hasFaceTattoo())
+	{
+		outputRouter(" " + target.faceTattoo.getDescription(target));
+	}
+	if(target.hasNeckTattoo())
+	{
+		outputRouter(" " + target.neckTattoo.getDescription(target));
+	}
+	if(target.hasUpperBackTattoo())
+	{
+		outputRouter(" " + target.upperBackTattoo.getDescription(target));
+	}
+	if(target.hasLowerBackTattoo())
+	{
+		outputRouter(" " + target.lowerBackTattoo.getDescription(target));
+	}
+	if(target.hasLeftChestTattoo())//this should get only left chest tattoos and combine left+right chest tattoos of the same type, due to how the descriptions are formed in the getDescription() method
+	{
+		outputRouter(" " + target.leftChestTattoo.getDescription(target));
+	}
+	if(target.hasRightChestTattoo() && !target.hasLeftChestTattooOfType(target.rightChestTattoo.tattooType))//if target has single right side tattoo or mismatched tattoo types
+	{
+		outputRouter(" " + target.rightChestTattoo.getDescription(target));
+	}
+	if(target.hasFullChestTattoo())//full tattoos can be the same as left+right or be entirely different. Even if left+right tattoos are the same type, the colors may be different. while full tattoos are always single solid colors
+	{
+		outputRouter(" " + target.fullChestTattoo.getDescription(target));
+	}
+	if(target.hasLeftArmTattoo())//this should get only arm chest tattoos and combine left+right arm tattoos of the same type, due to how the descriptions are formed in the getDescription() method
+	{
+		outputRouter(" " + target.leftArmTattoo.getDescription(target));
+	}
+	if(target.hasRightArmTattoo() && !target.hasLeftArmTattooOfType(target.rightArmTattoo.tattooType))//if target has no left but does have right tattoo or mismatched tattoo types
+	{
+		outputRouter(" " + target.rightArmTattoo.getDescription(target));
+	}
+	if(target.hasLeftLegTattoo())//this should get only left leg tattoos and combine left+right leg tattoos of the same type, due to how the descriptions are formed in the getDescription() method
+	{
+		outputRouter(" " + target.leftLegTattoo.getDescription(target));
+	}
+	if(target.hasRightLegTattoo() && !target.hasLeftLegTattooOfType(target.rightLegTattoo.tattooType))//if target has no left but does have right tattoo or mismatched tattoo types
+	{
+		outputRouter(" " + target.rightLegTattoo.getDescription(target));
+	}
+	if(target.hasLeftButtTattoo())
+	{
+		outputRouter(" " + target.leftButtTattoo.getDescription(target));
+	}
+	if(target.hasRightButtTattoo() && !target.hasLeftButtTattooOfType(target.rightButtTattoo.tattooType))
+	{
+		outputRouter(" " + target.rightButtTattoo.getDescription(target));
+	}
+	if(target.hasFullButtTattoo())
+	{
+		outputRouter(" " + target.fullButtTattoo.getDescription(target));
+	}
+	if(target.hasAboveCrotchTattoo())
+	{
+		outputRouter(" " + target.aboveCrotchTattoo.getDescription(target));
+	}
 
 	// Extra menu stuff
 	var btnIndex:int = 0;

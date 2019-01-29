@@ -1147,6 +1147,30 @@
 		public static const JADE:int 								   = 17;
 		public static const REAHA:int 								   = 18;
 		public static const KELLY:int 								   = 19;
+		
+		//TATTOO FLAGS
+		public static const NO_TATTOO:int                              = 0;
+		public static const TATTOO_TRIBAL:int                          = 1;
+		public static const TATTOO_FLORAL:int                          = 2;
+		public static const TATTOO_SKULL:int                           = 3;
+		public static const TATTOO_DRAGON:int                          = 4;
+		public static const TATTOO_WINGS:int                           = 5;
+		public static const TATTOO_FLAG_FACE:int                       = 6;
+		public static const TATTOO_FLAG_NECK:int                       = 7;
+		public static const TATTOO_FLAG_UPPER_BACK:int                 = 8;
+		public static const TATTOO_FLAG_LOWER_BACK:int                 = 9;
+		public static const TATTOO_FLAG_LEFT_CHEST:int                 = 10;
+		public static const TATTOO_FLAG_RIGHT_CHEST:int                = 11;
+		public static const TATTOO_FLAG_FULL_CHEST:int                 = 12;
+		public static const TATTOO_FLAG_LEFT_ARM:int                   = 13;
+		public static const TATTOO_FLAG_RIGHT_ARM:int                  = 14;
+		public static const TATTOO_FLAG_LEFT_LEG:int                   = 15;
+		public static const TATTOO_FLAG_RIGHT_LEG:int                  = 16;
+		public static const TATTOO_FLAG_LEFT_BUTT:int                  = 17;
+		public static const TATTOO_FLAG_RIGHT_BUTT:int                 = 18;
+		public static const TATTOO_FLAG_FULL_BUTT:int                  = 19;
+		public static const TATTOO_FLAG_ABOVE_CROTCH:int               = 20;
+		
 
 		// ITEM FLAGS
 		public static const ITEM_FLAG_BOW_WEAPON:int					= 0;
