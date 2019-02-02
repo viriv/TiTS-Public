@@ -90,7 +90,7 @@ public function rhettAppearance():void
 	
 	processTime(1);
 	clearMenu();
-	addButton(14, "Back", approachRhett);
+	addButton(0, "Next", meetRhett);
 }
 
 //Talk menu
@@ -124,7 +124,7 @@ public function talkToRhettAboutRhett():void
 	
 	processTime(2);
 	clearMenu();
-	addButton(14, "Back", rhettTalk);
+	addButton(0, "Next", rhettTalk);
 }
 
 //Talk about snek's store
@@ -141,7 +141,7 @@ public function talkToRhettAboutStore():void
 	
 	processTime(2);
 	clearMenu();
-	addButton(14, "Back", rhettTalk);
+	addButton(0, "Next", rhettTalk);
 }
 
 //Talk about snek people
@@ -166,7 +166,7 @@ public function talkToRhettAboutSpecies():void
 	
 	processTime(2);
 	clearMenu();
-	addButton(14, "Back", rhettTalk);
+	addButton(0, "Next", rhettTalk);
 }
 
 //Talk about snek's smoking
@@ -182,7 +182,7 @@ public function talkToRhettAboutNimLeaf():void
 	
 	processTime(2);
 	clearMenu();
-	addButton(14, "Back", rhettTalk);
+	addButton(0, "Next", rhettTalk);
 }
 
 //Talk about snek's job
@@ -200,7 +200,7 @@ public function talkToRhettAboutSkinMods():void
 	
 	processTime(3);
 	clearMenu();
-	addButton(14, "Back", rhettTalk);
+	addButton(0, "Next", rhettTalk);
 }
 
 //Ask to get a tattoo
