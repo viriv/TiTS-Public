@@ -19,56 +19,47 @@ public function kinkyInksIncBonusFunc():Boolean
 	output("This store is filled with floating holo-pictures, each of a different kind of skin mods or piercing. They line the walls in all directions. With the click of a button, the displays can scan you and show you a digital mockup of what the different body mods will look like on you.");
 	output("\n\nThere's a long, sleek black counter with a totally tattooed out VI droid. However, it seems to just be there to do transactions. The real work appears to happen in the back room, through an archway with no door. There's a tattoo table slash seat, along with a ton of different skin-modding equipment.");
 	
-	addButton(0, flags["MET_RHETT"] == undefined ? "ShopKeep" : "Rhett", approachRhett);
+	addButton(0, flags["MET_RHETT"] == undefined ? "ShopKeep" : "Rhett", flags["MET_RHETT"] == undefined ? approachRhett : meetRhett);//unknown until talked to at least once
 	return false;
 }
 
-//Meeting Piercer
+//Extra interation on first meet
 public function approachRhett():void
 {
 	clearOutput();
 	author("Jim T");
 	
-	if(flags["MET_RHETT"] == undefined)
+	IncrementFlag("MET_RHETT");//set hasMet flag
+	
+	output("A shirtless, utterly tattooed man slithers towards you–slithers because his entire lower half seems to be entirely naga-like. His midnight serpent scales are lined with silver tribal tattoos, while his pale, humanoid torso is conversely covered in black wicked-looking ink. You get the impression he's staring at you, but it's hard to tell; the well-toned man is wearing a pair of mirrored shades, and he's stony-faced, making him hard to read.");
+	output("\n\n<i>“... Here for some ink?”</i> he asks, whipping out a thin, white stick. He lights it up and no smoke comes out, though the end glows.");
+	output("\n\n<i>“Ink? Don't tell me you actually paint people's bodies with ink here,”</i> you answer, then gesture to the object in his mouth. <i>“...And what's that?”</i>")
+	output("\n\nThe tattooed, naga-like man grins. <i>“Nah. It's an old expression. Archaic, I know.”</i> He then plucks the pale stick from his mouth and lifting it with two fingers. <i>“... and it's nim leaf.”</i>");
+	output("\n\n<i>“Don't worry, it's a UGC approved substance, and the nano-foil makes it smokeless.”</i>");
+	output("\n\nYou nod. Gesturing to the displays, you ask if it's a skin modding store. Rhett gives the barest down and up tilt of his head.");
+	output("\n\n<i>“... Yup. I'm a top-class skin modder,”</i> the half-man, half-serpent gestures to a Procyon-U medical degree behind the counter. <i>“The name's Rhett.”</i>");
+	output("\n\n<i>“There's plenty of holos around. Just tell me if you want anything.”</i> And with that, Rhett leans against the counter, smoking his smokeless cigarette. He's... not much of a salesman. Maybe his work speaks for itself...?");
+	
+	if(!CodexManager.entryUnlocked("Akhid"))//add snake people codex entry if not met elsewhere yet
 	{
-		IncrementFlag("MET_RHETT");
-		
-		output("A shirtless, utterly tattooed man slithers towards you–slithers because his entire lower half seems to be entirely naga-like. His midnight serpent scales are lined with silver tribal tattoos, while his pale, humanoid torso is conversely covered in black wicked-looking ink. You get the impression he's staring at you, but it's hard to tell; the well-toned man is wearing a pair of mirrored shades, and he's stony-faced, making him hard to read.");
-		output("\n\n<i>“... Here for some ink?”</i> he asks, whipping out a thin, white stick. He lights it up and no smoke comes out, though the end glows.");
-		output("\n\n<i>“Ink? Don't tell me you actually paint people's bodies with ink here,”</i> you answer, then gesture to the object in his mouth. <i>“...And what's that?”</i>")
-		output("\n\nThe tattooed, naga-like man grins. <i>“Nah. It's an old expression. Archaic, I know.”</i> He then plucks the pale stick from his mouth and lifting it with two fingers. <i>“... and it's nim leaf.”</i>");
-		output("\n\n<i>“Don't worry, it's a UGC approved substance, and the nano-foil makes it smokeless.”</i>");
-		output("\n\nYou nod. Gesturing to the displays, you ask if it's a skin modding store. Rhett gives the barest down and up tilt of his head.");
-		output("\n\n<i>“... Yup. I'm a top-class skin modder,”</i> the half-man, half-serpent gestures to a Procyon-U medical degree behind the counter. <i>“The name's Rhett.”</i>");
-		output("\n\n<i>“There's plenty of holos around. Just tell me if you want anything.”</i> And with that, Rhett leans against the counter, smoking his smokeless cigarette. He's... not much of a salesman. Maybe his work speaks for itself...?");
-		
-		if(!CodexManager.entryUnlocked("Akhid"))
-		{
-			output("\n\nYour Codex bleeps on your arm. Looking down, you realise it has been updated with a species entry on the Akhid. Handy!");
-			CodexManager.unlockEntry("Akhid");
-		}
-		
-		processTime(3);
-		clearMenu();
-		addButton(0, "Next", firstTimeRhettMeet);
+		output("\n\nYour Codex bleeps on your arm. Looking down, you realise it has been updated with a species entry on the Akhid. Handy!");
+		CodexManager.unlockEntry("Akhid");
 	}
-	else
-	{
-		output("Rhett is leaning back against the counter, smoking a smokeless cigarette filled with nim leaf. He nods to you wordlessly as you approach.");
-		
-		processTime(1);
-		rhettMenu();
-	}
+	
+	processTime(3);
+	clearMenu();
+	addButton(0, "Next", meetRhett);//move to standard meeting
 }
 
-//Extra interation on first meet
-public function firstTimeRhettMeet():void
+//Standard Rhett meet
+public function meetRhett():void
 {
 	clearOutput();
 	author("Jim T");
 	
 	output("Rhett is leaning wordlessly against the counter. It's hard to tell what he's thinking with those mirrored shades and his stoic expression.");
 	
+	processTime(1);
 	rhettMenu();
 }
 
@@ -116,7 +107,7 @@ public function rhettTalk():void
 	addButton(2, "Species", talkToRhettAboutSpecies);
 	addButton(3, "Nim Leaf", talkToRhettAboutNimLeaf);
 	addButton(4, "Skin Mods", talkToRhettAboutSkinMods);
-	addButton(14, "Back", approachRhett);
+	addButton(14, "Back", meetRhett);
 }
 
 //Talk out about snek's self
@@ -562,7 +553,7 @@ public function rhettTatOuch(tattooVars:Array):void
 	pc.credits -= 100;
 	processTime(5);
 	clearMenu();
-	addButton(0, "Next", approachRhett);
+	addButton(0, "Next", meetRhett);
 }
 
 //Tattoo Removal
@@ -1070,7 +1061,7 @@ public function rhettPierceOuch(vars:Array):void
 	pc.credits -= 100;
 	processTime(5);
 	clearMenu();
-	addButton(0, "Next", approachRhett);
+	addButton(0, "Next", meetRhett);
 }
 
 //Get cold feet
