@@ -3,6 +3,7 @@ package classes
 	import classes.DataManager.Serialization.ISaveable;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.describeType;
+	import flash.utils.getDefinitionByName;
 	public class TattooClass implements ISaveable
 	{
 		public var color:String = "";//color of tattoo
@@ -51,32 +52,137 @@ package classes
 			}
 		}
 		
+		private function isBasicType(obj:*):Boolean
+		{
+			if (obj is int) return true;
+			if (obj is Number) return true;
+			if (obj is String) return true;
+			if (obj is Boolean) return true;
+			if (obj is uint) return true;
+			return false;
+		}
+		
 		public function getSaveObject():Object
 		{
-			var newObj:Object = new Object();
+			var dataObject:Object = new Object();
+			var i:int;
 			//TODO: this
 			var _d:XML = describeType(this);
 			var _dl:XMLList = _d..variable;
 			var _da:XMLList = _d..accessor;
 			
-			/*if (this.hasRandomProperties == true)
+			
+			for each (var prop:XML in _dl)
 			{
-				for each (var prop:XML in _dl)
+				var propName:String = prop.@name.toString();
+				if (this[propName] != null && this[propName] != undefined)
 				{
-					var propName:String = prop.@name.toString();*/
+					if (this[propName] is ISaveable)
+					{
+						dataObject[propName] = this[propName].getSaveObject();
+					}
+					else if (this[propName] is Array)
+					{
+						if (this[propName].length > 0)
+						{
+							if (this[propName][0] is ISaveable)
+							{
+								dataObject[propName] = new Array();
+								
+								for (i = 0; i < this[propName].length; i++)
+								{
+									dataObject[propName].push(this[propName][i].getSaveObject());
+								}
+							}
+							else if (isBasicType(this[propName][0]))
+							{
+								dataObject[propName] = new Array();
+								
+								for (i = 0; i < this[propName].length; i++)
+								{
+									dataObject[propName].push(this[propName][i]);
+								}
+							}
+							else
+							{
+								dataObject[propName] = this[propName];
+								trace("Potential serialization issue with property: " + propName);
+							}
+						}
+						else
+						{
+							dataObject[propName] = new Array();
+						}
+					}
+					else if (isBasicType(this[propName]))
+					{
+						dataObject[propName] = this[propName];
+					}
+					else
+					{
+						dataObject[propName] = this[propName];
+						trace("Potential serialization issue with property: " + propName);
+					}
+				}
+				for each (var accs:XML in _da)
+				{
+					var accsName:String = accs.@name.toString();
+					dataObject[accsName] = this[accsName];
+				}
+			}
 			
-			newObj.classInstance = getQualifiedClassName(this);
+			dataObject.classInstance = getQualifiedClassName(this);
 			
-			newObj.color = this.color;
-			newObj.tattooType = this.tattooType;
-			
-			return newObj;
+			return dataObject;
 		}
 		
-		public function loadSaveObject(o:Object):void
+		public function loadSaveObject(dataObject:Object):void
 		{
-			this.color = o.color;
-			this.tattooType = o.tattooType;
+			var prop:*;
+			
+			var _d:XML = describeType(dataObject);
+			if (_d.@isDynamic == "true")
+			{
+				for (prop in dataObject)
+				{
+					if (!hasOwnProperty(prop)) continue;
+					
+					var tProp:String = prop;
+					if (this[tProp] is ISaveable)
+					{
+						var classT:Class = getDefinitionByName(dataObject[tProp].classInstance) as Class;
+						this[tProp] = new classT();
+						this[tProp].loadSaveObject(dataObject[tProp]);
+					}
+					else
+					{
+						this[tProp] = dataObject[tProp];
+					}
+				}
+			}
+			else
+			{
+				var _dl:XMLList = _d..variable;
+				var _da:XMLList = _d..accessor;
+				
+				for each (prop in _dl)
+				{
+					var propName:String = prop.@name.toString();
+					if (this[propName] != null && this[propName] != undefined)
+					{
+						this[propName] = dataObject[propName];
+					}
+				}
+				
+				for each (var accs:* in _da)
+				{
+					var accsName:String = accs.@name.toString();
+					if (accsName != "prototype" && accsName != "neverSerialize")
+					{
+						this[accsName] = dataObject[accsName];
+					}
+				}
+			}
 		}
 		
 		public function makeCopy():*
