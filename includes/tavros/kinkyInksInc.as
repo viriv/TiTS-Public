@@ -1073,8 +1073,7 @@ public function rhettBackOut():void
 	output("<i>“Alright, no skin off my nose. Tell me if you change your mind,”</i> Rhett remarks. He then pulls out and lights a new cigarette.");
 	
 	processTime(1);
-	clearMenu();
-	addButton(0, "Next", rhettMenu);
+	rhettMenu();
 }
 
 //Play intro and display sex options
