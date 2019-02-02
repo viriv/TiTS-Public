@@ -67,18 +67,18 @@ public function meetRhett():void
 public function rhettMenu():void
 {
 	clearMenu();
-	addButton(0, "Appearance", rhettAppearance, undefined, "Appearance", "Checkout the tattooed snakeman.");
-	addButton(1, "Talk", rhettTalk, undefined, "Talk", "Talk with Rhett.");
-	addButton(2, "Tattoos", rhettTattoos, undefined, "Tattoo", "Get a tattoo");
-	addButton(3, "Piercings", rhettPiercings, undefined, "Piercings", "Get a piercing.");
-	if(pc.hasTattoo()) addButton(4, "TatRemoval", rhettTattooRemovalPartSelection, undefined, "Removal", "Remove a tattoo.");//TODO: tattoo removal
-	else addDisabledButton(4, "TatRemoval", "TatRemoval", "You have no removable tattoos!")
-	if(pc.lust() >= 33) addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");
-	else addDisabledButton(5, "Sex", "Sex", "You aren’t aroused enough for sex right now.");
-	addButton(14, "Leave", mainGameMenu);
+	addButton(0, "Appearance", rhettAppearance, undefined, "Appearance", "Checkout the tattooed snakeman.");//look snek over
+	addButton(1, "Talk", rhettTalk, undefined, "Talk", "Talk with Rhett.");//talk about snek stuff
+	addButton(2, "Tattoos", rhettTattoos, undefined, "Tattoo", "Get a tattoo.");//get a tattoo
+	addButton(3, "Piercings", rhettPiercings, undefined, "Piercings", "Get a piercing.");//get a piercing
+	if(pc.hasTattoo()) addButton(4, "TatRemoval", rhettTattooRemovalPartSelection, undefined, "Removal", "Remove a tattoo.");//remove a tattoo
+	else addDisabledButton(4, "TatRemoval", "TatRemoval", "You have no removable tattoos!")//don't bother giving the option if no tattoos exist
+	if(pc.lust() >= 33) addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");//sex the snek
+	else addDisabledButton(5, "Sex", "Sex", "You aren’t aroused enough for sex right now.");//gotta meet the lust requirments first
+	addButton(14, "Leave", mainGameMenu);//exit the shop menu
 }
 
-//Look snek over
+//Apperance
 public function rhettAppearance():void
 {
 	clearOutput();
@@ -93,7 +93,7 @@ public function rhettAppearance():void
 	addButton(14, "Back", approachRhett);
 }
 
-//Display talk menu
+//Talk menu
 public function rhettTalk():void
 {
 	clearOutput();
@@ -110,7 +110,7 @@ public function rhettTalk():void
 	addButton(14, "Back", meetRhett);
 }
 
-//Talk out about snek's self
+//Talk about snek's self
 public function talkToRhettAboutRhett():void
 {
 	clearOutput();
@@ -150,13 +150,13 @@ public function talkToRhettAboutSpecies():void
 	clearOutput();
 	author("Jim T");
 	
-	if(flags["MET_AKHID"] == undefined)
+	if(flags["MET_AKHID"] == undefined)//currently no other akhid in game to set this?
 	{
 		output("You ask him about what species he is, assuming it isn't the result of modding.");
 		output("\n\n<i>“Nope. Born this way. Half-akhid,”</i> he answers, taking a drag from his smokeless cigarette.");
-		IncrementFlag("MET_AKHID");
+		IncrementFlag("MET_AKHID");//set metAkhid flag
 	}
-	else
+	else//if repeat or met another akhid
 	{
 		output("You ask him about his species. Was he modded to be half-akhid, or was he born that way? ");
 		output("\n\n<i>“Born this way,”</i> he answers, taking a drag from his smokeless cigarette. ");
@@ -616,7 +616,7 @@ public function rhettTattooRemovalPartSelection():void
 	addButton(29, "Back", rhettBackOut);
 }
 
-public function rhettTattooRemovalPayment(location:String)
+public function rhettTattooRemovalPayment(location:String):void
 {
 	clearOutput();
 	author("Jim T");
@@ -1064,7 +1064,7 @@ public function rhettPierceOuch(vars:Array):void
 	addButton(0, "Next", meetRhett);
 }
 
-//Get cold feet
+//Get cold feet and back out
 public function rhettBackOut():void
 {
 	clearOutput();
