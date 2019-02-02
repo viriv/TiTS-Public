@@ -1,4 +1,5 @@
 ﻿import classes.Tattoo.DragonTattoo;
+import classes.Tattoo.EmptyTattoo;
 import classes.Tattoo.FloralTattoo;
 import classes.Tattoo.SkullTattoo;
 import classes.Tattoo.TribalTattoo;
@@ -79,7 +80,8 @@ public function rhettMenu():void
 	addButton(1, "Talk", rhettTalk, undefined, "Talk", "Talk with Rhett.");
 	addButton(2, "Tattoos", rhettTattoos, undefined, "Tattoo", "Get a tattoo");
 	addButton(3, "Piercings", rhettPiercings, undefined, "Piercings", "Get a piercing.");
-	//addbutton(4, "Removal", rhettRemoval, undefined, "Removal", "Remove a piercing.");//TODO: tattoo removal
+	if(pc.hasTattoo()) addButton(4, "TatRemoval", rhettTattooRemovalPartSelection, undefined, "Removal", "Remove a tattoo.");//TODO: tattoo removal
+	else addDisabledButton(4, "TatRemoval", "TatRemoval", "You have no removable tattoos!")
 	if(pc.lust() >= 33) addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");
 	else addDisabledButton(5, "Sex", "Sex", "You aren’t aroused enough for sex right now.");
 	addButton(14, "Leave", mainGameMenu);
@@ -561,6 +563,182 @@ public function rhettTatOuch(tattooVars:Array):void
 	processTime(5);
 	clearMenu();
 	addButton(0, "Next", approachRhett);
+}
+
+//Tattoo Removal
+public function rhettTattooRemovalPartSelection():void
+{
+	clearOutput();
+	author("Jim T");
+	
+	output("<i>“Alright. Where's the tattoo?”</i>");
+	
+	clearMenu();
+	
+	if(pc.hasFaceTattoo()) addButton(0, "Face", rhettTattooRemovalPayment, "face");
+	else addDisabledButton(0, "Face", "Face", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasNeckTattoo()) addButton(1, "Neck", rhettTattooRemovalPayment, "neck");
+	else addDisabledButton(1, "Neck", "Neck", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasUpperBackTattoo()) addButton(2, "Upper Back", rhettTattooRemovalPayment, "upper back");
+	else addDisabledButton(2, "Upper Back", "Upper Back", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasLowerBackTattoo()) addButton(3, "Lower Back", rhettTattooRemovalPayment, "lower back");
+	else addDisabledButton(3, "Lower Back", "Lower Back", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasLeftChestTattoo()) addButton(4, "Left Chest", rhettTattooRemovalPayment, "left chest");
+	else addDisabledButton(4, "Left Chest", "Left Chest", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasRightChestTattoo()) addButton(5, "Right Chest", rhettTattooRemovalPayment, "right chest");
+	else addDisabledButton(5, "Right Chest", "Right Chest", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasFullChestTattoo()) addButton(6, "Full Chest", rhettTattooRemovalPayment, "full chest");
+	else addDisabledButton(6, "Full Chest", "Full Chest", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasLeftArmTattoo()) addButton(7, "Left Arm", rhettTattooRemovalPayment, "left arm");
+	else addDisabledButton(7, "Left Arm", "Left Arm", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasRightArmTattoo()) addButton(8, "Right Arm", rhettTattooRemovalPayment, "right arm");
+	else addDisabledButton(8, "Right Arm", "Right Arm", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasLeftLegTattoo()) addButton(9, "Left Leg", rhettTattooRemovalPayment, "left leg");
+	else addDisabledButton(9, "Left Leg", "Left Leg", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasRightLegTattoo()) addButton(10, "Right Leg", rhettTattooRemovalPayment, "right leg");
+	else addDisabledButton(10, "Right Leg", "Right Leg", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasLeftButtTattoo()) addButton(11, "Left Buttock", rhettTattooRemovalPayment, "left buttock");
+	else addDisabledButton(11, "Left Buttock", "Left Buttock", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasRightButtTattoo()) addButton(12, "Right Buttock", rhettTattooRemovalPayment, "right buttock");
+	else addDisabledButton(12, "Right Buttock", "Right Buttock", "There's no tattoo here that Rhett can remove!");
+	
+	if(pc.hasFullButtTattoo()) addButton(13, "Full Butt", rhettTattooRemovalPayment, "full butt");
+	else addDisabledButton(13, "Full Butt", "Full Butt", "There's no tattoo here that Rhett can remove!");
+	
+	addButton(14, "Back", rhettBackOut);
+	
+	if(pc.hasAboveCrotchTattoo()) addButton(15, "Above Crotch", rhettTattooRemovalPayment, "above crotch");
+	else addDisabledButton(15, "Above Crotch", "Above Crotch", "There's no tattoo here that Rhett can remove!");
+	
+	addButton(29, "Back", rhettBackOut);
+}
+
+public function rhettTattooRemovalPayment(location:String)
+{
+	clearOutput();
+	author("Jim T");
+	
+	output("<i>“That'll be 50 credits,”</i> Rhett announces, gesturing to the tattooed android manning the counter. <i>“Just give it to him, and we'll get started.”</i>");
+	
+	clearMenu();
+	
+	addButton(0, "Pay", rhettTattooRemoval, location);
+	addButton(1, "Don't", rhettBackOut);
+}
+
+public function rhettTattooRemoval(location:String):void
+{
+	clearOutput();
+	author("Jim T");
+	
+	output("After you transfer the credits, you follow Rhett into his parlor in the back.");
+	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)
+	{
+		output("It's surprisingly sterile and white, with plenty of medical science devices. There's an expensive looking centrifuge and a large steel-lined fridge labelled 'Medical Materials'. In the center is a sleek looking tattooist's chair, ");
+		if(pc.isTaur()) output("which morphs suddenly to be taur - friendly. He then instructs you to get on it.");
+		else output("which you're instructed to sit down in.");
+	}
+	else
+	{
+		output("You sit down in the familiar, sleek tattooist's chair");
+		if(pc.isTaur())
+		{
+			output("—after it's morphed to be taur friendly, of course");
+		}
+	}
+	output(".");
+	output("\n\nRhett shifts up to you and takes a genetic sample from you, then throws it up on holo-display. Silently, he begins typing away, working on the proper composition of skin-mod formula to give you. His eyes are intensely locked on the screen, and his fingers light up the air at a lightning pace.");
+	output("\n\n“... Got the measurements. Should be a few minutes as the batch cooks up,” he bluntly informs you. You sit and wait until one of his machines dispenses a single canister. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet.");
+	output("\n\n“Done. Just give it a moment,” he states. The tattoo slowly disappears, your [pc.skinFurScalesNoun] returning to normal.“... No fuss. ");
+	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)
+	{
+		output("Wow, your body is pretty mod happy");
+		IncrementFlag("RHETT_HAS_PIERCED_BEFORE");
+	}
+	else output("As usual, your body is pretty mod happy");
+	output("”.");
+	
+	switch(location)
+	{
+		case "face":
+			pc.faceTattoo = new EmptyTattoo();
+		break;
+		
+		case "neck":
+			pc.neckTattoo = new EmptyTattoo();
+		break;
+		
+		case "upper back":
+			pc.upperBackTattoo = new EmptyTattoo();
+		break;
+		
+		case "lower back":
+			pc.lowerBackTattoo = new EmptyTattoo();
+		break;
+		
+		case "left chest":
+			pc.leftChestTattoo = new EmptyTattoo();
+		break;
+		
+		case "right chest":
+			pc.rightChestTattoo = new EmptyTattoo();
+		break;
+		
+		case "full chest":
+			pc.fullChestTattoo = new EmptyTattoo();
+		break;
+		
+		case "left arm":
+			pc.leftArmTattoo = new EmptyTattoo();
+		break;
+		
+		case "right arm":
+			pc.rightArmTattoo = new EmptyTattoo();
+		break;
+		
+		case "left leg":
+			pc.leftLegTattoo = new EmptyTattoo();
+		break;
+		
+		case "right leg":
+			pc.rightLegTattoo = new EmptyTattoo();
+		break;
+		
+		case "left buttock":
+			pc.leftButtTattoo = new EmptyTattoo();
+		break;
+		
+		case "right buttock":
+			pc.rightButtTattoo = new EmptyTattoo();
+		break;
+		
+		case "full butt":
+			pc.fullButtTattoo = new EmptyTattoo();
+		break;
+		
+		case "above crotch":
+			pc.aboveCrotchTattoo = new EmptyTattoo();
+		break;
+	}
+	
+	output("\n\n<b>Your tattoo is now removed!</b>");
+	
+	pc.credits -= 50;
+	processTime(5);
+	clearMenu();
+	addButton(0, "Next", rhettMenu);
 }
 
 //Ask to get a piercing
