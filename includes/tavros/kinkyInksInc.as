@@ -1080,7 +1080,6 @@ public function rhettBackOut():void
 //Play intro and display sex options
 public function rhettSexMenu():void
 {
-	var wasWearingClothes:Boolean = false;//assume false since it does mess with the flow much
 	clearOutput();
 	author("Jim T");
 	
@@ -1102,7 +1101,6 @@ public function rhettSexMenu():void
 				output("<i>“Well, you're definitely my type...”</i> Rhett appreciatively remarks, stroking his chin. After slithering up to you, he takes your hand, and swiftly leads you to the back room. You happily follow him. Once out of the common area,");
 				if(pc.hasArmor())//pc has clothes
 				{
-					wasWearingClothes = true;//pc was wearing clothes at start of this encounter
 					output(" Once out of the common area, your [pc.armor] is hastily whipped off");
 					if(pc.hasUpperGarment())//pc has upper undergarment
 					{
@@ -1116,7 +1114,6 @@ public function rhettSexMenu():void
 				}
 				else if(pc.hasUpperGarment() || pc.hasLowerGarment())//pc has no armor but has undergarments
 				{
-					wasWearingClothes = true;//pc was wearing clothes at start of this encounter
 					output(" Once out of the common area, your");
 					if(pc.hasUpperGarment())//pc has upper undergarment
 					{
@@ -1129,7 +1126,7 @@ public function rhettSexMenu():void
 				else output(" Once out of the common area, he");
 				
 				output(" wraps his gigantic midnight coils around your humanoid upper half, and you let out a surprised gasp–you're half snake, but you're being squeezed by <i>him!</i>");
-				output("\n\nCaught utterly off guard by his sudden swoop, you ask him what he's doing, trying not to tremble as your" + (wasWearingClothes ? " now": "") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction from your fellow naga caresses your nipples and presses");
+				output("\n\nCaught utterly off guard by his sudden swoop, you ask him what he's doing, trying not to tremble as your" + (pc.isNude() ? "": " now") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction from your fellow naga caresses your nipples and presses");
 				
 				if(pc.hasBreasts()) output(" in your breasts.");
 				else output(" against your chest.");
@@ -1149,7 +1146,6 @@ public function rhettSexMenu():void
 				output("\n\nCaught utterly off guard by his sudden swoop, you ask him what he's doing.");
 				if(pc.hasArmor())//pc has clothes
 				{
-					wasWearingClothes = true;//pc was wearing clothes at start of this encounter
 					output(" Now out of the common area, your [pc.armor] is hastily whipped off");
 					if(pc.hasUpperGarment())//pc has upper undergarment
 					{
@@ -1162,7 +1158,6 @@ public function rhettSexMenu():void
 				}
 				else if(pc.hasUpperGarment() || pc.hasLowerGarment())//pc has no armor but has undergarments
 				{
-					wasWearingClothes = true;//pc was wearing clothes at start of this encounter
 					output(" Once out of the common area, your");
 					if(pc.hasUpperGarment())//pc has upper garment
 					{
@@ -1173,7 +1168,7 @@ public function rhettSexMenu():void
 					
 					output(", before you're returned to his clutches.");
 				}//no else nude this time not in docs
-				output(" Your" + (wasWearingClothes ? " now" : "") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction caresses against your nipples and presses");
+				output(" Your" + (pc.isNude() ? "" : " now") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction caresses against your nipples and presses");
 				if(pc.hasBreasts()) output(" in your breasts.");
 				else output(" against your chest.");
 			
@@ -1197,7 +1192,6 @@ public function rhettSexMenu():void
 				output("\n\n<i>“Sure. You're always a welcome sight, particularly naked...”</i> Rhett appreciatively remarks. After slithering up to you, he takes your hand, and swiftly leads you to the back room. You happily follow him.");
 				if(pc.hasArmor())//pc has clothes
 				{
-					wasWearingClothes = true;//pc was wearing clothes at start of this encounter
 					output(" Once out of the common area, your [pc.armor] is hastily whipped off");
 					if(pc.hasUpperGarment())//pc has upper undergarment
 					{
@@ -1210,7 +1204,6 @@ public function rhettSexMenu():void
 				}
 				else if(pc.hasUpperGarment() || pc.hasLowerGarment())//pc has no armor but has undergarments
 				{
-					wasWearingClothes = true;//pc was wearing clothes at start of this encounter
 					output(" Once out of the common area, your");
 					if(pc.hasUpperGarment())//pc has upper undergarment
 					{
@@ -1224,7 +1217,7 @@ public function rhettSexMenu():void
 				else output(" Once out of the common area, he");//pc is nude
 				
 				output(" wraps his gigantic midnight coils around your humanoid upper half, and you gasp with pleasure–as a half snake, it's always interesting to be the one <i>squeezed</i> for a change.");
-				output("\n\nYou try not to tremble as your" + (wasWearingClothes ? " now" : "") + "naked body rubs sensuously against his shifting scales. The slow squeezing friction from your fellow naga caresses your nipples and presses ");
+				output("\n\nYou try not to tremble as your" + (pc.isNude() ? "" : " now") + "naked body rubs sensuously against his shifting scales. The slow squeezing friction from your fellow naga caresses your nipples and presses ");
 				if(pc.hasBreasts()) output(" in your breasts.");
 				else output(" against your chest.");
 			
@@ -1242,7 +1235,6 @@ public function rhettSexMenu():void
 				output("\n\n<i>“Alright. Let's do it,”</i> Rhett gruffly states. He suddenly sweeps up towards you on his serpentine lower half. Once again, you're wrapped in his gigantic midnight coils, being picked up and carried towards the back room!");
 				if(pc.hasArmor())//pc has clothes
 				{
-					wasWearingClothes = true;//pc was wearing clothes at start of this encounter
 					output(" Once there, your [pc.armor] is hastily whipped off");
 					if(pc.hasUpperGarment())//pc has upper undergarment
 					{
@@ -1255,7 +1247,6 @@ public function rhettSexMenu():void
 				}
 				else if(pc.hasUpperGarment() || pc.hasLowerGarment())//pc has no armor but has undergarments
 				{
-					wasWearingClothes = true;//pc was wearing clothes at start of this encounter
 					output(" Once out of the common area, your");
 					if(pc.hasUpperGarment())//pc has upper garment
 					{
@@ -1267,7 +1258,7 @@ public function rhettSexMenu():void
 					output(", before you're returned to his clutches.");
 				}//no else nude this time not in docs
 				
-				output("Your" + (wasWearingClothes ? " now" : "") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction caresses against your nipples and presses ");
+				output("Your" + (pc.isNude() ? "" : " now") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction caresses against your nipples and presses ");
 				if(pc.hasBreasts()) output(" in your breasts.");
 				else output(" against your chest.");
 			
@@ -1288,7 +1279,7 @@ public function rhettSexMenu():void
 		addButton(0, "Orgasm.D", rhettOrgasmDenial, undefined, "Orgasm Denial", "He squeezes and teases you, keeping you on the brink of orgasm until you're a babbling mess!");
 		addButton(1, "Blowjob", rhettBlowjob, undefined, "Blowjob", "He coils your lower body up and gets you to suck him off.");
 		addButton(2, "AssFuck", rhettAssFuck, undefined, "Ass Fuck", "He fucks your ass mercilessly, keeping you trapped in his coils the entire time!");
-		addButton(3, "'Pineapple!'", rhettPineapple, wasWearingClothes, "Pineapple", "Cry out the safe word and tap out.");
+		addButton(3, "'Pineapple!'", rhettPineapple, undefined, "Pineapple", "Cry out the safe word and tap out.");
 	}
 }
 
@@ -1583,15 +1574,15 @@ public function rhettAssFuck():void
 }
 
 //Rhett safe word scene
-public function rhettPineapple(wasWearingClothes:Boolean = false):void
+public function rhettPineapple():void
 {
 	clearOutput();
 	author("Jim T");
 	
 	output("You cry out the safe-word, totally tapping out early. You're immediately released from the half-akhid's grasp, and he gives a curt little nod. <i>“Right, tell me if you change your mind.”</i>");
 	output("\n\nRhett slithers back to the storefront, and you");
-	if(wasWearingClothes) output(" pick up your clothes, following");//add flavor test if pc was wearing clothes at start of encounter
-	else output(" follow");//if pc was nude
+	if(pc.isNude()) output(" follow");
+	else output(" pick up your clothes, following");//add flavor test if pc was wearing clothes at start of encounter
 	
 	output(" him back out. He's already calmly leaning back against the counter, looking as though nothing even happened.");
 	
