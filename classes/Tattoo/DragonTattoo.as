@@ -72,7 +72,7 @@ package classes.Tattoo
 					ret = "Above your crotch sits a " + this.color + " dragon, "
 					
 					if(target.hasCock()) ret += "almost as if it's resting upon your rod" + (target.hasCocks() ? "s" : "") + ".";
-					else if(target.hasVagina()) ret += "protecting your thigh-guarded treasure trove.";//TODO: tight-guarded needed a check? for peeps without legs(thighs)? ie: naga, goo? or [pc.thigh] parser call?
+					else if(target.hasVagina()) ret += "protecting your thigh-guarded treasure trove.";//TODO: thigh-guarded needed a check? for peeps without legs(thighs)? ie: naga, goo? or [pc.thigh] parser call?
 					else ret += "resting above your featureless mound."//altered sitting to resting
 					
 					ret += " Even though it's a tattoo, the tiny glittering scales look and feel real."
