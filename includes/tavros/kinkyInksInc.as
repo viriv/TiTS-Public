@@ -848,7 +848,7 @@ public function rhettPiercingsBRowSelection(piercingVars:Array):void
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.bRows() == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it don't both offering choice of one option
+	if(pc.bRows() == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it don't both offering choice
 	else
 	{
 		output("Select breast row to apply nipple piercing to.");
@@ -856,10 +856,13 @@ public function rhettPiercingsBRowSelection(piercingVars:Array):void
 		clearMenu();
 		for(var i:int = 0; i < pc.bRows(); i++)//loop through each set of breasts
 		{
+			output("Select nipples to apply piercing to.");
+			
+			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)//add back buttons to button page
+			output("\n" + "<b>#" + (i + 1) + ":</b> " + "[pc.breasts " + i + "] " + (i + 1));
 			if(!pc.hasNipplePiercing(i)) addButton(i, "Row " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
 			else addDisabledButton(i, "Row " + (i + 1), "Row " + (i + 1), "Rhett can't pierce this row since they are already pierced!");//if already pierced add disabled button
 		}
-		addButton(14, "Back", rhettBackOut);//overflow issue if pc has more than 13 breasts rows
 	}
 }
 
@@ -870,18 +873,19 @@ public function rhettPiercingsCockSelection(piercingVars:Array):void
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.cocks.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it don't both offering choice of one option
+	if(pc.cocks.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one just use it don't both offering choice
 	else
 	{
 		output("Select cock to apply piercing to.");
 		
 		clearMenu();
-		for(var i:int = 0; i < pc.cocks.length; i++)
+		for(var i:int = 0; i < pc.totalCocks(); i++)
 		{
+			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)//add back buttons to button page
+			output("\n" + "<b>#" + (i + 1) + ":</b> " + "[pc.cockNounComplex " + i + "] " + (i + 1));
 			if(!pc.hasPiercedCocks(i)) addButton(i, "Cock " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
 			else addDisabledButton(i, "Cock " + (i + 1), "Cock " + (i + 1), "Rhett can't pierce this cock since it is already pierced!");//if already pierced add disabled button
 		}
-		addButton(14, "Back", rhettBackOut);//overflow issue if pc has more than 13 cocks
 	}
 }
 
@@ -892,19 +896,19 @@ public function rhettPiercingsVaginaSelection(piercingVars:Array):void
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it don't both offering choice of one option
+	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one just use it don't both offering choice
 	else
 	{
 		output("Select vagina to apply piercing to.");
 		
 		clearMenu();
-		
 		for(var i:int = 0; i < pc.vaginas.length; i++)
 		{
+			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)//add back button to button page
+			output("\n" + "<b>#" + (i + 1) + ":</b> " + "[pc.vagina " + i + "] " + (i + 1));
 			if(pc.vaginas[i].piercing is EmptySlot) addButton(i, "Vagina " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
 			else addDisabledButton(i, "Vagina " + (i + 1), "Vagina " + (i + 1), "Rhett can't pierce this vagina sicne it already is already pierced!");//if already pierced add disabled button
 		}
-		addButton(14, "Back", rhettBackOut);//overflow issue if pc has more than 13 vaginas
 	}
 }
 
@@ -915,18 +919,19 @@ public function rhettPiercingsClitVaginaSelection(piercingVars:Array):void
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it don't both offering choice of one option
+	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one just use it don't both offering choice
 	else
 	{
 		output("Select vagina to apply clit piercing to.");
-
+		
 		clearMenu();
 		for(var i:int = 0; i < pc.vaginas.length; i++)
 		{
+			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)//add back button to button page
+			output("\n" + "<b>#" + (i + 1) + ":</b> " + "[pc.vagina " + i + "] " + (i + 1));
 			if( pc.vaginas[i].clitPiercing is EmptySlot) addButton(i, "Vagina " + (i + 1) + " clit", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
 			else addDisabledButton(i, "Vagina " + (i + 1) + " clit", "Vagina " + (i + 1) + " clit", "Rhett can't pierce this clit since it already is pierced!");//if already pierced add disabled button
 		}
-		addButton(14, "Back", rhettBackOut);//overflow issue if pc has more than 13 clits
 	}
 }
 
