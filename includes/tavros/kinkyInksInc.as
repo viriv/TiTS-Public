@@ -456,7 +456,8 @@ public function rhettTattoosOuch(tattooVars:Array):void
 	}
 	
 	output("After you transfer the credits, you follow Rhett into his parlor in the back. ");
-	if(flags["RHETT_HAS_TATTED_BEFORE"] == undefined)
+	
+	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)
 	{
 		output("It's surprisingly sterile and white, with plenty of medical science devices. There's an expensive looking centrifuge and a large steel-lined fridge labelled 'Medical Materials'. In the center is a sleek looking tattooist's chair, which ");
 		
@@ -478,10 +479,11 @@ public function rhettTattoosOuch(tattooVars:Array):void
 	output("\n\n<i>“... Got the measurements. Should be a few minutes as the batch cooks up,”</i> he bluntly informs you. You sit and wait until one of his machines dispenses several small canisters. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet. He traces around the region, every so often stopping to switch canisters.");
 	output("\n\nSuddenly, the half-akhid man stops, looking at his holo-watch. <i>“... Should be a minute more,”</i> he states. He's dead on. Sixty seconds later, you feel the sprayed area begin to warm, followed by a prickling sensation. Rhett checks the area, then pulls out a mirror to show you your new ink.");
 	output("\n\n<i>“Complete success. ");
-	if(flags["RHETT_HAS_TATTED_BEFORE"] == undefined)
+	
+	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)
 	{
 		output("You're pretty easy to skin graft for. It's like your body just soaks in the mods.”</i>");
-		IncrementFlag("RHETT_HAS_TATTED_BEFORE");
+		IncrementFlag("RHETT_HAS_WORKED_ON_BEFORE");
 	}
 	else output("As usual, your body just soaks up the mods. You're an easy client.”</i>");
 	
@@ -571,9 +573,9 @@ public function rhettTattoosRemoval(location:String):void
 	clearOutput();
 	author("Jim T");
 	
-	output("After you transfer the credits, you follow Rhett into his parlor in the back.");
-	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)
+	output("After you transfer the credits, you follow Rhett into his parlor in the back. ");
 	
+	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)
 	{
 		output("It's surprisingly sterile and white, with plenty of medical science devices. There's an expensive looking centrifuge and a large steel-lined fridge labelled 'Medical Materials'. In the center is a sleek looking tattooist's chair, ");
 		if(pc.isTaur()) output("which morphs suddenly to be taur - friendly. He then instructs you to get on it.");
@@ -588,11 +590,11 @@ public function rhettTattoosRemoval(location:String):void
 	output("\n\nRhett shifts up to you and takes a genetic sample from you, then throws it up on holo-display. Silently, he begins typing away, working on the proper composition of skin-mod formula to give you. His eyes are intensely locked on the screen, and his fingers light up the air at a lightning pace.");
 	output("\n\n“... Got the measurements. Should be a few minutes as the batch cooks up,” he bluntly informs you. You sit and wait until one of his machines dispenses a single canister. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet.");
 	output("\n\n“Done. Just give it a moment,” he states. The tattoo slowly disappears, your [pc.skinFurScalesNoun] returning to normal.“... No fuss. ");
-	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)
 	
+	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)//currently this is unreachable as the only way to remove a tattoo is to get one from rhett which sets this flag but it's a minor blurb and maybe that'll change later
 	{
 		output("Wow, your body is pretty mod happy");
-		IncrementFlag("RHETT_HAS_PIERCED_BEFORE");
+		IncrementFlag("RHETT_HAS_WORKED_ON_BEFORE");
 	}
 	else output("As usual, your body is pretty mod happy");
 	output("”.");
@@ -968,8 +970,8 @@ public function rhettPiercingsOuch(piercingVars:Array):void
 		case "clit": pc.vaginas[piercingVars[3]].clitPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 	}
 	
-	output("After you transfer the credits, you follow Rhett into his parlor in the back.");
-	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)//This flag gets set later
+	output("After you transfer the credits, you follow Rhett into his parlor in the back. ");
+	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)
 	{
 		output("It's surprisingly sterile and white, with plenty of medical science devices. There's an expensive looking centrifuge and a large steel-lined fridge labelled 'Medical Materials'. In the center is a sleek looking tattooist's chair, ");
 		if(pc.isTaur()) output("which morphs suddenly to be taur-friendly. He then instructs you to get on it");
@@ -985,10 +987,10 @@ public function rhettPiercingsOuch(piercingVars:Array):void
 	output("\n\nRhett shifts up to you and takes a genetic sample from you, then throws it up on holo-display. Silently, he begins typing away, working on the proper composition of skin-mod formula to give you. His eyes are intensely locked on the screen, and his fingers light up the air at a lightning pace.");
 	output("\n\n<i>“... Got the measurements. Should be a few minutes as the batch cooks up,”</i> he bluntly informs you. You sit and wait until one of his machines dispenses a single canister. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet. ");
 	output("\n\n<i>“Done. Just give it a moment,”</i> he states. Suddenly, you feel a strange, hollowing sensation in the spot he sprayed. Now that there's a natural hole where the piercing needs to go, he slips it in. <i>“... No fuss.")
-	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)
+	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)
 	{
 		output("Huh. It's like your body just soaks in the mods.”</i>");
-		IncrementFlag("RHETT_HAS_PIERCED_BEFORE");
+		IncrementFlag("RHETT_HAS_WORKED_ON_BEFORE");
 	}
 	else output("As usual, your body just soaks up the mods.”</i>");
 	
