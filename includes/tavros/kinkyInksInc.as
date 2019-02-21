@@ -71,7 +71,7 @@ public function rhettMenu():void
 	addButton(1, "Talk", rhettTalk, undefined, "Talk", "Talk with Rhett.");//talk about snek stuff
 	addButton(2, "Tattoos", rhettTattoos, undefined, "Tattoo", "Get a tattoo.");//get a tattoo
 	addButton(3, "Piercings", rhettPiercings, undefined, "Piercings", "Get a piercing.");//get a piercing
-	if(pc.hasTattoo()) addButton(4, "TatRemoval", rhettTattooRemovalPartSelection, undefined, "Removal", "Remove a tattoo.");//remove a tattoo
+	if(pc.hasTattoo()) addButton(4, "TatRemoval", rhettTattoosRemovalPartSelection, undefined, "Removal", "Remove a tattoo.");//remove a tattoo
 	else addDisabledButton(4, "TatRemoval", "TatRemoval", "You have no removable tattoos!")//don't bother giving the option if no tattoos exist
 	if(pc.lust() >= 33) addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");//sex the snek
 	else addDisabledButton(5, "Sex", "Sex", "You aren’t aroused enough for sex right now.");//gotta meet the lust requirments first
@@ -213,16 +213,17 @@ public function rhettTattoos():void
 	output("\n\n<i>“... What kind you after?”</i> he asks.");
 	
 	clearMenu();
-	//vars = [type, (wing type), location, color]
-	addButton(0, "Tribal", rhettTattoosBodyPartSelection, [new TribalTattoo(), undefined]);
+	//tattooVars = [type, (optional attribute i.e. wing type/text), location, color]
+	addButton(0, "Tribal", rhettTattoosBodyPartSelection, [new TribalTattoo(), undefined]);//create a blank tattoo here to get access to flags of that type for menus in next function. The attributes of the tattoo don't get set until the very end though
 	addButton(1, "Floral", rhettTattoosBodyPartSelection, [new FloralTattoo(), undefined]);
 	addButton(2, "Skull", rhettTattoosBodyPartSelection, [new SkullTattoo(), undefined]);
 	addButton(3, "Dragon", rhettTattoosBodyPartSelection, [new DragonTattoo(), undefined]);
-	addButton(4, "Wings", rhettTattoosWingsOptions, [new WingTattoo()]);
-	//addButton(5, "Text", rhettTattooTextOptions, ["text"]);
+	addButton(4, "Wings", rhettTattoosWingsOptions, [new WingTattoo()]);//wings have to pick a wing type, so they get an extra function before body part selection
+	//addButton(5, "Text", rhettTattooTextOptions, ["text"]);//TODO: text tattoos, will mimic text entry like when players enter their names at start of game and pass as an optional attribute
 	addButton(14, "Back", rhettBackOut);
 }
 
+//Wing tattoo type selection
 public function rhettTattoosWingsOptions(tattooVars:Array):void
 {
 	clearOutput();
@@ -231,18 +232,22 @@ public function rhettTattoosWingsOptions(tattooVars:Array):void
 	output("<i>“Wings, huh–what kind?”<\i>");
 	
 	clearMenu();
-	addButton(0, "Bat", rhettTattoosBodyPartSelection, [tattooVars[0], "bat"]);
+	//tattooVars = [type, (optional attribute i.e. wing type/text), location, color]
+	addButton(0, "Bat", rhettTattoosBodyPartSelection, [tattooVars[0], "bat"]);//add wing type to tattooVars and move on to body part selection
 	addButton(1, "Feather", rhettTattoosBodyPartSelection, [tattooVars[0], "feather"]);
 	addButton(2, "Butterfly", rhettTattoosBodyPartSelection, [tattooVars[0], "butterfly"]);
 	addButton(14, "Back", rhettBackOut);
 }
 
+//Tattoo body part selection
 public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 {
+	//this is run every time a button is added to the bar. It will move to the next avalible button slot and check if it's the back button slot.
+	//If so it will move the index to the start of the next page of buttons and add another back button on this new page
 	function btnInc():void
 	{
 		btnIdx++;
-		if(btnIdx % 14 == 0)//if number of buttons would overwrite the back button in the bottom rigth slot
+		if(btnIdx % 14 == 0)//if number of buttons would overwrite the back button in the bottom right slot
 		{
 			addButton(btnIdx + 15, "Back", rhettBackOut);//add back button to next page of buttons
 			btnIdx++;//skip the bottom right slot
@@ -256,11 +261,11 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 	
 	clearMenu();
 	
-	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FACE))
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FACE))//check if the selected type of tattoo has flag to be put on faces
 	{
-		if(!pc.hasFaceTattoo()) addButton(btnIdx, "Face", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "face"]);
-		else addDisabledButton(btnIdx, "Face", "Face", "Rhett can't tattoo your face when it already has a tattoo!");
-		btnInc();
+		if(!pc.hasFaceTattoo()) addButton(btnIdx, "Face", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "face"]);//if pc does not yet have a face tattoo then add button
+		else addDisabledButton(btnIdx, "Face", "Face", "Rhett can't tattoo your face when it already has a tattoo!");//if pc does have a tattoo already then add disabled button
+		btnInc();//run function to get next button slot index
 	}
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_NECK))
@@ -361,9 +366,10 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 		btnInc();
 	}
 	
-	addButton(14, "Back", rhettBackOut);
+	addButton(14, "Back", rhettBackOut);//set back button of first button page
 }
 
+//Tattoo color selection
 public function rhettTattoosColorSelection(tattooVars:Array):void
 {
 	clearOutput();
@@ -372,6 +378,7 @@ public function rhettTattoosColorSelection(tattooVars:Array):void
 	output("<i>“... And the color?”<\i>");
 	
 	clearMenu();
+	//tattooVars = [type, (optional attribute i.e. wing type/text), location, color]
 	addButton(0, "Black",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "black"]);
 	addButton(1, "White",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "white"]);
 	addButton(2, "Silver",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "silver"]);
@@ -396,18 +403,18 @@ public function rhettTattoosPayment(tattooVars:Array):void
 	output("<i>“That'll be 100 credits,”</i> Rhett announces, gesturing to the tattooed android manning the counter. <i>“Just give it to him, and we'll get started.”</i>");
 	
 	clearMenu();
-	addButton(0, "Pay", rhettTatOuch, tattooVars);
+	addButton(0, "Pay", rhettTattoosOuch, tattooVars);
 	addButton(1, "Don't", rhettBackOut);
 }
 
-public function rhettTatOuch(tattooVars:Array):void
+//Tattooing scene
+public function rhettTattoosOuch(tattooVars:Array):void
 {
 	clearOutput();
 	author("Jim T");
-	//vars = [type, (optional attribute), location, color]
-	var tattooDescription:String = "";//long description for apperance
+	//tattooVars = [type, (optional attribute), location, color]
 	
-	switch(tattooVars[2])
+	switch(tattooVars[2])//assign player tattoo slots
 	{
 		case "face":
 			pc.faceTattoo = tattooVars[0];//set pc tattoo slot to tattoo type
@@ -519,22 +526,18 @@ public function rhettTatOuch(tattooVars:Array):void
 	if(flags["RHETT_HAS_TATTED_BEFORE"] == undefined)
 	{
 		output("It's surprisingly sterile and white, with plenty of medical science devices. There's an expensive looking centrifuge and a large steel-lined fridge labelled 'Medical Materials'. In the center is a sleek looking tattooist's chair, which ");
+		
 		if(pc.isTaur())
 		{
 			output("morphs suddenly to be taur-friendly. He then instructs you to get on it.");
 		}
-		else
-		{
-			output("you're  instructed to sit down in.");
-		}
+		else output("you're  instructed to sit down in.");
 	}
 	else
 	{
 		output("You sit down in the familiar, sleek tattooist's chair");
-		if(pc.isTaur())
-		{
-			output("–after it's morphed to be taur friendly, of course");
-		}
+		
+		if(pc.isTaur()) output("–after it's morphed to be taur friendly, of course");
 		output(".");
 	}
 	
@@ -549,7 +552,8 @@ public function rhettTatOuch(tattooVars:Array):void
 	}
 	else output("As usual, your body just soaks up the mods. You're an easy client.”</i>");
 	
-	output("\n\n<b>You now have a new tattoo on your " + tattooVars[2] +"!</b>")
+	output("\n\n<b>You now have a new tattoo on your " + tattooVars[2] +"!</b>");
+	
 	pc.credits -= 100;
 	processTime(5);
 	clearMenu();
@@ -557,7 +561,7 @@ public function rhettTatOuch(tattooVars:Array):void
 }
 
 //Tattoo Removal
-public function rhettTattooRemovalPartSelection():void
+public function rhettTattoosRemovalPartSelection():void
 {
 	clearOutput();
 	author("Jim T");
@@ -566,57 +570,57 @@ public function rhettTattooRemovalPartSelection():void
 	
 	clearMenu();
 	
-	if(pc.hasFaceTattoo()) addButton(0, "Face", rhettTattooRemovalPayment, "face");
+	if(pc.hasFaceTattoo()) addButton(0, "Face", rhettTattoosRemovalPayment, "face");
 	else addDisabledButton(0, "Face", "Face", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasNeckTattoo()) addButton(1, "Neck", rhettTattooRemovalPayment, "neck");
+	if(pc.hasNeckTattoo()) addButton(1, "Neck", rhettTattoosRemovalPayment, "neck");
 	else addDisabledButton(1, "Neck", "Neck", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasUpperBackTattoo()) addButton(2, "Upper Back", rhettTattooRemovalPayment, "upper back");
+	if(pc.hasUpperBackTattoo()) addButton(2, "Upper Back", rhettTattoosRemovalPayment, "upper back");
 	else addDisabledButton(2, "Upper Back", "Upper Back", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasLowerBackTattoo()) addButton(3, "Lower Back", rhettTattooRemovalPayment, "lower back");
+	if(pc.hasLowerBackTattoo()) addButton(3, "Lower Back", rhettTattoosRemovalPayment, "lower back");
 	else addDisabledButton(3, "Lower Back", "Lower Back", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasLeftChestTattoo()) addButton(4, "Left Chest", rhettTattooRemovalPayment, "left chest");
+	if(pc.hasLeftChestTattoo()) addButton(4, "Left Chest", rhettTattoosRemovalPayment, "left chest");
 	else addDisabledButton(4, "Left Chest", "Left Chest", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasRightChestTattoo()) addButton(5, "Right Chest", rhettTattooRemovalPayment, "right chest");
+	if(pc.hasRightChestTattoo()) addButton(5, "Right Chest", rhettTattoosRemovalPayment, "right chest");
 	else addDisabledButton(5, "Right Chest", "Right Chest", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasFullChestTattoo()) addButton(6, "Full Chest", rhettTattooRemovalPayment, "full chest");
+	if(pc.hasFullChestTattoo()) addButton(6, "Full Chest", rhettTattoosRemovalPayment, "full chest");
 	else addDisabledButton(6, "Full Chest", "Full Chest", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasLeftArmTattoo()) addButton(7, "Left Arm", rhettTattooRemovalPayment, "left arm");
+	if(pc.hasLeftArmTattoo()) addButton(7, "Left Arm", rhettTattoosRemovalPayment, "left arm");
 	else addDisabledButton(7, "Left Arm", "Left Arm", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasRightArmTattoo()) addButton(8, "Right Arm", rhettTattooRemovalPayment, "right arm");
+	if(pc.hasRightArmTattoo()) addButton(8, "Right Arm", rhettTattoosRemovalPayment, "right arm");
 	else addDisabledButton(8, "Right Arm", "Right Arm", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasLeftLegTattoo()) addButton(9, "Left Leg", rhettTattooRemovalPayment, "left leg");
+	if(pc.hasLeftLegTattoo()) addButton(9, "Left Leg", rhettTattoosRemovalPayment, "left leg");
 	else addDisabledButton(9, "Left Leg", "Left Leg", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasRightLegTattoo()) addButton(10, "Right Leg", rhettTattooRemovalPayment, "right leg");
+	if(pc.hasRightLegTattoo()) addButton(10, "Right Leg", rhettTattoosRemovalPayment, "right leg");
 	else addDisabledButton(10, "Right Leg", "Right Leg", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasLeftButtTattoo()) addButton(11, "Left Buttock", rhettTattooRemovalPayment, "left buttock");
+	if(pc.hasLeftButtTattoo()) addButton(11, "Left Buttock", rhettTattoosRemovalPayment, "left buttock");
 	else addDisabledButton(11, "Left Buttock", "Left Buttock", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasRightButtTattoo()) addButton(12, "Right Buttock", rhettTattooRemovalPayment, "right buttock");
+	if(pc.hasRightButtTattoo()) addButton(12, "Right Buttock", rhettTattoosRemovalPayment, "right buttock");
 	else addDisabledButton(12, "Right Buttock", "Right Buttock", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasFullButtTattoo()) addButton(13, "Full Butt", rhettTattooRemovalPayment, "full butt");
+	if(pc.hasFullButtTattoo()) addButton(13, "Full Butt", rhettTattoosRemovalPayment, "full butt");
 	else addDisabledButton(13, "Full Butt", "Full Butt", "There's no tattoo here that Rhett can remove!");
 	
 	addButton(14, "Back", rhettBackOut);
 	
-	if(pc.hasAboveCrotchTattoo()) addButton(15, "Above Crotch", rhettTattooRemovalPayment, "above crotch");
+	if(pc.hasAboveCrotchTattoo()) addButton(15, "Above Crotch", rhettTattoosRemovalPayment, "above crotch");
 	else addDisabledButton(15, "Above Crotch", "Above Crotch", "There's no tattoo here that Rhett can remove!");
 	
 	addButton(29, "Back", rhettBackOut);
 }
 
-public function rhettTattooRemovalPayment(location:String):void
+public function rhettTattoosRemovalPayment(location:String):void
 {
 	clearOutput();
 	author("Jim T");
@@ -625,17 +629,18 @@ public function rhettTattooRemovalPayment(location:String):void
 	
 	clearMenu();
 	
-	addButton(0, "Pay", rhettTattooRemoval, location);
+	addButton(0, "Pay", rhettTattoosRemoval, location);
 	addButton(1, "Don't", rhettBackOut);
 }
 
-public function rhettTattooRemoval(location:String):void
+public function rhettTattoosRemoval(location:String):void
 {
 	clearOutput();
 	author("Jim T");
 	
 	output("After you transfer the credits, you follow Rhett into his parlor in the back.");
 	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)
+	
 	{
 		output("It's surprisingly sterile and white, with plenty of medical science devices. There's an expensive looking centrifuge and a large steel-lined fridge labelled 'Medical Materials'. In the center is a sleek looking tattooist's chair, ");
 		if(pc.isTaur()) output("which morphs suddenly to be taur - friendly. He then instructs you to get on it.");
@@ -644,16 +649,14 @@ public function rhettTattooRemoval(location:String):void
 	else
 	{
 		output("You sit down in the familiar, sleek tattooist's chair");
-		if(pc.isTaur())
-		{
-			output("—after it's morphed to be taur friendly, of course");
-		}
+		if(pc.isTaur()) output("—after it's morphed to be taur friendly, of course");
 	}
 	output(".");
 	output("\n\nRhett shifts up to you and takes a genetic sample from you, then throws it up on holo-display. Silently, he begins typing away, working on the proper composition of skin-mod formula to give you. His eyes are intensely locked on the screen, and his fingers light up the air at a lightning pace.");
 	output("\n\n“... Got the measurements. Should be a few minutes as the batch cooks up,” he bluntly informs you. You sit and wait until one of his machines dispenses a single canister. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet.");
 	output("\n\n“Done. Just give it a moment,” he states. The tattoo slowly disappears, your [pc.skinFurScalesNoun] returning to normal.“... No fuss. ");
 	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)
+	
 	{
 		output("Wow, your body is pretty mod happy");
 		IncrementFlag("RHETT_HAS_PIERCED_BEFORE");
@@ -661,7 +664,7 @@ public function rhettTattooRemoval(location:String):void
 	else output("As usual, your body is pretty mod happy");
 	output("”.");
 	
-	switch(location)
+	switch(location)//replace current tattoo with default EmptyTattoo for removal
 	{
 		case "face":
 			pc.faceTattoo = new EmptyTattoo();
@@ -742,16 +745,16 @@ public function rhettPiercings():void
 	output("\n\n<i>“... What kind you after?”</i> he asks.");
 	
 	clearMenu();//get piercing type
-	//create array of vars describing piercing(type, color, placement, [placementIndex]) that gets passed along as args for final piecing scene
+	//create array of vars describing piercing(type, color, placement, (placementIndex)) that gets passed along as args for final piecing scene
 	//placementIndex is for when pcs have multiple of a part that can be pierced pc.bRow[0], pc.cocks[3], etc...
-	addButton(0, "Ring", rhettPiercingColorSelection, ["ring"]);
-	addButton(1, "Stud", rhettPiercingColorSelection, ["stud"]);
-	addButton(2, "Bar", rhettPiercingColorSelection, ["bar"]);
+	addButton(0, "Ring", rhettPiercingsColorSelection, ["ring"]);
+	addButton(1, "Stud", rhettPiercingsColorSelection, ["stud"]);
+	addButton(2, "Bar", rhettPiercingsColorSelection, ["bar"]);
 	addButton(14, "Back", rhettBackOut);
 }
 
 //Select Piercing Color
-public function rhettPiercingColorSelection(vars:Array):void
+public function rhettPiercingsColorSelection(piercingVars:Array):void
 {
 	clearOutput();
 	author("Jim T");
@@ -759,23 +762,23 @@ public function rhettPiercingColorSelection(vars:Array):void
 	output("<i>“What color piercing where you thinking of getting? We've got these kinds in stock.”</i>");
 	
 	clearMenu();//get piercing color
-	addButton(0, "Black", rhettPiercingBodySelection, [vars[0], "black"]);//vars = [type, color] so far
-	addButton(1, "White", rhettPiercingBodySelection, [vars[0], "white"]);
-	addButton(2, "Silver", rhettPiercingBodySelection, [vars[0], "silver"]);
-	addButton(3, "Copper", rhettPiercingBodySelection, [vars[0], "copper"]);
-	addButton(4, "Gold", rhettPiercingBodySelection, [vars[0], "gold"]);
-	addButton(5, "Red", rhettPiercingBodySelection, [vars[0], "red"]);
-	addButton(6, "Blue", rhettPiercingBodySelection, [vars[0], "blue"]);
-	addButton(7, "Green", rhettPiercingBodySelection, [vars[0], "green"]);
-	addButton(8, "Orange", rhettPiercingBodySelection, [vars[0], "orange"]);
-	addButton(9, "Yellow", rhettPiercingBodySelection, [vars[0], "yellow"]);
-	addButton(10, "Purple", rhettPiercingBodySelection, [vars[0], "purple"]);
-	addButton(11, "Pink", rhettPiercingBodySelection, [vars[0], "pink"]);
+	addButton(0, "Black", rhettPiercingsBodySelection, [piercingVars[0], "black"]);//piercingVars = [type, color] so far
+	addButton(1, "White", rhettPiercingsBodySelection, [piercingVars[0], "white"]);
+	addButton(2, "Silver", rhettPiercingsBodySelection, [piercingVars[0], "silver"]);
+	addButton(3, "Copper", rhettPiercingsBodySelection, [piercingVars[0], "copper"]);
+	addButton(4, "Gold", rhettPiercingsBodySelection, [piercingVars[0], "gold"]);
+	addButton(5, "Red", rhettPiercingsBodySelection, [piercingVars[0], "red"]);
+	addButton(6, "Blue", rhettPiercingsBodySelection, [piercingVars[0], "blue"]);
+	addButton(7, "Green", rhettPiercingsBodySelection, [piercingVars[0], "green"]);
+	addButton(8, "Orange", rhettPiercingsBodySelection, [piercingVars[0], "orange"]);
+	addButton(9, "Yellow", rhettPiercingsBodySelection, [piercingVars[0], "yellow"]);
+	addButton(10, "Purple", rhettPiercingsBodySelection, [piercingVars[0], "purple"]);
+	addButton(11, "Pink", rhettPiercingsBodySelection, [piercingVars[0], "pink"]);
 	addButton(14, "Back", rhettBackOut);
 }
 
 //Select where to put piercing
-public function rhettPiercingBodySelection(vars:Array):void
+public function rhettPiercingsBodySelection(piercingVars:Array):void
 {
 	clearOutput();
 	author("Jim T");
@@ -783,109 +786,109 @@ public function rhettPiercingBodySelection(vars:Array):void
 	output("<i>“What part you looking at getting pierced?”</i>");
 	
 	clearMenu();
-	switch(vars[0])//functions generate selection and restrict unusable body part buttons menus based off type
+	switch(piercingVars[0])//functions generate selection and restrict unusable body part buttons menus based off type
 	{
-		case "ring": rhettRingPiercingMenu(vars); break;
-		case "stud": rhettStudPiercingMenu(vars); break;
-		case "bar": rhettBarPiercingMenu(vars); break;
+		case "ring": rhettRingPiercingsMenu(piercingVars); break;
+		case "stud": rhettStudPiercingsMenu(piercingVars); break;
+		case "bar": rhettBarPiercingsMenu(piercingVars); break;
 	}
 	addButton(14, "Back", rhettBackOut);
 }
 
 //Generate avaliable button options for ring piercing
-public function rhettRingPiercingMenu(vars:Array):void
+public function rhettRingPiercingsMenu(piercingVars:Array):void
 {
-	//vars = [type, color, placement]
+	//piercingVars = [type, color, placement]
 	//if piercing is unable to go in body part then it is just given a disabled button
 	//otherwise checks done to see if body part is already pierced
-	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingPayment, [vars[0], vars[1], "ears"]);
+	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "ears"]);
 	else addDisabledButton(0, "Ears", "Ears", "Rhett can't pierce your ears when they already have a piercing in them!");
 	
 	addDisabledButton(1, "Eyebrow", "Eyebrow", "Rhett can't do eyebrow ring piercings.");
 	
-	if(pc.nosePiercing is EmptySlot) addButton(2, "Nose", rhettPiercingPayment, [vars[0], vars[1], "nose"]);
+	if(pc.nosePiercing is EmptySlot) addButton(2, "Nose", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "nose"]);
 	else addDisabledButton(2, "Nose", "Nose", "Rhett can't pierce your nose when it already has a piercing in it!");
 	
-	if(pc.lipPiercing is EmptySlot) addButton(3, "Lip", rhettPiercingPayment, [vars[0], vars[1], "lip"]);
+	if(pc.lipPiercing is EmptySlot) addButton(3, "Lip", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "lip"]);
 	else addDisabledButton(3, "Lip", "Lip", "Rhett can't pierce your lip when it already had a piercing in it!");
 	
-	if(pc.bellyPiercing is EmptySlot) addButton(4, "Belly", rhettPiercingPayment, [vars[0], vars[1], "belly"]);
+	if(pc.bellyPiercing is EmptySlot) addButton(4, "Belly", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "belly"]);
 	else addDisabledButton(4, "Belly", "Belly", "Rhett can't pierce your belly when it already has a piercing in it!");
 	
 	addDisabledButton(5, "Tongue", "Tongue", "Rhett can't do tongue ring piercings.");
 	
 	//special method to check if every nipple is already pierced and thus make Nipples button disabled before going to row select
-	if(!pc.hasPiercedEveryNipple()) addButton(6, "Nipples", rhettPiercingBRowSelection, [vars[0], vars[1], "nipples"]);
+	if(!pc.hasPiercedEveryNipple()) addButton(6, "Nipples", rhettPiercingsBRowSelection, [piercingVars[0], piercingVars[1], "nipples"]);
 	else if(!pc.hasNipples()) addDisabledButton(6, "Nipples", "Nipples", "You don't have any nipples to pierce!");
 	else addDisabledButton(6, "Nipples", "Nipples", "Rhett can't pierce your nipples when they are" + (pc.bRows() > 1 ? " all" : "") + " already pierced!");
 	
 	//special method to check if every cock is already pierced and thus make Cock button disabled before going to cock select
-	if(!pc.hasPiercedEveryCock()) addButton(7, "Cock", rhettPiercingCockSelection, [vars[0], vars[1], "cock"]);
+	if(!pc.hasPiercedEveryCock()) addButton(7, "Cock", rhettPiercingsCockSelection, [piercingVars[0], piercingVars[1], "cock"]);
 	else if(!pc.hasCock()) addDisabledButton(7, "Cock", "Cock", "You don't have a cock to pierce!");
 	else addDisabledButton(7, "Cock", "Cock", "Rhett can't pierce your" + (pc.hasCocks() ? " cocks when they are all" : " cock when it's") + " already pierced!");
 	
 	//special method to check if every vagina is already pierced and thus make Vagina button disabled before going to vagina select
-	if(!pc.hasPiercedEveryVagina()) addButton(8, "Vagina", rhettPiercingVaginaSelection, [vars[0], vars[1], "vagina"]);
+	if(!pc.hasPiercedEveryVagina()) addButton(8, "Vagina", rhettPiercingsVaginaSelection, [piercingVars[0], piercingVars[1], "vagina"]);
 	else if(!pc.hasVagina()) addDisabledButton(8, "Vagina", "Vagina", "You don't have a vagina to pierce!");
 	else addDisabledButton(8, "Vagina", "Vagina", "Rhett can't pierce your" + (pc.hasVaginas() ? " vaginas when they are all" : " vagina when it's") + " already pierced!");
 	
 	//special method to check if every clit is already pierced and thus make Clit button disabled before going to row select
-	if(!pc.hasPiercedEveryClit()) addButton(9, "Clit", rhettPiercingClitVaginaSelection, [vars[0], vars[1], "clit"]);
+	if(!pc.hasPiercedEveryClit()) addButton(9, "Clit", rhettPiercingsClitVaginaSelection, [piercingVars[0], piercingVars[1], "clit"]);
 	else if(!pc.hasVagina()) addDisabledButton(9, "Clit", "Clit", "You don't have a clit to pierce!");
 	else addDisabledButton(9, "Clit", "Clit", "Rhett can't pierce your" + (pc.hasVaginas() ? " clits when they are all" : " clit when it's") + " already pierced!");
 }
 
 //Generate avaliable button options for stud piercing
-public function rhettStudPiercingMenu(vars:Array):void
+public function rhettStudPiercingsMenu(piercingVars:Array):void
 {
-	//vars = [type, color, placement]
+	//piercingVars = [type, color, placement]
 	//if piercing is unable to go in body part it is given a disabled button from start
 	//other checks done to see if body part is already pierced
-	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingPayment, [vars[0], vars[1], "ears"]);
+	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "ears"]);
 	else addDisabledButton(0, "Ears", "Ears", "Rhett can't pierce your ears when they already have a piercing in them!");
 	
 	addDisabledButton(1, "Eyebrow", "Eyebrow", "Rhett can't do eyebrow stud piercings.");
 	
-	if(pc.nosePiercing is EmptySlot) addButton(2, "Nose", rhettPiercingPayment, [vars[0], vars[1], "nose"]);
+	if(pc.nosePiercing is EmptySlot) addButton(2, "Nose", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "nose"]);
 	else addDisabledButton(2, "Nose", "Nose", "Rhett can't pierce your nose when it already has a piercing in it!");
 	
-	if(pc.lipPiercing is EmptySlot) addButton(3, "Lip", rhettPiercingPayment, [vars[0], vars[1], "lip"]);
+	if(pc.lipPiercing is EmptySlot) addButton(3, "Lip", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "lip"]);
 	else addDisabledButton(3, "Lip", "Lip", "Rhett can't pierce your lip when it already had a piercing in it!");
 	
-	if(pc.bellyPiercing is EmptySlot) addButton(4, "Belly", rhettPiercingPayment, [vars[0], vars[1], "belly"]);
+	if(pc.bellyPiercing is EmptySlot) addButton(4, "Belly", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "belly"]);
 	else addDisabledButton(4, "Belly", "Belly", "Rhett can't pierce your belly when it already has a piercing in it!");
 	
-	if(pc.tonguePiercing is EmptySlot) addButton(5, "Tongue", rhettPiercingPayment, [vars[0], vars[1], "tongue"]);
+	if(pc.tonguePiercing is EmptySlot) addButton(5, "Tongue", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "tongue"]);
 	else addDisabledButton(5, "Tongue", "Tongue", "Rhett can't pierce your tongue when it already has a piercing in it!");
 	
 	addDisabledButton(6, "Nipples", "Nipples", "Rhett can't do nipple stud piercings.");
 	
 	//special method to check if every cock is already pierced and thus make Cock button disabled before going to cock select
-	if(!pc.hasPiercedEveryCock()) addButton(7, "Cock", rhettPiercingCockSelection, [vars[0], vars[1], "cock"]);
+	if(!pc.hasPiercedEveryCock()) addButton(7, "Cock", rhettPiercingsCockSelection, [piercingVars[0], piercingVars[1], "cock"]);
 	else if(!pc.hasCock()) addDisabledButton(7, "Cock", "Cock", "You don't have a cock to pierce!");
 	else addDisabledButton(7, "Cock", "Cock", "Rhett can't pierce your" + (pc.hasCocks() ? " cocks when they are all" : " cock when it's") + " already pierced!");
 	
 	//special method to check if every vagina is already pierced and thus make Vagina button disabled before going to vagina select
-	if(!pc.hasPiercedEveryVagina()) addButton(8, "Vagina", rhettPiercingVaginaSelection, [vars[0], vars[1], "vagina"]);
+	if(!pc.hasPiercedEveryVagina()) addButton(8, "Vagina", rhettPiercingsVaginaSelection, [piercingVars[0], piercingVars[1], "vagina"]);
 	else if(!pc.hasVagina()) addDisabledButton(8, "Vagina", "Vagina", "You don't have a vagina to pierce!");
 	else addDisabledButton(8, "Vagina", "Vagina", "Rhett can't pierce your" + (pc.hasVaginas() ? " vaginas when they are all" : " vagina when it's") + " already pierced!");
 	
 	//special method to check if every clit is already pierced and thus make Clit button disabled before going to row select
-	if(!pc.hasPiercedEveryClit()) addButton(9, "Clit", rhettPiercingClitVaginaSelection, [vars[0], vars[1], "clit"]);
+	if(!pc.hasPiercedEveryClit()) addButton(9, "Clit", rhettPiercingsClitVaginaSelection, [piercingVars[0], piercingVars[1], "clit"]);
 	else if(!pc.hasClit()) addDisabledButton(9, "Clit", "Clit", "You don't have a clit to pierce!");
 	else addDisabledButton(9, "Clit", "Clit", "Rhett can't pierce your" + (pc.hasVaginas() ? " clits when they are all" : " clit when it's") + " already pierced!");
 }
 
 //Generate avaliable button options for bar piercing
-public function rhettBarPiercingMenu(vars:Array):void
+public function rhettBarPiercingsMenu(piercingVars:Array):void
 {
-	//vars = [type, color, placement]
+	//piercingVars = [type, color, placement]
 	//if piercing is unable to go in body part it is given a disabled button from start
 	//other checks done to see if body part is already pierced
-	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingPayment, [vars[0], vars[1], "ears"]);
+	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "ears"]);
 	else addDisabledButton(0, "Ears", "Ears", "Rhett can't pierce your ears when they already have a piercing in them!");
 	
-	if(pc.eyebrowPiercing is EmptySlot) addButton(1, "Eyebrow", rhettPiercingPayment, [vars[0], vars[1], "eyebrow"]);
+	if(pc.eyebrowPiercing is EmptySlot) addButton(1, "Eyebrow", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "eyebrow"]);
 	else addDisabledButton(1, "Eyebrow", "Eyebrow", "Rhett can't pierce your eyebrow when it already has a piercing in it!");
 	
 	addDisabledButton(2, "Nose", "Nose", "Rhett can't do nose bar piercings.");
@@ -894,7 +897,7 @@ public function rhettBarPiercingMenu(vars:Array):void
 	addDisabledButton(5, "Tongue", "Tongue", "Rhett can't do tongue bar piercings");
 	
 	//special method to check if every nipple is already pierced and thus make Nipples button disabled before going to row select
-	if(!pc.hasPiercedEveryNipple()) addButton(6, "Nipples", rhettPiercingBRowSelection, [vars[0], vars[1], "nipples"]);
+	if(!pc.hasPiercedEveryNipple()) addButton(6, "Nipples", rhettPiercingsBRowSelection, [piercingVars[0], piercingVars[1], "nipples"]);
 	else if(!pc.hasNipples()) addDisabledButton(6, "Nipples", "Nipples", "You don't have any nipples to pierce!");
 	else addDisabledButton(6, "Nipples", "Nipples", "Rhett can't pierce your nipples when they are" + (pc.bRows() > 1 ? " all" : "") + " already pierced!");
 	
@@ -904,13 +907,13 @@ public function rhettBarPiercingMenu(vars:Array):void
 }
 
 //Check if player has more than one set of nipples
-public function rhettPiercingBRowSelection(vars:Array):void
+public function rhettPiercingsBRowSelection(piercingVars:Array):void
 {
-	//vars = [type, color, placement, placementIndex]
+	//piercingVars = [type, color, placement, placementIndex]
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.bRows() == 1) rhettPiercingPayment([vars[0], vars[1], vars[2], 0]);//if only one set just use it don't both offering choice of one option
+	if(pc.bRows() == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it don't both offering choice of one option
 	else
 	{
 		output("Select breast row to apply nipple piercing to.");
@@ -918,7 +921,7 @@ public function rhettPiercingBRowSelection(vars:Array):void
 		clearMenu();
 		for(var i:int = 0; i < pc.bRows(); i++)//loop through each set of breasts
 		{
-			if(!pc.hasNipplePiercing(i)) addButton(i, "Row " + (i + 1), rhettPiercingPayment, [vars[0], vars[1], vars[2], i]);//if not yet pierced add avalible option
+			if(!pc.hasNipplePiercing(i)) addButton(i, "Row " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
 			else addDisabledButton(i, "Row " + (i + 1), "Row " + (i + 1), "Rhett can't pierce this row since they are already pierced!");//if already pierced add disabled button
 		}
 		addButton(14, "Back", rhettBackOut);//overflow issue if pc has more than 13 breasts rows
@@ -926,13 +929,13 @@ public function rhettPiercingBRowSelection(vars:Array):void
 }
 
 //Check if player has more than one cock
-public function rhettPiercingCockSelection(vars:Array):void
+public function rhettPiercingsCockSelection(piercingVars:Array):void
 {
-	//vars = [type, color, placement, placementIndex]
+	//piercingVars = [type, color, placement, placementIndex]
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.cocks.length == 1) rhettPiercingPayment([vars[0], vars[1], vars[2], 0]);//if only one set just use it don't both offering choice of one option
+	if(pc.cocks.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it don't both offering choice of one option
 	else
 	{
 		output("Select cock to apply piercing to.");
@@ -940,7 +943,7 @@ public function rhettPiercingCockSelection(vars:Array):void
 		clearMenu();
 		for(var i:int = 0; i < pc.cocks.length; i++)
 		{
-			if(!pc.hasPiercedCocks(i)) addButton(i, "Cock " + (i + 1), rhettPiercingPayment, [vars[0], vars[1], vars[2], i]);//if not yet pierced add avalible option
+			if(!pc.hasPiercedCocks(i)) addButton(i, "Cock " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
 			else addDisabledButton(i, "Cock " + (i + 1), "Cock " + (i + 1), "Rhett can't pierce this cock since it is already pierced!");//if already pierced add disabled button
 		}
 		addButton(14, "Back", rhettBackOut);//overflow issue if pc has more than 13 cocks
@@ -948,13 +951,13 @@ public function rhettPiercingCockSelection(vars:Array):void
 }
 
 //Check if player has more than one vagina
-public function rhettPiercingVaginaSelection(vars:Array):void
+public function rhettPiercingsVaginaSelection(piercingVars:Array):void
 {
-	//vars = [type, color, placement, placementIndex]
+	//piercingVars = [type, color, placement, placementIndex]
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.vaginas.length == 1) rhettPiercingPayment([vars[0], vars[1], vars[2], 0]);//if only one set just use it don't both offering choice of one option
+	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it don't both offering choice of one option
 	else
 	{
 		output("Select vagina to apply piercing to.");
@@ -963,7 +966,7 @@ public function rhettPiercingVaginaSelection(vars:Array):void
 		
 		for(var i:int = 0; i < pc.vaginas.length; i++)
 		{
-			if(pc.vaginas[i].piercing is EmptySlot) addButton(i, "Vagina " + (i + 1), rhettPiercingPayment, [vars[0], vars[1], vars[2], i]);//if not yet pierced add avalible option
+			if(pc.vaginas[i].piercing is EmptySlot) addButton(i, "Vagina " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
 			else addDisabledButton(i, "Vagina " + (i + 1), "Vagina " + (i + 1), "Rhett can't pierce this vagina sicne it already is already pierced!");//if already pierced add disabled button
 		}
 		addButton(14, "Back", rhettBackOut);//overflow issue if pc has more than 13 vaginas
@@ -971,13 +974,13 @@ public function rhettPiercingVaginaSelection(vars:Array):void
 }
 
 //Check if player has more than one vagina therefore clit
-public function rhettPiercingClitVaginaSelection(vars:Array):void
+public function rhettPiercingsClitVaginaSelection(piercingVars:Array):void
 {
-	//vars = [type, color, placement, placementIndex]
+	//piercingVars = [type, color, placement, placementIndex]
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.vaginas.length == 1) rhettPiercingPayment([vars[0], vars[1], vars[2], 0]);//if only one set just use it don't both offering choice of one option
+	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it don't both offering choice of one option
 	else
 	{
 		output("Select vagina to apply clit piercing to.");
@@ -985,7 +988,7 @@ public function rhettPiercingClitVaginaSelection(vars:Array):void
 		clearMenu();
 		for(var i:int = 0; i < pc.vaginas.length; i++)
 		{
-			if( pc.vaginas[i].clitPiercing is EmptySlot) addButton(i, "Vagina " + (i + 1) + " clit", rhettPiercingPayment, [vars[0], vars[1], vars[2], i]);//if not yet pierced add avalible option
+			if( pc.vaginas[i].clitPiercing is EmptySlot) addButton(i, "Vagina " + (i + 1) + " clit", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
 			else addDisabledButton(i, "Vagina " + (i + 1) + " clit", "Vagina " + (i + 1) + " clit", "Rhett can't pierce this clit since it already is pierced!");//if already pierced add disabled button
 		}
 		addButton(14, "Back", rhettBackOut);//overflow issue if pc has more than 13 clits
@@ -993,7 +996,7 @@ public function rhettPiercingClitVaginaSelection(vars:Array):void
 }
 
 //Confirm payment
-public function rhettPiercingPayment(vars:Array):void
+public function rhettPiercingsPayment(piercingVars:Array):void
 {
 	clearOutput();
 	author("Jim T");
@@ -1001,41 +1004,41 @@ public function rhettPiercingPayment(vars:Array):void
 	output("<i>“That'll be 100 credits,”</i> Rhett announces, gesturing to the tattooed android manning the counter. <i>“Just give it to him, and we'll get started.”</i>");
 	
 	clearMenu();
-	addButton(0, "Pay", rhettPierceOuch, vars);
+	addButton(0, "Pay", rhettPiercingsOuch, piercingVars);
 	addButton(1, "Don't", rhettBackOut);
 }
 
 //Get pierced
-public function rhettPierceOuch(vars:Array):void
+public function rhettPiercingsOuch(piercingVars:Array):void
 {
-	var piercingIsAre:String = " is";//most body parts are singular except ears and nipples TODO: can use the flag types for this instead? ITEM_FLAG_PIERCING_MULTIPLE
+	var piercingIsAre:String = " is";//most body parts are singular except ears and nipples
 	clearOutput();
 	author("Jim T");
 	
-	switch(vars[2])//switch on body part
+	switch(piercingVars[2])//switch on body part
 	{
 		case "ears":
-			pc.earPiercing = new RhettSimplePiercing(vars[0], vars[1]);//pierce body part with ([var[0] = piercingType, var[1] = color])
+			pc.earPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]);//pierce body part with ([piercingVars[0] = piercingType, piercingVars[1] = color])
 			piercingIsAre = " are";//plural ears get are
 		break;
-		case "eyebrow": pc.eyebrowPiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
-		case "nose": pc.nosePiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
-		case "lip": pc.lipPiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
-		case "belly": pc.bellyPiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
-		case "tongue": pc.tonguePiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
+		case "eyebrow": pc.eyebrowPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
+		case "nose": pc.nosePiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
+		case "lip": pc.lipPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
+		case "belly": pc.bellyPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
+		case "tongue": pc.tonguePiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 		case "nipples":
-			pc.breastRows[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]);//pierce body part [vars[3] = multipleBodyPartIndex] with ([var[0] = piercingType, var[1] = color])
+			pc.breastRows[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]);//pierce body part [piercingVars[3] = multipleBodyPartIndex] with ([piercingVars[0] = piercingType, piercingVars[1] = color])
 			piercingIsAre = " are";//plural nipples get are
 		break;
-		case "cock": pc.cocks[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]); break;
-		case "vagina": pc.vaginas[vars[3]].piercing = new RhettSimplePiercing(vars[0], vars[1]); break;
-		case "clit": pc.vaginas[vars[3]].clitPiercing = new RhettSimplePiercing(vars[0], vars[1]); break;
+		case "cock": pc.cocks[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
+		case "vagina": pc.vaginas[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
+		case "clit": pc.vaginas[piercingVars[3]].clitPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 	}
 	
 	output("After you transfer the credits, you follow Rhett into his parlor in the back.");
 	if(flags["RHETT_HAS_PIERCED_BEFORE"] == undefined)//This flag gets set later
 	{
-		output(": It's surprisingly sterile and white, with plenty of medical science devices. There's an expensive looking centrifuge and a large steel-lined fridge labelled 'Medical Materials'. In the center is a sleek looking tattooist's chair, ");
+		output("It's surprisingly sterile and white, with plenty of medical science devices. There's an expensive looking centrifuge and a large steel-lined fridge labelled 'Medical Materials'. In the center is a sleek looking tattooist's chair, ");
 		if(pc.isTaur()) output("which morphs suddenly to be taur-friendly. He then instructs you to get on it");
 		else output("which you're instructed to sit down in");
 	}
@@ -1056,7 +1059,7 @@ public function rhettPierceOuch(vars:Array):void
 	}
 	else output("As usual, your body just soaks up the mods.”</i>");
 	
-	output("\n\n<b>Your " + vars[2] + piercingIsAre + " now pierced!</b>");
+	output("\n\n<b>Your " + piercingVars[2] + piercingIsAre + " now pierced!</b>");
 	
 	pc.credits -= 100;
 	processTime(5);
