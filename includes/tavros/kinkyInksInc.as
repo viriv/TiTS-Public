@@ -284,7 +284,8 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LOWER_BACK))
 	{
-		if(!pc.hasLowerBackTattoo()) addButton(btnIdx, "Lower Back", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "lower back"]);
+		if(pc.hasPerk("Slut Stamp")) addDisabledButton(btnIdx, "Lower Back", "Lower Back", "Sera's slut stamp is already here!");//this seems like it should block off tattoos. TODO:edit sera scenes to remove lower back tattoos and replace with slut stamp/also make slut stamp a tattoo so this check isn't needed
+		else if(!pc.hasLowerBackTattoo()) addButton(btnIdx, "Lower Back", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "lower back"]);
 		else addDisabledButton(btnIdx, "Lower Back", "Lower Back", "Rhett can't tattoo your lower back when it already has a tattoo!");
 		btnInc();
 	}
@@ -340,21 +341,24 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_BUTT))
 	{
-		if(!pc.hasLeftButtTattoo() && !pc.hasFullButtTattoo()) addButton(btnIdx, "Left Buttock", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "left buttock"]);
+		if(pc.hasPerk("Barcoded")) addDisabledButton(btnIdx, "Left Buttock", "Left Buttock", "Belle's barcode is preventing Rhett from tattooing your butt!");//Seems like this should block off butt tattoos though not sure if it should be left/right/full so just assuming all get blocked when barcoded for now TODO:Make barcode an actual tattoo and have belle scenes remove/replace tattoos with barcode
+		else if(!pc.hasLeftButtTattoo() && !pc.hasFullButtTattoo()) addButton(btnIdx, "Left Buttock", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "left buttock"]);
 		else addDisabledButton(btnIdx, "Left Buttock", "Left Buttock", "Rhett can't tattoo your left buttock when it already has a tattoo!");
 		btnInc();
 	}
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_RIGHT_BUTT))
 	{
-		if(!pc.hasRightButtTattoo() && !pc.hasFullButtTattoo()) addButton(btnIdx, "Right Buttock", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right buttock"]);
+		if(pc.hasPerk("Barcoded")) addDisabledButton(btnIdx, "Right Buttock", "Right Buttock", "Belle's barcode is preventing Rhett from tattooing your butt!");//Seems like this should block off butt tattoos though not sure if it should be left/right/full so just assuming all get blocked when barcoded for now TODO:Make barcode an actual tattoo and have belle scenes remove/replace tattoos with barcode
+		else if(!pc.hasRightButtTattoo() && !pc.hasFullButtTattoo()) addButton(btnIdx, "Right Buttock", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right buttock"]);
 		else addDisabledButton(btnIdx, "Right Buttock", "Right Buttock", "Rhett can't tattoo your right buttock when it already has a tattoo!");
 		btnInc();
 	}
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FULL_BUTT))
 	{
-		if(!pc.hasButtTattoo()) addButton(btnIdx, "Full Butt", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "full butt"]);//disallow left right and full tattoos even if left+right = full because colors can be different on left and right and merging them causes a mix up
+		if(pc.hasPerk("Barcoded")) addDisabledButton(btnIdx, "Full Butt", "Full Butt", "Belle's barcode is preventing Rhett from tattooing your butt!");//Seems like this should block off butt tattoos though not sure if it should be left/right/full so just assuming all get blocked when barcoded for now TODO:Make barcode an actual tattoo and have belle scenes remove/replace tattoos with barcode
+		else if(!pc.hasButtTattoo()) addButton(btnIdx, "Full Butt", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "full butt"]);//disallow left right and full tattoos even if left+right = full because colors can be different on left and right and merging them causes a mix up
 		else addDisabledButton(btnIdx, "Full Butt", "Full Butt", "Rhett can't tattoo your full butt when it already has a tattoo!");
 		btnInc();
 	}
