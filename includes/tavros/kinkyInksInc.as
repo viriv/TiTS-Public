@@ -417,113 +417,42 @@ public function rhettTattoosOuch(tattooVars:Array):void
 	clearOutput();
 	author("Jim T");
 	//tattooVars = [type, (optional attribute), location, color]
+	//assign tattoo attributes
+	tattooVars[0].optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
+	tattooVars[0].tattooLocation = tattooVars[2];//add location to tattoo
+	tattooVars[0].color = tattooVars[3];//add color to tattoo
 	
 	switch(tattooVars[2])//assign player tattoo slots
 	{
-		case "face":
-			pc.faceTattoo = tattooVars[0];//set pc tattoo slot to tattoo type
-			pc.faceTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.faceTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.faceTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "face": pc.faceTattoo = tattooVars[0]; break;
 		
-		case "neck":
-			pc.neckTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.neckTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.neckTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.neckTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "neck": pc.neckTattoo = tattooVars[0]; break;
 		
-		case "upper back":
-			pc.upperBackTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.upperBackTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.upperBackTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.upperBackTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "upper back": pc.upperBackTattoo = tattooVars[0];  break;
 		
-		case "lower back":
-			pc.lowerBackTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.lowerBackTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.lowerBackTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.lowerBackTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "lower back": pc.lowerBackTattoo = tattooVars[0]; break;
 		
-		case "left chest":
-			pc.leftChestTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.leftChestTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.leftChestTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.leftChestTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "left chest": pc.leftChestTattoo = tattooVars[0];  break;
 		
-		case "right chest":
-			pc.rightChestTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.rightChestTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.rightChestTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.rightChestTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "right chest": pc.rightChestTattoo = tattooVars[0]; break;
 		
-		case "full chest":
-			pc.fullChestTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.fullChestTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.fullChestTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.fullChestTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "full chest": pc.fullChestTattoo = tattooVars[0]; break;
 		
-		case "left arm":
-			pc.leftArmTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.leftArmTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.leftArmTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.leftArmTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "left arm": pc.leftArmTattoo = tattooVars[0]; break;
 		
-		case "right arm":
-			pc.rightArmTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.rightArmTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.rightArmTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.rightArmTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "right arm": pc.rightArmTattoo = tattooVars[0]; break;
 		
-		case "left leg":
-			pc.leftLegTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.leftLegTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.leftLegTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.leftLegTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "left Leg": pc.leftLegTattoo = tattooVars[0]; break;
 		
-		case "right leg":
-			pc.rightLegTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.rightLegTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.rightLegTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.rightLegTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "right Leg": pc.rightLegTattoo = tattooVars[0]; break;
 		
-		case "left buttock":
-			pc.leftButtTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.leftButtTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.leftButtTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.leftButtTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "left buttock": pc.leftButtTattoo = tattooVars[0]; break;
 		
-		case "right buttock":
-			pc.rightButtTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.rightButtTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.rightButtTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.rightButtTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "right buttock": pc.rightButtTattoo = tattooVars[0]; break;
 		
-		case "full butt":
-			pc.fullButtTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.fullButtTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.fullButtTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.fullButtTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "full butt": pc.fullButtTattoo = tattooVars[0]; break;
 		
-		case "crotch":
-			pc.aboveCrotchTattoo = tattooVars[0]//set pc tattoo slot to tattoo type
-			pc.aboveCrotchTattoo.optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-			pc.aboveCrotchTattoo.tattooLocation = tattooVars[2];//add location to tattoo
-			pc.aboveCrotchTattoo.color = tattooVars[3];//add color to tattoo
-		break;
+		case "crotch": pc.aboveCrotchTattoo = tattooVars[0]; break;
 	}
 	
 	output("After you transfer the credits, you follow Rhett into his parlor in the back. ");
