@@ -1,3 +1,4 @@
+import classes.Tattoo.BarcodedTattoo;
 //Finding the Collar
 //This text should go up in some room on Uveto Station.
 
@@ -784,7 +785,12 @@ public function subTunerOvah():void
 		//For when the tattoo system is implemented: Should give the PC’s ass a “barcoded” tag or descriptor.
 		//This could also behave like Sera’s Slut Stamp, as a perk of sorts, if this is the case, then: Barcode Perk Description: A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.
 		//Appearance screen blurbs: “There’s a barcode on your left butt cheek, forever marking you as the property of Belle and Accu-Pitch Labs.” OR (Random 50/50) “On one of your ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind you of your place as her pet.”
-		pc.createPerk("Barcoded",0,0,0,0,"A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.")
+		//pc.createPerk("Barcoded",0,0,0,0,"A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.")
+		/*if(pc.hasLeftButtTattoo() || pc.hasFullButtTattoo())//check if player has tattoo in location already
+		{
+			output("");TODO: add text to inform player instead of just silently removing it?
+		}*/
+		pc.replaceTattoo(pc.leftButtTattoo, new BarcodedTattoo());//add new left butt tattoo to player
 	}
 	output("\n\nBelle goes to grab your leash, giving you and order of <i>“Up, " + pc.mf("boy","girl") + "”</i> as she pulls your tether taut, and quick to follow orders, you stand up.");
 	output("\n\n<i>“Everything’s working better than I could have hoped,”</i> your master exclaims, reaching to unhook her leash from your collar, <i>“Which means this little endeavor has yielded more potential than I would have ever believed, and I couldn’t have done it without you, good " + pc.mf("boy","girl") + ".”</i> She ");

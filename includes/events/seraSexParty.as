@@ -1,4 +1,5 @@
-﻿/* Sera: Disco 3000 */
+﻿import classes.Tattoo.SlutStampTattoo;
+/* Sera: Disco 3000 */
 
 /*
 
@@ -285,13 +286,19 @@ public function seraSexPartyStage1(response:String = "none"):void
 					
 					if(pc.isBimbo() && !pc.hasPerk("Slut Stamp"))
 					{
+						/*if(pc.hasLowerBackTattoo())//presumably? this should overwrite whatever tattoo they had before since this is probably more interesting, having a perk and all
+						{
+							output("");TODO: add text to inform player instead of just silently removing it?
+						}*/
+						pc.replaceTattoo(pc.lowerBackTattoo, new SlutStampTattoo());//add new lower back tattoo to player
+						
 						// Create Tramp Stamp
 						output("\n\n(<b>Perk Gained: Slut Stamp</b> - Wearing any form of clothing that dresses your lower body will increase your libido as long as you have genitals to be aroused by.)");
 						// Slut Stamp
 						// v1: Libido bonus (for wearing lower clothes)
 						// v2: Min Libido bonus
 						// v3: Max Libido bonus
-						pc.createPerk("Slut Stamp", 10, 10, 10, 0, "A tattoo permanently emblazoned above your ass makes you horny faster while wearing anything clothing your lower body.");
+						//pc.createPerk("Slut Stamp", 10, 10, 10, 0, "A tattoo permanently emblazoned above your ass makes you horny faster while wearing anything clothing your lower body.");
 					}
 				}
 				output("\n\nYou unclip the crucial piece of your party wear from the hanger and carefully fasten it around your waist. As with everything else, Sera has deliberately chosen a size too small for you; the short plaid skirt will bounce and bob merrily over your");
@@ -1729,3 +1736,4 @@ public function seraGetDosh():void
 	IncrementFlag("SERA_SALARY_PAID");
 }
 
+
