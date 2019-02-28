@@ -11,6 +11,8 @@ package classes.Characters
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.RoomClass;
 	import classes.StorageClass;
+	import classes.Tattoo.EmptyTattoo;
+	import classes.TattooClass;
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
 	import classes.ItemSlotClass;
@@ -1686,6 +1688,86 @@ package classes.Characters
 			if(mimbrane.value3 >= 13) puffScore += 1;
 			
 			return puffScore;
+		}
+		public function addTattoo(tattoo:TattooClass):void
+		{
+			switch(tattoo.tattooLocation)
+			{
+				case "face": this.faceTattoo = tattoo; break;
+		
+				case "neck": this.neckTattoo = tattoo; break;
+				
+				case "upper back": this.upperBackTattoo = tattoo;  break;
+				
+				case "lower back": this.lowerBackTattoo = tattoo; break;
+				
+				case "left chest": this.leftChestTattoo = tattoo;  break;
+				
+				case "right chest": this.rightChestTattoo = tattoo; break;
+				
+				case "full chest": this.fullChestTattoo = tattoo; break;
+				
+				case "left arm": this.leftArmTattoo = tattoo; break;
+				
+				case "right arm": this.rightArmTattoo = tattoo; break;
+				
+				case "left Leg": this.leftLegTattoo = tattoo; break;
+				
+				case "right Leg": this.rightLegTattoo = tattoo; break;
+				
+				case "left buttock": this.leftButtTattoo = tattoo; break;
+				
+				case "right buttock": this.rightButtTattoo = tattoo; break;
+				
+				case "full butt": this.fullButtTattoo = tattoo; break;
+				
+				case "crotch": this.aboveCrotchTattoo = tattoo; break;
+			}
+			tattoo.onEquip(this);
+		}
+		public function removeTattoo(tattoo:TattooClass):void
+		{
+			switch(tattoo.tattooLocation)
+			{
+				case "face": this.faceTattoo = new EmptyTattoo(); break;
+		
+				case "neck": this.neckTattoo = new EmptyTattoo(); break;
+				
+				case "upper back": this.upperBackTattoo = new EmptyTattoo();  break;
+				
+				case "lower back": this.lowerBackTattoo = new EmptyTattoo(); break;
+				
+				case "left chest": this.leftChestTattoo = new EmptyTattoo();  break;
+				
+				case "right chest": this.rightChestTattoo = new EmptyTattoo(); break;
+				
+				case "full chest": this.fullChestTattoo = new EmptyTattoo(); break;
+				
+				case "left arm": this.leftArmTattoo = new EmptyTattoo(); break;
+				
+				case "right arm": this.rightArmTattoo = new EmptyTattoo(); break;
+				
+				case "left Leg": this.leftLegTattoo = new EmptyTattoo(); break;
+				
+				case "right Leg": this.rightLegTattoo = new EmptyTattoo(); break;
+				
+				case "left buttock": this.leftButtTattoo = new EmptyTattoo(); break;
+				
+				case "right buttock": this.rightButtTattoo = new EmptyTattoo(); break;
+				
+				case "full butt": this.fullButtTattoo = new EmptyTattoo(); break;
+				
+				case "crotch": this.aboveCrotchTattoo = new EmptyTattoo(); break;
+			}
+			tattoo.onRemove(this);
+		}
+		public function replaceTattoo(tattooToRemove:TattooClass, tattooToAdd:TattooClass):void
+		{
+			if(!(tattooToRemove is EmptyTattoo))
+			{
+				removeTattoo(tattooToRemove);
+			}
+			addTattoo(tattooToAdd);
 		}
 	}
 }

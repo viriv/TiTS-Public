@@ -421,39 +421,8 @@ public function rhettTattoosOuch(tattooVars:Array):void
 	tattooVars[0].optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
 	tattooVars[0].tattooLocation = tattooVars[2];//add location to tattoo
 	tattooVars[0].color = tattooVars[3];//add color to tattoo
+	pc.addTattoo(tattooVars[0]);//assign tattoo to pc slot
 	
-	switch(tattooVars[2])//assign player tattoo slots
-	{
-		case "face": pc.faceTattoo = tattooVars[0]; break;
-		
-		case "neck": pc.neckTattoo = tattooVars[0]; break;
-		
-		case "upper back": pc.upperBackTattoo = tattooVars[0];  break;
-		
-		case "lower back": pc.lowerBackTattoo = tattooVars[0]; break;
-		
-		case "left chest": pc.leftChestTattoo = tattooVars[0];  break;
-		
-		case "right chest": pc.rightChestTattoo = tattooVars[0]; break;
-		
-		case "full chest": pc.fullChestTattoo = tattooVars[0]; break;
-		
-		case "left arm": pc.leftArmTattoo = tattooVars[0]; break;
-		
-		case "right arm": pc.rightArmTattoo = tattooVars[0]; break;
-		
-		case "left Leg": pc.leftLegTattoo = tattooVars[0]; break;
-		
-		case "right Leg": pc.rightLegTattoo = tattooVars[0]; break;
-		
-		case "left buttock": pc.leftButtTattoo = tattooVars[0]; break;
-		
-		case "right buttock": pc.rightButtTattoo = tattooVars[0]; break;
-		
-		case "full butt": pc.fullButtTattoo = tattooVars[0]; break;
-		
-		case "crotch": pc.aboveCrotchTattoo = tattooVars[0]; break;
-	}
 	
 	output("After you transfer the credits, you follow Rhett into his parlor in the back. ");
 	

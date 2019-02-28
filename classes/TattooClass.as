@@ -23,7 +23,17 @@ package classes
 		
 		public function getDescription(target:Creature):String
 		{
-			return "";
+			return "";//to be overriden
+		}
+		
+		public function onEquip(target:Creature):void
+		{
+			//to be overriden
+		}
+		
+		public function onRemove(target:Creature):void
+		{
+			//to be overriden
 		}
 		
 		public function addFlag(arg:int):void 
