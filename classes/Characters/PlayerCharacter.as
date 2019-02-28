@@ -1721,9 +1721,9 @@ package classes.Characters
 				
 				case "right arm": this.rightArmTattoo = tattoo; break;
 				
-				case "left Leg": this.leftLegTattoo = tattoo; break;
+				case "left leg": this.leftLegTattoo = tattoo; break;
 				
-				case "right Leg": this.rightLegTattoo = tattoo; break;
+				case "right leg": this.rightLegTattoo = tattoo; break;
 				
 				case "left buttock": this.leftButtTattoo = tattoo; break;
 				
@@ -1757,9 +1757,9 @@ package classes.Characters
 				
 				case "right arm": this.rightArmTattoo = new EmptyTattoo(); break;
 				
-				case "left Leg": this.leftLegTattoo = new EmptyTattoo(); break;
+				case "left leg": this.leftLegTattoo = new EmptyTattoo(); break;
 				
-				case "right Leg": this.rightLegTattoo = new EmptyTattoo(); break;
+				case "right leg": this.rightLegTattoo = new EmptyTattoo(); break;
 				
 				case "left buttock": this.leftButtTattoo = new EmptyTattoo(); break;
 				

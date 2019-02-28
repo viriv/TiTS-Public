@@ -14,7 +14,6 @@ package classes.Tattoo
 			this.tattooLocation = "left buttock";
 			
 			addFlag(GLOBAL.TATTOO_FLAG_LEFT_BUTT);
-			
 		}
 		
 		public override function getDescription(target:Creature):String
