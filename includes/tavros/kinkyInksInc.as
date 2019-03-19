@@ -284,7 +284,7 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LOWER_BACK))
 	{
-		if(pc.hasPerk("Slut Stamp")) addDisabledButton(btnIdx, "Lower Back", "Lower Back", "Sera's slut stamp is already here!");//this seems like it should block off tattoos. TODO:edit sera scenes to remove lower back tattoos and replace with slut stamp/also make slut stamp a tattoo so this check isn't needed
+		if(pc.hasLowerBackTattooOfType(GLOBAL.TATTOO_SLUT_STAMP)) addDisabledButton(btnIdx, "Lower Back", "Lower Back", "Sera's slut stamp is already here!");//this seems like it should block off tattoos. TODO:edit sera scenes to remove lower back tattoos and replace with slut stamp/also make slut stamp a tattoo so this check isn't needed
 		else if(!pc.hasLowerBackTattoo()) addButton(btnIdx, "Lower Back", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "lower back"]);
 		else addDisabledButton(btnIdx, "Lower Back", "Lower Back", "Rhett can't tattoo your lower back when it already has a tattoo!");
 		btnInc();
@@ -341,7 +341,7 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_BUTT))
 	{
-		if(pc.hasPerk("Barcoded")) addDisabledButton(btnIdx, "Left Buttock", "Left Buttock", "Belle's barcode is preventing Rhett from tattooing your butt!");//Seems like this should block off butt tattoos though not sure if it should be left/right/full so just assuming all get blocked when barcoded for now TODO:Make barcode an actual tattoo and have belle scenes remove/replace tattoos with barcode
+		if(pc.hasLeftButtTattooOfType(GLOBAL.TATTOO_BARCODED)) addDisabledButton(btnIdx, "Left Buttock", "Left Buttock", "Belle's barcode is preventing Rhett from tattooing your butt!");//Seems like this should block off butt tattoos
 		else if(!pc.hasLeftButtTattoo() && !pc.hasFullButtTattoo()) addButton(btnIdx, "Left Buttock", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "left buttock"]);
 		else addDisabledButton(btnIdx, "Left Buttock", "Left Buttock", "Rhett can't tattoo your left buttock when it already has a tattoo!");
 		btnInc();
@@ -349,15 +349,14 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_RIGHT_BUTT))
 	{
-		if(pc.hasPerk("Barcoded")) addDisabledButton(btnIdx, "Right Buttock", "Right Buttock", "Belle's barcode is preventing Rhett from tattooing your butt!");//Seems like this should block off butt tattoos though not sure if it should be left/right/full so just assuming all get blocked when barcoded for now TODO:Make barcode an actual tattoo and have belle scenes remove/replace tattoos with barcode
-		else if(!pc.hasRightButtTattoo() && !pc.hasFullButtTattoo()) addButton(btnIdx, "Right Buttock", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right buttock"]);
+		if(!pc.hasRightButtTattoo() && !pc.hasFullButtTattoo()) addButton(btnIdx, "Right Buttock", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right buttock"]);
 		else addDisabledButton(btnIdx, "Right Buttock", "Right Buttock", "Rhett can't tattoo your right buttock when it already has a tattoo!");
 		btnInc();
 	}
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FULL_BUTT))
 	{
-		if(pc.hasPerk("Barcoded")) addDisabledButton(btnIdx, "Full Butt", "Full Butt", "Belle's barcode is preventing Rhett from tattooing your butt!");//Seems like this should block off butt tattoos though not sure if it should be left/right/full so just assuming all get blocked when barcoded for now TODO:Make barcode an actual tattoo and have belle scenes remove/replace tattoos with barcode
+		if(pc.hasFullButtTattooOfType(GLOBAL.TATTOO_BARCODED)) addDisabledButton(btnIdx, "Full Butt", "Full Butt", "Belle's barcode is preventing Rhett from tattooing your butt!");//Seems like this should block off butt tattoos though not sure if it should be left/right/full so just assuming all get blocked when barcoded for now TODO:Make barcode an actual tattoo and have belle scenes remove/replace tattoos with barcode
 		else if(!pc.hasButtTattoo()) addButton(btnIdx, "Full Butt", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "full butt"]);//disallow left right and full tattoos even if left+right = full because colors can be different on left and right and merging them causes a mix up
 		else addDisabledButton(btnIdx, "Full Butt", "Full Butt", "Rhett can't tattoo your full butt when it already has a tattoo!");
 		btnInc();
@@ -571,63 +570,63 @@ public function rhettTattoosRemoval(location:String):void
 	switch(location)//replace current tattoo with default EmptyTattoo for removal
 	{
 		case "face":
-			pc.faceTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.faceTattoo);
 		break;
 		
 		case "neck":
-			pc.neckTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.neckTattoo);
 		break;
 		
 		case "upper back":
-			pc.upperBackTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.upperBackTattoo);
 		break;
 		
 		case "lower back":
-			pc.lowerBackTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.lowerBackTattoo);
 		break;
 		
 		case "left chest":
-			pc.leftChestTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.leftChestTattoo);
 		break;
 		
 		case "right chest":
-			pc.rightChestTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.rightChestTattoo);
 		break;
 		
 		case "full chest":
-			pc.fullChestTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.fullChestTattoo);
 		break;
 		
 		case "left arm":
-			pc.leftArmTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.leftArmTattoo);
 		break;
 		
 		case "right arm":
-			pc.rightArmTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.rightArmTattoo);
 		break;
 		
 		case "left leg":
-			pc.leftLegTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.leftLegTattoo);
 		break;
 		
 		case "right leg":
-			pc.rightLegTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.rightLegTattoo);
 		break;
 		
 		case "left buttock":
-			pc.leftButtTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.leftButtTattoo);
 		break;
 		
 		case "right buttock":
-			pc.rightButtTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.rightButtTattoo);
 		break;
 		
 		case "full butt":
-			pc.fullButtTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.fullButtTattoo);
 		break;
 		
 		case "above crotch":
-			pc.aboveCrotchTattoo = new EmptyTattoo();
+			pc.removeTattoo(pc.aboveCrotchTattoo);
 		break;
 	}
 	

@@ -1475,7 +1475,7 @@ package classes.Characters
 					removePerk("Slut Stamp");
 				}
 			}*/
-			if(haslowerBackTattooOfType(GLOBAL.TATTOO_SLUT_STAMP))
+			if(hasLowerBackTattooOfType(GLOBAL.TATTOO_SLUT_STAMP))
 			{
 				if(!hasGenitals())
 				{
