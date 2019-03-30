@@ -1155,8 +1155,9 @@
 		public static const TATTOO_SKULL:int                           = 3;
 		public static const TATTOO_DRAGON:int                          = 4;
 		public static const TATTOO_WINGS:int                           = 5;
-		public static const TATTOO_SLUT_STAMP:int					   = 6;
-		public static const TATTOO_BARCODED:int						   = 7;
+		public static const TATTOO_TEXT:int							   = 6;
+		public static const TATTOO_SLUT_STAMP:int					   = 7;
+		public static const TATTOO_BARCODED:int						   = 8;
 		
 		//TATTOO FLAGS
 		public static const TATTOO_FLAG_FACE:int                       = 0;

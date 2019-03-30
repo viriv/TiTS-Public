@@ -4,6 +4,7 @@ import classes.Tattoo.FloralTattoo;
 import classes.Tattoo.SkullTattoo;
 import classes.Tattoo.TribalTattoo;
 import classes.Tattoo.WingTattoo;
+import classes.Tattoo.TextTattoo;
 import classes.Items.Piercings.RhettSimplePiercing;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.GLOBAL;
@@ -219,7 +220,7 @@ public function rhettTattoos():void
 	addButton(2, "Skull", rhettTattoosBodyPartSelection, [new SkullTattoo(), undefined]);
 	addButton(3, "Dragon", rhettTattoosBodyPartSelection, [new DragonTattoo(), undefined]);
 	addButton(4, "Wings", rhettTattoosWingsOptions, [new WingTattoo()]);//wings have to pick a wing type, so they get an extra function before body part selection
-	//addButton(5, "Text", rhettTattooTextOptions, ["text"]);//TODO: text tattoos, will mimic text entry like when players enter their names at start of game and pass as an optional attribute
+	addButton(5, "Text", rhettTattoosTextOptions, [new TextTattoo()]);//extra function to get player to enter message to be tatted
 	addButton(14, "Back", rhettBackOut);
 }
 
@@ -237,6 +238,57 @@ public function rhettTattoosWingsOptions(tattooVars:Array):void
 	addButton(1, "Feather", rhettTattoosBodyPartSelection, [tattooVars[0], "feather"]);
 	addButton(2, "Butterfly", rhettTattoosBodyPartSelection, [tattooVars[0], "butterfly"]);
 	addButton(14, "Back", rhettBackOut);
+}
+
+//Text tattoo text entry
+public function rhettTattoosTextOptions(tattooVars:Array):void
+{
+	clearOutput();
+	author("Jim T");
+	
+	output("<i>What do you want written?</i>")
+	
+	displayInput();
+	userInterface.textInput.text = "";
+	userInterface.textInput.maxChars = 33;
+	
+	clearMenu();
+	addButton(0, "Next", rhettTattoosTextSanitation, [tattooVars[0]]);
+	addButton(14, "Back", rhettBackOut);
+	output("\n\n\n");
+}
+
+// Illegal character input check (just a copy of what is used for player name at character creation minus the check for cheats)
+public function rhettTattoosHasIllegalInput(sText:String = ""):Boolean
+{
+	if(sText.indexOf(" ") == 0) return true;
+	var illegalChar:Array = ["<", ">", "[", "]", "\\", "\/"];
+	for(var i:int = 0; i < illegalChar.length; i++)
+	{
+		if(sText.indexOf(illegalChar[i]) != -1) return true;
+	}
+	
+	return false;
+}
+
+//Check players put valid input in for the text of a text tattoo that won't mess up the game
+public function rhettTattoosTextSanitation(tattooVars:Array):void
+{
+	if(userInterface.textInput.text == "")
+	{
+		rhettTattoosTextOptions(tattooVars)
+		output("<b>You must input something.</b>");
+		return;
+	}
+	
+	if(rhettTattoosHasIllegalInput(userInterface.textInput.text)) {
+		rhettTattoosTextOptions(tattooVars);
+		output("<b>To prevent complications, please avoid using code in the text.</b>");
+		return;
+	}
+	
+	removeInput();//remove text entry box
+	rhettTattoosBodyPartSelection([tattooVars[0], userInterface.textInput.text]);
 }
 
 //Tattoo body part selection
