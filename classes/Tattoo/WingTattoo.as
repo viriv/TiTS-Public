@@ -7,7 +7,7 @@ package classes.Tattoo
 	{
 		public function WingTattoo() 
 		{
-			this.tattooType = GLOBAL.TATTOO_FLORAL;
+			this.tattooType = GLOBAL.TATTOO_WINGS;
 			
 			addFlag(GLOBAL.TATTOO_FLAG_UPPER_BACK);
 			addFlag(GLOBAL.TATTOO_FLAG_LOWER_BACK);
@@ -50,7 +50,7 @@ package classes.Tattoo
 						break;
 						
 						case "butterfly":
-							ret = "A small pair of " + this.color + "butterfly wings are tramp-stamped right above your buttocks, spreading outwards.";
+							ret = "A small pair of " + this.color + " butterfly wings are tramp-stamped right above your buttocks, spreading outwards.";
 						break;
 					}
 				break;
