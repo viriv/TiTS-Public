@@ -28,7 +28,7 @@ package classes.Tattoo
 			
 			switch(this.tattooLocation)
 			{
-				case "neck": ret = "On the back of your neck is a single message in " + this.color + " letters: <i>“" + this.optionalTattooAttribute + "”</i>."; break;//there's something weird with that colon followed by the opening italics bracket eating a space or something
+				case "neck": ret = "On the back of your neck is a single message in " + this.color + " letters: <i>“" + this.optionalTattooAttribute + "”</i>."; break;
 				
 				case "upper back": ret = "Across your upper back and in distinctive, " + this.color + " letters, is written: <i>“" + this.optionalTattooAttribute + "”</i>."; break;
 				
@@ -48,12 +48,12 @@ package classes.Tattoo
 				
 				case "left buttock":
 					matchingRightTattoo = target.hasRightButtTattooOfType(this.tattooType);
-					ret = "On your left [pc.skinColor] buttock is written <i>“" + this.optionalTattooAttribute + "”</i>" + (matchingRightTattoo ? "and on your right is <i>“" + target.rightButtTattoo.optionalTattooAttribute + "”</i>. They're" : ". It's") + " tattooed in " + this.color + (matchingRightTattoo && this.color != target.rightButtTattoo.color ? " and " + target.rightButtTattoo.color : "") + " ink" + (matchingRightTattoo && this.color != target.rightButtTattoo.color ? "s" : "") + ".";
+					ret = "On your left [pc.skinColor] buttock is written <i>“" + this.optionalTattooAttribute + "”</i>" + (matchingRightTattoo ? " and on your right is <i>“" + target.rightButtTattoo.optionalTattooAttribute + "”</i>. They're" : ". It's") + " tattooed in " + this.color + (matchingRightTattoo && this.color != target.rightButtTattoo.color ? " and " + target.rightButtTattoo.color : "") + " ink" + (matchingRightTattoo && this.color != target.rightButtTattoo.color ? "s" : "") + ".";
 				break;
 				
 				case "right buttock":
 					matchingLeftTattoo = target.hasLeftButtTattooOfType(this.tattooType);
-					ret = "On your right [pc.skinColor] buttock is written <i>“" + this.optionalTattooAttribute + "”</i>" + (matchingLeftTattoo ? "and on your left is <i>“" + target.leftButtTattoo.optionalTattooAttribute + "”</i>. They're" : ". It's") + " tattooed in " + this.color + (matchingLeftTattoo && this.color != target.leftButtTattoo.color ? " and " + target.leftButtTattoo.color : "") + " ink" + (matchingLeftTattoo && this.color != target.leftButtTattoo.color ? "s" : "") + ".";
+					ret = "On your right [pc.skinColor] buttock is written <i>“" + this.optionalTattooAttribute + "”</i>" + (matchingLeftTattoo ? " and on your left is <i>“" + target.leftButtTattoo.optionalTattooAttribute + "”</i>. They're" : ". It's") + " tattooed in " + this.color + (matchingLeftTattoo && this.color != target.leftButtTattoo.color ? " and " + target.leftButtTattoo.color : "") + " ink" + (matchingLeftTattoo && this.color != target.leftButtTattoo.color ? "s" : "") + ".";
 				break;
 				
 				case "crotch": ret = "Right above your crotch and in " + this.color + " letters is written <i>“" + this.optionalTattooAttribute + "”</i>."; break;
