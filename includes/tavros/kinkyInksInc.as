@@ -89,7 +89,6 @@ public function rhettAppearance():void
 	output("\n\nHis black hair, barely an inch long, covers his scalp in a slight fuzz. The stoic-faced man is also rarely without his mirrored shades, making it even harder to read his expressions. In his lips is usually a white cigarette filled with harmless nim leaf, burning away smokelessly.");
 	output("\n\nAlthough Rhett is essentially naked–since he refuses to wear a shirt on his toned upper half–his genitals are nowhere to be seen. He apparently <i>does</i> have them, they're just hidden behind his scales, protruding only when he's aroused. There's still a light fuzz of pubic hair on his human half and hanging above his crotch. ");
 	
-	processTime(1);
 	clearMenu();
 	addButton(0, "Next", meetRhett);
 }
