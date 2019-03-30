@@ -1032,6 +1032,9 @@ public function rhettBackOut():void
 	clearOutput();
 	author("Jim T");
 	
+	if(stage.contains(userInterface.textInput))//catch for users that back out during a text tattoo
+		removeInput();
+	
 	output("<i>“Alright, no skin off my nose. Tell me if you change your mind,”</i> Rhett remarks. He then pulls out and lights a new cigarette.");
 	
 	processTime(1);
