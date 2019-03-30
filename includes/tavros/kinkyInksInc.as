@@ -607,8 +607,8 @@ public function rhettTattoosRemoval(location:String):void
 	}
 	output(".");
 	output("\n\nRhett shifts up to you and takes a genetic sample from you, then throws it up on holo-display. Silently, he begins typing away, working on the proper composition of skin-mod formula to give you. His eyes are intensely locked on the screen, and his fingers light up the air at a lightning pace.");
-	output("\n\n“... Got the measurements. Should be a few minutes as the batch cooks up,” he bluntly informs you. You sit and wait until one of his machines dispenses a single canister. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet.");
-	output("\n\n“Done. Just give it a moment,” he states. The tattoo slowly disappears, your [pc.skinFurScalesNoun] returning to normal.“... No fuss. ");
+	output("\n\n<i>“... Got the measurements. Should be a few minutes as the batch cooks up,”</i> he bluntly informs you. You sit and wait until one of his machines dispenses a single canister. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet.");
+	output("\n\n<i>“Done. Just give it a moment,”</i> he states. The tattoo slowly disappears, your [pc.skinFurScalesNoun] returning to normal. <i>“... No fuss. ");
 	
 	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)//currently this is unreachable as the only way to remove a tattoo is to get one from rhett which sets this flag but it's a minor blurb and maybe that'll change later
 	{
@@ -616,7 +616,7 @@ public function rhettTattoosRemoval(location:String):void
 		IncrementFlag("RHETT_HAS_WORKED_ON_BEFORE");
 	}
 	else output("As usual, your body is pretty mod happy");
-	output("”.");
+	output("”</i>.");
 	
 	switch(location)//replace current tattoo with default EmptyTattoo for removal
 	{
