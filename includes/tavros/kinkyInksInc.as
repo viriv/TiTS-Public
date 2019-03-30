@@ -282,7 +282,7 @@ public function rhettTattoosTextSanitation(tattooVars:Array):void
 	
 	if(rhettTattoosHasIllegalInput(userInterface.textInput.text)) {
 		rhettTattoosTextOptions(tattooVars);
-		output("<b>To prevent complications, please avoid using code (\"<\", \">\", \"[\", \"]\", \"\\\", \"\/\") in the text.</b>");
+		output("<b>To prevent complications, please avoid using code (angle brackets, square brackets, front and back slashes, etc...) in the text.</b>");
 		return;
 	}
 	
