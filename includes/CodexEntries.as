@@ -547,7 +547,6 @@ public function galotianCodexEntry():void
 public function akhidCodexEntry():void
 {
 	clearOutputCodex();
-	outputCodex("9999");
 	outputCodex(header("Akhid"));
 	outputCodex("<b>Name (Singular & Plural):</b> Akhid");
 	outputCodex("\n<b>Sexes:</b> Male and female");
@@ -566,10 +565,12 @@ public function akhidCodexEntry():void
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Akhid are notably fast breeders. Pregnancy lasts for three months, after which they give birth. The resulting child, typically singular, grows to young adulthood in three more months. This hasty reproduction system seems to be a result of the akhid's hostile home-world, where breeding was their primary survival mechanism.");
 	outputCodex("\n\nAkhid are remarkably compatible with other species, and very willing to experiment with them. Half-akhid are very common, particularly with terrans. Most half-akhid seem to keep the lower-body of their akhid parent, while their upper body closely resembles the non-akhid parent. ");
+	outputCodex("\n\n");
 	outputCodex(blockHeader("History and Environment"));
 	outputCodex("The akhid are typically prolific lovers and hedonists, living fast and hard, like there is no tomorrow. On their home world of Caartha, there often wasn't. Until they were uplifted, the species survived on a planet with an abnormally large body of mineral satellites around it. Rockfall on the planet was common, decimating anything in the nearby vicinity.");
-	outputCodex("A mineral survey of the planet revealed precious metals embedded both in the planet's satellites and in Caartha's surface. During the last rush, Steele Industries struck a deal with the akhid natives, promising to rid them of the troublesome planetary debris. The akhid felt deeply indebted to both Steele Industries and the UGC for their uplifting, and have adjusted well to life in galactic society.");
-	outputCodex("Caartha is now an incredibly prosperous mining planet and a core provider of rare metals to the galactic community. The akhid workforce are able to easily navigate underground tunnels due to their serpentine form, used to historically avoiding the surface. They are also able to easily see in the dark.");
+	outputCodex("\n\nA mineral survey of the planet revealed precious metals embedded both in the planet's satellites and in Caartha's surface. During the last rush, Steele Industries struck a deal with the akhid natives, promising to rid them of the troublesome planetary debris. The akhid felt deeply indebted to both Steele Industries and the UGC for their uplifting, and have adjusted well to life in galactic society.");
+	outputCodex("\n\nCaartha is now an incredibly prosperous mining planet and a core provider of rare metals to the galactic community. The akhid workforce are able to easily navigate underground tunnels due to their serpentine form, used to historically avoiding the surface. They are also able to easily see in the dark.");
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Akhid");
 }
 public function anataeCodexEntry():void
