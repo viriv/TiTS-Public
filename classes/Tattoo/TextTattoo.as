@@ -26,23 +26,23 @@ package classes.Tattoo
 			
 			switch(this.tattooLocation)
 			{
-				case "neck": ret = "On the back of your neck is a single message in " + this.color + " letters: “" + this.optionalTattooAttribute + "”."; break;
+				case "neck": ret = "On the back of your neck is a single message in " + this.color + " letters: <i>“" + this.optionalTattooAttribute + "”</i>."; break;//there's something weird with that colon followed by the opening italics bracket eating a space or something
 				
-				case "upper back": ret = "Across your upper back and in distinctive, " + this.color + " letters, is written: “" + this.optionalTattooAttribute + "”."; break;
+				case "upper back": ret = "Across your upper back and in distinctive, " + this.color + " letters, is written: <i>“" + this.optionalTattooAttribute + "”</i>."; break;
 				
-				case "lower back": ret = "Right above your [pc.ass] is written “" + this.optionalTattooAttribute + "” in " + this.color + " letters."; break;
+				case "lower back": ret = "Right above your [pc.ass] is written <i>“" + this.optionalTattooAttribute + "”</i> in " + this.color + " letters."; break;
 				
-				case "full chest": ret = "Across your [pc.chest], inscribed in " + this.color + " letters, is written: “" + this.optionalTattooAttribute + "”."; break;
+				case "full chest": ret = "Across your [pc.chest], inscribed in " + this.color + " letters, is written: <i>“" + this.optionalTattooAttribute + "”</i>."; break;
 				
-				case "left arm": ret = "On your left arm is inscribed “" + this.optionalTattooAttribute + "” in " + this.color + " letters."; break;//todo left + right
+				case "left arm": ret = "On your left arm is inscribed <i>“" + this.optionalTattooAttribute + "”</i> in " + this.color + " letters."; break;//TODO: left + right
 				
-				case "right arm": ret = "On your right arm is inscribed “" + this.optionalTattooAttribute + "” in " + this.color + " letters."; break;
+				case "right arm": ret = "On your right arm is inscribed <i>“" + this.optionalTattooAttribute + "”</i> in " + this.color + " letters."; break;//TODO: left + right
 				
-				case "left buttock": ret = "On your left [pc.skinColor] buttock is written “" + this.optionalTattooAttribute + "”. It's tattooed in " + this.color + " ink."; break;
+				case "left buttock": ret = "On your left [pc.skinColor] buttock is written <i>“" + this.optionalTattooAttribute + "”</i>. It's tattooed in " + this.color + " ink."; break;//TODO: left + right
 				
-				case "right buttock": ret = "On your right [pc.skinColor] buttock is written “" + this.optionalTattooAttribute + "”. It's tattooed in " + this.color + " ink."; break;
+				case "right buttock": ret = "On your right [pc.skinColor] buttock is written <i>“" + this.optionalTattooAttribute + "”</i>. It's tattooed in " + this.color + " ink."; break;//TODO: left + right
 				
-				case "crotch": ret = "Right above your crotch and in " + this.color + " letters is written “" + this.optionalTattooAttribute + "”."; break;
+				case "crotch": ret = "Right above your crotch and in " + this.color + " letters is written <i>“" + this.optionalTattooAttribute + "”</i>."; break;
 				
 				default: ret = ""; break;
 			}
