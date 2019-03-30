@@ -40,12 +40,14 @@ package classes.Tattoo
 				
 				case "left chest":
 					matchingRightTattoo = target.hasRightChestTattooOfType(this.tattooType);
-					ret = "Stretching across " + (matchingRightTattoo ? "both" : "the left") + " side" + (matchingRightTattoo ? "s" : "") + " of your chest " + (matchingRightTattoo ? "are " : "is a ") + this.color + (matchingRightTattoo && target.rightChestTattoo.color != target.leftChestTattoo.color ? " and " + target.rightChestTattoo.color : "") + " dragon" + (matchingRightTattoo ? "s" : "") + ".";
+					if(target.hasBreasts()) ret = "Streching acrosss your upper " + (matchingRightTattoo ? "breasts" : "left breast") + " is a " + (matchingRightTattoo ? "pair of " + (target.rightChestTattoo.color != target.leftChestTattoo.color ? target.rightChestTattoo.color + " and " : "") : "") + this.color + " dragon" + (matchingRightTattoo ? "s" : "") + ".";
+					else ret = "Stretching across " + (matchingRightTattoo ? "both" : "the left") + " side" + (matchingRightTattoo ? "s" : "") + " of your chest " + (matchingRightTattoo ? "are " : "is a ") + this.color + (matchingRightTattoo && target.rightChestTattoo.color != target.leftChestTattoo.color ? " and " + target.rightChestTattoo.color : "") + " dragon" + (matchingRightTattoo ? "s" : "") + ".";
 				break;
 				
 				case "right chest":
 					matchingLeftTattoo = target.hasLeftChestTattooOfType(this.tattooType);
-					ret = "Stretching across " + (matchingLeftTattoo ? "both" : "the right") + " side" + (matchingLeftTattoo ? "s" : "") + " of your chest " + (matchingLeftTattoo ? "are " : "is a ") + this.color + (matchingLeftTattoo && target.rightChestTattoo.color != target.leftChestTattoo.color ? " and " + target.leftChestTattoo.color : "") + " dragon" + (matchingLeftTattoo ? "s" : "") + ".";
+					if(target.hasBreasts()) ret = "Streching acrosss your upper " + (matchingRightTattoo ? "breasts" : "right breast") + " is a " + (matchingLeftTattoo ? "pair of " + (target.leftChestTattoo.color != target.rightChestTattoo.color ? target.leftChestTattoo.color + " and " : "") : "" ) + this.color + " dragon" + (matchingLeftTattoo ? "s" : "") + ".";
+					else ret = "Stretching across " + (matchingLeftTattoo ? "both" : "the right") + " side" + (matchingLeftTattoo ? "s" : "") + " of your chest " + (matchingLeftTattoo ? "are " : "is a ") + this.color + (matchingLeftTattoo && target.rightChestTattoo.color != target.leftChestTattoo.color ? " and " + target.leftChestTattoo.color : "") + " dragon" + (matchingLeftTattoo ? "s" : "") + ".";
 				break;
 				
 				case "left arm":
@@ -72,8 +74,8 @@ package classes.Tattoo
 					ret = "Above your crotch sits a " + this.color + " dragon, "
 					
 					if(target.hasCock()) ret += "almost as if it's resting upon your rod" + (target.hasCocks() ? "s" : "") + ".";
-					else if(target.hasVagina()) ret += "protecting your thigh-guarded treasure trove.";//TODO: thigh-guarded needed a check? for peeps without legs(thighs)? ie: naga, goo? or [pc.thigh] parser call?
-					else ret += "resting above your featureless mound."//altered sitting to resting
+					else if(target.hasVagina()) ret += "protecting your " + (target.legCount > 1 ? "thigh-guarded" : "") + " treasure trove.";
+					else ret += "sitting above your featureless mound."
 					
 					ret += " Even though it's a tattoo, the tiny glittering scales look and feel real."
 				break;
