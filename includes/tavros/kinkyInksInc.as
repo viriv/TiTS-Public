@@ -1060,191 +1060,105 @@ public function rhettSexMenu():void
 		if(flags["RHETT_FUCKED"] == undefined)//is pc first timer with Rhett
 		{
 			output("You saucily suggest to Rhett that you get better acquainted. You're left staring at his perfectly formed, yet utterly unreadable face. After a moment of what you <i>assume</i> is consideration, the half-akhid man flicks away his nim-leaf into an ashtray, then gives a curt nod.");
-			if(pc.isNaga())//snek on snek action how does it work?
-			{
-				output("<i>“Well, you're definitely my type...”</i> Rhett appreciatively remarks, stroking his chin. After slithering up to you, he takes your hand, and swiftly leads you to the back room. You happily follow him. Once out of the common area,");
-				if(pc.hasArmor())//pc has clothes
-				{
-					output(" Once out of the common area, your [pc.armor] is hastily whipped off");
-					if(pc.hasUpperGarment())//pc has upper undergarment
-					{
-						output(" followed by your " + pc.upperUndergarment.longName);
-						
-						if(pc.hasLowerGarment()) output(" and " + pc.lowerUndergarment.longName);//pc has upper and lower undergarments
-					}
-					else if(pc.hasLowerGarment()) output(" followed by your " + pc.lowerUndergarment.longName);//pc has lower garment but no upper garment
-					
-					output(". He then");
-				}
-				else if(pc.hasUpperGarment() || pc.hasLowerGarment())//pc has no armor but has undergarments
-				{
-					output(" Once out of the common area, your");
-					if(pc.hasUpperGarment())//pc has upper undergarment
-					{
-						output(" " + pc.upperUndergarment.longName + " is whipped off");
-						if(pc.hasLowerGarment()) output(" hastily followed by your " + pc.lowerUndergarment.longName);
-					}
-					else output(" " + pc.lowerUndergarment.longName + " is hastily whipped off");
-					output(". He then");
-				}
-				else output(" Once out of the common area, he");
-				
-				output(" wraps his gigantic midnight coils around your humanoid upper half, and you let out a surprised gasp–you're half snake, but you're being squeezed by <i>him!</i>");
-				output("\n\nCaught utterly off guard by his sudden swoop, you ask him what he's doing, trying not to tremble as your" + (pc.isNude() ? "": " now") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction from your fellow naga caresses your nipples and presses");
-				
-				if(pc.hasBreasts()) output(" in your breasts.");
-				else output(" against your chest.");
-				
-				if(pc.hasCock())
-				{
-					output(" Your constricted dick");
-					if(pc.hasCocks()) output("s are");
-					else output(" is");
-					
-					output(" also being mercilessly pressured, blood pumping down there and making you swiftly, achingly stiff!");
-				}
-			}
-			else//if player is not a naga
-			{
-				output("<i>“Alright. Let's do it,”</i> Rhett gruffly states. He suddenly sweeps up towards you on his serpentine lower half. Before you can react, he's wrapped his gigantic midnight coils around you, and is slithering backwards towards the back room!");
-				output("\n\nCaught utterly off guard by his sudden swoop, you ask him what he's doing.");
-				if(pc.hasArmor())//pc has clothes
-				{
-					output(" Now out of the common area, your [pc.armor] is hastily whipped off");
-					if(pc.hasUpperGarment())//pc has upper undergarment
-					{
-						output(" followed by your " + pc.upperUndergarment.longName);
-						if(pc.hasLowerGarment()) output(" and " + pc.lowerUndergarment.longName);//pc has upper and lower undergarments
-					}
-					else if(pc.hasLowerGarment()) output(" followed by your " + pc.lowerUndergarment.longName);//pc has lower garment but no upper garment
-					
-					output(", before you're returned to his clutches.");
-				}
-				else if(pc.hasUpperGarment() || pc.hasLowerGarment())//pc has no armor but has undergarments
-				{
-					output(" Once out of the common area, your");
-					if(pc.hasUpperGarment())//pc has upper garment
-					{
-						output(" " + pc.upperUndergarment.longName + " is whipped off");
-						if(pc.hasLowerGarment()) output(" hastily followed by your " + pc.lowerUndergarment.longName);//pc has upper and lower undergarments
-					}
-					else output(" " + pc.lowerUndergarment.longName + " is hastily whipped off");//pc has lower garment but not upper
-					
-					output(", before you're returned to his clutches.");
-				}//no else nude this time not in docs
-				output(" Your" + (pc.isNude() ? "" : " now") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction caresses against your nipples and presses");
-				if(pc.hasBreasts()) output(" in your breasts.");
-				else output(" against your chest.");
-			
-				if(pc.hasCock())
-				{
-					output(" Your constricted dick");
-					if(pc.hasCocks()) output("s are");
-					else output(" is");
-					
-					output(" also being mercilessly pressured, blood pumping down there and making you swiftly, achingly stiff!");
-				}
-				output("\n\n<i>“You said you wanted to fuck,”</i> Rhett stoically states, tilting his mirror shades, <i>“So we're going to fuck. Safe word is 'Pineapple'. Remember it.”</i>");
-			}
+			if(pc.isNaga()) output(" <i>“Well, you're definitely my type...”</i> Rhett appreciatively remarks, stroking his chin.");
 		}
-		else//not first time banging snek
+		else//repeat encounter
 		{
 			output("You suggest to Rhett that perhaps you pick up from last time, in the back room? You're left staring at his perfectly formed, yet utterly unreadable face. Does he not want to do it? After a brief, apparently thoughtful pause, the half-akhid man flicks away his nim-leaf into an ashtray, then gives a curt nod.");
-			
-			if(pc.isNaga())
+			if(pc.isNaga()) output("\n\n<i>“Sure. You're always a welcome sight, particularly naked...”</i> Rhett appreciatively remarks.");
+		}
+		
+		if(pc.isNaga())
+		{
+			output(" After slithering up to you, he takes your hand, and swiftly leads you to the back room. You happily follow him. Once out of the common area, ");
+			if(!pc.isNude()) output("your ");
+			else output("he ");
+		}
+		else
+		{
+			output("\n\n<i>“Alright. Let's do it,”</i> Rhett gruffly states. He suddenly sweeps up towards you on his serpentine lower half. ");
+			if(flags["RHETT_FUCKED"] == undefined) 
 			{
-				output("\n\n<i>“Sure. You're always a welcome sight, particularly naked...”</i> Rhett appreciatively remarks. After slithering up to you, he takes your hand, and swiftly leads you to the back room. You happily follow him.");
-				if(pc.hasArmor())//pc has clothes
-				{
-					output(" Once out of the common area, your [pc.armor] is hastily whipped off");
-					if(pc.hasUpperGarment())//pc has upper undergarment
-					{
-						output(" followed by your " + pc.upperUndergarment.longName);
-						if(pc.hasLowerGarment()) output(" and " + pc.lowerUndergarment.longName);//pc has upper and lower undergarments
-					}
-					else if(pc.hasLowerGarment()) output(" followed by your " + pc.lowerUndergarment.longName);//pc has lower garment but no upper garment
-					
-					output(". He then");
-				}
-				else if(pc.hasUpperGarment() || pc.hasLowerGarment())//pc has no armor but has undergarments
-				{
-					output(" Once out of the common area, your");
-					if(pc.hasUpperGarment())//pc has upper undergarment
-					{
-						output(" " + pc.upperUndergarment.longName + " is whipped off");
-						if(pc.hasLowerGarment()) output(" hastily followed by your " + pc.lowerUndergarment.longName);//pc has upper and lower undergarments
-					}
-					else output(" " + pc.lowerUndergarment.longName + " is hastily whipped off");//pc has lower undergarment but not upper
-					
-					output(". He then");
-				}
-				else output(" Once out of the common area, he");//pc is nude
-				
-				output(" wraps his gigantic midnight coils around your humanoid upper half, and you gasp with pleasure–as a half snake, it's always interesting to be the one <i>squeezed</i> for a change.");
-				output("\n\nYou try not to tremble as your" + (pc.isNude() ? "" : " now") + "naked body rubs sensuously against his shifting scales. The slow squeezing friction from your fellow naga caresses your nipples and presses ");
-				if(pc.hasBreasts()) output(" in your breasts.");
-				else output(" against your chest.");
-			
-				if(pc.hasCock())
-				{
-					output(" Your constricted dick");
-					if(pc.hasCocks()) output("s are");
-					else output(" is");
-					
-					output(" also being mercilessly pressured, blood pumping down there and making you swiftly, achingly stiff!");
-				}
+				output("Before you can react, he's wrapped his gigantic midnight coils around you, and is slithering backwards towards the back room!");
+				output("\n\nCaught utterly off guard by his sudden swoop, you ask him what he's doing. ");
+				if(!pc.isNude()) output("Now out of the common area, your ");
 			}
 			else
 			{
-				output("\n\n<i>“Alright. Let's do it,”</i> Rhett gruffly states. He suddenly sweeps up towards you on his serpentine lower half. Once again, you're wrapped in his gigantic midnight coils, being picked up and carried towards the back room!");
-				if(pc.hasArmor())//pc has clothes
-				{
-					output(" Once there, your [pc.armor] is hastily whipped off");
-					if(pc.hasUpperGarment())//pc has upper undergarment
-					{
-						output(" followed by your " + pc.upperUndergarment.longName);
-						if(pc.hasLowerGarment()) output(" and " + pc.lowerUndergarment.longName);//pc has upper and lower undergarments
-					}
-					else if(pc.hasLowerGarment()) output(" followed by your " + pc.lowerUndergarment.longName);//pc has lower garment but no upper garment
-					
-					output(", before you're returned to his clutches.");
-				}
-				else if(pc.hasUpperGarment() || pc.hasLowerGarment())//pc has no armor but has undergarments
-				{
-					output(" Once out of the common area, your");
-					if(pc.hasUpperGarment())//pc has upper garment
-					{
-						output(" " + pc.upperUndergarment.longName + " is whipped off");
-						if(pc.hasLowerGarment()) output(" hastily followed by your " + pc.lowerUndergarment.longName);//pc has upper and lower undergarments
-					}
-					else output(" " + pc.lowerUndergarment.longName + " is hastily whipped off");//pc has lower garment but not upper
-					
-					output(", before you're returned to his clutches.");
-				}//no else nude this time not in docs
-				
-				output("Your" + (pc.isNude() ? "" : " now") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction caresses against your nipples and presses ");
-				if(pc.hasBreasts()) output(" in your breasts.");
-				else output(" against your chest.");
-			
-				if(pc.hasCock())
-				{
-					output(" Your constricted dick");
-					if(pc.hasCocks()) output("s are");
-					else output(" is");
-					
-					output(" also being mercilessly pressured, blood pumping down there and making you swiftly, achingly stiff!");
-				}
+				output("Once again, you're wrapped in his gigantic midnight coils, being picked up and carried towards the back room!");
+				if(!pc.isNude()) output(" Once there, your ");
 			}
-			
-			output("\n\n<i>“Hope you remember the safe word, babe...”</i> Rhett tilts his shades, <i>“... because you're not leaving here until I'm done with your sweet ass.”</i>");
 		}
 		
-		clearMenu();
-		addButton(0, "Orgasm.D", rhettOrgasmDenial, undefined, "Orgasm Denial", "He squeezes and teases you, keeping you on the brink of orgasm until you're a babbling mess!");
-		addButton(1, "Blowjob", rhettBlowjob, undefined, "Blowjob", "He coils your lower body up and gets you to suck him off.");
-		addButton(2, "AssFuck", rhettAssFuck, undefined, "Ass Fuck", "He fucks your ass mercilessly, keeping you trapped in his coils the entire time!");
-		addButton(3, "'Pineapple!'", rhettPineapple, undefined, "Pineapple", "Cry out the safe word and tap out.");
+		if(!pc.isNude())//strip sequence
+		{
+			if(pc.hasArmor()) output("[pc.armor]");//start with armor if they got it
+			
+			if(pc.hasUpperGarment() && !pc.hasArmor()) output(pc.upperUndergarment.longName);//start with/move to top undergarment if they got it
+			
+			if(pc.hasLowerGarment() && !pc.hasArmor() && !pc.hasUpperGarment()) output(pc.lowerUndergarment.longName);//start with/move to bottom undergarmet if they got it
+			
+			output(" is hastily whipped off");
+			if(pc.hasArmor() && (pc.hasUpperGarment() || pc.hasLowerGarment()) || (pc.hasUpperGarment() && pc.hasLowerGarment()))//if pc has 2+ pieces of clothing
+			{
+				output(" followed by your ");
+				if(pc.hasArmor() && pc.hasUpperGarment()) output(pc.upperUndergarment.longName);//armor + top undergarmet
+				else output(pc.lowerUndergarment.longName);//no top undergarment
+			}
+			
+			if(pc.hasArmor() && pc.hasUpperGarment() && pc.hasLowerGarment()) output(" and " + pc.lowerUndergarment.longName);//if pc has all 3 pieces of clothing
+			
+			if(pc.isNaga()) output(". He then");
+			else output(", before you're returned to his clutches.");
+		}
+		
+		if(pc.isNaga())
+		{
+			output(" wraps his gigantic midnight coils around your humanoid upper half, ");
+		}
+		
+		if(flags["RHETT_FUCKED"] == undefined)
+		{
+			if(pc.isNaga())
+			{
+				output("and you let out a surprised gasp—you're half snake, but you're being squeezed by <i>him!</i>");
+				output("\n\nCaught utterly off guard by his sudden swoop, you ask him what he's doing, trying ");
+			}
+		}
+		else
+		{
+			if(pc.isNaga())
+			{
+				output("and you gasp with pleasure—as a half snake, it's always interesting to be the one <i>squeezed</i> for a change.");
+				output("\n\nYou try ")
+			}
+		}
+		
+		if(pc.isNaga()) output("not to tremble as y");
+		else output(" Y");
+			
+		output("our" + (pc.isNude() ? "" : " now") + " naked body rubs sensuously against his shifting scales. The slow squeezing friction caresses against your nipples and presses");
+		if(pc.hasBreasts()) output(" in your breasts.");
+		else output(" against your chest.");
+	
+		if(pc.hasCock())
+		{
+			output(" Your constricted dick");
+			if(pc.hasCocks()) output("s are");
+			else output(" is");
+			
+			output(" also being mercilessly pressured, blood pumping down there and making you swiftly, achingly stiff!");
+		}
+		
+		if(flags["RHETT_FUCKED"] == undefined) output("\n\n<i>“You said you wanted to fuck,”</i> Rhett stoically states, tilting his mirror shades, <i>“So we're going to fuck. Safe word is 'Pineapple'. Remember it.”</i>");
+		else output("\n\n<i>“Hope you remember the safe word, babe...”</i> Rhett tilts his shades, <i>“... because you're not leaving here until I'm done with your sweet ass.”</i>");
 	}
+	
+	clearMenu();
+	addButton(0, "Orgasm.D", rhettOrgasmDenial, undefined, "Orgasm Denial", "He squeezes and teases you, keeping you on the brink of orgasm until you're a babbling mess!");
+	addButton(1, "Blowjob", rhettBlowjob, undefined, "Blowjob", "He coils your lower body up and gets you to suck him off.");
+	addButton(2, "AssFuck", rhettAssFuck, undefined, "Ass Fuck", "He fucks your ass mercilessly, keeping you trapped in his coils the entire time!");
+	addButton(3, "'Pineapple!'", rhettPineapple, undefined, "Pineapple", "Cry out the safe word and tap out.");
 }
 
 //Rhett orgasm denial scene
