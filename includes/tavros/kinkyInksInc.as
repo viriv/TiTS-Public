@@ -248,7 +248,7 @@ public function rhettTattoosTextOptions(tattooVars:Array):void
 	output("<i>What do you want written?</i>")
 	
 	displayInput();
-	userInterface.textInput.text = "";
+	userInterface.textInput.text = "";//pressing the hotkey to get here will insert that character anyways? I don't understand how the input works
 	userInterface.textInput.maxChars = 33;
 	
 	clearMenu();
@@ -686,7 +686,7 @@ public function rhettTattoosRemoval(location:String):void
 	pc.credits -= 50;
 	processTime(5);
 	clearMenu();
-	addButton(0, "Next", rhettMenu);
+	addButton(0, "Next", meetRhett);
 }
 
 //Ask to get a piercing
@@ -1552,5 +1552,5 @@ public function rhettPineapple():void
 	
 	processTime(4);
 	clearMenu();
-	addButton(0, "Next", rhettMenu);
+	addButton(0, "Next", meetRhett);
 }
