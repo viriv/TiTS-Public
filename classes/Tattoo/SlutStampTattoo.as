@@ -29,7 +29,7 @@ package classes.Tattoo
 		
 		public override function onRemove(target:Creature):void
 		{
-			target.removePerk("Slut Stamp");
+			//target.removePerk("Slut Stamp");//letting PlayerCharacter racialPerkUpdateCheck handle this by checking if pc has perk but no tattoo of slut stamp type on lower back
 		}
 	}
 }

@@ -1465,24 +1465,14 @@ package classes.Characters
 				AddLogEvent(ParseText("You feel a familiar bloating in your body and discover that your [pc.cumNoun] has started producing nyrean eggs again!"), "passive", deltaT);
 				createStatusEffect("Nyrea Eggs", 80 + rand(21), 1, 0, 1, true, "", "", false, 0);
 			}
-			/*if(hasPerk("Slut Stamp"))
+			if(hasPerk("Slut Stamp"))
 			{
-				if(!hasGenitals())
+				if(!hasGenitals() || !hasLowerBackTattooOfType(GLOBAL.TATTOO_SLUT_STAMP))
 				{
 					AddLogEvent(ParseText("A sudden burning sensation hits your lower back, right above your [pc.ass]. You quickly"), "passive", deltaT);
 					if(isCrotchGarbed()) ExtendLogEvent(ParseText(" struggle through your [pc.lowerGarments],"));
 					ExtendLogEvent(" turn back and wince hard when the area is instantly struck by a refreshing coolness - as if being splashed on with cold water after being branded. When your hazed vision returns to normal, you see the slutty tattoo that resides there gradually dissolve and vanish before your eyes. It looks like your lack of genitalia makes it easier for you to cope with your libido now.\n\n(<b>Perk Lost: Slut Stamp</b>)");
 					removePerk("Slut Stamp");
-				}
-			}*/
-			if(hasLowerBackTattooOfType(GLOBAL.TATTOO_SLUT_STAMP))
-			{
-				if(!hasGenitals())
-				{
-					AddLogEvent(ParseText("A sudden burning sensation hits your lower back, right above your [pc.ass]. You quickly"), "passive", deltaT);
-					if(isCrotchGarbed()) ExtendLogEvent(ParseText(" struggle through your [pc.lowerGarments],"));
-					ExtendLogEvent(" turn back and wince hard when the area is instantly struck by a refreshing coolness - as if being splashed on with cold water after being branded. When your hazed vision returns to normal, you see the slutty tattoo that resides there gradually dissolve and vanish before your eyes. It looks like your lack of genitalia makes it easier for you to cope with your libido now.\n\n(<b>Perk Lost: Slut Stamp</b>)");
-					removeTattoo(lowerBackTattoo);
 				}
 			}
 			if (hasPerk("Androgyny") && perkv1("Androgyny") > 0 && !hasFaceFlag(GLOBAL.FLAG_MUZZLED))
