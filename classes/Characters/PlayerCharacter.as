@@ -389,25 +389,25 @@ package classes.Characters
 		{
 			if (ref == null || ShipStorageInventory.length == 0 || amount == 0) return;
 			
-			var i:int = 0;
+			var i:int = (ShipStorageInventory.length - 1);
 			
 			// Remove all!
 			if (amount < 0)
 			{
-				while (i < ShipStorageInventory.length)
+				while (i >= 0)
 				{
 					if (ShipStorageInventory[i] is ref)
 					{
 						ShipStorageInventory[i].quantity = 0;
 						ShipStorageInventory.splice(i, 1);
 					}
-					else i++;
+					i--;
 				}
 			}
 			// Normal
 			else
 			{
-				while (amount > 0 && i < ShipStorageInventory.length)
+				while (amount > 0 && i >= 0)
 				{
 					//Item in the slot?
 					if (ShipStorageInventory[i] is ref)
@@ -419,10 +419,8 @@ package classes.Characters
 						{
 							ShipStorageInventory.splice(i, 1);
 						}
-						//else i++;
-						else return;
 					}
-					else i++;
+					i--;
 				}
 				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
 			}
@@ -888,6 +886,11 @@ package classes.Characters
 					fecundFigure(totalDays);
 				}
 				
+				if(hasPerk("Implant-tastic"))
+				{
+					implantasticSiliconeConversion(totalDays);
+				}
+				
 				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor())
 				{
 					nyreaEggStuff(totalDays);
@@ -1021,8 +1024,8 @@ package classes.Characters
 					if(legCount > 1) m += ParseText(" between the [pc.legs]");
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";
-					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
-					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
+					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.</b>";
+					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.</b>";
 					
 					AddLogEvent(m, "passive", deltaT);
 				}
@@ -1169,6 +1172,12 @@ package classes.Characters
 				
 				AddLogEvent(m, "passive", baseDShift + (i * 1440));
 			}
+		}
+		
+		private function implantasticSiliconeConversion(totalDays:int):void
+		{
+			var msg:String = kGAMECLASS.implantasticSiliconeConversion(this);
+			if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 		}
 		
 		private function maneHairGrow(totalDays:uint):void
@@ -1400,7 +1409,7 @@ package classes.Characters
 						removePerk("'Nuki Nuts");
 					}
 				}
-				else if(perkv2("'Nuki Nuts") == 1 && balls <= 0)
+				else if(/*perkv2("'Nuki Nuts") == 1 && */balls <= 0)
 				{
 					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: ‘Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
 					removePerk("'Nuki Nuts");

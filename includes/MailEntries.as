@@ -245,7 +245,7 @@ public function configureMails():void
 	MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("riya_party_invite", riyaXmasPartyInviteText, "Christmas Party Invitation", "Commander Lorna Grence", "Lorna_Grence@UGC.gov", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("emrby_xxxmas_invite", embryXmasInvite, "Come Visit!", "Embry", "SpacePrincess@bibliotech.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("emrby_xxxmas_invite", embryXmasInvite, "Come Visit!", embryName, "SpacePrincess@bibliotech.com", quickPCTo, quickPCToAddress);
 	
 	//extrameet 	
 	MailManager.addMailEntry("extrameet_invite_email", extrameetInviteText, "Meet local singles on your planet today!", "ExtraMeet Team", "Consumer_Outreach@ExtraMeet.com", quickPCTo, quickPCToAddress);
@@ -302,6 +302,10 @@ public function configureMails():void
 	
 	//quaelle birth email
 	MailManager.addMailEntry("quaelle_birth", quaelleBirthEmail, "Your Presence is Requested.", "Breedwell Natal Unit", "BreedwellNatalUnit@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	//jumper birth email
+	MailManager.addMailEntry("jumper_birth", boredJumperPregBirthEmail, "Heyyy, where are yooouuu", "User-UNKNOWN", boredJumperPregBirthEmailSender(false) +"@J6.source", quickPCTo, quickPCToAddress);
+	//jumper send pic email
+	MailManager.addMailEntry("jumper_sendpic", boredJumperPregSendPicEmail, RandomInCollection(["Thaaaanks!","Sooo cute!","You're the best!"]), "User-UNKNOWN", boredJumperPregBirthEmailSender(true) +"@J6.source", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

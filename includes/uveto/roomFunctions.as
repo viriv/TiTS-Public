@@ -250,6 +250,8 @@ public function rideSpaceElevatorUp():void
 	clearOutput();
 	author("Savin");
 	
+	//If Korgii Hold is primed to fall, fall.
+	if(flags["WARGII_DOOM_TIMER"] == 1) flags["WARGII_DOOM_TIMER"] = 2;
 	rooms["UVS LIFT"].outExit = null;
 	currentLocation = "UVS LIFT";
 	generateMap();
@@ -1091,7 +1093,11 @@ public function uvetoMaglevStation():Boolean
 		syriQuestInitialEncounter();
 		return true;
 	}
-	else addButton(0, "Transit", useUvetoTransportMenu);
+	else 
+	{
+		showBust("UVETO_TAXI_VENDOR");
+		addButton(0, "Transit", useUvetoTransportMenu);
+	}
 	return false;
 }
 		
@@ -1150,7 +1156,8 @@ public function GlacialRiftS40():Boolean
 	{
 		var tt:String = "Since you have";
 		if (pc.hasJetpack()) tt += " a jetpack";
-		else tt += " wings";
+		else if(pc.hasWings()) tt += " wings";
+		else tt += " the ability to fly";
 		tt += ", you can bypass the rope and head down at your leisure.";
 		addButton(0, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", tt);
 	}
@@ -1160,7 +1167,7 @@ public function GlacialRiftS40():Boolean
 public function GlacialRiftS40FlyDown():void
 {
 	clearOutput();
-	output("You take flight, smirking at the sad little groundlings that must have struggled down that precarious rope. Instead, you’re able to soar down the side of the glacial cliff, right down to where the rope ends at a gaping hole in the cliff-face. A cave! You swoop in and land, ready to see what’s in store.");
+	output("You " + (pc.hasJetpack() ? "blast off" : "take flight") + ", smirking at the sad little groundlings that must have struggled down that precarious rope. Instead, you’re able to " + (pc.hasJetpack() ? "hover" : "soar") + " down the side of the glacial cliff, right down to where the rope ends at a gaping hole in the cliff-face. A cave! You swoop in and land, ready to see what’s in store.");
 	currentLocation = "UVGR O42";
 	
 	clearMenu();
@@ -1177,7 +1184,8 @@ public function GlacialRiftQ40():Boolean
 	{
 		var tt:String = "Since you have";
 		if (pc.hasJetpack()) tt += " a jetpack";
-		else tt += " wings";
+		else if(pc.hasWings()) tt += " wings";
+		else tt += " the ability to fly";
 		tt += ", you can bypass the rope and head down at your leisure.";
 		
 		addButton(1, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", tt);
@@ -1574,6 +1582,18 @@ public function encounterSavicite(choice:String = "encounter"):void
 
 public function korgiiHoldExteriorBonus():Boolean
 {
+	//If been to irestead since turning down, RIP Korgii
+	if(flags["WARGII_PROGRESS"] == -1 && flags["WARGII_DOOM_TIMER"] == 2)
+	{
+		flags["WARGII_DOOM_TIMER"] = undefined;
+		flags["WARGII_PROGRESS"] = -2;
+	}
+	if(flags["WARGII_PROGRESS"] == -2)
+	{
+		output("The entrance to Korg’ii Hold, with all its many secret, whistling holes, is gone. A sturdy metal edifice has been plunked down in its place. Geddanium-reinforced armor renders it impervious to small-arms fire, and the muzzles of a dozen remote-control anti-tank weapons dismantle any ideas you have about breaking in as soundly as the hull of a T-3400 battle tank. The korgonne clearly aren’t in charge any longer. Some other force or entity has claimed the hold. <b>Perhaps you should’ve helped out Ula.</b>\n\nNow there’s nothing you can do but stare angrily at the Pyrite Industries logo stamped on a gun barrel.");
+		return false;
+	}
+	output("Hundreds of holes mar the glossy surface of a sparkling wall of savicite and aluminum ore to the west.");
 	output("\n\nThe holes appear to have been drilled through the valuable ore ");
 	if(flags["ENTERED_KORGI_HOLD"] != undefined) output("as a mechanism of hiding Korg’ii Hold.");
 	else output("for an unknown purpose by an unknown entity. You poke a few to little effect. They run too deep to plumb without specialized tools, and it’d be more profitable to just mine out the thing to the bottom.");
@@ -1608,8 +1628,15 @@ public function korgiiHoldInteriorExitBonus():void
 
 public function enterKorgHold():void
 {
+	//WARGII QUEST INTERRUPT!
+	if(korgiTranslateProgress() >= 60 && flags["WARGII_SETUP"] == undefined && flags["WARGII_PROGRESS"] == undefined && flags["ENTERED_KORGI_HOLD"] != undefined && pc.level >= 9 && ulaPregBelly() == 0)
+	{
+		currentLocation = "KORGII B12";
+		generateMap();
+		wargiiHoldProcOhShiiiiit();
+		return;
+	}
 	clearOutput();
-
 	showName("OPEN\nDOGGIE-DOOR");
 	output("<i>“Welcoming, friend!”</i> comes an answering voice.");
 	output("\n\nA sharp-sounding crack echoes through the snow-covered countryside as the glittering rock shifts inward. Rotating slowly, it rolls behind the wall, revealing the ");
@@ -1700,18 +1727,37 @@ public function korgiH14Bonus():void
 
 public function korgiF14Bonus():void
 {
-	if(korgiTranslate()) output("scribbles indecipherably beneath. The best approximation your translator can manage is “Warm Crusts.”");
-	else output("scrawls beneath, declaring this to be a clothing shop. The literal translation is “Warm Crusts.”");
+	if(korgiTranslate()) output(" Alien script scribbles indecipherably beneath. The best approximation your translator can manage is “Warm Crusts.”");
+	else output(" Alien script scrawls beneath, declaring this to be a clothing shop. The literal translation is “Warm Crusts.”");
 }
 
 public function chiefBedroomBonus():Boolean
 {
 	//Temporary? Maybe someday in the future actually allow into chief's bedroom.
-	clearOutput();
-	output("You stop yourself before you do something terribly stupid. It would be best to let sleeping dogs lie.");
-	currentLocation = rooms[currentLocation].westExit;
-	generateMap();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-	return true;
+	if(!ulaChief())
+	{
+		clearOutput();
+		output("You stop yourself before you do something terribly stupid. It would be best to let sleeping dogs lie.");
+		currentLocation = rooms[currentLocation].westExit;
+		generateMap();
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return true;
+	}
+	else
+	{
+		//OLD: The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the SteeleTech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.
+		output("The Chieftain’s bedroom may have once been a spartan, traditional affair, but since Ula’s sudden promotion to unquestioned leader of her tribe, much has changed. The comfortable but primitive bed has gained a set of flannel sheets decorated with snowflakes and cartoonish seals, obviously purchased from somewhere in Irestead. The furniture from Ula’s old room joins it in sprucing up the place and lending it an air befitting of a more civilized people.");
+	}
+	return false;
+}
+public function korgiiThroneRoomBonus():Boolean
+{
+	if(!ulaChief()) output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Its cushion looks quite comfy.\n\nCurtains to the east provide entrance to the Chief’s bedchamber. A passage northward provides access to what looks to be some kind of private armory.");
+	else 
+	{
+		output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Dozens of cushions have been heaped upon it since Ula's rise to power, and she's even taken the luxury of piling furs and pillows into a high stack in the corner for when she can take more relaxed meetings. A large desk and chair sits at the opposite end, for use by scribes or the Chieftess herself when there's paperwork to be done.");
+		return ulaRoomBonusFunc();
+	}
+	return false;
 }

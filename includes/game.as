@@ -131,6 +131,10 @@ public function disableExploreEvents():Boolean
 	if (flags["SYRIQUEST_STATE"] >= 4 && flags["SYRIQUEST_STATE"] < 20) return true;
 	// Penny Quest
 	if (flags["PENNY_CREW_ASKED"] == 2) return true;
+	// Korgii Quest
+	if (flags["WARGII_PROGRESS"] == 2) return true;
+	// Event Whorizon
+	if (isDoingEventWhorizon()) return true;
 
 	return false;
 }
@@ -158,6 +162,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	{
 		if(eventQueue.indexOf(deathByNoHP) == -1) eventQueue.push(deathByNoHP);
 	}
+	//PC changed their mind about masturbating
+	if(pc.hasStatusEffect("Denied By Luca")) pc.setStatusValue("Denied By Luca",1,0);
 	
 	flags["COMBAT MENU SEEN"] = undefined;
 	
@@ -223,9 +229,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	if(debug) output("<b>\\\[ <span class='lust'>DEBUG MODE IS ON</span> \\\]</b>\n\n");
 	output(rooms[currentLocation].description);
 	
-	// Time passing effects
-	if(passiveTimeEffects(minutesMoved)) return;
-	
 	// Random events, outside of important/timed missions
 	if (!disableExploreEvents())
 	{
@@ -256,6 +259,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		}
 	}
 	
+	// Time passing effects
+	if(passiveTimeEffects(minutesMoved)) return;
+	
 	//Standard buttons:
 	addButton(13, "Inventory", inventory);
 	//Other standard buttons
@@ -275,11 +281,13 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	else if(!rooms[currentLocation].hasFlag(GLOBAL.BED))
 	{
 		if(canRest()) addButton(9, "Rest", restMenu);
+		else if(flags["WARGII_PROGRESS"] == 2) addDisabledButton(2,"Rest","Rest","There’s no place to rest in a pitched battle!");
 		else addDisabledButton(9, "Rest", "Rest", "You can’t seem to rest or wait here at the moment....");
 	}
 	else
 	{
-		addButton(9, "Sleep", sleepMenu);
+		if(flags["WARGII_PROGRESS"] == 2) addDisabledButton(2,"Rest","Rest","There’s no place to rest in a pitched battle!");
+		else addButton(9, "Sleep", sleepMenu);
 	}
 	addButton(14, "Codex", showCodex);
 	
@@ -372,6 +380,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	// Append any extra messages:
 	priapismBlurbs();
+	siegwulfeLeashBlurbs();
 	
 	// Show the minimap too!
 	userInterface.showMinimap();
@@ -1061,7 +1070,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += "\n\n" + amberShipBonusText();
 			if (amberCurrentlyDumbfucked()) addDisabledButton(btnSlot,"Amber","Amber","You’ve decided to leave Amber alone while the effects of the Dumbfuck she took wear off.");
-			else if(pc.hasStatusEffect("Amber Disabled")) addDisabledButton(btnSlot,"Amber","Amber","Amber's busy doing something else right now." + (mitziIsCrew() ? " Probably Mitzi.":""));
+			else if(pc.hasStatusEffect("Amber Disabled")) addDisabledButton(btnSlot,"Amber","Amber","Amber’s busy doing something else right now." + (mitziIsCrew() ? " Probably Mitzi.":""));
 			else addButton(btnSlot, "Amber", amberInTheHold);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
@@ -1143,8 +1152,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter) 
 		{
-			if (InCollection(CREW_KASE, crewMembers)) crewMessages += kaseCrewBlurbs(btnSlot);
-			else addButton(btnSlot, "Kase", kaseApproachCrew, 1); //9999 ramis stuff
+			if (InCollection(CREW_KASE, crewMembers) && flags["RAMIS_ACTIVITY"] != "KASE") crewMessages += kaseCrewBlurbs(btnSlot);
+			else addButton(btnSlot, "Kase", kaseApproachCrew, 1);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1155,7 +1164,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += mitziCrewBonus();
 			if(pc.hasStatusEffect("Mitzi_Gushed_Out")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Maybe let her recover from that Gush, huh?");
-			else if(pc.hasStatusEffect("Mitzi Disabled")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Mitzi's not around at the moment." + (amberIsCrew() ? " She's probably getting into trouble with Amber.":""));
+			else if(pc.hasStatusEffect("Mitzi Disabled")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Mitzi’s not around at the moment." + (amberIsCrew() ? " She’s probably getting into trouble with Amber.":""));
 			else addButton(btnSlot,"Mitzi",approachCrewMitzi);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
@@ -1262,28 +1271,31 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
-			if (!InCollection(CREW_SHEKKA, crewMembers)) //9999 ramis stuff
+			if (InCollection(CREW_SHEKKA, crewMembers) && flags["RAMIS_ACTIVITY"] != "SHEKKA")
 			{
-				addButton(btnSlot,"Shekka",approachCrewShekka);
+				if(pc.hasStatusEffect("Shekka_Cum_Playing"))
+				{
+					crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";
+					addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.");
+				}
+				else if(pc.hasStatusEffect("SHEKKA_CHEATING_ON_YOU_CD"))
+				{
+					crewMessages += "\n\nShekka is still probably banging out her frustrations on a bull. She’ll be back before too long.";
+					addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is still probably banging out her frustrations on a bull. She’ll be back before too long.");
+				}
+				else if(shekka.hasCock() && flags["SHEKKA_ONAHOLED"] == undefined && rand(5) == 0)
+				{
+					crewMessages += "\n\nShekka should be around your ship’s engines, but there’s <b>a strangely musky smell coming from back there...</b>";
+					addButton(btnSlot,"Shekka",shekkaOnaholeIntro);
+				}
+				else 
+				{
+					crewMessages += "\n\nShekka is hanging out around your ship’s engines, constantly calibrating one circuit or another to maximize power.";
+					addButton(btnSlot,"Shekka",approachCrewShekka);
+				}
 			}
-			if(pc.hasStatusEffect("Shekka_Cum_Playing"))
+			else
 			{
-				crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";
-				addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.");
-			}
-			else if(pc.hasStatusEffect("SHEKKA_CHEATING_ON_YOU_CD"))
-			{
-				crewMessages += "\n\nShekka is still probably banging out her frustrations on a bull. She’ll be back before too long.";
-				addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is still probably banging out her frustrations on a bull. She’ll be back before too long.");
-			}
-			else if(shekka.hasCock() && flags["SHEKKA_ONAHOLED"] == undefined && rand(5) == 0)
-			{
-				crewMessages += "\n\nShekka should be around your ship’s engines, but there’s <b>a strangely musky smell coming from back there...</b>";
-				addButton(btnSlot,"Shekka",shekkaOnaholeIntro);
-			}
-			else 
-			{
-				crewMessages += "\n\nShekka is hanging out around your ship’s engines, constantly calibrating one circuit or another to maximize power.";
 				addButton(btnSlot,"Shekka",approachCrewShekka);
 			}
 			btnSlot = crewButtonAdjustments(btnSlot);
@@ -1389,6 +1401,7 @@ public function isNight():Boolean
 
 public function canRest():Boolean
 {
+	if(flags["WARGII_PROGRESS"] == 2) return false;
 	return true;
 }
 public function canSleep():Boolean
@@ -1717,7 +1730,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				case "RAMIS":
 					if (ramisIsCrew() && !ramisOutDrinking() && !looksFemaleToRamis() && !pc.isTaur())
 					{
-						ramisSleep();
+						interrupt = ramisSleep();
 					}
 					break;
 				// No partner selected.
@@ -1979,6 +1992,12 @@ public function insideShipEvents():Boolean
 		mitziFirstShipApproach();
 		return true;
 	}
+	//Mitzi Vday stuff!
+	if(isValentines() && flags["MITZI_VDAY_LAST_YEAR_ENCOUNTERED"] != getRealtimeYear() && mitziIsCrew() && pc.hasGenitals())
+	{
+		mitziVDayFun();
+		return true;
+	}
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
@@ -2112,7 +2131,7 @@ public function flyMenu():void
 		
 		if (isDoingEventWhorizon())
 		{
-			output("<b>Without a way to navigate back through the spatial anomoly, it’s probably best you don’t try and take off right now...</b>");
+			output("<b>Without a way to navigate back through the spatial anomaly, it’s probably best you don’t try and take off right now...</b>");
 			clearMenu();
 			addButton(14, "Back", mainGameMenu);
 			return;
@@ -2138,14 +2157,14 @@ public function flyMenu():void
 	if(shipLocation != "SHIP HANGAR") addButton(1, "Mhen’ga", flyTo, "Mhen'ga");
 	else addDisabledButton(1, "Mhen’ga", "Mhen’ga", "You’re already here.");
 	//TARKUS
-	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+	if(tarkusCoordinatesUnlocked())
 	{
 		if(shipLocation != "201") addButton(2, "Tarkus", flyTo, "Tarkus");
 		else addDisabledButton(2, "Tarkus", "Tarkus", "You’re already here.");
 	}
 	else addDisabledButton(2, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	//MYRELLION
-	if(flags["PLANET_3_UNLOCKED"] != undefined)
+	if(myrellionCoordinatesUnlocked())
 	{
 		if (flags["KQ2_MYRELLION_STATE"] == undefined)
 		{
@@ -2172,14 +2191,14 @@ public function flyMenu():void
 	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 
 	//NEW TEXAS
-	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
+	if(newTexasCoordinatesUnlocked())
 	{
 		if(shipLocation != "500") addButton(5, "New Texas", flyTo, "New Texas");
 		else addDisabledButton(5, "New Texas", "New Texas", "You’re already here.");
 	}
 	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//POE A
-	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
+	if(poeACoordinatesUnlocked())
 	{
 		if(shipLocation != "POESPACE") addButton(6, "Poe A", flyToPoeAConfirm);
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
@@ -2200,14 +2219,14 @@ public function flyMenu():void
 	}
 	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//Gastigoth
-	if(MailManager.isEntryViewed("gastigoth_unlock"))
+	if(gastigothCoordinatesUnlocked())
 	{
 		if(shipLocation != "K16_DOCK") addButton(9, "Gastigoth", flyTo, "Gastigoth");
 		else addDisabledButton(9, "Gastigoth", "Gastigoth Station", "You’re already here!");
 	}
 	else addDisabledButton(9, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
 	//Breedwell
-	if(MailManager.isEntryViewed("breedwell_unlock"))
+	if(breedwellCoordinatesUnlocked())
 	{
 		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
 		if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
@@ -2505,7 +2524,7 @@ public function showerMenu(special:String = "ship"):void
 	if(showerInShip)
 	{
 		output("\n\nNext to the shower is a medicine cabinet with various hygiene products.");
-		if (paigeInTheShower()) output("\n\nThere are a number of stalls in the shower room; the closest one is reserved the ship's captain and the rest of your crew always leaves it open. That said, one of the other stalls is occupied, and you can hear the gentle singing of your Ausar lover and yoga instructor, Paige, over the running water.\n\n" + (pc.isTaur() ? "As much as the idea of joining her entices you, these showers barely have enough room in them for your gargantuan body as it is; shoving a second person into one of them is asking a lot. You'll have to pass on sexy shower shenanigans this time." : "You could offer to join her, if you wanted. Knowing her, she'd let you in. Or you could just go about your business as usual."));
+		if (paigeInTheShower()) output("\n\nThere are a number of stalls in the shower room; the closest one is reserved the ship’s captain and the rest of your crew always leaves it open. That said, one of the other stalls is occupied, and you can hear the gentle singing of your Ausar lover and yoga instructor, Paige, over the running water.\n\n" + (pc.isTaur() ? "As much as the idea of joining her entices you, these showers barely have enough room in them for your gargantuan body as it is; shoving a second person into one of them is asking a lot. You’ll have to pass on sexy shower shenanigans this time." : "You could offer to join her, if you wanted. Knowing her, she’d let you in. Or you could just go about your business as usual."));
 	}
 
 	output("\n\nWhat would you like to do?");
@@ -2715,7 +2734,7 @@ public function shipShowerFapButtons(showerSex:int = 0):void
 	{
 		showerSex = shipShowerFaps(true);
 	}
-	addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "Nevermind", "On second thought...");
+	addButton(showerSex, "Never Mind", shipShowerFappening, "Nevermind", "Never Mind", "On second thought...");
 }
 public function showerCabinet(arg:Array):void
 {
@@ -2932,20 +2951,20 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 				{
 					case GLOBAL.CLOTHING:
 					case GLOBAL.ARMOR:
-						if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+						if(!pc.wornItemIsTransparent(item) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 						{
 							chestCovered = true;
 							groinCovered = true;
 						}
 						break;
 					case GLOBAL.UPPER_UNDERGARMENT:
-						if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+						if(!pc.wornItemIsTransparent(item) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
 						{
 							chestCovered = true;
 						}
 						break;
 					case GLOBAL.LOWER_UNDERGARMENT:
-						if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+						if(!pc.wornItemIsTransparent(item) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 						{
 							groinCovered = true;
 						}
@@ -2964,20 +2983,20 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 					{
 						case GLOBAL.CLOTHING:
 						case GLOBAL.ARMOR:
-							if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+							if(!pc.wornItemIsTransparent(item) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 							{
 								chestCovered = true;
 								groinCovered = true;
 							}
 							break;
 						case GLOBAL.UPPER_UNDERGARMENT:
-							if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+							if(!pc.wornItemIsTransparent(item) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
 							{
 								chestCovered = true;
 							}
 							break;
 						case GLOBAL.LOWER_UNDERGARMENT:
-							if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+							if(!pc.wornItemIsTransparent(item) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 							{
 								groinCovered = true;
 							}
@@ -3066,7 +3085,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(currentLocation == "SHIP INTERIOR")
 	{
 		//Procs in safe areas only, like Reaha's milk stand:
-		if(!rooms[arg].hasFlag(GLOBAL.HAZARD))
+		if(!rooms[arg].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
 		{
 			if(reahaIsCrew() && !reahaAddicted() && rand(5) == 0) eventQueue.push(reahaMilkStand);
 		}
@@ -3186,17 +3205,13 @@ public function variableRoomUpdateCheck():void
 		else rooms["ANON'S BOARD HALL"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	//Nursery
-	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16))
-	{
-		rooms["NURSERYE14"].addFlag(GLOBAL.NPC);
-		rooms["NURSERYG8"].removeFlag(GLOBAL.NPC);
-	}
-	else
-	{
-		rooms["NURSERYE14"].removeFlag(GLOBAL.NPC);
-		rooms["NURSERYG8"].addFlag(GLOBAL.NPC);
-	}
-	if(seraAtNursery() || riyaAtNursery()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
+	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16)) rooms["NURSERYG8"].removeFlag(GLOBAL.NPC);
+	else rooms["NURSERYG8"].addFlag(GLOBAL.NPC);
+	if(npcInNurseryFoyer()) rooms["NURSERYE14"].addFlag(GLOBAL.NPC);
+	else rooms["NURSERYE14"].removeFlag(GLOBAL.NPC);
+	if(npcInNurseryCommonArea()) rooms["NURSERYE12"].addFlag(GLOBAL.NPC);
+	else rooms["NURSERYE12"].removeFlag(GLOBAL.NPC);
+	if(npcInNurseryCafeteria()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
 	else rooms["NURSERYG12"].removeFlag(GLOBAL.NPC);
 	
 	if((hours < 4 || hours >= 12) && !pc.hasStatusEffect("Liamme Disabled")) 
@@ -3510,6 +3525,9 @@ public function variableRoomUpdateCheck():void
 	//Brandy (she is in bar from 2 to 6
 	if (hours >= 2 && hours <= 5 && flags["BRANDY_RELATIONSHIP"] == 1 && flags["MET_SALLY"] != undefined && !pc.hasStatusEffect("Brandy Sally Timer")) rooms["505.75"].removeFlag(GLOBAL.NPC);
 	else rooms["505.75"].addFlag(GLOBAL.NPC);
+	// Haley
+	if (pc.hasStatusEffect("Haley Satisfied")) rooms["HALEY"].removeFlag(GLOBAL.NPC);
+	else rooms["HALEY"].addFlag(GLOBAL.NPC);
 	
 	
 	/* MYRELLION */
@@ -3678,8 +3696,16 @@ public function variableRoomUpdateCheck():void
 	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
 	else if(!rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] == undefined) rooms["ZSM U2"].addFlag(GLOBAL.NPC);
 
-	if(rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] != undefined) rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
-	else if(!rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] == undefined) rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
+	if(rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] != undefined) 
+	{
+		if(!rooms["ZSF V22"].hasFlag(GLOBAL.SHIPHANGAR)) rooms["ZSF V22"].addFlag(GLOBAL.SHIPHANGAR);
+		rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	else if(!rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] == undefined) 
+	{
+		if(rooms["ZSF V22"].hasFlag(GLOBAL.SHIPHANGAR)) rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+		rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
+	}
 
 	if(rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] != undefined) rooms["ZSF I8"].removeFlag(GLOBAL.NPC);
 	else if(!rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] == undefined) rooms["ZSF I8"].addFlag(GLOBAL.NPC);
@@ -3781,6 +3807,8 @@ public function variableRoomUpdateCheck():void
 	if (flags["MET_VARK"] == undefined) rooms[varkCaveRoom].addFlag(GLOBAL.OBJECTIVE);
 	else if (flags["MET_VARK"] == 1) rooms[varkCaveRoom].addFlag(GLOBAL.NPC);
 	else rooms["UVIP T44"].southExit = undefined;
+	//Ula and main hold daddy swapping.
+	ulaRoomUpdater();
 	
 	/* VESPERIA / CANADIA STATION */
 	/*
@@ -3902,6 +3930,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processGastigothPregEvents(deltaT, doOut, totalDays);
 	processFrostwyrmPregEvents(deltaT, doOut, totalDays);
 	processAinaPregEvents(deltaT, doOut, totalDays);
+	processLucaTimeStuff(deltaT, doOut, totalDays);
 	
 	
 	// Per-day events
@@ -3929,11 +3958,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processUlaPregEvents(deltaT, doOut, totalDays);
 		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
 		processQuaellePregEvents(deltaT, doOut, totalDays);
+		processBoredJumperPregEvents(deltaT, doOut, totalDays);
+		processCasinoEvents();
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
 	
 	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick(totalHours);
+	processSiegwulfeLust(totalHours);
 	
 	processMimbranesTime(deltaT, doOut, totalDays);
 	processLeithaCharmTime(deltaT, doOut);
@@ -3945,6 +3977,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	bellySizeUpdates(deltaT);
 	nutSwellUpdates(deltaT);
 	immobilizedUpdate(false, deltaT);
+	clothingSizeUpdates(deltaT);
 
 	//Queue up dumbfuck procs
 	if(pc.hasStatusEffect("Dumbfuck")) processDumbfuckEvents();
@@ -3961,7 +3994,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
 		}
 		/* SHEKKA RECROOT */
-		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined && flags["TIMES_SEXED_SHEKKA"] != undefined)
+		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && myrellionCoordinatesUnlocked() && flags["TIMES_SEXED_SHEKKA"] != undefined)
 		{
 			if(!MailManager.isEntryUnlocked("shekkaFollowerIntroMail") && !pc.hasStatusEffect("Shekka_Follower_Email_CD") && currentLocation != "WIDGET WAREHOUSE") goMailGet("shekkaFollowerIntroMail");
 			if(flags["SHEKKA_CURE_TIMER"] != undefined)
@@ -4032,7 +4065,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 
 		//Plantation Quest Offer
 		//Key string - "plantation_quest_start"
-		if (!MailManager.isEntryUnlocked("plantation_quest_start") && flags["PLANTATION_MEALS"] != undefined && flags["PLANTATION_ZIL_TALK"] != undefined && flags["PLANTATION_PLANTATION_TALK"] != undefined && flags["PLANTATION_WORKERS_TALK"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined)
+		if (!MailManager.isEntryUnlocked("plantation_quest_start") && flags["PLANTATION_MEALS"] != undefined && flags["PLANTATION_ZIL_TALK"] != undefined && flags["PLANTATION_PLANTATION_TALK"] != undefined && flags["PLANTATION_WORKERS_TALK"] != undefined && myrellionCoordinatesUnlocked())
 		{
 			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
 			else if(nextTimestamp >= (flags["PQUEST_DELAY_TIMER"] + (60*10))) goMailGet("plantation_quest_start", (flags["PQUEST_DELAY_TIMER"] + (60*10)));
@@ -4504,6 +4537,7 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean, totalDays:uint):vo
 	}
 	
 	seraPregnancyIsDue(totalDays);
+	seraDrinksMilk(totalDays);
 }
 
 public function processRiyaEvents(deltaT:uint, doOut:Boolean):void
@@ -4847,7 +4881,7 @@ public function emailRoulette(deltaT:uint):void
 	// Character/Event specific:
 	if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
 		mailList.push("burtsmeadhall");
-	if(!MailManager.isEntryUnlocked("kihaai") && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+	if(!MailManager.isEntryUnlocked("kihaai") && tarkusCoordinatesUnlocked())
 		mailList.push("kihaai");
 	if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
 		mailList.push("syrividja");

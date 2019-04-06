@@ -170,6 +170,7 @@
 		public var Bust_KORGONNE_FEMALE2:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
 		public var Bust_KORGONNE_FEMALE_NUDE:Class;
+		public function get Bust_KORG_DOSED():Class { return Bust_KORGONNE_FEMALE_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/mabbs_headphones.png", mimeType = "image/png")]
 		public var Bust_MABBS:Class;
@@ -330,10 +331,11 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Female.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;
+		public var Bounds_ZILFEMALE:Rectangle = new Rectangle(0, 10, 64, 70);
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Male.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
-		public var Bounds_ZIL:Rectangle = new Rectangle(14,19,79,92);
+		public var Bounds_ZIL:Rectangle = new Rectangle(1, 19, 81, 70);
 		
 		
 		CONFIG::IMAGEPACK

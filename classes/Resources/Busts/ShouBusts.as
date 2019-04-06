@@ -13,6 +13,9 @@
 		//[Embed(source = "../../../assets/images/sig/shou.png", mimeType = "image/png")]
 		//public var SigEmbed:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/alvella.png", mimeType = "image/png")]
+		public var Bust_ALVELLA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma.png", mimeType = "image/png")]
 		public var Bust_AMMA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma_nude.png", mimeType = "image/png")]
@@ -381,6 +384,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kirila_nude.png", mimeType = "image/png")]
 		public var Bust_KIRILA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korg_chief.png", mimeType = "image/png")]
+		public var Bust_KORG_CHIEF:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korg_chief_silly.png", mimeType = "image/png")]
+		public var Bust_KORG_CHIEF_SILLY:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female.png", mimeType = "image/png")]
 		public var Bust_KORGONNE_FEMALE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female_nude.png", mimeType = "image/png")]
@@ -467,6 +475,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/midee.png", mimeType = "image/png")]
 		public var Bust_MIDEE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_infiltrator.png", mimeType = "image/png")]
+		public var Bust_MILO_INFILTRATOR:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_infiltrator_nude.png", mimeType = "image/png")]
+		public var Bust_MILO_INFILTRATOR_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE:Class;
 		public var Bounds_MILODANMALE:Rectangle = new Rectangle(30, 0, 65, 62);
@@ -479,6 +492,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_nude.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_NUDE:Class;
 		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_temptress.png", mimeType = "image/png")]
+		public var Bust_MILO_TEMPTRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_temptress_nude.png", mimeType = "image/png")]
+		public var Bust_MILO_TEMPTRESS_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;
@@ -664,12 +682,20 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee_nude_preg.png", mimeType = "image/png")]
 		public var Bust_USHAMEE_NUDE_PREG:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/uveto_taxi_vendor.png", mimeType = "image/png")]
+		public var Bust_UVETO_TAXI_VENDOR:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/valeria.png", mimeType = "image/png")]
 		public var Bust_VALERIA:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_grunt.png", mimeType = "image/png")]
 		public var Bust_VOIDPIRATE:Class;
 		public var Bounds_VOIDPIRATE:Rectangle = new Rectangle(27, 0, 64, 64);
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/warlion.png", mimeType = "image/png")]
+		public var Bust_WAR_LION:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/warlion_nude.png", mimeType = "image/png")]
+		public var Bust_WAR_LION_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/wetra_hound.png", mimeType = "image/png")]
 		public var Bust_WETRAHOUND:Class;
@@ -708,8 +734,18 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zephyr_nude.png", mimeType = "image/png")]
 		public var Bust_ZEPHYR_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/gryvain_orgy_girl.png", mimeType = "image/png")]
+		public var Bust_GRYVAIN_ORGY_GIRL:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/saeri_orgy_girl.png", mimeType = "image/png")]
+		public var Bust_SAERI_ORGY_GIRL:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/human_orgy_girl.png", mimeType = "image/png")]
+		public var Bust_HUMAN_ORGY_GIRL:Class;
+
 		CONFIG::IMAGEPACK
 		{
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/alvella.png", mimeType = "image/png")]
+			public var Full_ALVELLA:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/amma.png", mimeType = "image/png")]
 			public var Full_AMMA:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/amma_nude.png", mimeType = "image/png")]
@@ -1070,6 +1106,11 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kirila_nude.png", mimeType = "image/png")]
 			public var Full_KIRILA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korg_chief.png", mimeType = "image/png")]
+			public var Full_KORG_CHIEF:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korg_chief_silly.png", mimeType = "image/png")]
+			public var Full_KORG_CHIEF_SILLY:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female.png", mimeType = "image/png")]
 			public var Full_KORGONNE_FEMALE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female_nude.png", mimeType = "image/png")]
@@ -1150,6 +1191,11 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/midee.png", mimeType = "image/png")]
 			public var Full_MIDEE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_infiltrator.png", mimeType = "image/png")]
+			public var Full_MILO_INFILTRATOR:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_infiltrator_nude.png", mimeType = "image/png")]
+			public var Full_MILO_INFILTRATOR_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male.png", mimeType = "image/png")]
 			public var Full_MILODANMALE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male_club.png", mimeType = "image/png")]
@@ -1158,6 +1204,11 @@
 			public var Full_MILODANMALE_AXE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male_nude.png", mimeType = "image/png")]
 			public var Full_MILODANMALE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_temptress.png", mimeType = "image/png")]
+			public var Full_MILO_TEMPTRESS:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_temptress_nude.png", mimeType = "image/png")]
+			public var Full_MILO_TEMPTRESS_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_FEMALE:Class;
@@ -1336,11 +1387,19 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ushamee_nude_preg.png", mimeType = "image/png")]
 			public var Full_USHAMEE_NUDE_PREG:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/uveto_taxi_vendor.png", mimeType = "image/png")]
+			public var Full_UVETO_TAXI_VENDOR:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/valeria.png", mimeType = "image/png")]
 			public var Full_VALERIA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_grunt.png", mimeType = "image/png")]
 			public var Full_VOIDPIRATE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/warlion.png", mimeType = "image/png")]
+			public var Full_WAR_LION:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/warlion_nude.png", mimeType = "image/png")]
+			public var Full_WAR_LION_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/wetra_hound.png", mimeType = "image/png")]
 			public var Full_WETRAHOUND:Class;
@@ -1378,6 +1437,13 @@
 			public var Full_ZAALT_ALT:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zaalt_nude.png", mimeType = "image/png")]
 			public var Full_ZAALT_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gryvain_orgy_girl.png", mimeType = "image/png")]
+			public var Full_GRYVAIN_ORGY_GIRL:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/saeri_orgy_girl.png", mimeType = "image/png")]
+			public var Full_SAERI_ORGY_GIRL:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/human_orgy_girl.png", mimeType = "image/png")]
+			public var Full_HUMAN_ORGY_GIRL:Class;
 		}
 	}
 

@@ -291,7 +291,7 @@ public function pcBeatsSyriWhenSexBet():void {
 	//[HL Frot&Fuck] Put your hardlight-equipped [pc.lowerUndergarment] to use on all of Syri's good bits.
 	if(pc.hasHardLightEquipped()) addButton(3,"HL Frot&Fuck",goddamnIAmSoTiredOfThisVanillaAssPuppyGirlSex,undefined,"HL Frot&Fuck","Put your hardlight-equipped [pc.lowerUndergarment] to use on all of Syri’s good bits.");
 	else addDisabledButton(3,"HL Frot&Fuck","HL Frot&Fuck","You need panties equipped with a hardlight dildo for this.");
-	addButton(4,"Nevermind",nevermindSyri,undefined,"Uh, Never mind","On second thought, you’ll pass on claiming your winnings this time.");
+	addButton(4,"Never Mind",nevermindSyri,undefined,"Uh, Never Mind","On second thought, you’ll pass on claiming your winnings this time.");
 }
 
 public function nevermindSyri():void
@@ -403,7 +403,9 @@ public function victoryFuckSyrisBunghole():void {
 	output("\n\nA predatory, sexual groan escapes your lips as your hips rock back, leveling your thick erection right at the bullseye between her cheeks. Syri even reaches back to pull them apart, giving you a straight shot into her waiting hole. With such a welcoming invitation, how could you refuse? You move forward, [pc.cockHead " + x + "] pressing into the spit-slick dark star, and immediately you can hear the thunk of Syri’s prick jumping to attention, slapping wetly against the cum-soaked table, drooling in anticipation.");
 	pc.cockChange();
 
-	output("\n\nSyri starts to speak, but her voice catches as you push in, instead coming out as a high-pitched squeal as your prick spreads her wide, battering past her spasming sphincter and into the dark, warm, wet channel beyond. She grabs the table, trying to steady herself as your hips rock slowly forward, giving her just enough time to adjust to each and every one of your " + possessive(pc.cockDescript(x)));
+	output("\n\n");
+	showImage("SyriButtfuck");
+	output("Syri starts to speak, but her voice catches as you push in, instead coming out as a high-pitched squeal as your prick spreads her wide, battering past her spasming sphincter and into the dark, warm, wet channel beyond. She grabs the table, trying to steady herself as your hips rock slowly forward, giving her just enough time to adjust to each and every one of your " + possessive(pc.cockDescript(x)));
 	//if cockLength >= 12:
 	if(pc.cocks[x].cLength >= 12) output(" many");
 	output(" inches.");
@@ -1446,7 +1448,7 @@ public function dontGoAwayYouKnotCunt():void {
 	if(pc.isMischievous()) output(" <i>“Takes one to know one!”</i>");
 	//[Sex options, sans Blow Her]
 	syriSexMenu(false);
-	addButton(14,"Nevermind",sureUseMyShowerAndClogTheDrainWithDogHair);
+	addButton(14,"Never Mind",sureUseMyShowerAndClogTheDrainWithDogHair);
 }
 
 //Me Too

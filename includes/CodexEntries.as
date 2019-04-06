@@ -54,6 +54,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vildarii", vildariiCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vulkrimi", vulkrimiCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Xhelarfog", xhelarfogCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Kerokoras",kerokorasCodexEntry);
@@ -152,6 +153,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "||||||||", eightClicksStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Assistant", assistantStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Becoming One...", becomingOneOfTheGirlsStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Breeding Sylvie", sylvieBreedingByGardeford);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: I", bxbiChapter1Story);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: II", bxbiChapter2Story);
@@ -278,7 +280,7 @@ public function ausarCodexEntry():void
 	outputCodex("\n\nDue to the long standing friendship between Ausar and Mankind, the two are perhaps the most common of xeno-romantic entanglements. Halfbreeds resulting from Ausar-Human relationships are typically somewhat taller and heavier than the average Ausar, often losing arm and leg fur, though they tend to retain the tails of their alien parent, and have smaller, floppier and less sensitive wolf ears. Half-ausar are usually born in pairs, can see at birth, and come of age as humans do. Being one of the most common hybrid races in the galaxy, half-ausar have recently become a primary option in the U.G.C. census, rather than being filled under “Other/Hybrid race.”");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Society"));
-	outputCodex("Unlike most modern civilizations, the Ausar have not unified under a central government. Instead, their planets are ruled by independent kings and queens, who convene to decide matters related to their race. It wasn't until humanity’s gift of quantum communication that the fragmented Ausar society, spread across the stars, tightened to present a strong, united front in the galaxy. However, the local kings are still relatively free to act as they choose, though the King of Ausaril, the homeworld, is considered the “King of Kings”, is generally deferred to by lesser despots and holds the only post able to call the entire Ausar to war or countermand planetary kings (in large part thanks to a crushingly huge fleet and more advanced technology produced on the homeworld). In times of trouble or war, the Joint Ausar Fleet can be called on, with each world in the federation contracted to supply a certain number of ships and soldiers to the joint defense each decade.");
+	outputCodex("Unlike most modern civilizations, the Ausar have not unified under a central government. Instead, their planets are ruled by independent kings and queens, who convene to decide matters related to their race. It wasn't until humanity’s gift of quantum communication that the fragmented Ausar society, spread across the stars, tightened to present a strong, united front in the galaxy. However, the local kings are still relatively free to act as they choose. Amongst them, the King of Ausaril (the Ausar homeworld) is considered the “King of Kings”, is generally deferred to by lesser despots and holds the only post able to call the entire Ausar to war or countermand planetary kings (in large part thanks to a crushingly huge fleet and more advanced technology produced on the homeworld). In times of trouble or war, the Joint Ausar Fleet can be called on, with each world in the federation contracted to supply a certain number of ships and soldiers to the joint defense each decade.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Relationships"));
 	outputCodex("The Ausar are known to be an exceptionally friendly and peaceful race. They are slow to anger, though they are quite territorial, and have rarely warred with other races. When interacting with humans, the Ausar are known to be outgoing and affectionate, readily making friendships that last a lifetime. Some have commented that most Ausar get along better with humans than even their own kind, and thanks to their wolf-like appearance, they are occasionally called “Man’s best friend among the stars.” As humanity’s first contact with alien life, and longest and staunchest ally, this saying has thus far rung true.");
@@ -1663,6 +1665,52 @@ public function VKoIVsCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("V-Ko IVs");
 }
+public function xhelarfogCodexEntry():void
+{
+	clearOutputCodex();
+	outputCodex(header("Xhelarfog"));
+	outputCodex("<b>Name (Singular & Plural):</b> Xhelarfog");
+	outputCodex("\n<b>Sexes:</b> Male, female, occasional occurrence of sexless individuals.");
+	outputCodex("\n<b>Height:</b> Usually smaller than humans - 4\' 0\" to 5\' 6\"");
+	outputCodex("\n<b>Weight:</b> 55-110 lbs (25-50 kg), not accounting for scale weight.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Body Composition (Flesh)"));
+	outputCodex("While perhaps not obvious at a first glance, Xhelarfog are a semi-gelatinous species. Though they do not possess the remarkable shape changing powers of a galotian, they are certainly capable of sealing shut and quickly healing any wounds they attain, and their boneless bodies are easily able to contort through small openings and survive much greater falls than other races.");
+	outputCodex("Xhelarfog have, at present, only been observed to possess opalescent, pale skin.");
+	outputCodex("\n\nTheir flesh is known to be rather sticky - a feature known to let them cling, gecko-like, to walls - though they are able to secrete a substance that prevents their exterior ‘skin’ from adhering itself to anything they touch. It should, therefore, be noted that it is extremely unwise to attempt to penetrate anything but the sexual organs or mouth of any individual, unless you have a fetish for awkward medical appointments - as separating oneself from them is known to be quite the ordeal.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Body Composition (Scales)"));
+	outputCodex("Due to the gold-rich environment of the Xhelarfog home planet, individuals end up taking in a great amount in their diet. Rather than excrete this as waste, it has been observed that they instead organise it into clumps, which then rise to the surface of their flesh in formations that appear like, and are often referred to as rough, uneven scales.");
+	outputCodex("\n\nThis is thought to be an unusual defense mechanism, as this process never really stops - the eldest observed Xhelarfog have been known to be almost completely covered in these ‘scales’, saving only the palms of their hands and feet, the underside of their tails and the horn-like protrusions on their head.");
+	outputCodex("\n\nIt is theorised that should a metal other than gold occur in greater proportions than it in an individual’s diet from infancy, they would instead develop scales of this metal - but no testing has been done due to the more recent discovery of the race.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Eyes"));
+	outputCodex("Breaking away from the humanoid norm of two, or at least an equal number of eyes, Xhelarfog possess three - one central eye providing most of their vision, and two smaller eyes beneath it allowing for superior peripheral vision. All three of the eyes are golden by the time an individual reaches adulthood due to high concentrations of gold entering them, to no known detrimental effect.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Tail"));
+	outputCodex("They possess a single, relatively short, thick tail, the top of which often being coated in scales while the underside is always the same, gel-like flesh. The most notable feature of their tails though, is that (aside from sexless individuals) they house the genitalia of the species - and in females is the location that their eggs are stored until they are fully developed and ready to hatch.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Feet"));
+	outputCodex("Whilst plantigrade, Xhelarfog have feet clearly differing from the Terran average. Their longer, more maneuverable front toes and presence of a rear-mounted one on each foot shows that they have become more specialised for gripping and climbing, rather than walking on flatter surfaces.");
+	outputCodex("\n\n<b>Homeworld</b>: Anon-Xusya B");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("Xhelarfog are almost completely androgynous, at least when viewed from the front. All sexes lack breasts (though some individuals comfortable with the concept of modding choose to gain them, but lack ability to lactate without extensive, custom modwork). None of the three sexes have any noticeable differences in stature or general body shape, and as such, the only way to distinguish them is normally assumed to be viewing the underside of the tail - genital slit, close lipped pussy, or lack of any features at all. This isn’t quite true though, as there is one other slight difference, also hidden in the tail - females have slightly thicker tails than males or sexless individuals, as it also contains a cavity similar to a womb used to incubate eggs during their early development.");
+	outputCodex("\n\nAt present, Xhelarfog have only been observed in a whitish, opalescent color with (literally) golden scales and three eyes. The scales first appear in an almost corset-like pattern over their midsection, before coating the overside of their tails. From that point on, there does not seem to be a regimented order to the growth of their scales, filling in across the rest of them over their lifetimes.");
+	outputCodex("\n\nThey have a tendency to push chunks of metal, usually gold, into the ends of their fingers and toes, acting like makeshift claws. It’s far from their only natural weapon - as near carnivores they possess sharp, canine-like teeth in place of incisors and premolars, their only blunt teeth located at the very back of their mouths, specialised for crushing rock. Alongside this, the horn-like protrusions sported by the Xhelarfog are tapered to a fine point, making them more that a little dangerous should one choose to charge. Thanks, however, to their nature leading far more towards curiosity than aggression, most UGC citizens have nothing to fear.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Xhelarfog are born sexless, with the majority of individuals developing their genitalia as they reach the age of sexual maturity. This allows for the species to adapt to any imbalance in the current sex ratio - abundance of males leads to more juveniles developing into females and vice versa. Individuals that remain sexless tend to signify times of plenty - occurring in highest numbers while Xhelarfog tribes possess abundant resources - presumably a form of population control, as rapidly growing numbers can lead to overconsumption. Due to this, sexless individuals are regarded as symbols of good fortune, and are often revered.");
+	outputCodex("\n\nDue to having tail mounted, rather than crotch mounted, genitals, a face to face approach to non-oral sex is difficult, if not impossible, for the species. As such, sex is usually performed with partners facing away from each other, small movements of the tails of both individuals allowing for the thrusting motion necessary for the male to ejaculate.");
+	outputCodex("\n\nOnce fertilised, a female develops a clutch of between three and five eggs, stored in the cavity in her tail for around four months, then laid and externally incubated for about two months.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Society and History"));
+	outputCodex("The environment of Anon-Xusya B is inhospitable to the point that the first Rushers to encounter it thought themselves the victim of an elaborate prank when they began receiving curious, though primitive radio messages from its surface. Despite this, the first few craft to touch down discovered this not to be the case as they were soon greeted by a small tribe of the native Xhelarfog.");
+	outputCodex("\n\nThanks to the high availability of metal, and frequent electrical storms, they had grasped the concept of electricity at a stage in their scientific development that was far earlier than the average. This is often seen as a saving grace for the species, as once word of the unusual civilization got out, they were swarmed by anthropologists - preventing mining companies from being able to take advantage of the time before the natives were declared legally sapient.");
+	outputCodex("\n\nSince then, the Xhelarfog have formed a fledgling full-planet government (under supervision of the UGC), and have integrated well into galactic society, thanks in part to an arrangement signed between themselves and the SteeleTech company - allowing them mining access in return for high level technical education. The deal is reported to have been agreed on incredibly quickly - no doubt thanks to Victor Steele personally overseeing it after existing escapades with the Xhelarfog, having been one of the original Rushers to discover the planet.");
+	CodexManager.viewedEntry("Xhelarfog");
+}
+
 
 
 /* Mhen'ga */
@@ -3933,7 +3981,7 @@ public function furpiesCodexEntry():void
 	outputCodex(header("Furpies"));
 	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on \\\[REDACTED\\\], but it was not identified for six more months thanks to its insidious design.");
 	outputCodex("\n\nThis strange disease was carefully engineered to appear asymptomatic in most of its hosts. Thousands were infected before the first symptoms were identified, and millions more had this pernicious plague before the scientific community could even begin to pin down its unnatural biology. It spread like wildfire through the core for nearly two years before countermeasures were devised. Hundreds of billions had been infected, with billions more ready to fall victim to it with the coming of the rush.");
-	outputCodex("\n\nFurpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular are stamped it out quite quickly.");
+	outputCodex("\n\nFurpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular stamped it out quite quickly.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("How Furpies is Spread"));
 	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as well as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");

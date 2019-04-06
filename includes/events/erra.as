@@ -449,7 +449,7 @@ public function erraGoodGirl2():void
 	if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dressed and ");
 	output("ready, you head out back into the ship’s atrium and make your way to the airlock. <i>“You seem happy, Captain,”</i> Dee’s voice booms. <i>“I trust that means you and [pc.name] enjoyed yourselves.”</i> Erra’s eyes widen with an emotion akin to anger as you start to [pc.walk] out of the ship. She quickly regains control of her emotions before saying, <i>“Later, [pc.name], stop by some time.”</i>");
 	output("\n\nDee chimes in as well, calling out <i>“Farewell, [pc.name].”</i>");
-	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks.’”</i>");
+	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks’.”</i>");
 	IncrementFlag("ERRA_SEXED");
 	processTime(35);
 	restHeal();
@@ -1011,6 +1011,7 @@ public function erraCuddleScenes2():void
 	//firstTime:
 	if(flags["ERRA_CUDDLED"] == undefined)
 	{
+		showImage("ErraAfterCuddlePanties");
 		output("\n\nAs you’re making yourself ready for your journeys and Erra’s making herself decent, the former-puppy calls out, <i>“Hey, [pc.name], I think you forgot your panties.”</i>");
 		output("\n\nBefore you have a chance to reply, or consider if you are missing any panties, a wadded up ball of purple fabric hits you.");
 		if(pc.reflexes() >= 10) output(" Managing to catch the soft, violet sphere, you cock an eyebrow and unravel the matrix of lacy fabrics.");
@@ -1022,6 +1023,7 @@ public function erraCuddleScenes2():void
 		pc.createKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")
 		output("\n\n(<b>Gained Key Item: Panties - Erra’s</b>.)");
 	}
+	else showImage("ErraAfterCuddle");
 	output("\n\nOnce you’re both decent, you walk back into the ship’s Atrium, Dee’s robotic voice ringing in your ears before you can even get a foot out the airlock. <i>“Leaving, [pc.name]? I-”</i>");
 	output("\n\nThe AI is suddenly cut off by her captain: <i>“Dee I swear! I’ll-”</i>");
 	output("\n\nErra is interrupted in turn by her artificial co-pilot, <i>“Don’t worry, Captain, I’ll let you </i>enjoy the moment<i>.”</i>");

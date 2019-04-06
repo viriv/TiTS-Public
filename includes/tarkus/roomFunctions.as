@@ -1,5 +1,9 @@
 ﻿import classes.Items.Miscellaneous.HorseCock;
 
+public function tarkusCoordinatesUnlocked():Boolean
+{
+	return (flags["UNLOCKED_JUNKYARD_PLANET"] != undefined);
+}
 //Landing on Tarkus (First Time)
 public function landOnTarkus():void
 {
@@ -350,6 +354,16 @@ public function rustScytheGladeEncounters():Boolean {
 	return false;
 }
 
+public function tarkusMetalRavineBonus():Boolean
+{
+	var btnSlot:int = 0;
+	
+	if(cockBoxDiscoveryBlurb(btnSlot)) btnSlot++;
+	if(kimberQuestWormBonus(btnSlot)) btnSlot++;
+	
+	return rustRidgesEncounters();
+}
+
 //Yes:
 public function grabARubbahTube():void
 {
@@ -377,6 +391,9 @@ public function grabARubbahTube():void
 
 public function messSeatingBonus():Boolean
 {
+	var btnSlot:int = 0;
 	edanRoomDesc();
+	btnSlot++;
+	if (seatingZea(btnSlot)) btnSlot++;
 	return false;
 }

@@ -341,58 +341,58 @@ public function actuallyPierceYourself(args:Array):void
 		case "lip":
 			oldItem = pc.lipPiercing.makeCopy();
 			pc.lipPiercing = item.makeCopy();
-			pc.lipPiercing.onEquip(pc);
+			pc.lipPiercing.onEquip(pc, true);
 			break;
 		case "ears":
 			oldItem = pc.earPiercing.makeCopy();
 			pc.earPiercing = item.makeCopy();
-			pc.earPiercing.onEquip(pc);
+			pc.earPiercing.onEquip(pc, true);
 			break;
 		case "brows":
 			oldItem = pc.eyebrowPiercing.makeCopy();
 			pc.eyebrowPiercing = item.makeCopy();
-			pc.eyebrowPiercing.onEquip(pc);
+			pc.eyebrowPiercing.onEquip(pc, true);
 			break;
 		case "nose":
 			oldItem = pc.nosePiercing.makeCopy();
 			pc.nosePiercing = item.makeCopy();
-			pc.nosePiercing.onEquip(pc);
+			pc.nosePiercing.onEquip(pc, true);
 			break;
 		case "tongue":
 			oldItem = pc.tonguePiercing.makeCopy();
 			pc.tonguePiercing = item.makeCopy();
-			pc.tonguePiercing.onEquip(pc);
+			pc.tonguePiercing.onEquip(pc, true);
 			break;
 		case "nipples":
 			oldItem = pc.breastRows[x].piercing.makeCopy();
 			pc.breastRows[x].piercing = item.makeCopy();
-			pc.breastRows[x].piercing.onEquip(pc);
+			pc.breastRows[x].piercing.onEquip(pc, true);
 			break;
 		case "belly":
 			oldItem = pc.bellyPiercing.makeCopy();
 			pc.bellyPiercing = item.makeCopy();
-			pc.bellyPiercing.onEquip(pc);
+			pc.bellyPiercing.onEquip(pc, true);
 			break;
 		case "cock":
 			oldItem = pc.cocks[x].piercing.makeCopy();
 			pc.cocks[x].piercing = item.makeCopy();
-			pc.cocks[x].piercing.onEquip(pc);
+			pc.cocks[x].piercing.onEquip(pc, true);
 			break;
 		case "vagina":
 			oldItem = pc.vaginas[x].piercing.makeCopy();
 			pc.vaginas[x].piercing = item.makeCopy();
-			pc.vaginas[x].piercing.onEquip(pc);
+			pc.vaginas[x].piercing.onEquip(pc, true);
 			break;
 		case "clit":
 		case "clits":
 			oldItem = pc.vaginas[x].clitPiercing.makeCopy();
 			pc.vaginas[x].clitPiercing = item.makeCopy();
-			pc.vaginas[x].clitPiercing.onEquip(pc);
+			pc.vaginas[x].clitPiercing.onEquip(pc, true);
 			break;
 		default:
 			oldItem = pc.lipPiercing.makeCopy();
 			pc.lipPiercing = item.makeCopy();
-			pc.lipPiercing.onEquip(pc);
+			pc.lipPiercing.onEquip(pc, true);
 			break;
 	}
 	//Remove the old item and store for looting!
@@ -498,12 +498,12 @@ public function actuallyWearCocksock(args:Array):void
 	{
 		oldItem = pc.cocks[cIdx].cocksock.makeCopy();
 		
-		if(!(oldItem is EmptySlot)) output("You remove " + oldItem.description + " to make room for the new cock-wear. ");
+		if(!(oldItem is EmptySlot)) output("You remove " + oldItem.description + " to make room for the new cock-wear.");
 		if (item is SilkyCockBell) output("You clip the collar of silk around your [pc.cock " + cIdx + "]. It could’ve been made for your prick, and the bell swings beneath it freely. Jingle! Just wearing the thing makes you fill with submissive heat, swelling up beneath the smooth material, and you find that you are constantly sporting a tiny, chubby semi-erection whilst wearing it.");
 		else output("You give your [pc.cock " + cIdx + "] a few strokes to get it ready, then dress it. Your [pc.cockNoun " + cIdx + "] is now wearing " + item.description + "!");
 		
 		pc.cocks[cIdx].cocksock = item.makeCopy();
-		pc.cocks[cIdx].cocksock.onEquip(pc);
+		pc.cocks[cIdx].cocksock.onEquip(pc, true);
 
 		pc.inventory.splice(pc.inventory.indexOf(item), 1);
 	}
@@ -851,6 +851,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
 	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
 	else if(shopkeep is Mabbs) flags["MABBS_PURCHASES"] = 1;
+	else if(shopkeep is Zea) shopkeep.sellMarkup = 1;
 	
 	//Suma swap
 	if(arg is SumaCream)
@@ -1105,9 +1106,10 @@ public function sellItemMulti(arg:Array):void
 	// Special Events
 	if(soldItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(soldItem, "sell"));
 	if(soldItem is HorseCock) {
-		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = soldNumber;
-		else flags["SYNTHSHEATH_LOST"] += soldNumber;
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = 0;
+		flags["SYNTHSHEATH_LOST"] += soldNumber;
 	}
+	if(soldItem is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -1;
 	soldItem.quantity -= soldNumber;
 	if (soldItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(soldItem), 1);
 	
@@ -1128,6 +1130,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "sell"));
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
 	if(arg is StrangeEgg) IncrementFlag("STRANGE_EGG_SOLD");
+	if(arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -1;
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
@@ -1318,10 +1321,11 @@ public function dropItemMulti(arg:Array):void
 	// Special Events
 	if(dumpItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(dumpItem, "drop"));
 	if(dumpItem is HorseCock) {
-		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = dumpNumber;
-		else flags["SYNTHSHEATH_LOST"] += dumpNumber;
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = 0;
+		flags["SYNTHSHEATH_LOST"] += dumpNumber;
 	}
 	dumpItem.quantity -= dumpNumber;
+	if(dumpItem is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
 	if (dumpItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(dumpItem), 1);
 	
 	clearMenu();
@@ -1336,6 +1340,7 @@ public function dropItemGo(arg:ItemSlotClass):void {
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "drop"));
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
+	if(arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
@@ -1351,7 +1356,7 @@ public function deleteItemPrompt(arg:ItemSlotClass):void
 	clearOutput();
 	output("Are you sure you want to remove " + arg.description + "?");
 	output("\n\n<i>Note that removing the item will purge it from your inventory and cannot be reclaimed.</i>\n\n");
-		
+	
 	clearMenu();
 	addButton(0, "Yes", deleteItemGo, arg);
 	addButton(1, "No", useItemFunction);
@@ -1936,6 +1941,7 @@ public function generalInventoryMenu():void
 	useItemFunction = inventory;
 	
 	clearOutput();
+	if(infiniteItems()) output("<b>\\\[ <span class='lust'>INFINITE ITEM USES IS ON</span> \\\]</b>\n\n");
 	output("What item would you like to use?");
 	if(pc.inventory.length > 10) output("\n\n" + multiButtonPageNote());
 	output("\n\n");
@@ -2028,6 +2034,7 @@ public function combatInventoryMenu():void
 	useItemFunction = inventory;
 	
 	clearOutput();
+	if(infiniteItems()) output("<b>\\\[ <span class='lust'>INFINITE ITEM USES IS ON</span> \\\]</b>\n\n");
 	output("What item would you like to use?");
 	if(pc.inventory.length > 10) output("\n\n" + multiButtonPageNote());
 	output("\n\n");
@@ -2367,6 +2374,15 @@ public function equipItem(arg:ItemSlotClass):void {
 		
 		removedItem.onRemove(pc, true);
 		arg.onEquip(pc, true);
+		
+		// Special post-onEquip events
+		var postMsg:String = "";
+		if(arg.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY))
+		{
+			if(postMsg != "") postMsg += "\n\n";
+			postMsg += stretchBonusSexiness(pc, arg, true, true);
+		}
+		if(postMsg != "") output("\n\n" + postMsg);
 	}
 	
 	//If item to loot after!
@@ -2507,6 +2523,11 @@ public function discardItem(lootList:Array):void {
 	
 	// Special Events
 	if(lootList[0] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(lootList[0], "discard"));
+	if(lootList[0] is HorseCock) {
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = 0;
+		flags["SYNTHSHEATH_LOST"] += lootList[0].quantity;
+	}
+	if(lootList[0] is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
 	
 	output("\n\n");
 	lootList.splice(0,1);
@@ -2617,6 +2638,11 @@ public function replaceItemGo(args:Array):void
 	
 	// Special Events
 	if(pc.inventory[indice] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(pc.inventory[indice], "replace"));
+	if(pc.inventory[indice] is HorseCock) {
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = 0;
+		flags["SYNTHSHEATH_LOST"] += pc.inventory[indice].quantity;
+	}
+	if(pc.inventory[indice] is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
 	
 	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);
