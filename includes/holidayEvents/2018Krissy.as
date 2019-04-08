@@ -1,4 +1,4 @@
-﻿s//Krissy Vellyne (Gonna find->replace)
+﻿//Krissy Vellyne (Gonna find->replace)
 //By Fenoxo
 
 //============================================
