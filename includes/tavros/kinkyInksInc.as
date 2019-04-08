@@ -220,7 +220,7 @@ public function rhettTattoos():void
 	addButton(3, "Dragon", rhettTattoosBodyPartSelection, [new DragonTattoo(), undefined]);
 	addButton(4, "Wings", rhettTattoosWingsOptions, [new WingTattoo()]);//wings have to pick a wing type, so they get an extra function before body part selection
 	addButton(5, "Text", rhettTattoosTextOptions, [new TextTattoo()]);//extra function to get player to enter message to be tatted
-	addButton(14, "Back", rhettBackOut);
+	addButton(14, "Back", rhettFristChanceBackOut);
 }
 
 //Wing tattoo type selection
@@ -704,7 +704,7 @@ public function rhettPiercings():void
 	addButton(0, "Ring", rhettPiercingsColorSelection, ["ring"]);
 	addButton(1, "Stud", rhettPiercingsColorSelection, ["stud"]);
 	addButton(2, "Bar", rhettPiercingsColorSelection, ["bar"]);
-	addButton(14, "Back", rhettBackOut);
+	addButton(14, "Back", rhettFristChanceBackOut);
 }
 
 //Select Piercing Color
@@ -1036,6 +1036,18 @@ public function rhettBackOut():void
 		removeInput();
 	
 	output("<i>“Alright, no skin off my nose. Tell me if you change your mind,”</i> Rhett remarks. He then pulls out and lights a new cigarette.");
+	
+	processTime(1);
+	rhettMenu();
+}
+
+//backing out at the first chance gets a different blurb
+public function rhettFristChanceBackOut():void
+{
+	clearOutput();
+	author("Jim T");
+	
+	output("<i>“Huh. Okay then,”</i> Rhett remarks, face unchanging. He does, however, pull out another cigarette and light it.");
 	
 	processTime(1);
 	rhettMenu();
