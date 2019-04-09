@@ -610,7 +610,7 @@ public function rhettTattoosRemoval(location:String):void
 	output("\n\n<i>“... Got the measurements. Should be a few minutes as the batch cooks up,”</i> he bluntly informs you. You sit and wait until one of his machines dispenses a single canister. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet.");
 	output("\n\n<i>“Done. Just give it a moment,”</i> he states. The tattoo slowly disappears, your [pc.skinFurScalesNoun] returning to normal. <i>“... No fuss. ");
 	
-	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)//currently this is unreachable as the only way to remove a tattoo is to get one from rhett which sets this flag but it's a minor blurb and maybe that'll change later
+	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)
 	{
 		output("Wow, your body is pretty mod happy");
 		IncrementFlag("RHETT_HAS_WORKED_ON_BEFORE");
@@ -618,7 +618,7 @@ public function rhettTattoosRemoval(location:String):void
 	else output("As usual, your body is pretty mod happy");
 	output("”</i>.");
 	
-	switch(location)//replace current tattoo with default EmptyTattoo for removal
+	switch(location)
 	{
 		case "face":
 			pc.removeTattoo(pc.faceTattoo);
