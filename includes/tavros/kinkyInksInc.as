@@ -1041,7 +1041,7 @@ public function rhettBackOut():void
 	rhettMenu();
 }
 
-//backing out at the first chance gets a different blurb
+//Backing out at the first chance gets a different blurb
 public function rhettFristChanceBackOut():void
 {
 	clearOutput();
