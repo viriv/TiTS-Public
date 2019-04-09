@@ -1018,6 +1018,92 @@
 			return hasFaceTattooOfType(tattooType) || hasNeckTattooOfType(tattooType) || hasBackTattooOfType(tattooType) || hasChestTattooOfType(tattooType) || hasArmTattooOfType(tattooType) || hasLegTattooOfType(tattooType) || hasButtTattooOfType(tattooType) || hasAboveCrotchTattooOfType(tattooType);
 		}
 		
+		//Adds tattoo to body slot will also trigger the tattoo's OnEquip function
+		public function addTattoo(tattoo:TattooClass):void
+		{
+			switch(tattoo.tattooLocation)
+			{
+				case "face": this.faceTattoo = tattoo; break;
+		
+				case "neck": this.neckTattoo = tattoo; break;
+				
+				case "upper back": this.upperBackTattoo = tattoo;  break;
+				
+				case "lower back": this.lowerBackTattoo = tattoo; break;
+				
+				case "left chest": this.leftChestTattoo = tattoo;  break;
+				
+				case "right chest": this.rightChestTattoo = tattoo; break;
+				
+				case "full chest": this.fullChestTattoo = tattoo; break;
+				
+				case "left arm": this.leftArmTattoo = tattoo; break;
+				
+				case "right arm": this.rightArmTattoo = tattoo; break;
+				
+				case "left leg": this.leftLegTattoo = tattoo; break;
+				
+				case "right leg": this.rightLegTattoo = tattoo; break;
+				
+				case "left buttock": this.leftButtTattoo = tattoo; break;
+				
+				case "right buttock": this.rightButtTattoo = tattoo; break;
+				
+				case "full butt": this.fullButtTattoo = tattoo; break;
+				
+				case "crotch": this.aboveCrotchTattoo = tattoo; break;
+			}
+			tattoo.onEquip(this);
+		}
+		
+		//swaps tattoo body slot with EmptyTattoo and triggers the old tattoo's OnRemove function
+		public function removeTattoo(tattoo:TattooClass):void
+		{
+			switch(tattoo.tattooLocation)
+			{
+				case "face": this.faceTattoo = new EmptyTattoo(); break;
+		
+				case "neck": this.neckTattoo = new EmptyTattoo(); break;
+				
+				case "upper back": this.upperBackTattoo = new EmptyTattoo();  break;
+				
+				case "lower back": this.lowerBackTattoo = new EmptyTattoo(); break;
+				
+				case "left chest": this.leftChestTattoo = new EmptyTattoo();  break;
+				
+				case "right chest": this.rightChestTattoo = new EmptyTattoo(); break;
+				
+				case "full chest": this.fullChestTattoo = new EmptyTattoo(); break;
+				
+				case "left arm": this.leftArmTattoo = new EmptyTattoo(); break;
+				
+				case "right arm": this.rightArmTattoo = new EmptyTattoo(); break;
+				
+				case "left leg": this.leftLegTattoo = new EmptyTattoo(); break;
+				
+				case "right leg": this.rightLegTattoo = new EmptyTattoo(); break;
+				
+				case "left buttock": this.leftButtTattoo = new EmptyTattoo(); break;
+				
+				case "right buttock": this.rightButtTattoo = new EmptyTattoo(); break;
+				
+				case "full butt": this.fullButtTattoo = new EmptyTattoo(); break;
+				
+				case "crotch": this.aboveCrotchTattoo = new EmptyTattoo(); break;
+			}
+			tattoo.onRemove(this);
+		}
+		
+		//removes old tattoo and triggers OnRemove, then adds new tattoo and triggers OnEquip
+		public function replaceTattoo(tattooToRemove:TattooClass, tattooToAdd:TattooClass):void
+		{
+			if(!(tattooToRemove is EmptyTattoo))
+			{
+				removeTattoo(tattooToRemove);
+			}
+			addTattoo(tattooToAdd);
+		}
+		
 		public var antennae: Number = 0;
 		public function antennaeUnlocked(newAntennaeNumber:Number):Boolean
 		{
