@@ -978,7 +978,7 @@ public function rhettPiercingsOuch(piercingVars:Array):void
 	{
 		case "ears":
 			pc.earPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]);//pierce body part with ([piercingVars[0] = piercingType, piercingVars[1] = color])
-			piercingIsAre = " are";//plural ears get are
+			piercingIsAre = " are";//set to are since ears are plural
 		break;
 		case "eyebrow": pc.eyebrowPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 		case "nose": pc.nosePiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
@@ -987,7 +987,7 @@ public function rhettPiercingsOuch(piercingVars:Array):void
 		case "tongue": pc.tonguePiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 		case "nipples":
 			pc.breastRows[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]);//pierce body part [piercingVars[3] = multipleBodyPartIndex] with ([piercingVars[0] = piercingType, piercingVars[1] = color])
-			piercingIsAre = " are";//plural nipples get are
+			piercingIsAre = " are";//set to are since nipples are plural
 		break;
 		case "cock": pc.cocks[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 		case "vagina": pc.vaginas[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
