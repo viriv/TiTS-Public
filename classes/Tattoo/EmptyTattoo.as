@@ -10,7 +10,8 @@ package classes.Tattoo
 			this.tattooType = GLOBAL.NO_TATTOO;
 			this.optionalTattooAttribute = "";
 			this.tattooLocation = "";
-			this.description = "";
+			
+			this.tattooFlags = new Array();
 		}
 	}
 }

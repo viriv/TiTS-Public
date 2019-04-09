@@ -1,3 +1,6 @@
+//This class largely mimics ItemSlotClass but as there were many variables and methods that items contain and tattoos don't (and vice versa) a seperate class is used for tattoos.
+//default values are defined as if there is no tattoo
+//save/load/copy functions behave similar to the ones in the ItemSaveable class
 package classes 
 {
 	import classes.DataManager.Serialization.ISaveable;
@@ -10,7 +13,6 @@ package classes
 		public var tattooType:int = GLOBAL.NO_TATTOO;//style of tattoo art
 		public var optionalTattooAttribute:String = "";//wing type/text/etc...
 		public var tattooLocation:String = "";
-		public var description:String = "";
 		
 		public var tattooFlags:Array = new Array();
 		public var hasUniqueName:Boolean = false;
@@ -76,7 +78,6 @@ package classes
 		{
 			var dataObject:Object = new Object();
 			var i:int;
-			//TODO: this
 			var _d:XML = describeType(this);
 			var _dl:XMLList = _d..variable;
 			var _da:XMLList = _d..accessor;
