@@ -59,7 +59,7 @@ package classes.Tattoo
 					ret = "Protecting " + (matchingLeftTattoo ? "both your arms are" : "your right arm is a") + " " + this.color + (matchingLeftTattoo && target.rightArmTattoo.color != target.leftArmTattoo.color ? " and " + target.leftArmTattoo.color : "") + " skull" + (matchingLeftTattoo ? "s" : "") + ".";
 				break;
 				
-				case "left leg"://there were two leg description types one seemingly for lower and the other upper but this is the only tattoo with this distinction so for the time being the second upper tattoo type is ignored
+				/*case "left leg"://there were two leg description types one seemingly for lower and the other upper but this is the only tattoo with this distinction so for the time being the second upper tattoo type is ignored
 					matchingRightTattoo = target.hasRightLegTattooOfType(this.tattooType);
 					ret = (matchingRightTattoo ? "Death-like stamps mark" : "A death-like stamp marks") + " your " + (matchingRightTattoo ? "legs" : "left leg") + ". " + (matchingRightTattoo ? "They're" : "It's") + " literally part of your [pc.skinFurScalesNoun].";
 				break;
@@ -67,7 +67,7 @@ package classes.Tattoo
 				case "right leg"://there were two leg description types one seemingly for lower and the other upper but this is the only tattoo with this distinction so for the time being the second upper tattoo type is ignored
 					matchingLeftTattoo = target.hasLeftLegTattooOfType(this.tattooType);
 					ret = (matchingLeftTattoo ? "Death-like stamps mark" : "A death-like stamp marks") + " your " + (matchingLeftTattoo ? "legs" : "right leg") + ". " + (matchingLeftTattoo ? "They're" : "It's") + " literally part of your [pc.skinFurScalesNoun].";
-				break;
+				break;*/
 				
 				default: ret = ""; break;
 			}

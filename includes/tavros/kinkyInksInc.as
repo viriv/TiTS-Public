@@ -376,7 +376,7 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 		btnInc();
 	}
 	
-	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_LEG))
+	/*if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_LEG))
 	{
 		if(!pc.hasLeftLegTattoo()) addButton(btnIdx, "Left Leg", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "left leg"]);
 		else addDisabledButton(btnIdx, "Left Leg", "Left Leg", "Rhett can't tattoo your left leg when it already has a tattoo!");
@@ -388,7 +388,7 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 		if(!pc.hasRightLegTattoo()) addButton(btnIdx, "Right Leg", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right leg"]);
 		else addDisabledButton(btnIdx, "Right Leg", "Right Leg", "Rhett can't tattoo your right leg when it already has a tattoo!");
 		btnInc();
-	}
+	}*/
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_BUTT))
 	{
@@ -551,27 +551,27 @@ public function rhettTattoosRemovalPartSelection():void
 	if(pc.hasRightArmTattoo()) addButton(8, "Right Arm", rhettTattoosRemovalPayment, "right arm");
 	else addDisabledButton(8, "Right Arm", "Right Arm", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasLeftLegTattoo()) addButton(9, "Left Leg", rhettTattoosRemovalPayment, "left leg");
+	/*if(pc.hasLeftLegTattoo()) addButton(9, "Left Leg", rhettTattoosRemovalPayment, "left leg");
 	else addDisabledButton(9, "Left Leg", "Left Leg", "There's no tattoo here that Rhett can remove!");
 	
 	if(pc.hasRightLegTattoo()) addButton(10, "Right Leg", rhettTattoosRemovalPayment, "right leg");
-	else addDisabledButton(10, "Right Leg", "Right Leg", "There's no tattoo here that Rhett can remove!");
+	else addDisabledButton(10, "Right Leg", "Right Leg", "There's no tattoo here that Rhett can remove!");*/
 	
-	if(pc.hasLeftButtTattoo()) addButton(11, "Left Buttock", rhettTattoosRemovalPayment, "left buttock");
+	if(pc.hasLeftButtTattoo()) addButton(9, "Left Buttock", rhettTattoosRemovalPayment, "left buttock");
 	else addDisabledButton(11, "Left Buttock", "Left Buttock", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasRightButtTattoo()) addButton(12, "Right Buttock", rhettTattoosRemovalPayment, "right buttock");
+	if(pc.hasRightButtTattoo()) addButton(10, "Right Buttock", rhettTattoosRemovalPayment, "right buttock");
 	else addDisabledButton(12, "Right Buttock", "Right Buttock", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasFullButtTattoo()) addButton(13, "Full Butt", rhettTattoosRemovalPayment, "full butt");
+	if(pc.hasFullButtTattoo()) addButton(11, "Full Butt", rhettTattoosRemovalPayment, "full butt");
 	else addDisabledButton(13, "Full Butt", "Full Butt", "There's no tattoo here that Rhett can remove!");
 	
-	addButton(14, "Back", rhettBackOut);
+	//addButton(14, "Back", rhettBackOut);
 	
-	if(pc.hasAboveCrotchTattoo()) addButton(15, "Above Crotch", rhettTattoosRemovalPayment, "above crotch");
+	if(pc.hasAboveCrotchTattoo()) addButton(12, "Above Crotch", rhettTattoosRemovalPayment, "above crotch");
 	else addDisabledButton(15, "Above Crotch", "Above Crotch", "There's no tattoo here that Rhett can remove!");
 	
-	addButton(29, "Back", rhettBackOut);
+	//addButton(29, "Back", rhettBackOut);
 }
 
 public function rhettTattoosRemovalPayment(location:String):void

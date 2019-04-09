@@ -69,7 +69,7 @@ package classes.Tattoo
 					ret = "Wrapping around " + (matchingLeftTattoo ? "both your arms" : "your right arm") + "  are vines and flowers, each blossoming in " + this.color + (matchingLeftTattoo && target.rightArmTattoo.color != target.leftArmTattoo.color ? " or " + target.leftArmTattoo.color : "") + ".";
 				break;
 				
-				case "left leg"://TODO: single/more than 2 leg shenans?
+				/*case "left leg"://TODO: single/more than 2 leg shenans?
 					matchingRightTattoo = target.hasRightLegTattooOfType(this.tattooType);
 					ret = "Running up and around your " + (matchingRightTattoo ? "legs" : "your left leg") + " are flower-like markings. They're literally part of your [pc.skinFurScalesNoun].";//no mention of tattoo color in docs
 				break;
@@ -77,7 +77,7 @@ package classes.Tattoo
 				case "right leg"://TODO: single/more than 2 leg shenans?
 					matchingLeftTattoo = target.hasLeftLegTattooOfType(this.tattooType);
 					ret = "Running up and around your " + (matchingLeftTattoo ? "legs" : "your right leg") + " are flower-like markings. They're literally part of your [pc.skinFurScalesNoun].";//no mention of tattoo color in docs
-				break;
+				break;*/
 				
 				case "left buttock":
 					matchingRightTattoo = target.hasRightButtTattooOfType(this.tattooType);

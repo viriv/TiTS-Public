@@ -60,7 +60,7 @@ package classes.Tattoo
 					ret = "Wrapping around " + (matchingLeftTattoo ? "both your arms are " : "your right arm is a ") + this.color + (matchingLeftTattoo && target.rightArmTattoo.color != target.leftArmTattoo.color ? " and " + target.leftArmTattoo.color : "") + " dragon tattoo" + (matchingLeftTattoo ? "s" :  "") + ".";
 				break;
 				
-				case "left leg":
+				/*case "left leg":
 					matchingRightTattoo = target.hasRightLegTattooOfType(this.tattooType);
 					ret = "Running up and around " + (matchingRightTattoo ? "both your legs are " : "your left leg is a ") + this.color + (matchingRightTattoo && target.rightLegTattoo.color != target.leftLegTattoo.color ? " and " + target.rightLegTattoo.color : "") + " dragon tattoo" + (matchingRightTattoo ? "s" :  "") + ".";//docs have error:uses arms here instead of legs
 				break;
@@ -68,7 +68,7 @@ package classes.Tattoo
 				case "right leg":
 					matchingLeftTattoo = target.hasLeftLegTattooOfType(this.tattooType);
 					ret = "Running up and around " + (matchingLeftTattoo ? "both your legs are " : "your right leg is a ") + this.color + (matchingLeftTattoo && target.rightLegTattoo.color != target.leftLegTattoo.color ? " and " + target.leftLegTattoo.color : "") + " dragon tattoo" + (matchingLeftTattoo ? "s" :  "") + ".";//docs have error:uses arms here instead of legs
-				break;
+				break;*/
 				
 				case "crotch":
 					ret = "Above your crotch sits a " + this.color + " dragon, "

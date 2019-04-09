@@ -65,7 +65,7 @@ package classes.Tattoo
 					ret = "Wrapping around " + (matchingLeftTattoo ? "both your arms" : "your right arm") + " are wild-looking tribal tattoos, inked in " + this.color + (matchingLeftTattoo && target.rightArmTattoo.color != target.leftArmTattoo.color ? " and " + target.leftArmTattoo.color : "") + " thick lines. Knotted and interconnected, they wrap around, making you look like a primal warrior more than a [pc.class].";
 				break;
 				
-				case "left leg"://TODO: single/more than 2 leg shenans?
+				/*case "left leg"://TODO: single/more than 2 leg shenans?
 					matchingRightTattoo = target.hasRightLegTattooOfType(this.tattooType);
 					ret = "Coiling around your " + (matchingRightTattoo ? "legs" : "your left leg") + " are thorn-edged ink markings, " + this.color + (matchingRightTattoo && target.rightLegTattoo.color != target.leftLegTattoo.color ? ", " + target.rightLegTattoo.color : "") + " and dramatic. The tribal patterns reach all the way down to your " + (matchingRightTattoo ? "[pc.feet]" : "[pc.foot]") + ".";
 				break;
@@ -73,7 +73,7 @@ package classes.Tattoo
 				case "right leg"://TODO: single/more than 2 leg shenans?
 					matchingLeftTattoo = target.hasLeftLegTattooOfType(this.tattooType);
 					ret = "Coiling around your " + (matchingLeftTattoo ? "legs" : "your right leg") + " are thorn-edged ink markings, " + this.color + (matchingLeftTattoo && target.rightLegTattoo.color != target.leftLegTattoo.color ? ", " + target.leftLegTattoo.color : "") +  " and dramatic. The tribal patterns reach all the way down to your " + (matchingLeftTattoo ? "[pc.feet]" : "[pc.foot]") + ".";
-				break;
+				break;*/
 				
 				default: ret = ""; break;
 			}
