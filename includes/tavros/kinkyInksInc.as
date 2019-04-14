@@ -10,6 +10,7 @@ import classes.Items.Miscellaneous.EmptySlot;
 import classes.GLOBAL;
 import classes.Engine.Utility.IncrementFlag;
 import classes.TattooClass;
+import classes.Items.Miscellaneous.SkySap;
 //AUTHOR - JimThermic
 
 //Piercing salon
@@ -76,6 +77,7 @@ public function rhettMenu():void
 	else addDisabledButton(4, "TatRemoval", "TatRemoval", "You have no removable tattoos!")//don't bother giving the option if no tattoos exist
 	if(pc.lust() >= 33) addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");//sex the snek
 	else addDisabledButton(5, "Sex", "Sex", "You aren’t aroused enough for sex right now.");//gotta meet the lust requirments first
+	addButton(6, "Sky Sap", rhettSkySap, undefined, "Sky Sap", "Talk about Rhett's use for Sky Sap.");
 	addButton(14, "Leave", mainGameMenu);//exit the shop menu
 }
 
@@ -446,6 +448,19 @@ public function rhettTattoosColorSelection(tattooVars:Array):void
 	addButton(10, "Purple", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "purple"]);
 	addButton(11, "Pink", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "pink"]);
 	addButton(14, "Back", rhettBackOut);
+	
+	if(flags["RHETT_LUMINOUS_TATTOOS"] != undefined)//player has given rhett enough sky sap to unlock luminous colors
+	{
+		addButton(12, "Lum. Violet", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "luminous violet"]);
+		addButton(13, "Lum. Purple", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "luminous purple"]);
+		addButton(15, "Lum. Blue", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "luminous blue"]);
+		addButton(16, "Lum. Pink", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "luminous pink"]);
+		addButton(17, "Lum. Orange", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "luminous orange"]);
+		addButton(18, "Lum. Green", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "luminous green"]);
+		addButton(19, "Lum. Silver", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "luminous silver"]);
+		addButton(20, "Glowing Gold", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "glowing gold"]);
+		addButton(29, "Back", rhettBackOut);
+	}
 }
 
 //Confirm payment
@@ -1478,6 +1493,74 @@ public function rhettPineapple():void
 	output(" him back out. He's already calmly leaning back against the counter, looking as though nothing even happened.");
 	
 	processTime(4);
+	clearMenu();
+	addButton(0, "Next", meetRhett);
+}
+
+//Sky Sap interaction start
+public function rhettSkySap():void
+{
+	clearOutput();
+	author("Jim T");
+	
+	if(flags["RHETT_SKY_SAP"] == undefined)
+	{
+		output("“Oh, hey, you're a rusher, right?” Rhett asks, out of nowhere.");
+		output("\n\nYou nod, and he tilts his mirrored shades. “... Good. I'm low on some gene supplies; mainly the bioluminous stuff. Shipping leithan-grade samples all the way out here from Alpha Centurii is pretty expensive, so I'm looking for a new supply.”");
+		output("\n\n“Word is there's some sort of natives on Mhen'ga who have naturally luminescent markings. If you can bring me sample matter from them, that'd be really handy. I could start selling glowing tattoo mods again.”");
+		output("\n\n<b>You can now trade Sky Sap to Rhett for money and luminescent skin mods.</b>");
+		flags["RHETT_SKY_SAP"] = 0;
+	}
+	else
+	{
+		output("“Got some sky sap? ");
+		if(flags["RHETT_SKY_SAP"] < 10) output("I can't do luminescent skin mods until we get some more");
+		else output("We can always use more of the stuff");
+		
+		output(".”");
+	}
+	
+	clearMenu();
+	processTime(1);
+	if(pc.hasItemByClass(SkySap)) addButton(0, "Give Sky Sap", rhettGiveSkySap);
+	else addDisabledButton(0, "Give Sky Sap", "Give Sky Sap", "You don't have any Sky Sap to give!");
+	addButton(14, "Back", meetRhett);
+}
+
+//Sky Sap trade interaction and luminous color unlock
+public function rhettGiveSkySap():void
+{
+	clearOutput();
+	author("Jim T");
+	
+	var quanitity:int = pc.numberOfItemByClass(SkySap);//get number player has on them
+	
+	for (var x:int = quanitity ; x > 0; x--) IncrementFlag("RHETT_SKY_SAP");//add to Rhett's count
+	pc.destroyItemByClass(SkySap, -1);//remove all sky sap from player
+	
+	if(flags["RHETT_LUMINOUS_TATTOOS"] == undefined && flags["RHETT_SKY_SAP"] > 9)//player just gave enough to unlock luminous colors
+	{
+		IncrementFlag("RHETT_LUMINOUS_TATTOOS");//unlock luminous colors(Luminous Violet, Luminous Purple, Luminous Blue, Luminous Pink, Luminous Orange, Luminous Green, Luminous Silver, Glowing Gold)
+		output("“Great. We've finally got enough to start doing luminous tattoos again. And here's " + (quanitity * 50) + " credits for the sap. You've been a big help”");
+	}
+	else
+	{
+		output("“Thanks. Here's " + (quanitity * 50 ) + " credits for the trouble. ");//inform player they got paid
+		
+		if(flags["RHETT_SKY_SAP"] < 10)//if player is working towards luminous colors
+		{
+			if(flags["RHETT_SKY_SAP"] < 8) output("Bring in several more");
+			else if(flags["RHETT_SKY_SAP"] < 9) output("A couple more");
+			else if(flags["RHETT_SKY_SAP"] < 10) output("Just one more")
+			
+			output(" and I'll be able to get back to doing glowing tattoos.”");
+		}
+	}
+	
+	
+	pc.credits += quanitity * 50;
+	
+	processTime(2);
 	clearMenu();
 	addButton(0, "Next", meetRhett);
 }
