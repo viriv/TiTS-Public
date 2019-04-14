@@ -12,7 +12,7 @@ import classes.Engine.Utility.IncrementFlag;
 import classes.TattooClass;
 //AUTHOR - JimThermic
 
-//Piercing Salon
+//Piercing salon
 public function kinkyInksIncBonusFunc():Boolean
 {
 	author("Jim T");
@@ -433,18 +433,18 @@ public function rhettTattoosColorSelection(tattooVars:Array):void
 	
 	clearMenu();
 	//tattooVars = [type, (optional attribute i.e. wing type/text), location, color]
-	addButton(0, "Black",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "black"]);
-	addButton(1, "White",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "white"]);
-	addButton(2, "Silver",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "silver"]);
-	addButton(3, "Copper",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "copper"]);
-	addButton(4, "Gold",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "gold"]);
-	addButton(5, "Red",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "red"]);
-	addButton(6, "Blue",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "blue"]);
-	addButton(7, "Green",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "green"]);
-	addButton(8, "Orange",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "orange"]);
-	addButton(9, "Yellow",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "yellow"]);
-	addButton(10, "Purple",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "purple"]);
-	addButton(11, "Pink",rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "pink"]);
+	addButton(0, "Black", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "black"]);
+	addButton(1, "White", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "white"]);
+	addButton(2, "Silver", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "silver"]);
+	addButton(3, "Copper", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "copper"]);
+	addButton(4, "Gold", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "gold"]);
+	addButton(5, "Red", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "red"]);
+	addButton(6, "Blue", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "blue"]);
+	addButton(7, "Green", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "green"]);
+	addButton(8, "Orange", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "orange"]);
+	addButton(9, "Yellow", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "yellow"]);
+	addButton(10, "Purple", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "purple"]);
+	addButton(11, "Pink", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "pink"]);
 	addButton(14, "Back", rhettBackOut);
 }
 
@@ -514,7 +514,7 @@ public function rhettTattoosOuch(tattooVars:Array):void
 	addButton(0, "Next", meetRhett);
 }
 
-//Tattoo Removal
+//Tattoo removal
 public function rhettTattoosRemovalPartSelection():void
 {
 	clearOutput();
@@ -574,6 +574,7 @@ public function rhettTattoosRemovalPartSelection():void
 	//addButton(29, "Back", rhettBackOut);
 }
 
+//Confirm removal payment
 public function rhettTattoosRemovalPayment(location:String):void
 {
 	clearOutput();
@@ -587,6 +588,7 @@ public function rhettTattoosRemovalPayment(location:String):void
 	addButton(1, "Don't", rhettBackOut);
 }
 
+//Removal Scene
 public function rhettTattoosRemoval(location:String):void
 {
 	clearOutput();
@@ -707,7 +709,7 @@ public function rhettPiercings():void
 	addButton(14, "Back", rhettFristChanceBackOut);
 }
 
-//Select Piercing Color
+//Select piercing color
 public function rhettPiercingsColorSelection(piercingVars:Array):void
 {
 	clearOutput();
@@ -1251,7 +1253,7 @@ public function rhettOrgasmDenial():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-//Rhett blow job scene
+//Rhett blowjob scene
 public function rhettBlowjob():void
 {
 	clearOutput();
