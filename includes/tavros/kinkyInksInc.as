@@ -1026,7 +1026,7 @@ public function rhettPiercingsOuch(piercingVars:Array):void
 	output(".");
 	output("\n\nRhett shifts up to you and takes a genetic sample from you, then throws it up on holo-display. Silently, he begins typing away, working on the proper composition of skin-mod formula to give you. His eyes are intensely locked on the screen, and his fingers light up the air at a lightning pace.");
 	output("\n\n<i>“... Got the measurements. Should be a few minutes as the batch cooks up,”</i> he bluntly informs you. You sit and wait until one of his machines dispenses a single canister. The skin-modder picks one out from the pack and inserts it into a pearly-looking gun. Pointing it at your [pc.skinFurScalesNoun], he pulls the trigger, and you're being hit with a small, pinpoint stream, like an air jet. ");
-	output("\n\n<i>“Done. Just give it a moment,”</i> he states. Suddenly, you feel a strange, hollowing sensation in the spot he sprayed. Now that there's a natural hole where the piercing needs to go, he slips it in. <i>“... No fuss.")
+	output("\n\n<i>“Done. Just give it a moment,”</i> he states. Suddenly, you feel a strange, hollowing sensation in the spot he sprayed. Now that there's a natural hole where the piercing needs to go, he slips it in. <i>“... No fuss. ")
 	if(flags["RHETT_HAS_WORKED_ON_BEFORE"] == undefined)
 	{
 		output("Huh. It's like your body just soaks in the mods.”</i>");
@@ -1505,19 +1505,19 @@ public function rhettSkySap():void
 	
 	if(flags["RHETT_SKY_SAP"] == undefined)
 	{
-		output("“Oh, hey, you're a rusher, right?” Rhett asks, out of nowhere.");
-		output("\n\nYou nod, and he tilts his mirrored shades. “... Good. I'm low on some gene supplies; mainly the bioluminous stuff. Shipping leithan-grade samples all the way out here from Alpha Centurii is pretty expensive, so I'm looking for a new supply.”");
-		output("\n\n“Word is there's some sort of natives on Mhen'ga who have naturally luminescent markings. If you can bring me sample matter from them, that'd be really handy. I could start selling glowing tattoo mods again.”");
+		output("<i>“Oh, hey, you're a rusher, right?”</i> Rhett asks, out of nowhere.");
+		output("\n\nYou nod, and he tilts his mirrored shades. <i>“... Good. I'm low on some gene supplies; mainly the bioluminous stuff. Shipping leithan-grade samples all the way out here from Alpha Centurii is pretty expensive, so I'm looking for a new supply.”</i>");
+		output("\n\n<i>“Word is there's some sort of natives on Mhen'ga who have naturally luminescent markings. If you can bring me sample matter from them, that'd be really handy. I could start selling glowing tattoo mods again.”</i>");
 		output("\n\n<b>You can now trade Sky Sap to Rhett for money and luminescent skin mods.</b>");
 		flags["RHETT_SKY_SAP"] = 0;
 	}
 	else
 	{
-		output("“Got some sky sap? ");
+		output("<i>“Got some sky sap? ");
 		if(flags["RHETT_SKY_SAP"] < 10) output("I can't do luminescent skin mods until we get some more");
 		else output("We can always use more of the stuff");
 		
-		output(".”");
+		output(".”</i>");
 	}
 	
 	clearMenu();
@@ -1541,11 +1541,11 @@ public function rhettGiveSkySap():void
 	if(flags["RHETT_LUMINOUS_TATTOOS"] == undefined && flags["RHETT_SKY_SAP"] > 9)//player just gave enough to unlock luminous colors
 	{
 		IncrementFlag("RHETT_LUMINOUS_TATTOOS");//unlock luminous colors(Luminous Violet, Luminous Purple, Luminous Blue, Luminous Pink, Luminous Orange, Luminous Green, Luminous Silver, Glowing Gold)
-		output("“Great. We've finally got enough to start doing luminous tattoos again. And here's " + (quanitity * 50) + " credits for the sap. You've been a big help”");
+		output("<i>“Great. We've finally got enough to start doing luminous tattoos again. And here's " + (quanitity * 50) + " credits for the sap. You've been a big help”</i>");
 	}
 	else
 	{
-		output("“Thanks. Here's " + (quanitity * 50 ) + " credits for the trouble. ");//inform player they got paid
+		output("<i>“Thanks. Here's " + (quanitity * 50 ) + " credits for the trouble. ");//inform player they got paid
 		
 		if(flags["RHETT_SKY_SAP"] < 10)//if player is working towards luminous colors
 		{
@@ -1553,10 +1553,9 @@ public function rhettGiveSkySap():void
 			else if(flags["RHETT_SKY_SAP"] < 9) output("A couple more");
 			else if(flags["RHETT_SKY_SAP"] < 10) output("Just one more")
 			
-			output(" and I'll be able to get back to doing glowing tattoos.”");
+			output(" and I'll be able to get back to doing glowing tattoos.”</i>");
 		}
 	}
-	
 	
 	pc.credits += quanitity * 50;
 	
