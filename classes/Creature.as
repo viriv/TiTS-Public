@@ -7708,6 +7708,17 @@
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
 				if (hasFaceFlag(GLOBAL.FLAG_FRECKLED)) adjectives.push("freckled");
+				if (hasFaceTattoo() && rand(7) == 0)
+				{
+					adjectives.push("inked", "tattooed");//base options for all tattoos
+					switch (faceTattoo.tattooType)//specifics
+					{
+						case GLOBAL.TATTOO_TRIBAL: adjectives.push("tribally-branded", "tribal-patterned", "ink-marked"); break;
+						case GLOBAL.TATTOO_FLORAL: adjectives.push("florally-marked", "flower-patterned", "blossom-covered", "botanically-inked", "flower-stamped"); break;
+						case GLOBAL.TATTOO_SKULL: adjectives.push("skull-marked", "skull-branded", "skull-stamped"); break;
+						case GLOBAL.TATTOO_DRAGON: adjectives.push("dragon-marked", "draconically-inked", "serpent-stamped"); break;
+					}
+				}
 			}
 			//Space if adjective'd
 			if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
@@ -8090,6 +8101,15 @@
 			if (armType == GLOBAL.TYPE_LAPINE && hasArmFlag(GLOBAL.FLAG_THICK)) adjective.push("big");
 			if (armType == GLOBAL.TYPE_SIREN) adjective.push("harpy-like");
 			if (armType == GLOBAL.TYPE_SAURMORIAN && hasArmFlag(GLOBAL.FLAG_SCALED)) adjective.push("armored", "gilded", "plated");
+			if (hasArmTattoo() && rand(7) == 0)
+				{
+					adjective.push("inked", "tattooed");
+					if(hasArmTattooOfType(GLOBAL.TATTOO_TRIBAL)) adjective.push("tribally-branded", "tribal-patterned", "ink-marked");
+					if(hasArmTattooOfType(GLOBAL.TATTOO_FLORAL)) adjective.push("florally-marked", "flower-patterned", "blossom-covered", "botanically-inked", "flower-stamped");
+					if(hasArmTattooOfType(GLOBAL.TATTOO_SKULL)) adjective.push("skull-marked", "skull-branded", "skull-stamped");
+					if(hasArmTattooOfType(GLOBAL.TATTOO_DRAGON)) adjective.push("dragon-marked", "draconically-inked", "serpent-stamped");
+					if(hasArmTattooOfType(GLOBAL.TATTOO_TEXT)) adjective.push("branded", "lettered", "stamped", "worded", "text-inscribed", "printed-on", "message-marked", "letter-marked");
+				}
 			// Build
 			if ((forceAdjective || rand(2) == 0) && adjective.length > 0) output += RandomInCollection(adjective);
 			// Noun
@@ -14066,6 +14086,19 @@
 			return "base";
 		}
 		public function chestDesc(): String {
+			if(hasChestTattoo() && rand(7) == 0)//fire before other check otherwise < 1 sized chests would never see tattoos at all and others only get a 1/3 chance
+			{
+				var tatAdjective:Array = ["inked", "tattooed"]//base options for all tattoos
+				//specifics. if PC has different left/right types then both types adjects get added to pool
+				if(hasChestTattooOfType(GLOBAL.TATTOO_TRIBAL)) tatAdjective.push("inked", "tribally-branded", "tattooed", "ink-marked", "tribal-patterned");
+				if(hasChestTattooOfType(GLOBAL.TATTOO_FLORAL)) tatAdjective.push("florally-marked", "flower-patterned", "blossom-covered", "botanically-inked", "flower-stamped");
+				if(hasChestTattooOfType(GLOBAL.TATTOO_SKULL)) tatAdjective.push("skull-marked", "skull-branded", "skull-stamped");
+				if(hasChestTattooOfType(GLOBAL.TATTOO_DRAGON)) tatAdjective.push("dragon-marked", "draconically-inked", "serpent-stamped");
+				if(hasChestTattooOfType(GLOBAL.TATTOO_TEXT)) tatAdjective.push("branded", "lettered", "stamped", "worded", "text-inscribed", "printed-on", "message-marked", "letter-marked");
+				
+				return RandomInCollection(tatAdjective) + " chest";
+			}
+			
 			if (biggestTitSize() < 1 && rand(2) == 0)
 			{
 				var adjective:String = "";
@@ -14541,9 +14574,19 @@
 			var adjectives: Array = [];
 			var rando: Number = 0;
 			
-			if(hasPerk("Barcoded") && rand(7) == 0)
+			if((hasButtTattoo() || hasLowerBackTattoo()) && rand(7) == 0)//Butt/Lower back (tramp stamps) tattoos
 			{
-				desc = RandomInCollection(["barcode-stamped","barcode-branded","barcoded","id-branded","barcode-tattooed","id-stamped","AccuPitch-claimed","barcode-stamped","barcode-bearing"]);
+				adjectives.push("inked", "tattooed");
+				
+				if(hasButtTattooOfType(GLOBAL.TATTOO_BARCODED)) adjectives.push("barcode-stamped","barcode-branded","barcoded","id-branded","barcode-tattooed","id-stamped","AccuPitch-claimed","barcode-stamped","barcode-bearing");
+				if(hasButtTattooOfType(GLOBAL.TATTOO_TRIBAL) || hasLowerBackTattooOfType(GLOBAL.TATTOO_TRIBAL)) adjectives.push("tribally-branded", "tribal-patterned", "ink-marked");
+				if(hasButtTattooOfType(GLOBAL.TATTOO_FLORAL) || hasLowerBackTattooOfType(GLOBAL.TATTOO_FLORAL)) adjectives.push("florally-marked", "flower-patterned", "blossom-covered", "botanically-inked", "flower-stamped");
+				if(hasButtTattooOfType(GLOBAL.TATTOO_SKULL) || hasLowerBackTattooOfType(GLOBAL.TATTOO_SKULL)) adjectives.push("skull-marked", "skull-branded", "skull-stamped");
+				if(hasButtTattooOfType(GLOBAL.TATTOO_DRAGON) || hasLowerBackTattooOfType(GLOBAL.TATTOO_DRAGON)) adjectives.push("dragon-marked", "draconically-inked", "serpent-stamped");
+				if(hasButtTattooOfType(GLOBAL.TATTOO_TEXT) || hasLowerBackTattooOfType(GLOBAL.TATTOO_TEXT)) adjectives.push("branded", "lettered", "stamped", "worded", "text-inscribed", "printed-on", "message-marked", "letter-marked");
+				
+				if(desc != "") desc += ", ";
+				if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
 			}
 			else if(rand(2) == 0)
 			{
@@ -16738,18 +16781,30 @@
 
 			clearList();
 			
+			var tatAdjective:Array = [];
+			if(hasAboveCrotchTattoo() && rand(7) == 0)//TODO: implement
+			{
+				tatAdjective.push("inked", "tattooed");
+				switch(aboveCrotchTattoo.tattooType)
+				{
+					case GLOBAL.TATTOO_FLORAL: tatAdjective.push("florally-marked", "flower-patterned", "blossom-covered", "botanically-inked", "flower-stamped"); break;
+					case GLOBAL.TATTOO_DRAGON: tatAdjective.push("dragon-marked", "draconically-inked", "serpent-stamped"); break;
+					case GLOBAL.TATTOO_TEXT: tatAdjective.push("branded", "lettered", "stamped", "worded", "text-inscribed", "printed-on", "message-marked", "letter-marked"); break;
+				}
+			}
+			
 			//Nothing to talk about? K
 			if(!hasCock() && !hasVagina()) 
 			{
-				if(rand(2) == 0) return "bare crotch";
-				return "bare groin";
+				if(rand(2) == 0) return RandomInCollection(tatAdjective) + "bare crotch";
+				return RandomInCollection(tatAdjective) + "bare groin";
 			}
 			//Make da list!
 			if(hasCock()) addToList(cocksDescript(dynamicLength));
 			if(balls > 0) addToList(ballsDescript());
 			if(hasVagina()) addToList(vaginasDescript());
 			
-			return formatList();
+			return RandomInCollection(tatAdjective) + formatList();
 		}
 		public function lowerGarmentDescript(): String {
 			if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
