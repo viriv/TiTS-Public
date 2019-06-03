@@ -32,9 +32,9 @@ package classes.Tattoo
 				
 				case "upper back": ret = "Across your upper back and in distinctive, " + this.color + " letters, is written: <i>“" + this.optionalTattooAttribute + "”</i>."; break;
 				
-				case "lower back": ret = "Right above your [pc.ass] is written <i>“" + this.optionalTattooAttribute + "”</i> in " + this.color + " letters."; break;
+				case "lower back": ret = "Right above your ass is written <i>“" + this.optionalTattooAttribute + "”</i> in " + this.color + " letters."; break;
 				
-				case "full chest": ret = "Across your [pc.chest], inscribed in " + this.color + " letters, is written: <i>“" + this.optionalTattooAttribute + "”</i>."; break;
+				case "full chest": ret = "Across your chest, inscribed in " + this.color + " letters, is written: <i>“" + this.optionalTattooAttribute + "”</i>."; break;
 				
 				case "left arm":
 					matchingRightTattoo = target.hasRightArmTattooOfType(this.tattooType);
