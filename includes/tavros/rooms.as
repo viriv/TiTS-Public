@@ -79,11 +79,12 @@ public function initTavrosRooms():void
 	//102 "ANON'S BAR AND BOARD". Anon's Bar and Board
 	rooms["ANON'S BAR AND BOARD"] = new RoomClass(this);
 	rooms["ANON'S BAR AND BOARD"].roomName = "ANON’S BAR\nAND BOARD";
-	rooms["ANON'S BAR AND BOARD"].description = "Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. A rickety metal stairway rises up to the north, leading to the board portion of this establishment. You’ve already roomed there once, and the accomodations were far from great. A door to the west opens out into a central thoroughfare.";
+	rooms["ANON'S BAR AND BOARD"].description = "Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. A rickety metal stairway rises up to the north, leading to the board portion of this establishment. You’ve already roomed there once, and the accomodations were far from great. A door to the west opens out into a central thoroughfare. To the east is a quieter back room.";
 	rooms["ANON'S BAR AND BOARD"].planet = "TAVROS STATION";
 	rooms["ANON'S BAR AND BOARD"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BAR AND BOARD"].northExit = "ANON'S BOARD HALL";
 	rooms["ANON'S BAR AND BOARD"].westExit = "MERCHANT'S THOROUGHFARE";
+	rooms["ANON'S BAR AND BOARD"].eastExit = "ANON'S BACK END";
 	rooms["ANON'S BAR AND BOARD"].runOnEnter = anonsBarAddendums;
 	rooms["ANON'S BAR AND BOARD"].moveMinutes = 1;
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.INDOOR);
@@ -290,7 +291,7 @@ public function initTavrosRooms():void
 	rooms["9004"].addFlag(GLOBAL.INDOOR);
 	rooms["9004"].addFlag(GLOBAL.PUBLIC);
 	rooms["9004"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9004"].runOnEnter = undefined;
+	rooms["9004"].runOnEnter = breedwellPremiumBootyCallsCheckTavrosAusar;
 
 	//9005
 	rooms["9005"] = new RoomClass(this);
@@ -319,7 +320,7 @@ public function initTavrosRooms():void
 	rooms["9006"].addFlag(GLOBAL.INDOOR);
 	rooms["9006"].addFlag(GLOBAL.PUBLIC);
 	rooms["9006"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9006"].runOnEnter = undefined;
+	rooms["9006"].runOnEnter = veltaShowVeltaJogging;
 
 	//9007
 	rooms["9007"] = new RoomClass(this);
@@ -432,12 +433,12 @@ public function initTavrosRooms():void
 	rooms["9014"].addFlag(GLOBAL.INDOOR);
 	rooms["9014"].addFlag(GLOBAL.PUBLIC);
 	rooms["9014"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9014"].runOnEnter = undefined;
+	rooms["9014"].runOnEnter = breedwellPremiumBootyCallsCheckTavrosDomme;
 
 	//9015
 	rooms["9015"] = new RoomClass(this);
 	rooms["9015"].roomName = "MERCHANT’S\nTHOROUGHFARE";
-	rooms["9015"].description = "A neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open to the east, allowing you a glimpse of the salon inside. The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you follow the arcing thoroughfare east, you could visit the red light zone.";
+	rooms["9015"].description = "";
 	rooms["9015"].planet = "TAVROS STATION";
 	rooms["9015"].system = "SYSTEM: KALAS";
 	rooms["9015"].westExit = "9016";
@@ -699,11 +700,22 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 11"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 11"].northExit = "RESIDENTIAL DECK 19";
 	rooms["RESIDENTIAL DECK 11"].westExit = "RESIDENTIAL DECK 10";
+	rooms["RESIDENTIAL DECK 11"].southExit = "RES DECK BIG TIDDY GOTH GF";
 	rooms["RESIDENTIAL DECK 11"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["RESIDENTIAL DECK 11"].runOnEnter = playFynsDoorScene;
+	rooms["RESIDENTIAL DECK 11"].runOnEnter = resDeck11Func;
+
+	rooms["RES DECK BIG TIDDY GOTH GF"] = new RoomClass(this);
+	rooms["RES DECK BIG TIDDY GOTH GF"].roomName = "EAST\nWALKWAY";
+	rooms["RES DECK BIG TIDDY GOTH GF"].description = "There are a number of double story apartments here with balconies, easily fitting into the high-roofed residential arcade. There’s also a dock for hover carts and a small payment terminal, for those not wishing to walk back and forth down the thoroughfare.\n\nThere’s a particularly large apartment to the north of here. The classy pillars and archways mix with the lascivious color scheme of red and gold, making it look like an upper-class bordello more than a residence. The holo-sign next to the door reads 112.\n\nThere’s a large steel wall to the east. West leads back in the direction of the central plaza.";
+	rooms["RES DECK BIG TIDDY GOTH GF"].planet = "TAVROS STATION";
+	rooms["RES DECK BIG TIDDY GOTH GF"].system = "SYSTEM: KALAS";
+	rooms["RES DECK BIG TIDDY GOTH GF"].northExit = "RESIDENTIAL DECK 11";
+	rooms["RES DECK BIG TIDDY GOTH GF"].moveMinutes = 1;
+	rooms["RES DECK BIG TIDDY GOTH GF"].addFlag(GLOBAL.INDOOR);
+	rooms["RES DECK BIG TIDDY GOTH GF"].addFlag(GLOBAL.NPC);
 	
 	//1012 North Walkway 1
 	rooms["RESIDENTIAL DECK 12"] = new RoomClass(this);
@@ -723,17 +735,27 @@ public function initTavrosRooms():void
 	//1013 North Walkway 2
 	rooms["RESIDENTIAL DECK 13"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 13"].roomName = "NORTH\nWALKWAY";
-	rooms["RESIDENTIAL DECK 13"].description = "This largely unlived in part of the deck is almost achingly quiet, each footstep echoing down the incredibly tall and long walkway. Each room has ridiculously cheap pricing on it. There are also a few advertising boards up, mostly displaying the latest movies and soft-drink products.\n\nSouth leads towards the central plaza. There’s a large steel wall to the north. It seems that part of the station is still under construction.";
+	rooms["RESIDENTIAL DECK 13"].description = "This largely unlived in part of the deck is almost achingly quiet, each footstep echoing down the incredibly tall and long walkway. Each room has ridiculously cheap pricing on it. There are also a few advertising boards up, mostly displaying the latest movies and soft-drink products.\n\nSouth leads towards the central plaza. To the north, there’s a big block of cheap apartments, grav shafts enabling access to the identikit steel boxes further up.";
 	rooms["RESIDENTIAL DECK 13"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 13"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 13"].southExit = "RESIDENTIAL DECK 12";
 	rooms["RESIDENTIAL DECK 13"].westExit = "RESIDENTIAL DECK FISIS APARTMENT";
 	rooms["RESIDENTIAL DECK 13"].eastExit = "RESIDENTIAL DECK KASES APARTMENT";
+	rooms["RESIDENTIAL DECK 13"].northExit = "BIZZY STUDIO ROOM";
 	rooms["RESIDENTIAL DECK 13"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["RESIDENTIAL DECK 13"].runOnEnter = northWalkwayBonus;
+
+	rooms["BIZZY STUDIO ROOM"] = new RoomClass(this);
+	rooms["BIZZY STUDIO ROOM"].roomName = "BIZZY & CO\nSTUDIOS";
+	rooms["BIZZY STUDIO ROOM"].description = "BIZZYS BIG PORN HOUSE";
+	rooms["BIZZY STUDIO ROOM"].planet = "TAVROS STATION";
+	rooms["BIZZY STUDIO ROOM"].system = "SYSTEM: KALAS";
+	rooms["BIZZY STUDIO ROOM"].southExit = "RESIDENTIAL DECK 13";
+	rooms["BIZZY STUDIO ROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["BIZZY STUDIO ROOM"].runOnEnter = null;
 	
 	//Fisianna's Apartment - Doesn't do much for now.
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"] = new RoomClass(this);
@@ -770,6 +792,7 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 14"].runOnEnter = breedwellPremiumBootyCallsCheckTavrosCouple;
 	
 	//1015 West Walkway 2
 	rooms["RESIDENTIAL DECK 15"] = new RoomClass(this);
@@ -863,10 +886,24 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 17"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 17"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 17"].northExit = "RESIDENTIAL DECK 16";
+	rooms["RESIDENTIAL DECK 17"].eastExit = "RESIDENTIAL DECK VELTA";
 	rooms["RESIDENTIAL DECK 17"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 17"].runOnEnter = resDeck17Func;
+	
+	//velta's apartment
+	rooms["RESIDENTIAL DECK VELTA"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK VELTA"].roomName = "VELTA’S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK VELTA"].description = "";
+	rooms["RESIDENTIAL DECK VELTA"].westExit = "RESIDENTIAL DECK 17";
+	rooms["RESIDENTIAL DECK VELTA"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK VELTA"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK VELTA"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.PRIVATE);
+	rooms["RESIDENTIAL DECK VELTA"].runOnEnter = veltaApartmentFunc;
 
 	//1018 Aina's Apartment
 	//Added in variableRoomUpdateCheck() in game.as since the room is only available 
@@ -1226,4 +1263,30 @@ public function initTavrosRooms():void
 	rooms["RIYAPARTY"].moveMinutes = 2;
 	rooms["RIYAPARTY"].runOnEnter = undefined;
 	rooms["RIYAPARTY"].addFlag(GLOBAL.INDOOR);
+	
+	//1011 East Walkway 2
+	rooms["RESIDENTIAL MIRRIN"] = new RoomClass(this);
+	rooms["RESIDENTIAL MIRRIN"].roomName = "\nSTERKURHÚS";
+	rooms["RESIDENTIAL MIRRIN"].description = "";
+	rooms["RESIDENTIAL MIRRIN"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL MIRRIN"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL MIRRIN"].westExit = "RESIDENTIAL DECK 11";
+	rooms["RESIDENTIAL MIRRIN"].moveMinutes = 1;
+	rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL MIRRIN"].runOnEnter = mirrinSterkurHusBonus;
+
+	rooms["ANON'S BACK END"] = new RoomClass(this);
+	rooms["ANON'S BACK END"].roomName = "ANON’S\nBACK END";
+	rooms["ANON'S BACK END"].description = "You find yourself in the back room of Anon’s bar. The crowds filling the entrance thin out around here, but the smells of booze and debauchery are still unmistakable. It would seem this part of the bar is destined for patrons interested in a more peaceful environment than the hustle and bustle that characterizes the rest of the place. To the west is the way to the entrance, where you came from.";
+	rooms["ANON'S BACK END"].planet = "TAVROS STATION";
+	rooms["ANON'S BACK END"].system = "SYSTEM: KALAS";
+	rooms["ANON'S BACK END"].westExit = "ANON'S BAR AND BOARD";
+	rooms["ANON'S BACK END"].runOnEnter = anonBackEndBonus;
+	rooms["ANON'S BACK END"].moveMinutes = 1;
+	rooms["ANON'S BACK END"].addFlag(GLOBAL.INDOOR);
+	//rooms["ANON'S BACK END"].addFlag(GLOBAL.BAR);
+	rooms["ANON'S BACK END"].addFlag(GLOBAL.PUBLIC);
+	rooms["ANON'S BACK END"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 }

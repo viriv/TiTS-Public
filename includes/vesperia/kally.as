@@ -261,7 +261,7 @@ public function approachKally():void
 			output(".");
 		}
 		output("”</i>");
-		output("\n\nYour heart flutters at the knowledge that she cares about your well being, and you barely manage to fight off the urge to give her a hug and apologize for loving the drinks (and the person that serves them) so much. <i>“You’re the bartender. The awesome bartender. It’s your call.”</i>");
+		output("\n\nYour heart flutters at the knowledge that she cares about your wellbeing, and you barely manage to fight off the urge to give her a hug and apologize for loving the drinks (and the person that serves them) so much. <i>“You’re the bartender. The awesome bartender. It’s your call.”</i>");
 		output("\n\nTwitching her ears and tail, the kui-tan smiles back at you, proving that for all professional poise, she’s about as resistant to your drunken flattery as an ausar in heat. Her nipples are practically jutting at you, so prominent...");
 		output("\n\nLaughing, Kally twists back and forth, letting her big ol’ boobs bounce back and forth, slapping into each other wildly enough that you nearly go dizzy trying to follow their dark chocolate tips. You put a hand to your head and straighten to meet her eyes once more, noting how they seem almost luminous in the bar’s dimmed lighting.");
 		output("\n\n<i>“I hope you enjoyed the show.”</i> Kally giggles. <i>“");
@@ -845,7 +845,7 @@ public function askKallyAboutDelilah():void
 	output("<i>“So you bought Del?”</i>");
 	output("\n\nKally leans over on the bar and waggles a furry finger at you. <i>“I don’t own Del. I own her contract. Slavery’s illegal, you know!”</i> She shakes her head sadly, then brushes a shimmering lock of chocolate hair out of her eyes. <i>“Truth be told, I needed an extra hand and saw an opportunity to help somebody else out of a shitty situation. When I heard what she’d been through, I couldn’t let her go back to that, [pc.name]. She’s been pumped full of so many mods and so many dicks that as soon as she got in the door, she was reaching under my skirt to suck my dick.”</i>");
 	output("\n\nThat sounds an awful lot like Delilah.");
-	output("\n\nLooking over your shoulder, Kally fixes her eyes on the slutty shemale. She chews her ebony lip, sighing heavily. <i>“It took the better part of a day to get her to stop fucking the customers in the main room, and I had to call in a favor from Sylvie, our resident peace-keeper, to keep her out of jail.”</i> She shudders from tail to tits. <i>“The poor thing seemed to think that complimentary orgasms were a major part of customer satisfaction.”</i>");
+	output("\n\nLooking over your shoulder, Kally fixes her eyes on the slutty shemale. She chews her ebony lip, sighing heavily. <i>“It took the better part of a day to get her to stop fucking the customers in the main room, and I had to call in a favor from Sylvie, our resident peace-keeper, to keep her out of jail.”</i> She shudders from tail to tits. <i>“The poor thing seemed to think that complementary orgasms were a major part of customer satisfaction.”</i>");
 	output("\n\n");
 	if(pc.isBimbo()) output("Wait... they aren’t? You can’t think of a thing more satisfying than getting to hand out a few dozen orgasms.");
 	else output("You wisely don’t mention your own contribution to her state.");
@@ -3755,7 +3755,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	//Blue e-stimcunny
 	else if(arg == "blue")
 	{
-		output("\n\nYou can understand how Kiro can be so distracted. With the smell of two horny herm-sisters compounded by the artificial pheromones soaking Kiro’s cock, it’s difficult to focus on anything but fucking. You slap your [pc.hips] into the wall again and again, belatedly grateful that the latex padding is positioned to provide you with cushions on either side of your power-packed dicksleeve. The waves of coruscating stimulation begin to vary once you start fucking in earnest, shaping the fields of electric pleasure to compliment your body’s hard work.");
+		output("\n\nYou can understand how Kiro can be so distracted. With the smell of two horny herm-sisters compounded by the artificial pheromones soaking Kiro’s cock, it’s difficult to focus on anything but fucking. You slap your [pc.hips] into the wall again and again, belatedly grateful that the latex padding is positioned to provide you with cushions on either side of your power-packed dicksleeve. The waves of coruscating stimulation begin to vary once you start fucking in earnest, shaping the fields of electric pleasure to complement your body’s hard work.");
 		output("\n\nYour [pc.cockNoun " + x + "] is so hyperstimulated that the feeling of the tube itself all but disappears, leaving nothing but the electricity coursing along your cock for company. You would probably stop thrusting entirely if the sharpened shocks weren’t so effective at encouraging you to thrust. Whoever programmed this thing is a genius. You might even love them. They’ve lassoed your [pc.cockNoun " + x + "] in lightning, and every tug upon that electron-laden yoke is a new experience in pleasure. Sometimes it is a moment of dazzling ecstasy. Other times it feels like the tickles of feather. During one thrust, you swear you can feel bands being tied tight around your dick, but when you pull out there is nothing but conductive lube and turgid, drooling length.");
 	}
 	//SUCCUBUTTSLUT

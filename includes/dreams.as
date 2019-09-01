@@ -142,7 +142,7 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			// Reaha dreams
 			if(reahaIsCrew() && pc.hasCock() && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") dreams.push(reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsForNerdpletion);
 			//Repeat of April Fools Berwyn dream
-			if(flags["BERWYN_DREAMED"] != undefined) dreams.push(berwynSleepyBoiDram);
+			if(flags["BERWYN_DREAMED"] != undefined && pc.hasCock()) dreams.push(berwynSleepyBoiDram);
 		}
 		if(seraIsMistress()) dreams.push(demonDream);
 		if(isHalloweenish()) dreams.push(superGhostioDream);
@@ -1401,13 +1401,13 @@ public function capraphormPrimorditattsGain():void
 	output("There’s an indescribable itch that takes over your [pc.skinFurScales], one that covers your body. You feel the urge to scratch but merely brushing your fingers against the sensitive surface makes you wince.");
 	if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
 	{
-		if(pc.skinType != GLOBAL.SKIN_TYPE_FUR)
+		if(pc.skinType == GLOBAL.SKIN_TYPE_FUR)
 		{
-			output("\n\nYour [pc.skinFurScales] visibly shifts color to a cool, jade green shade!");
+			output("\n\nThe surface of your [pc.skinFurScales] visibly shifts color to a cool, jade green shade!");
 		}
 		else
 		{
-			output("\n\nYou feel sharp hairs come out from unseen pores all over your body, their color a cool, jade green shade!");
+			output("\n\nYou feel sharp hairs come out from unseen pores all over your body, their color to a cool, jade green shade!");
 			pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 			pc.clearSkinFlags();
 		}
@@ -2005,7 +2005,7 @@ public function berwynSleepyBoiDram():void
 	output("\n\nAs your eyes slowly open and sleep abandons you, you realize that singular sensation was real!");
 	output("\n\nYour sleep-addled mind can barely comprehend what’s going on right now, but from what you can see there’s currently a femmy, chocolate-skinned ausar bouncing on your morning wood!");
 	output("\n\nYou blink a few times to try and confirm what you’re seeing is what’s actually happening, but a jolt of pleasure from your loins as the dogboy plunges down onto your cock quickly has you convinced. You groan as the the white-furred ausar’s tailhole hugs as your tool. When your consciousness fully returns to you, you’re struck by many different feelings, but one outweighs them all: confusion.");
-	output("\n\nIn a vain attempt to ascertain the identity of this cock-riding femboy, you analyze his features and trying to piece together if he’s possibly a lover from last night before you simply don’t remember yet. Nothing about him strikes you as familiar though. The dark tone of his skin, his smokey black-and-white fur, his snowy locks, nor his girly hips and shapely, plump ass ring up and memories. What’s more, he’s got a massive slab of an ausar cock sitting between his legs, though you can barely see most of it with him facing away from you. You do notice his balls are covered in fur though, which seems odd for an ausar.");
+	output("\n\nIn a vain attempt to ascertain the identity of this cock-riding femboy, you analyze his features and trying to piece together if he’s possibly a lover from last night before you simply don’t remember yet. Nothing about him strikes you as familiar though. The dark tone of his skin, his smoky black-and-white fur, his snowy locks, nor his girly hips and shapely, plump ass ring up and memories. What’s more, he’s got a massive slab of an ausar cock sitting between his legs, though you can barely see most of it with him facing away from you. You do notice his balls are covered in fur though, which seems odd for an ausar.");
 	output("\n\nYou let out a quiet, pleasured cry again as the femboy makes another trip down your shaft");
 	if(pc.cocks[0].cLength() >= 14) output(", your tool bulging the dogboy’s flat tummy with an outline of your manhood");
 	output(". His ears twitch at your blissful tones, and he looks over his shoulder at you, a smug look on his effeminate face. He has striking, pale blue eyes that gaze at you expectantly.");
@@ -2025,10 +2025,11 @@ public function berwynSleepyBoiDram():void
 	output("\n\nIt’s all quickly becoming too much for your mind to handle, and despite your best efforts to hold on and enjoy Berwyn’s ass for as long as you can, your body has different plans. You grit your teeth and grab tightly at Berwyn’s hips, and " + (pc.hasKnot(0) ? "pull him down right onto your [pc.knot], popping it into him and holding him down on your":"hold him down on your") + " [pc.cock] as it begins to convulse. Your body tenses under your lover’s as your orgasm ensues, and your tool spasms inside Berwyn’s tight tailhole as bliss dulls your senses and floods your mind. The first shot of [pc.cumNoun] meets the chocolate femboy’s inner walls soon after. He gasps as your seed coats floods his depths, the sudden heat of your cum causing him to clench and his asshole to tighten around your cock.");
 	output("\n\nHe pants and moans at the sensation as you continue to pump him full of your cum, and it seems to you like that’s enough to get the ausar to his own climax. He shivers atop you, legs quivering as he tumbles over his orgasmic peak. His tailhole convulses around your shaft while his inhumanly large ausar cock flexes and spasms. A nigh endless supply of ausar spunk empties from his plump, fuzzy balls and all over your bed, filling your quarters with his heavy musk, which only seems to make you cum that much harder.");
 	output("\n\nYour [pc.cum] is " + (pc.hasKnot(0) ? "held safe inside Berwyn’s ass by your knot":"leaking from Berwyn’s ass") + " as your climax endures.");
-	if(pc.cumQ() >= 2500) output(" The utterly ludicrous size of your load soon has the femboy’s flat tummy distending as he’s filled with cum, leaving his stomach nice and round and full of your seed.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 2500) output(" The utterly ludicrous size of your load soon has the femboy’s flat tummy distending as he’s filled with cum, leaving his stomach nice and round and full of your seed.");
 	else output(" The appreciable size of your load has Berwyn groaning contentedly as you fill him with your seed.");
 	output("\n\nIt’s a while longer before you finally come down from your climax, and even longer still before Berwyn’s hefty testicles are finally empty, leaving the thoroughly-fucked femboy with his flat, boyish chest heaving, barely able to keep himself upright. As a haze of lust clears from your eyes and your senses return in full, you look up to see Berwyn smiling over his shoulder at you, looking more than a little smug, but entirely content.");
-	output("\n\nHe promptly collapses back onto you with his head resting against your [pc.chest], his long snowy locks spread out along your body and bed. You grin and " + (pc.cumQ() >= 2500 ? "caress his cum-swollen tummy":"wrap your arms around his svelte midsection") + ".");
+	output("\n\nHe promptly collapses back onto you with his head resting against your [pc.chest], his long snowy locks spread out along your body and bed. You grin and " + (cumQ >= 2500 ? "caress his cum-swollen tummy":"wrap your arms around his svelte midsection") + ".");
 	output("\n\nBerwyn sighs happily then chuckles, <i>“Yeah, anal’s pretty good...”</i>");
 	output("\n\nFor some reason, you can’t help but smile at that. You still have no idea who Berwyn really is, but something about that makes feel prideful, like you’ve won some victory over this femboy, attained some goal that you didn’t know you had.");
 	output("\n\nEither way, you feel quite tired after all that besides having just woken up. So, you let your eyelids close as they grow heavy, and drift off to sleep with Berwyn in your arms...");

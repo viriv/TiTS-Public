@@ -2,6 +2,10 @@ import classes.Items.Protection.ProtoShield;
 import classes.Items.Protection.JumperShield;
 import classes.Items.Armor.RattyArmor;
 import classes.Items.Guns.HandCannon;
+import classes.Items.Melee.Vibrolass;
+import classes.Items.Guns.TriBeamRifle;
+import classes.Items.Melee.TrickBracer;
+
 
 
 /* By Fenoxo Fenbutte:
@@ -51,7 +55,7 @@ public function zhengShiHangerFloorBonus():Boolean
 		//Defeated Urbolg by lust or ever fucked him:
 		else if(flags["URBOLG_LUSTED"] != undefined || flags["SEXED_URBOLG"] != undefined) output("\n\nUrbolg the korgonne mechanic busily works to repair a scrap engine hanging from a lift, but he keeps casting sly glances in your direction with his robotic eye. The fluffy little devil seems to have taken a liking to you!");
 		//Normal Urbolg
-		else output("\n\nUrbolg the korgonne mechanic busily toils over junked engine. The hunk of blast-ruined metal hangs from a lift as he works on it, fully absorbing his attention.");
+		else output("\n\nUrbolg the korgonne mechanic busily toils over a junked engine. The hunk of blast-ruined metal hangs from a lift as he works on it, fully absorbing his attention.");
 		addButton(0,"Urbolg",peacefulApproachUrbolg);
 	}
 	//Bonus shortcut!
@@ -1124,7 +1128,7 @@ public function buyFromUrbolg():void
 	showUrbolg();
 	shopkeep = chars["URBOLG"];
 	shopkeep.keeperBuy = "You indicate that you’d like to buy something from him.\n\nUrbolg raises an eyebrow. <i>“Ye ain’t pulling on my tail, are ye? Most of the stuff I have laying around fer sale isn’t exactly masterwork material, just standard gear some idiot broke and tossed my way. Lucky for you, it was me what fixed it up, so this second-hand junk’ll serve ye better than the brand new crap from JoyCo.”</i>\n";
-	shopkeep.inventory = [new HandCannon(),new JumperShield(),new RattyArmor()];
+	shopkeep.inventory = [new HandCannon(),new JumperShield(),new RattyArmor(), new Vibrolass(), new TriBeamRifle(), new TrickBracer()];
 	buyItem();
 }
 

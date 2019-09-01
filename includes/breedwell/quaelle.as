@@ -175,7 +175,7 @@ public function quaelleTalkRoehmPart2():void
 		output("\n\n<i>“What if these orchan race warriors had decided to wipe you all out?”</i> you ask. <i>“What then?”</i>");
 		output("\n\n<i>“But they didn’t,”</i> replies the roehm, antennae waving curiously.");
 		output("\n\n<i>“But. What. If. They. Had,”</i> you persist. <i>“You can’t sit and wait for things to work out on its own in every case, that’s insane!”</i>");
-		output("\n\n<i>“Shiverous Steele...”</i> Quaelle smiles at you with infuriating compassion and kindness. <i>“ ...what if you kill yourself careening fluctacularly around the frontier as you do? What if you and all of your crew wind up enslaved to a cruel and terrible pirate lord? With your skills and upbringing, you could find a safe and peaceful living in the core. This has all occurred to you, I’m sure. And yet you act as you do, flickersome and humful nonetheless, because you are the child of your parents, and can do nothing other.”</i>");
+		output("\n\n<i>“Shiverous Steele...”</i> Quaelle smiles at you with infuriating compassion and kindness. <i>“...what if you kill yourself careening fluctacularly around the frontier as you do? What if you and all of your crew wind up enslaved to a cruel and terrible pirate lord? With your skills and upbringing, you could find a safe and peaceful living in the core. This has all occurred to you, I’m sure. And yet you act as you do, flickersome and humful nonetheless, because you are the child of your parents, and can do nothing other.”</i>");
 		output("\n\nShe laughs. <i>“Hmm. Hmm. Hmm.”</i>");
 		output("\n\n<i>“And I adore you, and all others like you! How lovely to see you stride about impetuously, vibrosely, magnificently uncaring of your impending doom! Please - don’t ask why roehm act like we do. Simply marvel at the differences that make this throbbulent galaxy so beautiful.”</i>");
 	}
@@ -291,7 +291,7 @@ public function quaelleTalkHitOn():void
 		if (flags["QUAELLE_HUGGED"] != undefined) 
 		{
 			output("\n\nQuaelle’s smile broadens slowly as she gazes back at you. There’s a long pause... but you’re too used to that now to feel discomfited by it.");
-			output("\n\n<i>“Do you really mean that, vibrulent Steele?”</i> she asks, antennae wriggling fitfully. <i>“Oh, that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. I hope it hasn’t been too tiresome waiting for me to get to the point, but...”</i> She giggles, gazing at you more coyly now.Hmm. Hmm. <i>“ ...it is a good way of finding out if someone is comfortable with a roehm’s rhythms, is it not?”</i>");
+			output("\n\n<i>“Do you really mean that, vibrulent Steele?”</i> she asks, antennae wriggling fitfully. <i>“Oh, that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. I hope it hasn’t been too tiresome waiting for me to get to the point, but...”</i> She giggles, gazing at you more coyly now. <i>“Hmm. Hmm... it is a good way of finding out if someone is comfortable with a roehm’s rhythms, is it not?”</i>");
 			output("\n\nShe opens her arms to you, and without a moment’s hesitation you get up and dive into that incredibly soft, wet, caramel-scented embrace. This one is different, though - Quaelle’s hands sink downwards, touching and stroking your back and [pc.ass] with obvious interest, deepening the heat you already feel in your [pc.groin]. When you surface from between her wide, pillowy breasts, you reach upwards to plant a soft kiss on her fruity lips.");
 			output("\n\n<i>“I have to plan longer breaks ahead of time,”</i> she murmurs to you. <i>“So you’ll have to wait a bit before we get, hmm, intimate. But I know you’re willing to do that, don’t I? My shiverous, throbbful Steele.”</i>");
 			output("\n\nShe oozes out from behind the table and heads back to the front desk. You notice several of the rahn over there have barely been pretending not to rubberneck, and there’s gleeful clapping and a cheer when Quaelle slithers triumphantly back to her post.");
@@ -320,7 +320,7 @@ public function quaelleTalkHitOn():void
 		{
 			output("\n\nQuaelle’s smile broadens slowly as she gazes back at you. There’s a long pause... but you’re too used to that to feel discomfited by it.");
 			output("\n\n<i>“Oh, vibrulent Steele! You know you shouldn’t be making such kind, shiverous offers,”</i> she says, antennae wriggling fitfully. <i>“Your womb should be being stuffed full of rahn eggs as much as possible");
-			if (pc.hasPregnancyOfType("RahnPregnancyBreedwell")) output(" , as it is now");			
+			if (pc.hasPregnancyOfType("RahnPregnancyBreedwell")) output(", as it is now");			
 			output(". But...”</i> She giggles, gazing at you more coyly now. Hmm. Hmm. <i>“Hearing you say that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. Of course I would like to share intimacy with you.”</i>");
 			
 			output("\n\nShe opens her arms to you, and without a moment’s hesitation you get up and dive into that incredibly soft, wet, caramel-scented embrace. This one is different, though - Quaelle’s hands sink downwards, touching and stroking your back and [pc.ass] with obvious interest, deepening the heat you already feel in your [pc.groin]. When you surface from between her wide, pillowy breasts, you reach upwards to plant a soft kiss on her fruity lips.");
@@ -386,6 +386,7 @@ public function quaelleApproachDohrahn():void
 	clearOutput();
 	quaelleShowDohrahn();
 	author("Nonesuch");
+	var desc:String;
 	
 	if (quaelleHasLeft())
 	{
@@ -426,6 +427,21 @@ public function quaelleApproachDohrahn():void
 	
 	if (flags["QUAELLE_DOHRAHN_FLIRT"] == undefined) addButton(1, "Flirt", quaelleFlirtDohrahn, undefined);
 	else addDisabledButton(1, "Flirt", "Flirt", "You tried this already!");
+	
+	if (MailManager.isEntryViewed("breedwell_premium_invite"))
+	{
+		if (breedwellPremiumContractCount() > 0) desc = "Renewal";
+		else desc = "Premium";
+		if (breedwellPremiumIsQualified(true))
+		{
+			if (breedwellPremiumContractCount() > 0) addButton(2, desc, breedwellPremiumRenewPremium,undefined,desc,"Ask about your Premium Breeder contract. Is it possible to do another term?");
+			else addButton(2, desc, breedwellPremiumGetPremiumDohrahn,undefined,desc,"Ask about becoming a Premium Breeder.");
+		}		
+		else if (flags["BREEDWELL_PREM_CON_BAN"] == 1) addDisabledButton(2, desc, desc, "You have been banned!");
+		else if (breedwellPremiumUnderContract()) addDisabledButton(2, desc, desc, "You are already under contract.");
+		else if (!pc.hasVagina()) addDisabledButton(2, desc, desc, "You have no wombs!");
+		else addDisabledButton(2, desc, desc, "Probably a bad idea to talk about this whilst you’re currently knocked up with something other than rahn.");
+	}
 	
 	addButton(14, "Leave",mainGameMenu,undefined);
 }
@@ -1326,9 +1342,7 @@ public function quaelleSexScoot():void
 	clearOutput();
 	showQuaelle(true);
 	author("Nonesuch");
-	
-	moveTo("BREEDWELL_RECEPTION");
-	
+		
 	output("<i>“Ohh...”</i> sighs Quaelle, antennae sagging when you tell her you’re really pressed for time. <i>“Ok.”</i>");
 	output("\n\nShe lets you go and watches dolefully as you pull your [pc.gear] back on. <b>It’s kind of gross when you’re still covered in roehm slime. The smell of sexual sugar lingers on your [pc.skin].</b>");
 	output("\n\n<i>“Safe travels, quiverful Steele,”</i> she says. <i>“Come back and keep me company again soon, won’t you?”</i>");
@@ -1336,7 +1350,7 @@ public function quaelleSexScoot():void
 	
 	processTime(5);
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move,"BREEDWELL_RECEPTION");
 
 }
 
@@ -1345,9 +1359,7 @@ public function quaelleSexBathGripper():void
 	clearOutput();
 	showQuaelle(true);
 	author("Nonesuch");	
-	
-	moveTo("BREEDWELL_RECEPTION");
-	
+		
 	if (flags["QUAELLE_WATCH_GRIPPER"] != 1) output("With a few quick clicks, Quaelle sticks on the first episode of <i>Drag</i>, a hardboiled detective series. Oh, you’ve been meaning to catch up on this!");
 	else output("There’s only one answer, isn’t there? You <i>must</i> find out what happens next in <i>Drag</i>. And it feels like you’re cheating not watching it with your roehm girlfriend.");
 	
@@ -1367,16 +1379,14 @@ public function quaelleSexBathRomcom():void
 	clearOutput();
 	showQuaelle(true);
 	author("Nonesuch");	
-	
-	moveTo("BREEDWELL_RECEPTION");
-	
+		
 	output("With a few quick clicks, Quaelle sticks on an episode of <i>PM in the Morning</i>, starring the lovely Cualley Komet. Here she is with her long blonde hair, flouncing into the comfortable apartment set with the gigantic grey supercomputer hanging over it.");
 	output("\n\n<i>“PM,”</i> she scowls upwards with her hands on her hips, <i>“did you trap Shadron in a virtual reality featuring his every nightmare that simulates every second lasting a year? What did he do to deserve that?”</i>");
 	output("\n\n<i>“LEFT.HIS.DRYING.UNDERWEAR.ON.MY.AUXILLARY.COOLING.UNIT.”</i> replies the machine, turning its bright, baleful green eye upon Cualley. Tinned laughter ensues.");
 	output("\n\nThe sitcom about having an untethered, immensely powerful A.I. for a roommate bounces along breezily enough, the gags revolving around nerd patheticness and total biological extermination coming thick and fast. Apparently this draws in an audience of hundreds of billions galaxy-wide, and you sort of get why after watching for a bit: aside from the familiar will-they-won’t-they shaggy dog dynamics, whether or not PM is ever going to annihilate Komet and her equally asinine friends is an undeniable hook.");
 	output("\n\n<i>“Despite everything... I’m still glad I got up this morning,”</i> the human smiles after half an hour, <i>“Aren’t you, PM?”</i>");
 	output("\n\n<i>“MY.ANALYTICS.RECOMMEND.THIS.FACILE.CHARADE.PROCEED.FOR.NOW.”</i> says PM, prehensile multi-tools gently circling around her head.");
-	output("\n\n<i>“Awwwwwwww,” sighs Quaelle, squeezing you happily into her soft side as the credits roll. <i>“You know it loves her, deeeeep down.”</i>");
+	output("\n\n<i>“Awwwwwwww,”</i> sighs Quaelle, squeezing you happily into her soft side as the credits roll. <i>“You know it loves her, deeeeep down.”</i>");
 
 	quaelleSexBathEnd(60);
 }
@@ -1429,9 +1439,7 @@ public function quaelleSexBathSexyNext():void
 	clearOutput();
 	showQuaelle(true);
 	author("Nonesuch");	
-	
-	moveTo("BREEDWELL_RECEPTION");
-	
+		
 	output("<i>“Ooh,”</i> groans Quaelle, wiping her face and cilia with a flannel. She looks salted. <i>“That program is so naughty. So villurescent. But... you can’t help but jack back in, can you?”</i>");
 	output("\n\nYou hit back and cuddle with her for a bit longer, enjoying the steaming hot waters and her soft, giving curves.");
 	
@@ -1442,9 +1450,7 @@ public function quaelleSexBathHerChoice():void
 	clearOutput();
 	showQuaelle(true);
 	author("Nonesuch");	
-	
-	moveTo("BREEDWELL_RECEPTION");
-	
+		
 	output("<i>“Are you sure, shiverous Steele? Well... ok.”</i> Quaelle taps her favourites tab and selects <i>Adamantine Chef</i>.");
 	output("\n\n<i>“Welcome back to Adamantine Chef!”</i> oozes the aproned, raspberry-skinned roehm host. She’s sat between bays of kitchen equipment that look more like biolabs than something you’d use to make dinner with; tensely faced contestants of all shapes and sizes are hard at work in them, dicing, measuring, frying, seasoning, and in one case wrestling with a lively tentacle bush. A panel of snippy looking judges floats on a hovering diaz above the action.");
 	output("\n\n<i>“We’ll get back to see how Mike and Mia’s Vellafreyan sorbet is getting on in six months’ time,”</i> the host says brightly. <i>“But, now... those of you who have been on tenterhooks to find out how the Spattergroach team’s iridescent ratatouille from Season 138 turned out, ready yourselves!”</i>");
@@ -1468,7 +1474,7 @@ public function quaelleSexBathEnd(time:int=120):void
 	processTime(time);
 	pc.shower();
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move,"BREEDWELL_RECEPTION");
 }
 
 public function quaellePregGreeting():void
@@ -1530,7 +1536,7 @@ public function quaellePCPregGreeting():void
 	if (quaelleIsPCPreg() == 1)
 	{
 		output("<i>“Vibrantic Steele! You are... is that...?”</i> Quaelle wrings her hands, antennae ashiver, very un-roehm-like in her anxious wonder as she gazes down at your [pc.belly]. You smile at her, draw close to her slimy bulk so that she can have a stroke. Her wet, warm hand moves across your growing bulge.");
-		output("\n\n<i>“I never imagined it would be this way,”</i> she murmurs, lost in a reverie. She seems unable to take her eyes off your stomach. <i>“I was prepared for my body to grow fat with tumbulous life. All those extranet videos I watched, how to prepare for it! But...”</i> she raises her double-pupiled eyes to meet yours, smiling. <i>“ ...that was foolish of me, wasn’t it? Hoping to meet someone in this place of all places, expecting that was how my partner would wish it to be. It’s strange but... wonderful.”</i>");
+		output("\n\n<i>“I never imagined it would be this way,”</i> she murmurs, lost in a reverie. She seems unable to take her eyes off your stomach. <i>“I was prepared for my body to grow fat with tumbulous life. All those extranet videos I watched, how to prepare for it! But...”</i> she raises her double-pupiled eyes to meet yours, smiling. <i>“...that was foolish of me, wasn’t it? Hoping to meet someone in this place of all places, expecting that was how my partner would wish it to be. It’s strange but... wonderful.”</i>");
 		output("\n\nShe sighs happily, and then withdraws her hand.");	
 		output("\n\n<i>“Thank you for visiting, shiverous Steele. You have other business here I’m sure... but you’ll sit with me for a little while, won’t you?”</i>");	
 	}
@@ -1567,15 +1573,13 @@ public function quaelleImmobileLeave():void
 	clearOutput();
 	showQuaelle(true);
 	author("Nonesuch");
-	
-	moveTo("BREEDWELL_RECEPTION");
-	
+		
 	output("<i>“Ok...”</i> The heavily pregnant roehm’s antennae droop downwards and she rubs her hands together unhappily. <i>“I knooooow I’m too slooooooww for you riiiiiiight nowww. You’ll come and sssssit with me sooon though, won’t yoooouuuu?”</i>");
 	output("\n\nYou head back out towards Reception as she’s pulling one of her plant pots towards her, brilliant eyes misting up.");
 	
 	processTime(5);
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move,"BREEDWELL_RECEPTION");
 
 }
 public function quaelleImmobileBathSexy():void
@@ -1583,14 +1587,12 @@ public function quaelleImmobileBathSexy():void
 	clearOutput();
 	showQuaelle(true);
 	author("Nonesuch");	
-	
-	moveTo("BREEDWELL_RECEPTION");
-	
+		
 	pc.lust(50);
 	
 	output("<i>“Oooh. You wwwwant something... viiiibrulent? Yooouuuu are a shiverousssss thing,”</i> says Quaelle, eyes twinkling. She shifts slightly in the water, her great pregnant bulk sending little steaming waves skating over your naked body. <i>“Iiiii’m not sure I can, eeeemmmm, do much for yooouuuuu in my current state.. But if you’d like to doooo... soomethiing with meeee...”</i>");
 	output("\n\nShe’s arranged herself so she’s on her side, half-submerged, her front pussy just above the steaming waters. Its sapphire folds are plump and splayed by pregnancy, oozing sweetness, mouth-wateringly inviting.");
-	output("\n\n<i>“ ...Hmm. I wwwwouldn’t say noooooo.”</i>");
+	output("\n\n<i>“...Hmm. I wwwwouldn’t say noooooo.”</i>");
 	output("\n\nYou grin as you sink into the hot waters in front of her, all of your [pc.skinFurScales] submerged except for your head. You stroke her taut, spherical belly, hands slowly sinking downwards as she fiddles with her remote control until she finds The Power Palace. You turn and watch for a moment, fingers tracing Quaelle’s soft, slimy labia, making her sigh and tremble gently like an overstretched balloon.");
 	output("\n\n<i>“Hello again, mere mortals,”</i> husks the lithe, red-skinned woman with the huge, spreading horns lying on the divan. <i>“It is I, Rita Veluptua.”</i>");
 	output("\n\nShe is clad in long slips of silk; the neoclassical room is lit by flickers of flame. There is... equipment, arrayed around it, but its exact utility is disguised by the sultry gloom.");
@@ -1611,7 +1613,7 @@ public function quaelleImmobileBathSexy():void
 	processTime(120);
 	pc.shower();
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move,"BREEDWELL_RECEPTION");
 }
 public function quaelleBirthEmail():String
 {
@@ -1633,7 +1635,7 @@ public function quaelleBirth(birthTimestamp:int = -1):void
 	if (flags["QUAELLE_TOTAL_KIDS"] == undefined) flags["QUAELLE_TOTAL_KIDS"] = 0;
 	flags["QUAELLE_BIRTHSCENE_KIDS"] = 0;
 	
-	//both births can trigger if within 2 days of eachother
+	//both births can trigger if within 2 days of each other
 	if (flags["QUAELLE_INCUBATION_TIMER_F"] != undefined && flags["QUAELLE_INCUBATION_TIMER_F"] > quaelleIncubationDays() - 2)
 	{
 		//cycle through kids and increment gender stats
@@ -1756,21 +1758,21 @@ public function quaelleBirthScene():void
 		output("\n\nHer smile widens when she catches sight of you, eyes glistening.");
 		output("\n\n<i>“That was exhausting. And terrifying. And somnolent,”</i> she says softly. <i>“But... it was worth it. I am so glad I did this with you, verrifiscent Steele.”</i>");
 		
-		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output("\n\nYou go across and slide an arm around her soft, wet shoulders, gaze down at your daughters. On cue one of them opens her own eyes, gazes back at you with the frank, disbelieving curiosity of babies the galaxy over (albeit most babies don’t have four pupils to do it with). They are both pure roehm from their tiny wriggling cilia down to their} blunt, dazzling, sea slug ends... but their faces. Oh yes, you can see a trace of the roguish Steele charm there.");
+		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output("\n\nYou go across and slide an arm around her soft, wet shoulders, gaze down at your daughters. On cue one of them opens her own eyes, gazes back at you with the frank, disbelieving curiosity of babies the galaxy over (albeit most babies don’t have four pupils to do it with). They are both pure roehm from their tiny wriggling cilia down to their blunt, dazzling, sea slug ends... but their faces. Oh yes, you can see a trace of the roguish Steele charm there.");
 		else output("\n\nYou go across and slide an arm around her soft, wet shoulders, gaze down at your daughter. On cue she opens her own eyes, gazes back at you with the frank, disbelieving curiosity of babies the galaxy over (albeit most babies don’t have four pupils to do it with). She is pure roehm from her tiny wriggling cilia down to her blunt, dazzling, sea slug end... but her face. Oh yes, you can see a trace of the roguish Steele charm there.");
 		
 		output("\n\nYou summon up the roehm spirit - it’s easy to do in the presence of Quaelle - and for long, long moments you just sit there hugging her, bathing in the love and peace that is radiating off her, cradling her first child");
 		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output("ren");
 		output(".");
 		
-		output("\n\n<i>“Emmmmm,”</i> she murmurs at last, raising her eyes to yours again. <i>“I... looked through your file again, shiversome Steele. I hope you don’t mind, I just... wanted to know a bit more about you. Your father! What a shriltaltic individual he was! I know he left you that nursery, on Tavros, with all the things a child could want. You have seen this place...”</i> she wriggles her shoulders slightly. <i>“ ...it’s for rahn. Tamani might let me keep");
+		output("\n\n<i>“Emmmmm,”</i> she murmurs at last, raising her eyes to yours again. <i>“I... looked through your file again, shiversome Steele. I hope you don’t mind, I just... wanted to know a bit more about you. Your father! What a shriltaltic individual he was! I know he left you that nursery, on Tavros, with all the things a child could want. You have seen this place...”</i> she wriggles her shoulders slightly. <i>“...it’s for rahn. Tamani might let me keep");
 		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output(" them here, somnolently.... But they");
 		else output(" her here, somnolently.... But she");
 		output(" would not belong. They would be amongst children being trained to be colonists, and would not understand. It fills my heart with burrilliousness.”</i>");
 		
 		output("\n\nShe’s working her way up to saying something very difficult for her. She’s taking her time, as is her species’ wont.");
 		
-		output("\n\n<i>“ ...I would like you to take");
+		output("\n\n<i>“...I would like you to take");
 		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output(" them to your nursery.”</i> Her eyes swim slightly, but she keeps her voice steady. <i>“You will let me, won’t you, shiverous Steele? I believe it would be better. More mumberful. And I would see them again. You’d let me visit, wouldn’t you?”</i>");
 		else output(" her to your nursery.”</i> Her eyes swim slightly, but she keeps her voice steady. <i>“You will let me, won’t you, shiverous Steele? I believe it would be better. More mumberful. And I would see her again. You’d let me visit, wouldn’t you?”</i>");		
 		
@@ -1780,9 +1782,6 @@ public function quaelleBirthScene():void
 	}
 	else
 	{
-		
-		moveTo("BREEDWELL_RECEPTION");
-		
 		output("You [pc.move] along the walkway, through the endless bustle and airy hubbub of this place, retracing your steps to a familiar, glass-fronted hospital bay. In here, there is peace. Warm, humid peace. The room is arrayed with congratulatory flowers and plants from the reception team. Quaelle has her yellow bulk leant back on her impromptu wall-of-mattresses bed, her antennae flopped down and a tired smile on her face,");
 		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output(" two little " + flags["QUAELLE_BIRTHSCENE_COLOR"] + " bundles in her arms, wee heads rested on her breasts.");
 		else output(" a little " + flags["QUAELLE_BIRTHSCENE_COLOR"] + " bundle in her arms, wee head rested on her breasts.");
@@ -1792,7 +1791,7 @@ public function quaelleBirthScene():void
 		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output("s");			
 		output(" to our family.”</i>");
 		
-		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output("\n\nYou go across and slide an arm around her soft, wet shoulders, gaze down at your daughters. On cue one of them opens her own eyes, gazes back at you with the frank, disbelieving curiosity of babies the galaxy over (albeit most babies don’t have four pupils to do it with). They are both pure roehm from their tiny wriggling cilia down to their} blunt, dazzling, sea slug ends... but their faces. Oh yes, you can see a trace of the roguish Steele charm there.");
+		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output("\n\nYou go across and slide an arm around her soft, wet shoulders, gaze down at your daughters. On cue one of them opens her own eyes, gazes back at you with the frank, disbelieving curiosity of babies the galaxy over (albeit most babies don’t have four pupils to do it with). They are both pure roehm from their tiny wriggling cilia down to their blunt, dazzling, sea slug ends... but their faces. Oh yes, you can see a trace of the roguish Steele charm there.");
 		else output("\n\nYou go across and slide an arm around her soft, wet shoulders, gaze down at your daughter. On cue she opens her own eyes, gazes back at you with the frank, disbelieving curiosity of babies the galaxy over (albeit most babies don’t have four pupils to do it with). She is pure roehm from her tiny wriggling cilia down to her blunt, dazzling, sea slug end... but her face. Oh yes, you can see a trace of the roguish Steele charm there.");
 		
 		output("\n\nYou summon up the roehm spirit - it’s easy to do in the presence of Quaelle - and for long, long moments you just sit there hugging her, bathing in the love and peace that is radiating off her, cradling her first child");
@@ -1846,7 +1845,7 @@ public function quaelleBirthScene():void
 		
 		processTime(15);
 		clearMenu();
-		addButton(0, "Next", mainGameMenu);
+		addButton(0, "Next", move,"BREEDWELL_RECEPTION");
 	}	
 }
 public function quaelleBirthScenePart2():void
@@ -1854,9 +1853,7 @@ public function quaelleBirthScenePart2():void
 	clearOutput();
 	showQuaelle();
 	author("Nonesuch");		
-	
-	moveTo("BREEDWELL_RECEPTION");
-	
+		
 	output("You consider the " + flags["QUAELLE_BIRTHSCENE_COLOR"] + " blob");
 	if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output("s");	
 	output(" in her arms, looking back at you curiously, tiny cillia wiggling in your direction. Well... it’s not exactly a problem for you, is it?");
@@ -1886,7 +1883,7 @@ public function quaelleBirthScenePart2():void
 	}
 	else
 	{
-		output("\n\n<i>“I will back at work soon,”</i> she says at last, holding your hand. <i>“You’ll still visit, won’t you? I feel so vibriscent in your company. And, I think, once I’ve recovered...”</i> she squeezes your hand and is silent for a few moments, just looking at you with soft intent. <i>“ ...I would like some more.”</i>");
+		output("\n\n<i>“I will back at work soon,”</i> she says at last, holding your hand. <i>“You’ll still visit, won’t you? I feel so vibriscent in your company. And, I think, once I’ve recovered...”</i> she squeezes your hand and is silent for a few moments, just looking at you with soft intent. <i>“...I would like some more.”</i>");
 		output("\n\nVoid, she’s keen! You give her a soft kiss on the lips and then leave, heading back to reception.");
 	}
 	
@@ -1896,7 +1893,7 @@ public function quaelleBirthScenePart2():void
 	
 	processTime(15);
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move,"BREEDWELL_RECEPTION");
 }
 public function quaellePregnancyEnds():void
 {
@@ -1906,6 +1903,16 @@ public function quaellePregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Quaelle Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Quaelle Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;

@@ -594,9 +594,9 @@ public function boredJumperPregEncounterSteelePreg():Boolean
 	var i:int;
 	var rn:int;
 	
-	if (flags["BJUMPER_PC_PREG_TYPE"] != undefined && flags["BJUMPER_PC_PREG_TYPE"] != flags["BJUMPER_PREG_TYPE"]) sel.push(flags["BJUMPER_PC_PREG_TYPE"]);
-	if (flags["BJUMPER_PC_PREG_TYPE1"] != undefined && flags["BJUMPER_PC_PREG_TYPE1"] != flags["BJUMPER_PREG_TYPE"]) sel.push(flags["BJUMPER_PC_PREG_TYPE1"]);
-	if (flags["BJUMPER_PC_PREG_TYPE2"] != undefined && flags["BJUMPER_PC_PREG_TYPE2"] != flags["BJUMPER_PREG_TYPE"]) sel.push(flags["BJUMPER_PC_PREG_TYPE2"]);
+	if (flags["BJUMPER_PC_PREG_TYPE"] != undefined && (flags["BJUMPER_PC_PREG_TYPE"] != flags["BJUMPER_PREG_TYPE"] || flags["BJUMPER_PREG_TIMER"] < 50)) sel.push(flags["BJUMPER_PC_PREG_TYPE"]);
+	if (flags["BJUMPER_PC_PREG_TYPE1"] != undefined && (flags["BJUMPER_PC_PREG_TYPE1"] != flags["BJUMPER_PREG_TYPE"] || flags["BJUMPER_PREG_TIMER"] < 50)) sel.push(flags["BJUMPER_PC_PREG_TYPE1"]);
+	if (flags["BJUMPER_PC_PREG_TYPE2"] != undefined && (flags["BJUMPER_PC_PREG_TYPE2"] != flags["BJUMPER_PREG_TYPE"] || flags["BJUMPER_PREG_TIMER"] < 50)) sel.push(flags["BJUMPER_PC_PREG_TYPE2"]);
 	
 	i = sel.length;
 	
@@ -1795,14 +1795,14 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	
 	if (pc.cockTotal() > 1)
 	{
-		if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE)
+		if (pc.cockCanSting(kok))
 		{
-			if (pc.cocks[kok2].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok2].cType == GLOBAL.TYPE_ANEMONE) output("\n\nYour alien biology has a plan of its own. The stingers on your dual-slotted [pc.cocksLight] lash out at every corner of the Jumper’s pussy- and ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
+			if (pc.cockCanSting(kok2)) output("\n\nYour alien biology has a plan of its own. The stingers on your dual-slotted [pc.cocksLight] lash out at every corner of the Jumper’s pussy- and ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 			else output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper’s pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 		}
-		else if (pc.cocks[kok2].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok2].cType == GLOBAL.TYPE_ANEMONE) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok2 + "] lash out at every corner of the Jumper’s ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
+		else if (pc.cockCanSting(kok2)) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok2 + "] lash out at every corner of the Jumper’s ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 	}
-	else if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper’s pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
+	else if (pc.cockCanSting(kok)) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper’s pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 	
 	output("\n\n<i>“Yesss... Yes!”</i> she stirs from her stupor, [enemy.cockNoun 0] still hard, still dribbling. Her laughs return, and so does her lagomorphic libido.<i>“");
 	if (boredJumperKnowsSteelesName(jumperType)) output(" [pc.name],");
@@ -2015,8 +2015,8 @@ public function boredJumperPregEncounterGoWithRestRvsCowgirl(jumperType:int=0):v
 		else if (pc.milkType == GLOBAL.FLUID_TYPE_MILKSAP) output("\n\n<i>“Gosh, what is this... It tastes like...”</i> She smacks her lips, looking up to you with [pc.milkColor] milk-sap dripping from the edges of her [enemy.lipColor] lips. <i>“It’s... I can’t tell!”</i> You ask her if she’s displeased by it, but she’s quick to shake her head. <i>“Hell no! The aftertaste is incredible!”</i>");
 		else if (pc.milkType == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) output("\n\n<i>“Oh fuck, you’re not just a milky momma, you’re a walkin’ picnic!”</i> The Jumper dives into your chest again, painting her muzzle [pc.milkColor] with your [pc.milkFlavor] treat. <i>“Mm-mmf, sweetness with a bit of crisp. I looove fruity stuff! How’d ‘ya know?”</i> You shrug your shoulders and shove her back into it.");
 		else if (pc.milkType == GLOBAL.FLUID_TYPE_NECTAR) output("\n\n<i>“Just... what is this...”</i> The slut-bun licks her lips like a frenzied animal, sucking so hard for your revitalizing nectar that you yelp in pain - when you do, she apologizes profusely. <i>“I... this stuff is delicious, but I feel like I’m getting stronger just by drinking it.”</i> A wide grin spreads on her lapine muzzle. <i>“Just means I’m gonna have plenty of energy for taking care of ‘ya, cutie!”</i>");
-		else output("\n\n<i>“Creamy!”</i> she chirps. <i>“Creamy, smooth, good ‘ol fashioned milky milkness!”</i> she giggles, tonguing up and over your nubs like a cat playing with a toy, causing them to vibrate and throb in pangs of pure pleasure.");
-				
+		else output("\n\n<i>“Creamy!”</i> she chirps. <i>“Creamy, smooth, good ‘ol fashioned milky milkness!”</i> she giggles, tonguing up and over your " + (pc.hasErectNipples() ? "nubs" : "spouts") + " like a cat playing with a toy, causing them to vibrate and throb in pangs of pure pleasure.");
+		
 		output("\n\nYour partner’s thick breaths blanket your [pc.chest] in as much heat as [pc.milkNoun]. She works herself into an animalistic rut, slobbering all over you with increasing disregard. You have to remind the sweat-slicked slut of that between your delirious moans, and when you do, she parts your tits and lets all the pooled lactation run down");
 		if (sceneNum >= 2) output(" and over");
 		output(" your [pc.belly]. It makes you feel uncomfortably empty as well as slightly cold, and then she’s mauling your chest with alternating gropes all over again.");
@@ -2038,7 +2038,6 @@ public function boredJumperPregEncounterGoWithRestRvsCowgirl(jumperType:int=0):v
 		output(" and sitting you in her lap. <i>“No milk either... aww...");
 		if (sceneNum >= 2) output(" hope you’ve got a plan when you give birth, sweetie!");
 		output("”</i> she pouts, running her sweat-slick paws all over your [pc.skinFurScales] and especially your [pc.belly]. <i>“But that’s no big deal. Let’s get you in the mood, baby!”</i>");
-		
 		
 		output("\n\nSpeaking of being in the mood, you can see her [enemy.cockNoun 0] poking out from the top of her half-yanked zipper, painted thick with lubricant. You waste no time finishing the job, planting your palms to its");
 		if (jumperType == GLOBAL.TYPE_HUMAN) output(" swollen shape.");
@@ -2149,7 +2148,7 @@ public function boredJumperPregEncounterGoWithRestRvsCowgirlNext(arg:Array):void
 	else output(" Your empty womb craves the same filling that she’s enjoying right now.");
 	output(" Only the immense load of the laquine’s pent-up balls could hope to quench your thirst.");
 	
-	if (pc.vaginas[hole].type == GLOBAL.TYPE_SIREN || pc.vaginas[hole].type == GLOBAL.TYPE_ANEMONE) output("\n\nAnd your unique alien biology will ensure that she performs at her best. The stingers lining your cilia-filled cunny sting the abundant flesh of her [enemy.cockNoun 0], depositing their venomous payloads into her ultra sensitive schlong. Her tone fluctuates on her passage through your tightening embrace; you swear that makes her male-half bigger, harder...");
+	if (pc.vaginaCanSting(hole)) output("\n\nAnd your unique alien biology will ensure that she performs at her best. The stingers lining your cilia-filled cunny sting the abundant flesh of her [enemy.cockNoun 0], depositing their venomous payloads into her ultra sensitive schlong. Her tone fluctuates on her passage through your tightening embrace; you swear that makes her male-half bigger, harder...");
 	
 	output("\n\n<i>Your body needs her to take charge.</i> It flexes and strains errantly around her shaft, expressing her huge cock until it reaches your");
 	if (sceneNum == 1) output(" gagging womb.");
@@ -2555,7 +2554,7 @@ public function boredJumperPregEncounterGoWithRestSneakBBNext2(jumperType:int=0)
 	output(". Whiskers tickle your");
 	if (pc.vaginas[hole].type == GLOBAL.TYPE_EQUINE || pc.vaginalPuffiness(hole) >= 2) output(" puffed");
 	output(" vulva, knocking your muscles upwards to trap her face in your sodden box");
-	if (pc.vaginas[hole].type == GLOBAL.TYPE_SIREN || pc.vaginas[hole].type == GLOBAL.TYPE_ANEMONE) output(", her intruding organ being stung by every tendril it disturbs until she’s as wet as your overaroused passage");
+	if (pc.vaginaCanSting(hole)) output(", her intruding organ being stung by every tendril it disturbs until she’s as wet as your overaroused passage");
 	output(".");
 	
 	if (pc.vaginas[hole].type == GLOBAL.TYPE_EQUINE || pc.vaginalPuffiness(hole) >= 2)
@@ -2580,7 +2579,7 @@ public function boredJumperPregEncounterGoWithRestSneakBBNext2(jumperType:int=0)
 	}
 	else if (pc.hasTits())
 	{
-		output("\n\nAll you can hope to affect are your [pc.breasts] and the shining nipples capping them. Your fingers curl around the stiff [pc.nippleColor] nubs");
+		output("\n\nAll you can hope to affect are your [pc.breasts] and the shining nipples capping them. Your fingers " + (pc.hasErectNipples() ? "curl around the stiff [pc.nippleColor] nubs" : "pinch at the engorged [pc.nippleColor] organs"));
 		if (boredJumperBreastFeedOK()) output(" dripping with [pc.milk]");
 		output(", squeezing them upwards in alternating yanks that change their malleable shape in pleasant ways");
 		if (boredJumperBreastFeedOK()) output(" and shooting thin arcs of [pc.milkVisc] mammary-meal into the air");
@@ -2650,10 +2649,10 @@ public function boredJumperPregEncounterGoWithRestSneakBBNext3(arg:Array):void
 	output(" <i>“Wanna try giving me some lip again?”</i> The pulsing in her bitch-claiming cock is timed to your blinking.");
 	
 	output("\n\nAll you manage is a shake, the upper half of your body completely unresponsive beneath her pheromones and visage of traditional masculinity.");
-	if (pc.vaginas[hole].type == GLOBAL.TYPE_SIREN || pc.vaginas[hole].type == GLOBAL.TYPE_ANEMONE) output(" A shake, and a tiny laugh when her overwhelmingly erect member is stung by your lust-bearing cilia.");
+	if (pc.vaginaCanSting(hole)) output(" A shake, and a tiny laugh when her overwhelmingly erect member is stung by your lust-bearing cilia.");
 	
 	output(" <i>“Reeaallly?”</i> The Jumper pulls back slightly");
-	if (pc.vaginas[hole].type == GLOBAL.TYPE_SIREN || pc.vaginas[hole].type == GLOBAL.TYPE_ANEMONE) output(", wincing,");
+	if (pc.vaginaCanSting(hole)) output(", wincing,");
 	output(" then drives forward, falling down face-first into your");
 	if (pc.tallness >= 73) output(" [pc.chest].");
 	else output(" neck.");
@@ -2959,7 +2958,7 @@ public function boredJumperPregEncounterJumperPregBirth():Boolean
 	else if (jumperType == GLOBAL.TYPE_FELINE && flags["BJUMPER_CAT_TOTAL_KIDS"] == numBabies) output(" <i>“I’m a mom now, huh...”</i>");
 	else if (jumperType == GLOBAL.TYPE_HUMAN && flags["BJUMPER_TERRAN_TOTAL_KIDS"] == numBabies) output(" <i>“I’m a mom now, huh...”</i>");
 	else output(" <i>“I’m a mom all over again...”</i>");
-		
+	
 	output("\n\nShe extends her arms, ready to receive her babies and begin their feeding. You sit wordlessly by her side, gaze locked on their little mouths and unopened eyes. She brings them to her [enemy.nippleColor] teat, letting them suckle and pinch at her milk-trickling nubs until they tire.");
 	if (numBabies == 2) output(" When they’re both satisfied, you sit shoulder-to-shoulder with the mother-bun."); 	
 	else output(" When one is satisfied, it is set to the side to rest until the rest have had their fill. Afterward, you snuggle up with the lawless laquine shoulder-to-shoulder.");
@@ -3199,7 +3198,7 @@ public function boredJumperPregNurserySceneBabies(arg:Array):void
 	{
 		output("\n\nSince you’re here, you see no reason why you can’t indulge them and yourself a bit. You guide one of the infants to your [pc.breasts]");
 		if (!pc.isChestExposed()) output(", slipping your [pc.chestCovers] out of the way");
-		output(", and encourage them with your erect, [pc.milkNoun]-dribbling teat. Sensing the treat, the tiny bunny opens its mouth and begins to suckle, but not too much. The staff must have fed them already, because they’re back to napping rather quickly... but their rest seems much more relaxed, somehow!");
+		output(", and encourage them with your " + (pc.hasErectNipples() ? "erect, [pc.milkNoun]-dribbling teat" : "engorged, [pc.milkNoun]-dribbling spout") + ". Sensing the treat, the tiny bunny opens its mouth and begins to suckle, but not too much. The staff must have fed them already, because they’re back to napping rather quickly... but their rest seems much more relaxed, somehow!");
 	}
 	output("\n\nSadly, you can’t hold them forever. With a heavy heart, you stand and return them to their bed, fitting a blanket tight under their limbs and making sure they’re holding each other tight.");
 	if (boredJumperPregKidTotal( -1) > 0)
@@ -3428,34 +3427,34 @@ public function boredJumperPregSendPicEmail():String
 	{
 		eText += "Omigod, they’re all together like that already, they sure grow fast!";
 		eText += "\n\nSend me more okay?";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 1)
 	{
 		eText += "I wonder if they play like that because of you or me.";
 		eText += "\n\nDon’t let ‘em go thinking they’re space rangers okay?";
 		eText += "\n\nI don’t mind if you yourself want to though. Let’s get together again sometime.";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 2)
 	{
 		eText += "Aww, I hope that one on the right makes it as an artist. Don’t tell em I said that.";
 		eText += "\n\nThat pic is the best.";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 3)
 	{
 		eText += "Yesss, that’s what I wanted to see! Look at all of them.";
 		eText += "\n\nI just want to hug them so tight!";
 		eText += "\n\nMaybe someday. You take care of them, okay?";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 4)
 	{
 		eText += "Hehe, they look like they just got disciplined. I’d know that kinda face anywhere.";
 		eText += "\n\nMade it a lot when I was young too. They’ve inherited something bad from me.";
 		eText += "\n\nWhy don’t you come by and punish me for that, babe?";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 5)
 	{
@@ -3731,9 +3730,10 @@ public function boredJumperisSneakBBOK(sceneNum:int=0):Boolean
 //see if steele can do laquine breastfeeding scenes
 public function boredJumperBreastFeedOK():Boolean
 {
-	if (pc.isLactating() && pc.milkType != GLOBAL.FLUID_TYPE_CUM && pc.milkType != GLOBAL.FLUID_TYPE_GIRLCUM && (pc.hasNormalNipples() || pc.hasInvertedNipples())) return true;
-	
-	return false;
+	// Note: edited for consistency, sorry!
+	//if (pc.isLactating() && pc.milkType != GLOBAL.FLUID_TYPE_CUM && pc.milkType != GLOBAL.FLUID_TYPE_GIRLCUM && (pc.hasNormalNipples() || pc.hasInvertedNipples())) return true;
+	//return false;
+	return (pc.isLactating());
 }
 //has the jumper been told steeles name
 public function boredJumperKnowsSteelesName(jumperType:int=0):Boolean
@@ -3926,7 +3926,8 @@ public function boredJumperPregPregnancyEnds():void
 		var smallHips:Boolean = true;
 		if (pc.hipRating() >= 14) smallHips = false;
 		var encLocation:int = boredJumperPregLocation();
-		var dblBirth:Boolean = false;
+		var dblBirth:Boolean = false;		
+		flags["BJUMPER_PREGHAND_MULTIBIRTH"] = undefined;
 		
 		var numBoys:int = 0;
 		var numGirls:int = 0;
@@ -4136,7 +4137,7 @@ public function boredJumperPregPregnancyEnds():void
 				output("\n\n<i>“Ah, but you’ve gotta give ‘em their meal, sweet-stuff!”</i>");
 				if (dblBirth) output(" You gather up your kids while she nurses her own.");
 				else output(" The Jumper hands them off to you with all the care and tenderness she’s physically capable of.");
-				output(" The squeaking bunny-babies are guided to your [pc.milkyNipples], quieting down the moment their frail lips seal around the trickling nubs. [pc.MilkVisc] nourishment flows in small amounts, suckled by little ones who need it most.");
+				output(" The squeaking bunny-babies are guided to your [pc.milkyNipples], quieting down the moment their frail lips seal around the trickling " + (pc.hasErectNipples() ? "nubs" : "spouts") + ". [pc.MilkVisc] nourishment flows in small amounts, suckled by little ones who need it most.");
 			
 				pc.milked(milk,true);
 			}
@@ -4220,7 +4221,7 @@ public function boredJumperPregPregnancyEnds():void
 			else output(" Some are wholly coated in it, but others are identifiably halfbreed rabbits. You can see a little of " + flags["BJUMPER_PC_BIRTH_SCENE_HAIRCOLOR1"] + " in there.");
 			
 			output("\n\nIn the limpid moment, all you can feel is pure joy. ");
-						
+			
 			if (boredJumperBreastFeedOK())
 			{
 				output("\n\n<i>“Now, you’ve got some work to do, </i>mom!<i>”</i> the Jumper snerks,");
@@ -4343,7 +4344,7 @@ public function boredJumperPregPregnancyEnds():void
 		{
 			
 			output("\n\n<i>“Damn babe, you know I was just joking when I thought you’d have like thirty kids!”</i> the shameless rabbit quips. <i>“But looks like you might be carrying that much, just look at the size of you!”</i> She’s not wrong. Your body was designed by nature to bear creatures of similar size: large, powerful, and much bigger than the average humanoid rabbit.");
-			output("\n\nBut in this case, the horny laquine to your side is the one who claimed your womb <i>and</i> stuck you with a fertility drug. You’re bearing a bunny-slut’s kids, and you’re going to be pushing out <i>a lot</i> of them. The sheer weight of your bulked up belly is undeniable. <i>Only a litter of nearly three dozen rabbits could have been such a burden on you,</i> and only that many could impugn the balance of a [pc.raceShort].");
+			output("\n\nBut in this case, the horny laquine to your side is the one who claimed your womb <i>and</i> stuck you with a fertility drug. You’re bearing a bunny-slut’s kids, and you’re going to be pushing out <i>a lot</i> of them. The sheer weight of your bulked up belly is undeniable. <i>Only a litter of nearly three dozen rabbits could have been such a burden on you,</i> and only that many could impugn the balance of [pc.aRaceShort].");
 			output("\n\nStill, there’s a major advantage to this form, and this position, one that’s not going unnoticed. You can sit down! There’s feeling your [pc.legs]! Still, you must clutch tight to your human stomach, the churning births at your undercarriage forcing out a few gurgles and groans. That bloated womb works its inhabitants out into the galaxy, cervix softening and dilating, vaginal walls beginning to stretch, easily making room for a smaller creature.");
 			
 			output("\n\nRegardless of how");
@@ -4365,7 +4366,7 @@ public function boredJumperPregPregnancyEnds():void
 			
 			if (boredJumperBreastFeedOK())
 			{
-				output("\n\nYou can’t waste any time. You’ve got " + num2Text(numChildren) + " kids to feed, and your [pc.milk] belongs in their needy bellies. They all get their turns, ten, twelve... however many suckles they desire, all until it dribbles wasted and the next are given their chance at your milk-nubs.");
+				output("\n\nYou can’t waste any time. You’ve got " + num2Text(numChildren) + " kids to feed, and your [pc.milk] belongs in their needy bellies. They all get their turns, ten, twelve... however many suckles they desire, all until it dribbles wasted and the next are given their chance at your milk-" + (pc.hasErectNipples() ? "nubs" : "spouts") + ".");
 				if (pc.breastRows.length > 1) output(" Right now, your multiple rows of breasts are getting used to their fullest. Right now, you look like the galaxy’s happiest broodmother.");
 				output(" Slumber rabbits are packed into a softly rumbling pile.");
 				
@@ -4918,7 +4919,7 @@ public function boredJumperPregSteeleBirthNext(arg:Array):void
 		output(" A mechanical chirp from your codex alerts you to the incoming nursery probes.");
 		if (numberChildren > 2)
 		{
-			if (numberChildren > 8) output("\n\nThe retrieval shuttles zero in on your location, and there are many of them. Good thing your codex is on top of things!.");
+			if (numberChildren > 8) output("\n\nThe retrieval shuttles zero in on your location, and there are many of them. Good thing your codex is on top of things!");
 			else output("\n\nThe retrieval shuttles zero in on your location.");
 		}
 		else output("\n\nThe retrieval shuttle zeroes in on your location.");
@@ -5474,7 +5475,7 @@ public function laquineSteeleBirthNext(arg:Array):void
 		output(" A mechanical chirp from your codex alerts you to the incoming nursery probes.");
 		if (numberChildren > 2)
 		{
-			if (numberChildren > 8) output("\n\nThe retrieval shuttles zero in on your location, and there are many of them. Good thing your codex is on top of things!.");
+			if (numberChildren > 8) output("\n\nThe retrieval shuttles zero in on your location, and there are many of them. Good thing your codex is on top of things!");
 			else output("\n\nThe retrieval shuttles zero in on your location.");
 		}
 		else output("\n\nThe retrieval shuttle zeroes in on your location.");

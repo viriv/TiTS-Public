@@ -1,6 +1,9 @@
-﻿import classes.Characters.Lerris;
+﻿import classes.Characters.Kiona;
+import classes.Characters.Lerris;
 import classes.Characters.PlayerCharacter;
+import classes.Characters.Vahn;
 import classes.Creature;
+import classes.ShittyShip;
 import classes.DataManager.Errors.VersionUpgraderError;
 import classes.DataManager.Serialization.ItemSaveable;
 import classes.GameData.CombatManager;
@@ -106,6 +109,8 @@ public function useItem(item:ItemSlotClass):Boolean
 		//If has a special global function set
 		if (item.useFunction != null)
 		{
+			// mirrin preg likes food
+			if (pc.statusEffectv1("MirrinPregStage") > 1 && item.type == GLOBAL.FOOD) pc.lust(5);
 			//if item use returns false, set up a menu.
 			if (!item.useFunction(chars["PC"])) 
 			{
@@ -318,7 +323,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,(pc.vaginas[x].clits == 1 ? "clit" : "clits"),x]);
 	}
 	
-	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	while((button < 60) && ((button + 1) % 15 != 0)) { button++; }
 	
 	if(inCombat()) addButton(button++,"Cancel",backToCombatInventory);
 	else addButton(button++,"Cancel",itemScreen);
@@ -466,7 +471,7 @@ public function useACocksock(item:ItemSlotClass):Boolean
 	output("Which cock would you like to wear " + item.description + " on?");
 	
 	var button:Number = 0;
-	for(x = 0; x < pc.cockTotal(); x++)
+	for(var x:int = 0; x < pc.cockTotal(); x++)
 	{
 		output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Penis (" + Math.floor(pc.cocks[x].cLength()) + "\", " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ", " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType] + ")");
 		if(!(pc.cocks[x].cocksock is EmptySlot)) output(" - <b>Wearing:</b> " + StringUtil.toDisplayCase(pc.cocks[x].cocksock.longName));
@@ -476,7 +481,7 @@ public function useACocksock(item:ItemSlotClass):Boolean
 		else if(item.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !pc.cocks[x].fitsSmallCocksock()) addDisabledButton(button++,(button) + ": Penis #" + (x+1),StringUtil.upperCase(num2Ordinal(x+1)) + " Penis","You cannot fit that cockwear.");
 		else addButton(button++,(button) + ": Penis #" + (x+1),actuallyWearCocksock,[item,x]);
 	}
-	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	while((button < 60) && ((button + 1) % 15 != 0)) { button++; }
 	
 	if(inCombat()) addButton(button++,"Cancel",backToCombatInventory);
 	else addButton(button++,"Cancel",itemScreen);
@@ -593,7 +598,8 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		{
 			if (item.targetsSelf == true && item.requiresTarget == false)
 			{
-				targetCreature = pc;
+				if(usingCreature.hasPerk("PCs")) targetCreature = usingCreature;
+				else targetCreature = pc;
 			}
 			else if (item.requiresTarget == false)
 			{
@@ -637,7 +643,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 								{
 									combatUseItem(t_item, t_target, t_user);
 								}
-							}(item, targets[i], pc));
+							}(item, targets[i], usingCreature));
 						}
 					}
 					
@@ -659,7 +665,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		}
 	}
 	
-	if (usingCreature is PlayerCharacter) backToCombatInventory(item);
+	if (usingCreature != null && (usingCreature is PlayerCharacter || usingCreature.hasPerk("PCs"))) backToCombatInventory(item);
 }
 
 public function backToCombatInventory(item:ItemSlotClass):void
@@ -703,8 +709,144 @@ public function shop(keeper:Creature):void {
 	addButton(14,"Back",mainGameMenu);
 }
 
+public function buyShipFitItem(newScreen:Boolean = false):void
+{
+	if(newScreen)
+	{
+		clearOutput();
+		showBust(shopkeep.bustDisplay);
+		showName("\n"+shopkeep.short.toUpperCase());
+	}
+	var ship:ShittyShip = shits["SHIP"];
+	output("Buying a module will result in it being immediately installed on your ship. They’re too large to carry or transport in any other way. The cost of installation is included in the price.\n\n");
+	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length));
+	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
+	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity());
+	var temp:Number = 0;
+	var canBuy:Boolean = (ship.shipCapacity() > ship.inventory.length);
+	var hasGunRoom:Boolean = (ship.shipWeaponCapacity() > ship.listShipWeapons().length);
+	if(!hasGunRoom) output("\n\n<b>Warning:</b> Your ship has no more hardpoints to equip weapons to.");
+	output("\n\n<b><u>Modules For Sale & Fit:</u></b>");
+	clearMenu();
+	for(var i:int = 0; i < shopkeep.inventory.length; i++)
+	{
+		temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice);
+		if(temp > pc.credits) output("\n<b>(Too Expensive)</b> ");
+		else if(!canBuy) output("\n<b>(No Room)</b> ");
+		else if(shopkeep.inventory[i].type == GLOBAL.RANGED_WEAPON && !hasGunRoom) output("\n<b>(Weapons Full)</b> ");
+		else if(shopkeep.inventory[i].shields > 0 && !ship.hasShieldGenerator(true)) output("\n<b>(Needs Shield Generator)</b> ");
+		else output("\n");
+		output(StringUtil.upperCase(shopkeep.inventory[i].description, false) + " - " + temp + " credits.");
+		if(temp <= pc.credits) 
+		{
+			if(canBuy) 
+			{
+				if(shopkeep.inventory[i].type == GLOBAL.RANGED_WEAPON && !hasGunRoom) addItemDisabledButton(i, shopkeep.inventory[i], null, null, shopkeep, pc);
+				else addItemButton(i, shopkeep.inventory[i], buyShipFitItemForReal, shopkeep.inventory[i], null, null, shopkeep, pc);
+			}
+			else addItemDisabledButton(i, shopkeep.inventory[i], null, null, shopkeep, pc);
+		}
+		else addItemDisabledButton(i, shopkeep.inventory[i], null, null, shopkeep, pc);
+	}
+	addButton(14, "Back", shop, shopkeep);
+}
+
+public function buyShipFitItemForReal(arg:ItemSlotClass):void
+{
+	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
+	var ship:ShittyShip = shits["SHIP"];
+	
+	if(shopkeep is Dockmaster)
+	{
+		output("The dockmaster looks over her worklist before giving you an easy smile.");
+		output("\n\n<i>“Take a seat, I can have this all fitted in about half an hour.”</i> She waves you towards a stack of boxes, fetching some more modestly-sized tools instead of the ship-breaking beast rest in her muscular arm.");
+		output("\n\nYou’re left watching a violet blur get to work, and at some point a little pink-scaled raskvel mech-head handed you a plastic mug full of tea. By the time you’re finished, so is the dockmaster. She gives you an easy grin and a swat on the ass on the way past, mechanical tail clicking around her idly.");
+		processTime(30);
+	}
+	else
+	{
+		output("You purchase " + arg.description + " for " + num2Text(price) + " credits, and it is installed in your " + ship.short + " within the hour.");
+		processTime(60);
+	}
+	pc.credits -= price;
+	
+	//So much easier than PC looting, lol.
+	ship.inventory.push(arg.makeCopy());
+	// Max out shields?
+	if(!inCombat() && arg.shields != 0 && ship.hasShields()) ship.shieldsRaw = ship.shieldsMax();
+	
+	output("\n\n");
+
+	clearMenu();
+	addButton(0, "Next", buyShipFitItem,true);
+}
+
+public function unfitShipItem(newScreen:Boolean = false):void
+{
+	if(newScreen)
+	{
+		clearOutput();
+		showBust(shopkeep.bustDisplay);
+		showName("\n"+shopkeep.short.toUpperCase());
+	}
+	var ship:ShittyShip = shits["SHIP"];
+	output("Ship modules are too large for you to conveniently store. If you want to remove a fitted module, you’ll have to sell it.\n\n");
+	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length));
+	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
+	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity());
+	output("\n\n<b><u>Currently Fitted Modules:</u></b>");
+	if(!(ship.rangedWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.rangedWeapon.longName));
+	if(!(ship.meleeWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.meleeWeapon.longName));
+	if(!(ship.accessory is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.accessory.longName));
+	clearMenu();
+	var buttonMod:Number = 0;
+	for(var i:int = 0; i < ship.inventory.length; i++)
+	{
+		if(i == 14) buttonMod++;
+		output("\n\\\[Modular\\\] " + StringUtil.upperCase(ship.inventory[i].longName) + " (" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits)");
+
+		addItemButton((i+buttonMod), ship.inventory[i], unfitShipItemForReal, i, null, null, pc, shopkeep);
+	}
+	if(ship.inventory.length == 0) output("\nNo modules fitted.");
+	addButton(14, "Back", shop, shopkeep);
+}
+
+public function unfitShipItemForReal(i:Number):void
+{
+	var ship:ShittyShip = shits["SHIP"];
+	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+
+	var item:ItemSlotClass = ship.inventory[i];
+	if(shopkeep is Dockmaster)
+	{
+		output("The dockmaster gives you a satisfied nod, hefting her mighty wrench with one muscular arm and stalking toward your ship. <i>“It’ll be about half an hour. Have a drink, sit and relax!”</i> Comes the call over her shoulder.");
+		output("\n\nYou find a set of boxes to perch on, and a little pink-scaled raskvel brings you a cup of tea. You’re just barely finishing it by the time she’s finished, hefting herself out from beneath your baby and wiping oil from her hands. She pauses only to check that no oil marrs her shiny, chrome legs before nodding with satisfaction. <i>“Done! Quick as you like. And might I suggest getting some parts fitted? Unless you were strapped for cash, empty space is just waste.”</i>");
+		processTime(30);
+	}
+	else
+	{
+		output("The " + item.longName + " is painstakingly removed over the course of an hour, leaving you with room for a crew member, weapon system, or upgrade. (+" + getSellPrice(shopkeep,item.basePrice) + " credits.)");
+		processTime(60);
+	}
+	pc.credits += getSellPrice(shopkeep,item.basePrice);
+	//Remove one item
+	ship.inventory.splice(i,1);
+	// Max out shields?
+	if(!inCombat() && item.shields != 0 && ship.hasShields()) ship.shieldsRaw = ship.shieldsMax();
+	
+	clearMenu();
+	addButton(0,"Next",unfitShipItem,true);
+}
+
 public function buyItem():void {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	output(shopkeep.keeperBuy);
 	if(shopkeep.inventory.length > 10) output("\n" + multiButtonPageNote() + "\n");
 
@@ -743,6 +885,11 @@ public function buyItem():void {
 			else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
 			{
 				temp = Math.round(temp * pc.keyItemv1("Coupon - Shear Beauty"));
+			}
+			else if (shopkeep is Kiona && kionaCreditOwed() > 0)
+			{
+				temp -= kionaCreditOwed();
+				if (temp < 0) temp = 0;
 			}
 			// Listing inventory exceptions
 			if(shopkeep is VendingMachine)
@@ -789,6 +936,9 @@ public function buyItemOK(arg:ItemSlotClass):void
 {
 	clearOutput();
 	clearMenu();
+
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
 	var hasCoupon:Boolean = false;
@@ -819,6 +969,8 @@ public function buyItemOK(arg:ItemSlotClass):void
 
 public function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
 	
 	//Special Vendor/Item Overrides
@@ -884,8 +1036,12 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	}
 	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	
-	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.");
-	pc.credits -= price;
+	if (shopkeep is Kiona) kionaBuyUsingStoreCredit(arg.description,price);
+	else
+	{
+		output("You purchase " + arg.description + " for " + num2Text(price) + " credits.");
+		pc.credits -= price;
+	}
 	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
@@ -952,6 +1108,9 @@ public function sellItem():void
 	}
 	
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+
 	output(shopkeep.keeperSell);
 	if(pc.inventory.length > 10) output("\n" + multiButtonPageNote() + "\n");
 	
@@ -967,7 +1126,7 @@ public function sellItem():void
 			addButton(btnSlot+14, "Back", shop, shopkeep);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		//If slot has something in it.
 		if(pc.inventory[i].quantity > 0) {
@@ -1000,6 +1159,8 @@ public function sellItemQuantity(arg:ItemSlotClass):void
 {
 	clearOutput();
 	clearMenu();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	var price:Number = getSellPrice(shopkeep,arg.basePrice);
 	
@@ -1035,6 +1196,8 @@ public function sellItemMultiCustom(arg:ItemSlotClass):void
 {
 	if(stage.contains(userInterface.textInput)) removeInput();
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	output("How many of your " + arg.longName + " do you want to sell? (x" + arg.quantity + " maximum.)");
 	output("\n");
@@ -1078,6 +1241,8 @@ public function sellItemMultiCustomGo(arg:Array):void
 public function sellItemMultiOK(arg:Array):void
 {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	var soldItem:ItemSlotClass = arg[0];
 	var soldNumber:int = arg[1];
@@ -1092,6 +1257,8 @@ public function sellItemMultiOK(arg:Array):void
 public function sellItemMulti(arg:Array):void
 {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	var soldItem:ItemSlotClass = arg[0];
 	var soldNumber:int = arg[1];
@@ -1099,9 +1266,12 @@ public function sellItemMulti(arg:Array):void
 	
 	sellItemBonus(soldItem, soldPrice);
 	
-	pc.credits += soldPrice;
-	
-	output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
+	if (shopkeep is Kiona) kionaSellUsingStoreCredit(soldItem.description,soldPrice,soldNumber);
+	else
+	{
+		pc.credits += soldPrice;	
+		output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
+	}
 	
 	// Special Events
 	if(soldItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(soldItem, "sell"));
@@ -1119,12 +1289,19 @@ public function sellItemMulti(arg:Array):void
 
 public function sellItemGo(arg:ItemSlotClass):void {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+
 	var price:Number = getSellPrice(shopkeep,arg.basePrice);
 	
 	sellItemBonus(arg, price);
 	
-	pc.credits += price;
-	output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
+	if (shopkeep is Kiona) kionaSellUsingStoreCredit(arg.description, price);
+	else
+	{
+		pc.credits += price;
+		output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
+	}
 	
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "sell"));
@@ -1190,7 +1367,7 @@ public function dropItem():void {
 			addButton(btnSlot+14, "Back", inventory);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		if(!pc.inventory[i].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) {
 			output("\n");
@@ -1634,7 +1811,7 @@ public function removeAPiercingMenu():void
 		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,["clit", x]);
 	}
 	
-	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	while((button < 60) && ((button + 1) % 15 != 0)) { button++; }
 	
 	if(inCombat()) addButton(button++,"Cancel",unequipMenu,true);
 	else addButton(button++,"Cancel",unequipMenu,false);
@@ -1760,7 +1937,7 @@ public function removeACocksockMenu():void
 		else addButton(button++,(button) + ": Penis #" + (x+1),actuallyRemoveACocksock,x);
 	}
 	
-	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	while((button < 60) && ((button + 1) % 15 != 0)) { button++; }
 	
 	if(inCombat()) addButton(button++,"Cancel",unequipMenu,true);
 	else addButton(button++,"Cancel",unequipMenu,false);
@@ -1962,7 +2139,7 @@ public function generalInventoryMenu():void
 			addButton(btnSlot+14, "Back", mainGameMenu);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		addItemButton(btnSlot, pc.inventory[i], useItem, pc.inventory[i]);
 		btnSlot++;
@@ -2053,7 +2230,7 @@ public function combatInventoryMenu():void
 			addButton(btnSlot+14, "Back", CombatManager.showCombatMenu);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		var tItem:ItemSlotClass = pc.inventory[i];
 		if (InCollection(tItem.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON]) || tItem.combatUsable == true)
@@ -2166,7 +2343,8 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 			if(pc.armor is GooArmor) gooArmorCheck();
 			if(pc.armor is Omnisuit) 
 			{
-				output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.\n\n");
+				output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.");
+				output("\n\n");
 				unequippedItems.push(new OmnisuitCollar());
 				pc.removeStatusEffect("Rubber Wrapped");
 			}
@@ -2189,6 +2367,7 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 			if(pc.accessory is SiegwulfeItem)
 			{
 				SiegwulfeUnequip();
+				output("\n\n");
 			}
 			unequippedItems.push(pc.accessory);
 			pc.accessory = new EmptySlot();
@@ -2262,7 +2441,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		SiegwulfeEquip();
 	}
 	// Power armor req
-	else if(!InCollection(arg, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
+	else if(!InCollection(arg.type, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
 	{
 		output("You are not strong enough to equip your " + arg.longName + "!");
 		removedItem = arg;
@@ -2571,7 +2750,7 @@ public function replaceItemPicker(lootList:Array):void {
 			}(lootList)), undefined);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		if(pc.inventory[i].shortName != "")
 		{
@@ -2672,6 +2851,15 @@ public function hasShipStorage():Boolean
 	if (flags["SHIP_STORAGE_CONSUMABLES"] == undefined) flags["SHIP_STORAGE_CONSUMABLES"] = 10;
 	if (flags["SHIP_STORAGE_VALUABLES"] == undefined) flags["SHIP_STORAGE_VALUABLES"] = 10;
 	if (flags["SHIP_STORAGE_TOYS"] == undefined) flags["SHIP_STORAGE_TOYS"] = 10;
+
+	if(shits["SHIP"] != null)
+	{
+		flags["SHIP_STORAGE_WARDROBE"] = shits["SHIP"].wardrobeSize();
+		flags["SHIP_STORAGE_EQUIPMENT"] = shits["SHIP"].equipmentSize();
+		flags["SHIP_STORAGE_CONSUMABLES"] = shits["SHIP"].consumableSize();
+		flags["SHIP_STORAGE_VALUABLES"] = shits["SHIP"].valuablesSize();
+		flags["SHIP_STORAGE_TOYS"] = shits["SHIP"].toysSize();
+	}
 	
 	return true;
 }
@@ -2729,28 +2917,33 @@ public function shipStorageMenuRoot():void
 	}
 	else addDisabledButton(4, "Toys");
 	
+	// Installed devices
 	var btnSlot:int = 5;
+	var installedDevices:Array = [];
 	
-	if (flags["DONG_DESIGNER_INSTALLED"] == 1)
-	{
-		output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
-		addButton(btnSlot++,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
-	}
-	if(flags["EGG_TRAINER_INSTALLED"] == 1) 
-	{
-		output("\n\nYour bright pink Egg Trainer is sitting in the corner, rumbling slightly as the heating and cleaning processes inside it percolate.");
-		//if PC has a belly full of eggs:
-		if(pc.hasPregnancyOfType("EggTrainerCarryTraining")) output(" You run a hand across your swollen belly, vaguely wishing you could squat the current load out... only to get another mind-melting orgasm from the next batch going in!");
-		//if PC has a faux-preg egg: 
-		else if(pc.hasPregnancyOfType("EggTrainerFauxPreg")) output(" You run a hand across your [pc.belly]. You could get your Faux Preg Egg out at any time with the device, if you wanted to.");
-		addButton(btnSlot++,"EggTrainer",repeatEggTrainerApproach,undefined,"Egg Trainer","Put your Egg Trainer to use.");
-	}
-	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) 
-	{
-		output("\n\nNext to your bed is the Sleep Fapnea device, where you can modify your dreams for when you sleep.");
-		addButton(btnSlot++, "SleepFap.", sleepFapneaApproach, undefined, "Sleep Fapnea Device", "Change your sleep settings.");
-	}
+	if(flags["DONG_DESIGNER_INSTALLED"] == 1) installedDevices.push(installedDickBoxBonus);
+	if(flags["EGG_TRAINER_INSTALLED"] == 1) installedDevices.push(installedEggTrainerBonus);
+	if(flags["MINDWASH_VISOR_INSTALLED"] == 1) installedDevices.push(installedMindwashBonus);
+	if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 1) installedDevices.push(drBadgerSiliconeMiniTankBonus);
+	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) installedDevices.push(installedSleepFapneaBonus);
 	
+	for(var d:int = 0; d < installedDevices.length; d++)
+	{
+		installedDevices[d](btnSlot);
+		btnSlot++;
+		if(btnSlot >= 59 || (d == (installedDevices.length - 1))) break;
+		if((btnSlot + 5) % 15 == 0)
+		{
+			btnSlot += 4;
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
+		}
+	}
+	if(btnSlot > 14)
+	{
+		while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
+		addButton(btnSlot, "Back", mainGameMenu);
+	}
 	addButton(14, "Back", mainGameMenu);
 }
 
@@ -2879,6 +3072,21 @@ public function getNumberOfStoredType(from:Array, type:String):int
 	return getListOfType(from, type).length;
 }
 
+public function shipOverEncumberedByStorage():Boolean
+{
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "WARDROBE") > flags["SHIP_STORAGE_WARDROBE"]) 
+		return true;
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "EQUIPMENT") > flags["SHIP_STORAGE_EQUIPMENT"])
+		return true;
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "CONSUMABLES") > flags["SHIP_STORAGE_CONSUMABLES"])
+		return true;
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "VALUABLES") > flags["SHIP_STORAGE_VALUABLES"])
+		return true;
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "TOYS") > flags["SHIP_STORAGE_TOYS"])
+		return true;
+	return false;
+}
+
 public function outputStorageListForType(type:String):Array
 {
 	var items:Array = getListOfType(pc.ShipStorageInventory, type);
@@ -2898,7 +3106,10 @@ public function outputStorageListForType(type:String):Array
 		}
 	}
 	
-	output("\n\n<b>You have " + String(Math.max(0, flags["SHIP_STORAGE_" + type] - items.length)) + " of " + flags["SHIP_STORAGE_" + type] + " storage slots free.</b>");
+	output("\n\n<b>You have " + String(Math.max((flags["SHIP_STORAGE_" + type] - items.length), 0)) + " of " + flags["SHIP_STORAGE_" + type] + " storage slots free.</b>");
+
+	if(items.length > flags["SHIP_STORAGE_" + type]) output("\n<b>You cannot fly with this many items!</b> Please remove at least " + ((items.length - flags["SHIP_STORAGE_" + type]) == 1 ? "one item" : (String(items.length - flags["SHIP_STORAGE_" + type]) + " items")) +  " from your storage.");
+
 	if (items.length > 10) output("\n\n" + multiButtonPageNote());
 
 	return items;
@@ -2935,7 +3146,6 @@ public function storeItem(args:Array):void
 			}
 		}
 	}
-	
 	// If we're this far in, we couldn't fit everything into an existing stack.
 	// See if we can place a new stack in the inventory
 	if (getNumberOfStoredType(pc.ShipStorageInventory, type) < flags["SHIP_STORAGE_" + type] && item.quantity > 0)

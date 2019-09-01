@@ -107,7 +107,7 @@ public function kiroPaigeIntro2():void
 		// Continue here if Paige is blind
 		if(!paigeIsCrew())
 		{
-			output("\n\nWhen you arrive at the hangar, you show Kiro into your [PCShipName], and you show her to your personal quarters. You tell her to make herself at home; Paige isn’t here, and you have to go get her. <i>“I’ll be waiting, angel,”</i> she says, her eyes roving around the walls of your room. <i>“I’ll try to keep myself from getting</i> too <i>ready.”</i>");
+			output("\n\nWhen you arrive at the hangar, you show Kiro into your [pc.ship], and you show her to your personal quarters. You tell her to make herself at home; Paige isn’t here, and you have to go get her. <i>“I’ll be waiting, angel,”</i> she says, her eyes roving around the walls of your room. <i>“I’ll try to keep myself from getting</i> too <i>ready.”</i>");
 			// end scene (scene: Intro 2); go to (scene: Intro 3)
 			processTime(10);
 			clearMenu();
@@ -117,7 +117,7 @@ public function kiroPaigeIntro2():void
 		// Continue here if Paige can see
 		else
 		{
-			output("\n\nWhen you arrive at the hangar, you show Kiro into your [PCShipName], and you lead her by the hand towards your personal quarters. You explain that you and Paige are more ‘familiar with each other’ than Kiro had guessed: you had convinced her to join your crew as a navigator.");
+			output("\n\nWhen you arrive at the hangar, you show Kiro into your [pc.ship], and you lead her by the hand towards your personal quarters. You explain that you and Paige are more ‘familiar with each other’ than Kiro had guessed: you had convinced her to join your crew as a navigator.");
 			output("\n\n<i>“How’d you do that?”</i> she asks incredulously. <i>“Last I heard, Paige was blind. How’s she gonna navigate with no eyesight?”</i>");
 			output("\n\nYou reply that you had paid for Paige’s surgery and that she joined your crew in part to pay you back, and in part because she wanted to be with you.");
 			output("\n\n<i>“What the hell?”</i> Kiro asks, her breath catching in her throat. <i>“Didn’t she say that surgery would cost her a million credits or something?”</i>");
@@ -447,7 +447,7 @@ public function paigeKiroThreesomeIntro():void
 		output("\n\nAt that, Kiro leans forward and grabs you by the wrist, yanking you onto the bed between her and Paige. <i>“Well, [pc.name], you can think of it in one of two ways,”</i> she says, her eyes narrowing as she leans in closer to you, her hefty Kui-Tan boobs pressing into your side. Paige, recognizing the potential for what’s going on, does the same on your other side, and you find yourself trapped between the two ladies as they invade your personal space.");
 		output("\n\n<i>“You could think of it as you just trying to reunite two old friends, like any good mutual-friend would do. And that there isn’t a single dirty thought going through your head the whole time. You could think of it that way.”</i>");
 		output("\n\nYour focus is on Kiro as she speaks to you, but, distracted as you are, Paige leans into you and kisses at your bared neck, planting gentle-yet-insist kisses from your collarbone to your cheek. <i>“Or, you could think of it as two horny ladies,”</i> Kiro continues, her hand trailing along the inside of your [pc.thigh], gently groping her way towards your crotch, <i>“in your room... saying they both want you... and they’re willing to share.”</i>");
-		output("\n\nKiro’s hands explore your [pc.belly], shamelessly feeling their way up until she gently grasps a [pc.nipple] with the palm of your hand, giving your breast a firm squeeze. <i>“And if you aren’t convinced,”</i> Paige says, leaning up to whisper in your ear, but loudly enough that Kiro can hear, <i>“just think of it as</i> us <i>taking advantage of poor, little old</i> you. <i>We’re pirates. We’re good at taking what we want.”</i>");
+		output("\n\nKiro’s hands explore your [pc.belly], shamelessly feeling their way up until she gently grasps " + indefiniteArticle(pc.nippleDescript()) + " with the palm of your hand, giving your breast a firm squeeze. <i>“And if you aren’t convinced,”</i> Paige says, leaning up to whisper in your ear, but loudly enough that Kiro can hear, <i>“just think of it as</i> us <i>taking advantage of poor, little old</i> you. <i>We’re pirates. We’re good at taking what we want.”</i>");
 		output("\n\n<i>“Hell, maybe we can work with that?”</i> Kiro asks playfully, her teeth nibbling at your other ear. <i>“You’re the damsel in distress, and we’re the filthy scumbags that are taking what doesn’t belong to them. Does that sound like something that would interest you, [pc.name]?”</i>");
 		output("\n\n<i>“Or,”</i> Paige continues. She shifts her lower body, her left leg draping over your [pc.legs], until she’s straddling you. With an exaggerated pull, she drags herself along your body, and winces out in pleasure as her wet Ausar cooch leaves a slimy trail of her arousal along your [pc.leg]. <i>“We can try some role reversal. You can,”</i> she pauses, humping against you again and sighing in pleasure as she goes, <i>“you can be the evil pirate, after the most precious treasure we have to offer. Want to try that? Get a nice,</i> thick <i>taste of what it’s like to be a pirate?”</i>");
 		output("\n\nSounds like you don’t have anything to worry about after all.");
@@ -1718,6 +1718,7 @@ public function PKTSKR(args:Array):void
 		if(pc.cocks[0].cLength() >= 16) output(" She’s tight, remarkably so, and yet, despite her ‘inexperience,’ she takes you about as easily as any other slut – you’ll have to look into buying some of that elasticizing oil yourself!");
 		pc.cockChange();
 		kiro.cuntChange(0,pc.cockVolume(0));
+		takeKiroginity();
 
 		output("\n\nWhen you thrust crotch-deep into her, you push Kiro forward, burying her thick cock back into Paige, who sighs in delight at being filled up once more. You remain there until Kiro pulls out, and you repeat her action yourself. It’s a slow-going rhythm at first, but when you get it going, the three of you are a well-lubed fucking machine: no cocks are left unattended cold and");
 		if(pc.hasVagina()) output(" almost");

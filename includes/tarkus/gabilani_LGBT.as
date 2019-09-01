@@ -182,8 +182,7 @@ public function getSumPleasureWhenYouWinVsLGBT():void
 	clearMenu();
 	if(pc.hasVagina()) addButton(0,"Ride Him: V",vaginaRouter,[getDatGobboDick,standInGabiCockVolume(),0,0],"Ride Him: Vaginal","That dick looks pretty inviting.");
 	else addDisabledButton(0,"Ride Him: V","Ride Him: Vaginal","You need a vagina for this!");
-	if(pc.hasCock()) addButton(1,"Ride Him: A",getDatGobboDick,-1,"Ride Him: Anal","That dick looks pretty inviting.");
-	else addDisabledButton(1,"Ride Him: A","Ride Him: Anal","You need a penis to truly enjoy some prostate pleasuring.");
+	addButton(1,"Ride Him: A",getDatGobboDick,-1,"Ride Him: Anal",("That dick looks pretty inviting." + (pc.hasCock() ? "":" Tough you may need a penis to truly enjoy some prostate pleasuring.")));
 	if(pc.hasCock() && pc.cockThatFits(gobboVagiCapacity()) >= 0) addButton(2,"Fuck Her",penisRouter,[fuckDatGabilaniGurrrrl,gobboVagiCapacity(),false,0],"Fuck Her","Lay some pipe on the squishy female shortstack.");
 	else addDisabledButton(2,"Fuck Her","Fuck Her","You need a dick that’ll fit inside the defeated tramp.");
 	if(pc.hasVagina() || pc.cockTotal() > 1 || pc.biggestCockVolume() > gobboVagiCapacity()) addButton(3,"Double Oral",doubleOralFunsiesBunsies,undefined,"Double Oral","Two fat mouths, applied to your groin.");
@@ -270,7 +269,7 @@ public function getDatGobboDick(x:int):void
 	output("You ignore the female gabilani; you fancy something more substantial, and " + (enemy.hasStatusEffect("Gabilani_Fucking") ? "that big fleshy, knobbly rod the male has got standing on end, seemingly just ready for you to hop on and ride silly, looks perfect.":"that thick, fleshy bulge you can see in the male’s jumpsuit, far bigger than his diminutive profile would suggest, looks perfect."));
 
 	if(pc.isAss() || pc.isAmazon(false)) output("\n\n<i>“Step aside, slut,”</i> you order, eyes boring into the nicely-built male. <i>“I’m gonna show you how to treat your man.”</i>");
-	else if(pc.isBimbo()) output("<i>“It’s whoopee time!”</i> you burble, bouncing across to the nicely-built male. <i>“You can watch if you like, k babes? K.”</i>");
+	else if(pc.isBimbo()) output("<i>“It’s whoopee time!”</i> you burble, bouncing across to the nicely-built male. <i>“You can watch if you like, ‘k babes? ‘K.”</i>");
 	else output("You don’t bother wasting words, simply let your carnal intentions known by moving past the plump female, [pc.eyes] boring into the male.");
 
 	output("\n\nThe male shuffles backwards as you loom over him, his earlier braggadocio melting away into nervousness now he’s actually confronted by you" + (!pc.isCrotchExposed() ? ", stripping off your [pc.crotchCovers] matter-of-factly":"") + (x >= 0 ? ", sticking a couple of fingers into your [pc.vagina " + x + "], stirring yourself briskly":"") + ". Typical. You " + (!enemy.hasStatusEffect("Gabilani_Fucking") ? "seize the zipper of his jumpsuit and rip it downwards, making his long, thick, double-headed dong flop outwards. You plant your grip around it tightly, making him gasp and twitch as you coil him ruthlessly hard, his cock swiftly swelling and hardening underneath the shift and give of your palm.":"seize that thick, double-headed dong tightly, making him gasp and twitch as you jerk him, testing its pleasing heft and heat."));
@@ -292,7 +291,7 @@ public function getDatGobboDick(x:int):void
 
 	output("\n\n<i>“You like that, you little shit?”</i> you coo, enjoying the unfocused expression on your pinned down gabilani toy, as you stir him in your depths. <i>“Even more fun that shooting at me, right?”</i>");
 
-	output("\n\n<i>“Pshaw.”</i> You shoot a look at the female gabilani, from whom the derisive sound emanated. She’s watching you fuck her boyfriend on her side, resentful, frustrated lust livid on her face. <i>“Flap your " + (x >= 0 ? "blown-out, slimy cave":"loose, worn-out bum") + " on him as much as you like, wordless alien. He’ll <i>never</i> enjoy it as much as gabilani puss - the best in the galaxy. You won’t even be able to make him cum!”</i>");
+	output("\n\n<i>“Pshaw.”</i> You shoot a look at the female gabilani, from whom the derisive sound emanated. She’s watching you fuck her boyfriend on her side, resentful, frustrated lust livid on her face. <i>“Flap your " + (x >= 0 ? "blown-out, slimy cave":"loose, worn-out bum") + " on him as much as you like, wordless alien. He’ll </i>never<i> enjoy it as much as gabilani puss - the best in the galaxy. You won’t even be able to make him cum!”</i>");
 	output("\n\n<i>“Could you not,”</i> gasps the male at her.");
 
 	//If PC using gabilani, gryvain, suula or vanae pussy
@@ -327,6 +326,8 @@ public function getDatGobboDick(x:int):void
 		processTime(30);
 		if(x >= 0) pc.loadInCunt(new LGBTPilots(),x);
 		else pc.loadInAss(new LGBTPilots());
+		pc.orgasm();
+		pc.orgasm();
 	}
 	else
 	{
@@ -338,11 +339,12 @@ public function getDatGobboDick(x:int):void
 			else if(pc.hasCock()) output("seizing up [pc.eachCock] as your prostate is rubbed just so, [pc.cum] spurting out of " + (pc.cockTotal() == 1 ? "it":"them"));
 		}
 		output(". When you come down, you find that for all that his pointy face is ruddy with exertion and arousal, the male gabilani is still rock-hard within you.");
-
 		output("\n\n<i>“Damn,”</i> you tease, sighing as you slowly rotate your [pc.hips], drawing another ragged groan out of him, <i>“seems the bitch wasn’t lying! Poor you.”</i> You begin to slowly bounce on top of him again, pulling at his nipples and his face as you do it, content and intent to play with this captive toy of yours for all that he’s worth.");
 		output("\n\nYou use that captive, pent-up cudgel of a dick to knead yourself to another pulsating orgasm, followed by another, your [pc.vagOrAss " + x + "] clenching up around the gabilani’s thick, hot girth fruitlessly. Fruitlessly for him, that is - although he gasps and moans and writhes his fit, compact " + (pc.hasCock() ? "and [pc.cum]-glazed ":"") + "frame beneath you for all he’s worth, he cannot find release himself." + (pc.tallness > 5*12+11 ? " It’s enjoyable pinning a cavalier guy like this so completely, overwhelming him with your own flesh and using him however you wish. Boy, is he going to have a sore torso after this.":""));
 		output("\n\nAfter that last wonderful, shimmering high you feel relaxed, sensuous, forgiving even. You lay yourself on your side and raise your [pc.hip], make the gabilani take you like that, finally allowing him to use his own steam to fuck you. Pleasure is caressed into you by the thrust and pull of his bulbous, oil-dripping cock into your " + (x >= 0 ? "well-unfurled pussy":"opened asshole") + ", his hot hands gripping your [pc.leg] as he hammers himself into you, frustrated grunts and groans puffing over your [pc.skinFurScales].");
-		output("\n\nOver minutes of this pounding you are slowly transported to a final, wonderful orgasm, and you rub in how much you’re enjoying him with delighted, gloated cries, " + (x >= 0 ? "your [pc.vagina " + x + "] squirting [pc.girlCum] gratuitously as it seizes up once again to the lubricated pounding it’s receiving":"your [pc.cock] oozing out the last of your [pc.cum] as your prostate is given the well lubricated battering it deserves") + ".");
+		output("\n\nOver minutes of this pounding you are slowly transported to a final, wonderful orgasm, and you rub in how much you’re enjoying him with delighted, gloated cries");
+		if(x >= 0 || pc.hasCock()) output(", " + (x >= 0 ? "your [pc.vagina " + x + "] squirting [pc.girlCum] gratuitously as it seizes up once again to the lubricated pounding it’s receiving":"your [pc.cock] oozing out the last of your [pc.cum] as your prostate is given the well lubricated battering it deserves"));
+		output(".");
 		output("\n\nAnd still, and still, when you stop thrashing about and are glowing with purest gratification, when you get up onto your [pc.knees] and look down at him, you find the male gabilani’s dick is still glowing hot and hard, and he is practically sobbing with frustration.");
 		output("\n\n<i>“What a lovely toy that is,”</i> you coo, picking yourself" + (pc.hasHair() ? ", rearranging your [pc.hair]":"") + ", and putting your equipment back on. <i>“You better be careful no slavers find out about it.”</i>");
 		output("\n\n<i>“You done? Good. Piss off,”</i> snaps the female gabilani, glowering at you as you take a generous nip from a bottle of fiery spirits before making your way back to the glass hatch. <i>“Me and him have got business to settle.”</i>");
@@ -608,8 +610,9 @@ public function gabilaniHoodOrnamentLossOhNo():void
 	author("Nonesuch");
 	output("The LG-BT moans and clanks as it’s maneuvered over so that its great metal bulk looms directly over you. For one horrible moment you get it into your head that the gabilani plan on squishing you like a piece of roadkill... but no, the walker’s padded feet stop either side of you, and it is with some relief you see the weapons far above withdraw with a whirr backwards, leaving the chin of the war machine bare.");
 	output("\n\n<i>“Oh wow,”</i> coos the female gabilani, once she’s clambered down the transport’s leg to get a closer look at you. Up close, you can see that she’s a plump, blue-haired little thing in a one-piece jumpsuit, with plush, wide-set boobs and a big, jiggling ass. <i>“Look at you!");
-	if(pc.race() == "gabilani") output(" So gabilani-like. That’s eerie. Ooh, it gives me little shivers.”</i>");
-	else if(pc.race() == "raskvel") output(" So much like the herliani. But then you get close enough, and you <b>see</b> the alien-ness! Ooh, it gives me little shivers.”</i>");
+	var race:String = pc.race();
+	if(race == "gabilani") output(" So gabilani-like. That’s eerie. Ooh, it gives me little shivers.”</i>");
+	else if(race == "raskvel") output(" So much like the herliani. But then you get close enough, and you <b>see</b> the alien-ness! Ooh, it gives me little shivers.”</i>");
 	else if(pc.tallness > 5*12+10) output(" Such size! Such alien vastness and... fruitiness! Gosh, I could run my hands over all of that for <b>days</b>.”</i>");
 	else output(" There is such strangeness in the outer cosmos, isn’t there? I couldn’t ever imagined something so bizarre just wandering around the wastelands a few years ago. And yet... kinda enticing.”</i>");
 
@@ -635,16 +638,21 @@ public function gabilaniHoodOrnamentLossOhNo2():void
 	output("\n\nThere’s an ominous series of clicks and whirrs above your head, and you groan when you see what he means. A series of spindly mechanical arms are flexed around you, each one tipped with some garishly colored sex toy: dildos, cock-rings, vibrating studs, a drooling injector filled with pink fluid. This latter is unceremoniously jabbed into your [pc.ass]; the sharp pain is superseded by aphrodisiac lust flooding through your system" + (pc.lust() >= pc.lustMax() ? ", your already overwhelming arousal now blotting out every other instinct, whatever panic you feel about your situation replaced by the need to FUCK and NOW":"") + ".");
 	if(!pc.isErect() && pc.hasCock()) output(" Heat and hardness veins into [pc.eachCock], becoming restless and turgid without even a hint of manual stimulation.");
 	else if(pc.hasVagina() && pc.lust() < pc.lustMax()) output(" [pc.EachVagina] spreads and moistens, " + (!pc.isSquirter() ? "beading":"drooling") + " [pc.femcum], practically begging to be filled.");
-	pc.buttChange(20);
-
 	output("\n\nYour lusty moan turns into a squawk when a hooked, pronged, metal hand like a craning, two-fingered hoe reaches over your hand and skilfully hooks itself into your nostrils. It adjusts itself with a tiny whirr and then gently but firmly tilts your head backward, blunt upward pressure flaring your poor nose. You open your mouth to protest that this is too much, way too much - and another mechanical arm rams a black ball-gag into your mouth, turning your words into a wet, outraged muffle.");
 	output("\n\n<i>“Winch secure? Check. Devices operational? Check. Muffler and display hasp locked in? Check!”</i> booms the gabilani male’s voice merrily. <i>“Let’s have a look...”</i> a free-flying camera drone hovers about your face. <i>“...oh my. You were right, darling! What a splendid hood ornament! Oh, we’ll be the talk of Arbetz for weeks.”</i>");
 	output("\n\n<i>“We haven’t even gotten started yet...”</i> the female is back in the cockpit, and sounds positively gleeful. <i>“Let’s try... this!”</i>");
 	output("\n\nTransfixed on the LG-BT’s bondage gear 18 feet in the air, you can only moan and flex helplessly against your intractable fetters as you feel a thick, smooth bluntness press against your [pc.vagOrAss], boring its way into your sensitive inner passage. Once the dildo has spread your " + (!pc.hasVagina() ? "[pc.anus]":"[pc.vaginaNoun]") + " dramatically wide and begun filling you deep, it begins to vibrate hard, maddening, juddering shivers which cannot fail to stimulate your aphrodisiac-ridden body. You huff and whine helplessly around your ball-gag, not even able to see what’s being done to your rear end with your nose hooked like it is.");
+	
+	if(pc.hasVagina()) pc.cuntChange(0,20);
+	else pc.buttChange(20);
+	
 	output("\n\n<i>“Loooovely,”</i> croons the female. <i>“Yeah, keep the camera focused on [pc.himHer]. I’m enjoying that.”</i>");
 	output("\n\n<i>“Yeah?”</i> schmoozes the male. <i>“What if I did... this?”</i>");
 	if(pc.hasCock()) output("\n\nThere’s another whirr, and you feel something heated and padded grip your fervently erect [pc.cock]. You ball your fists as the ingenious, hateful, wonderful little device flicks up and down your dick, coiling your sensitive, chemically aroused flesh into a flaming hard-on, all the while the dildo in your [pc.vagOrAss] remorselessly judders into your prostate.");
 	if(pc.hasVagina()) output("\n\nYou know what’s probably coming next, but it doesn’t stop the fresh pressure applied to your [pc.anus], patiently opening you and spearing its way in, any more intense. This dildo is smaller, squirts oil to ease its passage, but is also covered in small bumps. So that when it begins to thrust in and out of you hard with mechanical remorselessness, the bumpy sensation is impossible not to be devoured by, particularly as it rubs against the vibrating one in your [pc.vagina].");
+	
+	if(pc.hasVagina()) pc.buttChange(20);
+	
 	// {merge}
 	output("\n\nWith the amount of aphrodisiac they’ve pumped into you, you can’t take this kind of stimulation for long. You moan wetly around your gag, saliva drooling around it as you cum explosively to the pleasure being forced upon your overheated loin");
 	if(pc.hasGenitals()) output(", ");
@@ -669,7 +677,7 @@ public function gabilaniHoodOrnamentLossOhNo3():void
 	clearOutput();
 	showLGBT(true);
 	author("Nonesuch");
-	output("You dangle from the LG-BT’s chin, a bondage slave trophy, as the gabilani stomp it around Tarkus’s sprawling scrap-heaps and ruins. They find little settlements of sydians, raskvel burrows and little enclaves of lapinara and display the alien captive to them, wriggling and gasping to the unceasing attentions of their niggling, ravishing sex toys, booming their triumph from the transport’s sound system so that all come out of their homes and get an eyeful of you. You see disgust, amusement, pity and undisguised lust in a myriad of distant, upturned native expressions.");
+	output("You dangle from the LG-BT’s chin, a bondage slave trophy, as the gabilani stomp it around Tarkus’s sprawling scrap-heaps and ruins. They find little settlements of sydians" + (flags["LAPLOVE"] != undefined ? ", raskvel burrows and little enclaves of lapinara":" and raskvel burrows") + " and display the alien captive to them, wriggling and gasping to the unceasing attentions of their niggling, ravishing sex toys, booming their triumph from the transport’s sound system so that all come out of their homes and get an eyeful of you. You see disgust, amusement, pity and undisguised lust in a myriad of distant, upturned native expressions.");
 	if(pc.exhibitionism() >= 66) 
 	{
 		output("\n\nYou squirm away from the truth at first, but there’s ultimately no hiding away from the fact you find this extremely hot. In a way, all of your little dalliances with exhibiting yourself, baring your flesh and making people stare, was simply an overture to this, being turned into a sexual ornament, moaning as you’re fucked raw by the gabilanis’ merciless machinery and dangled over the stage of the world, the ordinary folk of Tarkus staring, laughing and whispering at the humiliating spectacle of you. You cum and you cum again, your skin burning to the magnificent shame, and you curse and bless your own filthy mind in the same, ball-gag muffled, saliva-clotted breath.");
@@ -788,7 +796,7 @@ public function bimboSubmitToGabbi2():void
 	pc.cuntChange(0,standInGabiCockVolume());
 	output("\n\nThe female gabilani takes in the show from her perch by the control panel, biting her bee-stung lip, hands shifting down her curvy thighs. She’s a plump, buxom little thing, her one-piece jumpsuit painted over her soft, wide-set boobs, cute, round gut and bountiful, pear-shaped ass.");
 	output("\n\n<i>“Don’t I have the best ideas, dear?”</i> she inquires sweetly. <i>“You were going to blow the poor sweet thing up! Instead we now have an alien pet we can both enjoy, whilst we’re taking in the sights.”</i>");
-	output("\n\n<i>“Yes darling... oh words... this alien is... ungh! Ungh!”</i> You coo as the male’s hands grip into your hips hard, and you feel your [pc.vagina] being swollen out with a heavy, warm, oily load of cum, delivered with a jackhammer of rapturous thrusts. <i>“ ...is certainly enjoyable,”</i> he groans, coming loose from you in an oily slide and sinking blissfully into the writhing waters of the mini-sauna, reaching for a handy box of cigars. You turn and snuggle into his compact, meaty frame happily." + (pc.tallness > 5*12+9 ? " He’s like a little blue teddy bear to you. A little blue teddy bear with a lovely big cock!":"") + " A moment later the female releases her jiggling blue flesh from the repressive confines of her jumpsuit and squeezes in there with you. It’s pretty squashed in the mini-sauna with three of you, but that just makes it more cozy, more sexy, lots of nice, gabilani flesh for you to slide your [pc.butt] and [pc.chest] against, sink your hands into. Wet, hot, giggly, sighing, groping and happy - bimbo heaven.");
+	output("\n\n<i>“Yes darling... oh words... this alien is... ungh! Ungh!”</i> You coo as the male’s hands grip into your hips hard, and you feel your [pc.vagina] being swollen out with a heavy, warm, oily load of cum, delivered with a jackhammer of rapturous thrusts. <i>“...is certainly enjoyable,”</i> he groans, coming loose from you in an oily slide and sinking blissfully into the writhing waters of the mini-sauna, reaching for a handy box of cigars. You turn and snuggle into his compact, meaty frame happily." + (pc.tallness > 5*12+9 ? " He’s like a little blue teddy bear to you. A little blue teddy bear with a lovely big cock!":"") + " A moment later the female releases her jiggling blue flesh from the repressive confines of her jumpsuit and squeezes in there with you. It’s pretty squashed in the mini-sauna with three of you, but that just makes it more cozy, more sexy, lots of nice, gabilani flesh for you to slide your [pc.butt] and [pc.chest] against, sink your hands into. Wet, hot, giggly, sighing, groping and happy - bimbo heaven.");
 	//Lust +70%, load in pussy
 	pc.lust(70);
 	pc.loadInCunt(new LGBTPilots(),0);

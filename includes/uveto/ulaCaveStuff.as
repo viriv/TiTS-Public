@@ -127,7 +127,7 @@ public function ulaAppearance():void
 	showUla();
 	author("Fenoxo");
 	output("Ula appears every bit a typical korgonne at first glance. From her diminutive height of 4’9”</i> to her plush proportions, she would be easy to confuse for a common citizen of the hold. It’s the details that reveal the noble, puppy-princess beneath. An alert, curious mind gazes out from emerald eyes. Proudly upraised ears scoop up your every statement to later reflect upon. Pale blue lips too often harried by nervousness and woe smile happily at the sight of her savior.");
-	output("\n\nKorg’ii Hold’s " + (!ulaChief() ? "resident royal daughter":"resident regent") + " is also quite the fan of jewelry, if the plethora of volcanic rock and savicite crystals she currently wears are any indication. Heavy stone piercings dangle from the outer edges of her canine ears as well. So much of it radiates the green glow of savicite radiation that she’s a one-woman light show in the hold’s darker passages. Even now, the play of light across her more-than-ample E-cup breasts continues to tug your gaze lower.");
+	output("\n\nKorg’ii Hold’s " + (!ulaChief() ? "resident royal daughter":"resident regent") + " is also quite the fan of jewelry, if the plethora of volcanic rock and savicite crystals she currently wears are any indication. Heavy stone piercings dangle from the outer edges of her canine ears. So much of it emits the green glow of savicite radiation that she’s become a one-woman light show in the hold’s darker passages. Even now, the play of light across her more-than-ample E-cup breasts continues to tug your gaze lower.");
 	output("\n\nYou give in");
 	if(pc.libido() < 50) output(" for just a moment");
 	output(" and ogle her assets a moment longer, appreciating the creamy-blue skin of the korgonne girl’s nipples. Those pale puffy mounds almost beg to be licked and suckled, or failing that, snuggled against in bed. Ula blushes shyly when she sees you looking and turns away, inadvertently showing off her arching back and short tail. It wags gleefully, slapping into her squishy-looking ass with enough force to bounce the cheeks apart and give you a glancing look at the tight blue pucker between.");
@@ -187,7 +187,9 @@ public function ulaSexApproach():void
 		if(!korgiTranslate()) output("Elders truthspeak: aliens sex-love more than korg matron. Naughty tease-[pc.boyGirl]!");
 		else output("The elders told the truth: aliens love sex more than a korg matron. Naughty... teasing [pc.boyGirl]!");
 		output("”</i>");
-		output("\n\nYou tilt your head, <i>“Are you asking me to stop?”</i>");
+		output("\n\n");
+		showImage("UlaDildo");
+		output("You tilt your head, <i>“Are you asking me to stop?”</i>");
 		output("\n\n<i>“No,”</i> Ula pants, tongue refusing to retreat entirely within her mouth. She clutches tight, short-clawed fingers digging deep. You can feel her dripping into your hand, and the familiar scent of her minty lust creeps into the air. <i>“Want more!”</i> She jerks away, dragging your slick digits from her juicy muff. A visible blush has spread across her exposed skin, darkening her nipples and lips. She grabs you by the wrist and pulls your pussy-soaked hand between you. <i>“");
 		if(!korgiTranslate()) output("Want you horny like Ula.");
 		else output("Want you as horny as I am.");
@@ -201,7 +203,6 @@ public function ulaSexApproach():void
 		else output("I want that loving, mated bond.");
 		output("”</i>");
 		output("\n\n");
-		showImage("UlaDildo");
 		output("You swoon when she breaks away, breathing hard. The near-naked native prances to nearby bin, retrieving a dildo. She drags and back and forth across her steamy slit, watching you all the while. A slow smile spreads across her features. <i>“");
 		if(!korgiTranslate()) output("Go on. Tell what want.");
 		else output("Go on. Tell me what you want.");
@@ -817,8 +818,8 @@ public function korgiCockFuck():void
 	output("\n\nYou look on ");
 	if(!pc.isAss()) output("in sympathy. No wonder she started putting the moves on you; as soon as she got a little excited, the pheromones started a feedback loop");
 	else output("in fake sympathy. At least that explains why how this shy girl transformed into a simpering puddle of lust");
-	output(". You know how she feels, come to think of. Just looking at her, you can feel the urge rising inside you, begging you to take her. Your nostrils flare as you try to think of what to say. <i>“It’s... not safe to go out like that. Who knows what kind of monster you’d run into?”</i>");
-	output("\n\nThe puppy-girl sighs, in resignation, dropping to her knees. One hand goes to her chest, roughly squeezing the fattened orb. The other dibs between her legs, crudely rubbing at a blue-lipped entrance. <i>“R-right. But... can’t... want...”</i> She licks her lips, eyes fixated on your cock. <i>“Want pups.”</i> Falling on all fours, she crawls closer, tail curled up and wiggling with her juicy haunches. <i>“Want alien pups. Nice alien’s pups.”</i>");
+	output(". You know how she feels, come to think of it. Just looking at her, you can feel the urge rising inside you, begging you to take her. Your nostrils flare as you try to think of what to say. <i>“It’s... not safe to go out like that. Who knows what kind of monster you’d run into?”</i>");
+	output("\n\nThe puppy-girl sighs, in resignation, dropping to her knees. One hand goes to her chest, roughly squeezing the fattened orb. The other dips between her legs, crudely rubbing at a blue-lipped entrance. <i>“R-right. But... can’t... want...”</i> She licks her lips, eyes fixated on your cock. <i>“Want pups.”</i> Falling on all fours, she crawls closer, tail curled up and wiggling with her juicy haunches. <i>“Want alien pups. Nice alien’s pups.”</i>");
 	output("\n\nYou attempt to hold yourself back. She’s probably a virgin, and she obviously doesn’t know any better. The way she smells right now, she’d get pregnant just from looking at a dick... and she’s staring at yours right now. You subconsciously shift to better present it, body operating on instinct and raw desire without much input at all from your brain. <i>“Wait... uh.”</i>");
 	output("\n\nThe furry vixen bends low to drag her tits across the ice, sensuously drawing closer");
 	if(flags["ULA_SAVED"] != 2) output(", hard nipples all but digging furrows into the freeze");
@@ -861,7 +862,7 @@ public function korgiCockFuck2():void
 	output("-”</i>");
 	output("\n\n<i>“No. Pups in hole.”</i> She silences you by dropping her hips and drowning you in her sodden slit, watery slickness pouring unrestrained into your maw. When she lifts off a minute later, everything reeks of minty quim. Your [pc.face] has been claimed by the lust-lost tribal girl, and every breath you take is swamped in a pheromonal wonderland.");
 	if(pc.balls > 1) output(" It feels like your [pc.balls] are going to boil over.");
-	output("\n\nYou dive upward to suck greedily upon her clit. You want that cunt more than anything. You need it in your life: on your face, on your dick, filled with seed. Still, you make one last token attempt to moderate her impulses. <i>“Let me eat you out. I’ll suck your clit till you pass out and swallow your cuntjuice till my mouth smells more like pussy than y-”</i> Your tongue stabs out for another lick, unwilling to go without the exotic flavor or korgonne cunt a minute longer.");
+	output("\n\nYou dive upward to suck greedily upon her clit. You want that cunt more than anything. You need it in your life: on your face, on your dick, filled with seed. Still, you make one last token attempt to moderate her impulses. <i>“Let me eat you out. I’ll suck your clit till you pass out and swallow your cuntjuice till my mouth smells more like pussy than y-”</i> Your tongue stabs out for another lick, unwilling to go without the exotic flavor of korgonne cunt a minute longer.");
 	output("\n\nThe warm, wet sheath around your [pc.cock " + x + "] vanishes, leaving you to twitch in cold air. <i>“Nooooooo! Thought you nice alien?”</i> the voice is delirious, and that gorgeous, blue cunt vanishes from view. Your short-stacked lover pops into view a second later, stuffing her nose against the side of your face and licking her flavor from your cheek. <i>“Please,”</i> she pants. <i>“Want you. Nice alien. Strong alien.”</i> Her tits weigh heavily on your ");
 	if(pc.biggestTitSize() >= 1) output("own");
 	else output("chest");
@@ -1012,7 +1013,7 @@ public function firstTimeKorgHoldMeeting():void
 	output("\n\nThe bigger of your two guards raps the butt of his spear against the door, then leans to a hole, identical to the hundreds hiding the Hold’s entrance. <i>“Ula’s alien-friend arriving!”</i>");
 	output("\n\n<i>“Come. Waiting such times!”</i> a gruff voice answers.");
 	output("\n\nThe big one nods to his shorter compatriot, who twists a handle and pushes, swinging the huge monolithic portal back with surprising ease. From the corner of your eye you can spy a set of heavy hinges, polished to the same sheen as the door’s surface. Light from the chamber beyond dazzles your eyes.");
-	output("\n\nOnce you adjust to the change in luminosity and uncover your eyes, you’re dazzled by the sheer display of opulence within. Every wall is hewn from whitish stone, the surface worked into carved murals of korgonne heroism. Glowing crystals held aloft by chains of gold cast amber luminance over rocky tapestries, flickering slightly. In one corner, you can see a single armored korg fighting off three frostwyrms single-handedly. In another, a horde of fluffy barbarians riding six-legged bears trample milodans underpaw.");
+	output("\n\nOnce you adjust to the change in brightness and uncover your eyes, you’re dazzled by the sheer display of opulence within. Every wall is hewn from whitish stone, the surface worked into carved murals of korgonne heroism. Glowing crystals held aloft by chains of gold cast amber luminance over rocky tapestries, flickering slightly. In one corner, you can see a single armored korg fighting off three frostwyrms single-handedly. In another, a horde of fluffy barbarians riding six-legged bears trample milodans underpaw.");
 	output("\n\nFurniture of bone and rock decorates the interior. Fuzzy blankets and plush-looking pillows offer comfort to the otherwise unforgiving furniture. In the center of it all is an enormous throne. It dominates the view, and on it rests the undoubted leader of this tribe of korgonne. The heavyset elder regards you with milky blue eyes and strokes the wispy curls of a beard every bit as white as the rest of his fur. You could sit him down in front of a snow-drift and he’d disappear.");
 	output("\n\n<i>“Huh. Thought bigger.”</i> He squints and leans closer. <i>“You alien? You save Ula?”</i>");
 	output("\n\nYou nod");

@@ -41,6 +41,12 @@ public function getRiyaPregContainer():PregnancyPlaceholder
 	return pp;
 }
 
+//Yeah, I added this here in case the worst needs to happen. -Fen
+public function riyaEnabled():Boolean
+{
+	return true;
+}
+
 public function riyaAppearance():void
 {
 	clearOutput();
@@ -64,6 +70,9 @@ public function riyaOnCanada():Boolean
 
 public function riyaBonus():Boolean
 {
+	//Yep, see earlier note above the function def -Fen
+	if(!riyaEnabled()) return false;
+
 	if((riyaOnCanada() && getPlanetName().toLowerCase() == "canadia station") || (!riyaOnCanada() && getPlanetName().toLowerCase() == "tavros station"))
 	{
 		if(flags["MET_RIYA"] != undefined && pc.hasStatusEffect("RIYA_CANADIA_CD"))
@@ -754,7 +763,7 @@ public function riyaVagigooVagitiems():void
 
 		output("\n\n And so, just as the head of her magnificent brown beast of a cock is starting to leave your body, ");
 		//PC is ausar/huskar/dogmorph:
-		if(isDogMorph) output("you bark. Quietly and shamefully at first, but when Riya stops pulling out and stares at you expectantly you bark again, just the tiniest bit louder. She leers at you. <i>“I can’t hear you, slutpuppy. </b>Bark.<b>”</i> she orders, her cock shifting just a tiny bit further into your body, taunting you. You bark again, louder, and again, and again, your [pc.tails] shifting side to side rapidly, thumping against one of the legs of her desk as your yipping increases in volume - you wouldn’t be surprised if her fellow officers can hear the commotion outside. Is it just you, or is Riya getting harder inside you...? <i>“Good dog. Now beg,”</i> she continues, shifting forward so that her cock is touching your hymen again, so tantalizingly close... and you beg. You’ve already come this far, why stop now? You beg Riya to pop your cherry, to train you to be a loyal and obedient doggie, among other things.");
+		if(isDogMorph) output("you bark. Quietly and shamefully at first, but when Riya stops pulling out and stares at you expectantly you bark again, just the tiniest bit louder. She leers at you. <i>“I can’t hear you, slutpuppy. <b>Bark.</b>”</i> she orders, her cock shifting just a tiny bit further into your body, taunting you. You bark again, louder, and again, and again, your [pc.tails] shifting side to side rapidly, thumping against one of the legs of her desk as your yipping increases in volume - you wouldn’t be surprised if her fellow officers can hear the commotion outside. Is it just you, or is Riya getting harder inside you...? <i>“Good dog. Now beg,”</i> she continues, shifting forward so that her cock is touching your hymen again, so tantalizingly close... and you beg. You’ve already come this far, why stop now? You beg Riya to pop your cherry, to train you to be a loyal and obedient doggie, among other things.");
 		else if(isCatMorph) output("you meow. At first it’s a quiet, pitiful sound, but when Riya stops pulling out and leers at you, an expectant look in her eyes, you do it again, louder and clearer. She pushes in a bit more, then stops again and looks at you. <i>“Well?”</i> she asks, that infuriatingly smug grin of hers crawling across her features. But still, you purr as ordered, telling Riya what a good kitty you are and how badly you want - how badly you <i>need</i> her to take you, to make you hers, among other things.");
 		// PC is human:
 		else if(isHuman) output("you beg. At first you’re quiet and hesitant, almost whispering as you ask her to take you, but when she shifts her hips forward a few centimeters and grins expectantly at you, pinching your left nipple between her thumb and index finger. Her ministrations draw a squeal from your [pc.lips] and you increase the volume, face flushing, telling her in no uncertain terms that you <i>need</i> her inside you, filling you with hot, hard cock and thick, creamy white seed...");
@@ -877,7 +886,7 @@ public function riyaFellatioScene():void
 	output("”</i>");
 
 	output("\n\nShe sends her cock swinging into your face again - and again, and again, the rod of mocha flesh getting harder and harder with every impact until it actually starts to hurt a bit, rather than sting. Once she’s at half-mast, Riya pumps her hand up and down her shaft a few times until the veiny thing is almost fully erect, pulsing visibly in front of your face. She wastes no time inching her hips forward and bumping her pre-leaking tip into your [pc.lips], the powerful, salty taste assaulting your mouth. <i>“Well, Steele? It ain’t gonna blow itself,”</i> she says as she pushes forward another inch, your nostrils the next to come under attack. Her smell permeates your olfactory senses, strong and intoxicating, your mouth seeming to open of it’s own accord to welcome this exemplary specimen in.");
-	output("\n\nShe leans back against the stall door and reaches into one of her breast pockets to withdraw a sleek black tablet, the SteeleTech logo proudly displayed on it’s back. You blink - it’s rather strange to see your company’s products in this sort of situation. Riya slides her thumb across the other side of the device and you hear it open with a beep. Her cock pulses in your mouth and it’s owner peeks over the top of her tablet, one eyebrow quirking curiously. <i>“Why aren’t you sucking my dick, Steele?”</i> she asks, right hand leaving her tablet to rest on your head, her powerful fingers gripping your ");
+	output("\n\nShe leans back against the stall door and reaches into one of her breast pockets to withdraw a sleek black tablet, the Steele Tech logo proudly displayed on it’s back. You blink - it’s rather strange to see your company’s products in this sort of situation. Riya slides her thumb across the other side of the device and you hear it open with a beep. Her cock pulses in your mouth and it’s owner peeks over the top of her tablet, one eyebrow quirking curiously. <i>“Why aren’t you sucking my dick, Steele?”</i> she asks, right hand leaving her tablet to rest on your head, her powerful fingers gripping your ");
 	if(pc.horns > 1) output("[pc.horns]");
 	else if(!pc.hasHair()) output("scalp");
 	else output("[pc.hair]");
@@ -1262,7 +1271,7 @@ public function riyaQuestCombat3VictoryMenu():void
 	showName("RIYA\n& CO.");
 	showName("\nGRENCE");
 	showBust("GRENCE");
-	output("<i>“Gotta get your ass in shape, Rover!”</i> she quips as plasma bolts begin to splatter off the decks and ships around you, the pirates making a last-ditch effort to save their intel. You make your way onto your own ship with time to spare, the Ebon Wing dropship firing up and lifting off alongside you. The naval battle you were watching earlier is drawing to a close, with several reinforcement ships from the U.G.C. Navy having entered the fight. In fact, just as you leave the system the last of the pirate ships explodes down its port side, the warship listing off to the side with crewmembers being sucked into the hard vacuum of space by the dozens. It’s over. And now you notice that the dropship carrying Riya and Grence is gone too, presumably having started the jump back to Tavros. You key in the coordinates too, not wanting to be mistaken for a hostile by the small U.G.C. fleet that is currently searching the asteroid field for any surviving pirates.");
+	output("<i>“Gotta get your ass in shape, Rover!”</i> she quips as plasma bolts begin to splatter off the decks and ships around you, the pirates making a last-ditch effort to save their intel. You make your way onto your own ship with time to spare, the Ebon Wing dropship firing up and lifting off alongside you. The naval battle you were watching earlier is drawing to a close, with several reinforcement ships from the U.G.C. Navy having entered the fight. In fact, just as you leave the system the last of the pirate ships explodes down its port side, the warship listing off to the side with crew members being sucked into the hard vacuum of space by the dozens. It’s over. And now you notice that the dropship carrying Riya and Grence is gone too, presumably having started the jump back to Tavros. You key in the coordinates too, not wanting to be mistaken for a hostile by the small U.G.C. fleet that is currently searching the asteroid field for any surviving pirates.");
 	output("\n\nArriving back at Tavros, you’re immediately hailed by the station’s chief customs officer and instructed to dock and submit to inspection. The wrinkled, tired-looking old human man looks incredibly bored as he sips his coffee and waits for you to comply. Not very much time later you’re stepping off your ship to the sight of Riya, Grence and a few of the troopers from the raid on the pirates. Grence steps forward and hands you a small stack of papers and pen, blinking as you take it, then speaking.");
 	output("\n\n<i>“Here, Steele. These are non-disclosure agreements and... other things you need to sign. You can read it if you want, but you’re going to want to sign it- trust me.”</i>");
 	output("\n\nWhat? And what if you don’t want to? There’s a <b>lot</b> of fine print on these, after all. Riya shrugs and cuts in just as Grence opens her mouth to speak.");
@@ -1388,6 +1397,16 @@ public function riyaSpawnPregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Riya Spawn Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Riya Spawn Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;

@@ -725,8 +725,8 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 			}
 			else if(vIdx >= 0)
 			{
-				output("<i>“Ah yes, it is as I thought,”</i> the quadomme hums, its hand finding its way between your [pc.thighs]. You tense up in your bonds as it traces the lips of your [pc.vagina " + vIdx + "] slowly, dipping a warm, smooth finger inside to teasingly stroke at your sensitive hole. <i>“A lone worker, out on her own in the Deepest Deep. Frustrated perhaps that nobody in the swarm pays attention to her? Looking for someone to see her potential, without ever realizing it.");
-				if(vIdx2 >= 0) output(" <i>“It laughs in soft, delighted surprise as another hands finds your [pc.vagina " + vIdx2 + "], and gets to work slowly fingering that one as well. You huff and spasm as the twin pleasure of it assaults your senses. <i>“And what potential! Don’t worry, my multi-holed new incubator: I shall give you the attention you so clearly deserve.”</i>");
+				output("<i>“Ah yes, it is as I thought,”</i> the quadomme hums, its hand finding its way between your [pc.thighs]. You tense up in your bonds as it traces the lips of your [pc.vagina " + vIdx + "] slowly, dipping a warm, smooth finger inside to teasingly stroke at your sensitive hole. <i>“A lone worker, out on her own in the Deepest Deep. Frustrated perhaps that nobody in the swarm pays attention to her? Looking for someone to see her potential, without ever realizing it.”</i>");
+				if(vIdx2 >= 0) output(" It laughs in soft, delighted surprise as another hands finds your [pc.vagina " + vIdx2 + "], and gets to work slowly fingering that one as well. You huff and spasm as the twin pleasure of it assaults your senses. <i>“And what potential! Don’t worry, my multi-holed new incubator: I shall give you the attention you so clearly deserve.”</i>");
 			}
 			else
 			{
@@ -1579,7 +1579,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			pc.cuntChange(vIdx, enemy.cockVolume(0));
 			
 			output("\n\nSphere after sphere disappears inside you, making the");
-			if(pc.vaginas[vIdx].type == GLOBAL.TYPE_SIREN) output(" tentacle-lined");
+			if(pc.vaginaHasFeelers(vIdx)) output(" tentacle-lined");
 			else if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_NUBBY)) output(" nubby");
 			else if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_RIBBED)) output(" ribbed");
 			else output(" smooth");

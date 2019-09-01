@@ -813,6 +813,7 @@ public function pippaStandardMassage():void
 	}
 	
 	processTime(30);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-4);
 	applyOilEffect(pc, OIL_SOURCE_STANDARD_MASSAGE);
 	pippaStandardMassagesGiven();
 	pippaAffection(1);
@@ -1144,6 +1145,7 @@ public function pippaSpecialMassageII():void
 	output("\n\nPippa collapses on top of you and just relaxes there for a little bit. Eventually she climbs off and you carefully slide off after her. She looks at you, her eyes tired, and says, <i>“I hope you enjoyed that, " + pippaCallsSteele() + ". I’m going to clean up in here and take a shower. And maybe a nap. I’ll see you later.”</i>");
 	
 	processTime(30);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3);
 	applyOilEffect(pc, OIL_SOURCE_SPECIAL_MASSAGE);
 	pippaSpecialMassagesGiven();
 	pippaAffection(3);
@@ -1221,8 +1223,7 @@ public function pippaMainMenu(arg:Array = null):void
 	
 	if (pippaOnShip())
 	{
-		if (shipLocation == "UVS F15") addButton(13, "Evict", pippaAskToLeave, undefined, "Evict", "Potentially kick Pippa off your ship for the time being.");
-		else addDisabledButton(13, "Evict", "Evict", "Travel to Uveto before kicking Pippa off the ship.");
+		addButton(13, "Evict", pippaAskToLeave, undefined, "Evict", "Potentially kick Pippa off your ship for the time being.");
 		addButton(14, "Back", crew);
 	}
 	else addButton(14, "Leave", mainGameMenu);
@@ -1705,7 +1706,7 @@ public function pippaGetSatOn():void
 	
 	output("\n\nYour senses are completely overwhelmed with Pippa. Her jiggling body fills your field of vision. You feel nothing but her warmth and wetness. All you hear are her moans. Her ");
 	
-	if (silly) output("smokey");
+	if (silly) output("smoky");
 	else output("sweet");
 	
 	output(", intoxicating scent and taste flood your nose and mouth.");

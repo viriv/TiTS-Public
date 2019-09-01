@@ -22,6 +22,17 @@ public function pexigaBustDisplay(nude:Boolean = false):String
 	return sBust;
 }
 
+public function pexigaShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var msg:String = "";
+	
+	msg += "\n\nThe bimbo pexiga girl seems perfectly content in her admittedly small quarters. Either from habit or her awkwardly over-endowed body, [pexiga.name] seems to prefer staying on all fours. When not tasting everything around her, she tends to " + (yammiIsCrew() ? "follow Yammi around like a little lost puppy, helping out any way she can" : "scurry around like a little lost puppy") + ". Despite her innocent demeanor, you catch her giving you an occasional glance full of a hunger " + (yammiIsCrew() ? "Yammi" : "-- the type that food") + " can’t satisfy.";
+	
+	addButton(btnSlot, pexigaName(), approachPexigaCrew);
+	
+	return (showBlurb ? msg : "");
+}
+
 //[Pexiga]
 //Once she’s been fixed, the bimbo pexiga is added to your crew menu. Her scenes are disabled on Yammi’s menu and the player gains a seperate follower option, used to talk, fuck, milk, and pet her. Yammi can join in on some three-ways
 
@@ -1223,7 +1234,7 @@ public function tooBigPexigaFacefuck2(x:int):void
 		if(pc.balls > 0) output("[pc.balls] like she’s fattening you up for a feast.");
 		else output("body like it’s a helium tank hooked directly to your libido.");
 		output(" Blobs of pre-cum trickle up, only to be greedily scooped up by the pexiga’s agile tongue. With every little taste of your [pc.cumFlavor] discharge, she hugs a little tighter and fidgets a little more impatiently.");
-		output("\n\nYou take a moment to steady your breathing and focus on the sensation of having the ivory girl wrapped around you. The softness of [pexiga.name]’s voluptous curves is only complimented by the firmness of the bestial muscles beneath. Like a living cock sleeve, she strokes her limbs along your over-sized organ and grinds her moist pussy along the swell of your spongy cumvein. Even the lightly cool firmness of the chitinous bands across her torso just serves to add texture to her lively grip.");
+		output("\n\nYou take a moment to steady your breathing and focus on the sensation of having the ivory girl wrapped around you. The softness of [pexiga.name]’s voluptous curves is only complemented by the firmness of the bestial muscles beneath. Like a living cock sleeve, she strokes her limbs along your over-sized organ and grinds her moist pussy along the swell of your spongy cumvein. Even the lightly cool firmness of the chitinous bands across her torso just serves to add texture to her lively grip.");
 		output("\n\nWith a groan, you brace yourself and begin rocking back and forth, sliding thick feet of spunk-shaft across the pexiga’s purring body. She loosens her hold just enough to let you slide more easily, while setting all 24 inches of her tongue to the task of lubing you up. Between her sticky sweet saliva and the thin polish of her drooling pussy, your member is glistening in no time. Your strokes grow more aggressive, running nearly the full length of the alabaster girl as you buck your hips in an aerobic full-body fucking workout.");
 		output("\n\nTen, twenty, thirty minutes go by as you grind against the clenching softness of [pexiga.name]’s body. Beads of perspiration drip from your forehead and run in rivulets down your [pc.chest], but the sheer organ pleasure of your pistoning phallus numbs any muscle aches. A steady stream of [pc.cumVisc] dribbles from your tip, drenching the alien girl with enough pre to put a galotian to shame. Her eyes are unfocused and her tongue flops lazily against your thrusting meat, but her instincts keep her limbs as tight as ever. She looks so out of it, that for a moment you’re afraid she’s relapsed.");
 		output("\n\nThe fear vanishes when her tail circles around your waist and, with a jerk, yanks you onto your back, pulling her on top. The beast girl crosses her legs around your [pc.sheath " + x + "] and, with a whimpering sigh, pulls your cock straight up into a throbbing totempole. She rises and falls in desperate, eager bounces, using your her taut embrace as much to jill herself off as to worship the meat miracle she’s wrapped around. The pexiga’s ample booty bumps against your ");
@@ -1233,7 +1244,7 @@ public function tooBigPexigaFacefuck2(x:int):void
 		if(pc.hasToes()) output("toe-curling");
 		else output("teeth-clenching");
 		output(" heat.");
-		output("\n\nDespite her half-lidded eyes and limp, drooling tongue, [pexiga.name] moves with the speed and force one would expect of an apex predator. She rides the swollen mast of your manhood with purpose and zeal, her breasts squeezing your tender underside while her toeless feet massage the swell of your [pc.knot" + x + "]. Astride your [pc.cockNounComplex " + x + "] like a love-drunk junkie, [pexiga.name]’s glossy silver scales scintilate in the glow of the kitchen lights with a lustrous, lusty beauty.");
+		output("\n\nDespite her half-lidded eyes and limp, drooling tongue, [pexiga.name] moves with the speed and force one would expect of an apex predator. She rides the swollen mast of your manhood with purpose and zeal, her breasts squeezing your tender underside while her toeless feet massage the swell of your [pc.knot " + x + "]. Astride your [pc.cockNounComplex " + x + "] like a love-drunk junkie, [pexiga.name]’s glossy silver scales scintillate in the glow of the kitchen lights with a lustrous, lusty beauty.");
 		output("\n\nUnable to hold back any longer, your climax rises with all the ceremony of an erupting volcano. The tightness in your gut clenches to almost painful levels as a rush of warmth spreads through your body. Your [pc.cock " + x + "] throbs and trembles before bloating in the pexiga’s grasp as your climax fills your veins with overflowing fervor. The liquid cascade reaches your urethra like a geyser and thick streams of [pc.cumNoun] spray into the open air. The wild, unguided release splatters down across the kitchen with heavy splashes before your woozy pet regains her sense of self and slams her O-ringed mouth down onto your frothing spout.");
 		if(pc.cumQ() >= 3000) 
 		{

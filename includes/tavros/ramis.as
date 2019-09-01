@@ -28,11 +28,6 @@ public function ramisBustDisplay(nude:Boolean = false):String
 	return sBust;
 }
 
-public function ramisIsCrew():Boolean
-{
-	return flags["RAMIS_ONBOARD"] == 1;
-}
-
 // Intros
 // Appears every other day in Anon’s Bar between 21:00 - 01:30
 // Edit, new time: 20:15 - 02:30
@@ -163,7 +158,11 @@ public function approachRamis(special:String = "none"):void
 	clearMenu();
 	
 	addButton(10, "Appearance", ramisAppearance, 10);
-	if(flags["RAMIS_MET"] != undefined) addButton(4, "Recruit", ramisRecruit, undefined, "Recruit", "She’s a mercenary, right? See what it would cost to get her on board your ship.");
+	if(flags["RAMIS_MET"] != undefined)
+	{
+		if(ramisRecruited()) addButton(4, "Join Crew", ramisRejoinCrew, undefined, "Join Crew", "Ask the mercenary to rejoin your crew and move back into your ship.");
+		else addButton(4, "Recruit", ramisRecruit, undefined, "Recruit", "She’s a mercenary, right? See what it would cost to get her on board your ship.");
+	}
 	
 	// Special femboy approach
 	if(special == "femboy")
@@ -881,7 +880,7 @@ public function ramisFuck(response:String = "none"):void
 				if(pc.tallness < 71) output(" It’s difficult to entirely catch her expression though, given that even " + (pc.balls > 0 ? "balls deep" : "all the way") + " in her your head only reaches her breasts. Which is not the worst thing in the world. Her soft flesh quivers, her hard flesh clenches as you encompass a small, hard nipple in your mouth, licking and chewing at it as you continue to push into her wonderfully long, narrow pussy.");
 				else output(" You can bask in her expression because you are easily a match for her size; [pc.chest] rubbing against her small, hard nipples, you feel whiskey puff over your face as you make her gasp, two giants going at it furiously enough to make the bed make alarming cracking sounds.");
 				output("\n\nYou can easily slot your entire length into her, and still with your hands wrapped around her heavy hips, you rock into her, for a while luxuriating in the wonderful give and take of pussy down every inch of your [pc.cock " + x + "], Ramis’s heavy breathes and tiny sighs the heady soundtrack. A hoarse grunt is forced passed your lips as it suddenly clenches up around you, formidable amounts of muscle tightening up acutely around your rock-hard prick.");
-				output("\n\n<i>“Harder,”</i> husks Ramis, between gritted teeth, staring at you with that teasing, dilated gaze of hers. Pulse thudding in your head, you winch her thighs up so they are practically pressed against her stomach and then open up your hips , forcing raging lust into disciplined athleticism to drive into her with maintained enthusiasm. She squeals with glee, breasts shaking, writhing and clenching up around the unyielding piston of your cock, urging pleasure through you and making " + (pc.balls <= 0 ? "you" : "your [pc.balls]") + " swell with an unstoppable desire to pack her full of [pc.cum]. Not yet though, not yet... claiming a girl so big, tough and drunk that you can thrust into her soaked heat with all your might, bang out a rhythm on the backboard with her head, and it simply makes her cry out for more, is all you could hope for.");
+				output("\n\n<i>“Harder,”</i> husks Ramis, between gritted teeth, staring at you with that teasing, dilated gaze of hers. Pulse thudding in your head, you winch her thighs up so they are practically pressed against her stomach and then open up your hips, forcing raging lust into disciplined athleticism to drive into her with maintained enthusiasm. She squeals with glee, breasts shaking, writhing and clenching up around the unyielding piston of your cock, urging pleasure through you and making " + (pc.balls <= 0 ? "you" : "your [pc.balls]") + " swell with an unstoppable desire to pack her full of [pc.cum]. Not yet though, not yet... claiming a girl so big, tough and drunk that you can thrust into her soaked heat with all your might, bang out a rhythm on the backboard with her head, and it simply makes her cry out for more, is all you could hope for.");
 				output("\n\n");
 				if(pc.tallness >= 71) output("She reaches up and wraps her sinewy arms around your shoulders as orgasm clenches her up, claws biting sharply into your [pc.skinFurScales]. For long moments you are supporting almost her entire weight - all of 120 kg on your arms and back - and the fact you can do it only seems to excite her even more, thrusting the soaked, rippling sleeve of her cunt into your [pc.cock " + x + "] with ecstatic, groaning intent.");
 				else output("She pushes your head deep between her breasts as orgasm clenches her up, claws biting sharply into your [pc.skinFurScales]. You find yourself utterly mired in amazon.");
@@ -977,7 +976,7 @@ public function ramisCockFuck(arg:Array):void
 			break;
 		// Sneak Out (Trap)
 		case "trap sneak out":
-			output("Carefully, oh so carefully, you slide out from underneath Ramis’s arm, tuck her back in, retrieve your clothes and slip out. She shifts slightly but doesn’t wake up. She’ll be disappointed when she wakes up - on the other hand, given how she treats her bed-mates, she shouldn’t be surprised either.");
+			output("Carefully, oh-so-carefully, you slide out from underneath Ramis’s arm, tuck her back in, retrieve your clothes and slip out. She shifts slightly but doesn’t wake up. She’ll be disappointed when she wakes up - on the other hand, given how she treats her bed-mates, she shouldn’t be surprised either.");
 			
 			processTime(3);
 			

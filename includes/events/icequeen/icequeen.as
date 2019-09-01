@@ -49,6 +49,11 @@ public function showZaalt(nude:Boolean = false):void
 	else showName("ICE\nQUEEN");
 }
 
+public function zaaltImprisoned():Boolean
+{
+	return (flags["ICEQUEEN COMPLETE"] == 2);
+}
+
 public function iceQueenMessageHelpII():void
 {
 	shipLocation = "SPACE";
@@ -1208,6 +1213,15 @@ public function zaaltPregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Zaalt Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Zaalt Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
 	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;

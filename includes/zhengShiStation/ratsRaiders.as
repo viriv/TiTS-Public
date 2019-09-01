@@ -206,6 +206,9 @@ public function ratsSetupGroup(ratGroup:int = -1):void
 		rat1 = new RatsRaider(RatsRaider.FAIR_MOUSEBOY);
 		rat2 = new RatsRaider(RatsRaider.HALF_BOY);
 	}
+	rat0.inventory = rat0.inventory.concat(rat1.inventory).concat(rat2.inventory);
+	rat1.inventory = new Array();
+	rat2.inventory = new Array();
 }
 
 // [RAT BEGIN]
@@ -241,7 +244,7 @@ public function ratsAttemptUrbolgRobbery():void
 		}
 		output(", and he quickly lets it go.");
 	}
-	output("\n\nNow calmer and wearing a sly grin, he ushers you back to the workshop, walking and talking with an urging paw on your shoulder. <i>“One of the big five gangs here on the station. You’ll get to know ‘em all eventually, but those ones?”</i> He stops to grip piece of metal, channeling the last of his ire into it. <i>“The fekken’ worst! Paste-fingered loingrommets think me so old and stupid that I won’t see ‘em tryin’ to steal!”</i>");
+	output("\n\nNow calmer and wearing a sly grin, he ushers you back to the workshop, walking and talking with an urging paw on your shoulder. <i>“One of the big five gangs here on the station. You’ll get to know ‘em all eventually, but those ones?”</i> He stops to grip a piece of metal, channeling the last of his ire into it. <i>“The fekken’ worst! Paste-fingered loingrommets think me so old and stupid that I won’t see ‘em tryin’ to steal!”</i>");
 	output("\n\nHis sigh is more like a ragged growl, and you quickly put two and two together as he wipes his arm off with a dirty cloth. <i>“Those rodents work in groups, so ye best be wary, new [pc.guyGirl]. You might have proved yourself to ‘ol Urbolg, but they don’t give up, and they’re fekken everywhere. Watch yourself now, y’hear? Lest ye want te lose everything you’ve got!”</i>");
 	if (flags["SEXED_URBOLG"] == undefined) output("\n\nYou nod lightly, thanking him for the information as you move on.");
 	else output("\n\nNodding, you smile and thank Urbolg, watching his tail thump against the workbench behind him.");
@@ -491,7 +494,7 @@ public function ratStartEncounterFight(argumentOver:int = 0):void
 	CombatManager.lossScene(ratFightLoss);
 	CombatManager.displayLocation("RAT’S RAIDERS");
 	CombatManager.encounterTextGenerator(ratcounterTextGenerator);
-	addButton(0, "Fight!", CombatManager.beginCombat);
+	addButton(0, "Next", CombatManager.beginCombat);//Already chose the "Fight" option. No need to make people do anything than tap space at this formality.
 }
 
 public function ratGiveThemMoney():void
@@ -557,7 +560,7 @@ public function ratsShutUpAndTakeMyMoney():void
 	else
 	{
 		output((pc.isAss() ? "You clench your fists so hard that the bones and muscles in your fingers crack and bulge. As your digits uncurl, y" : "Y") + "ou sigh heavily and raise one hand to keep the gang back whilst you dig through your bag. They can’t help but try to jump or stand on their toes to see what’s inside. They’re unable to stifle their happy squeaks when you load a credit chit with the desired amount. ");
-		output("\n\nHolding the stick up, you would laugh if you weren’t so annoyed: they all hold their paws close to their chests, breathlessly staring at it. Making sure they can see the amount now loaded on it you guide their unblinking eyes around by their greedy and beady eyes.");
+		output("\n\nHolding the stick up, you would laugh if you weren’t so annoyed: they all hold their paws close to their chests, breathlessly staring at it. Making sure they can see the amount now loaded on it, you guide their greedy, beady eyes around with the promise of payday.");
 		output("\n\nYou might as well get some entertainment out of this. With a devilish smirk, you fling the chit over your shoulder and watch the avaricious trio all go scrambling for it with impatient squeals. They dive to the ground in a frenzy, scrounging for it wherever it landed.");
 		output("\n\nJust out of ear shot, you hear the little bandits laughing triumphantly.");
 	}
@@ -820,7 +823,7 @@ public function ratsContinueService(offers:int):void
 	else output(" hungry");
 	output(" ministrations. You’re soon inches away from " + rat2.mf("an equally endowed terran dick.", "a puffy-lipped, moist pink pussy, glazed with the fertile and fragrant scent of a horny mouse-girl."));
 	output("\n\nYou let this odorus cocktail of days-old pheromones enter your body in one deep breath. Within seconds a salubrious heat blossom through your neck, your arms, your torso... " + (pc.hasGenitals() ? "and <i>especially</i> in your swampy nethers" : "up and down your spine multiple times") + "; you shudder as you bring your nose to the mouse-boy’s ballooning cock-head, inhaling right from the hormone-spurting source, each jet of pre steaming before it hits your [pc.face].");
-	if (pc.isHerm()) output(" [pc.EachCock] and your [pc.clits] swell to their full forms" + (pc.hasLowerGarment() ? ", outlining themselves against your [pc.lowerUndergarment]." : ".") + " Pre streams from your hermhood as the muscles in [pc.eachVagina] " + (pc.hasVaginas() ? "clench" : "clenches") + " mournfully against one another, wantonly reacting to the smell of raw dick in the air.");
+	if (pc.isHerm()) output(" [pc.EachCock] and your [pc.clits] swell to their full forms" + (pc.hasLowerGarment() ? ", outlining themselves against your [pc.lowerUndergarment]." : ".") + " Pre streams from your hermhood as the muscles in [pc.eachVagina] clench mournfully against one another, wantonly reacting to the smell of raw dick in the air.");
 	else if (pc.hasCock()) output(" Your [pc.cocks] " + (pc.hasCocks() ? "jump" : "jumps") + " to attention" + (pc.hasLowerGarment() ? ", pressing against your [pc.lowerUndergarment]." : "."));
 	else if (pc.hasVagina()) output(" The muscles in [pc.eachVagina] ruefully clench against one another, reacting wantonly to the smell of raw dick in the air so much that you can feel your inner walls engaging in tribadism.");
 	
@@ -842,7 +845,7 @@ public function ratsContinueService(offers:int):void
 		// PC Med Libido (34-66)
 		else if (pc.libido() <= 66)
 		{
-			output(" Despite your initial reservation, you allow it to spread wings through every muscle.");
+			output(" Despite your initial reservation, you allow it to spread through every muscle.");
 			output("\n\nA sheen of pre that <i>sparkles</i> in the light coats the mouse-boy’s slightly-veiny cock. It points to his partner’s puffy pink pussy like an indomitable mast. They could go at it like a couple ‘a bunnies, but alas, you’re the one servicing them! You press the crown of his cock to your [pc.lips], moving slowly as you bring him to your tonsil... and then you jerk your neck until your nose is pressed to his stomach");
 			if (pc.canDeepthroat()) output(", writhing like a slut as your unresistant" + (flags["USED_SNAKEBYTE"] != undefined ? ", ribbed" : "") + " throat is pleasured.");
 			else output(", wincing and suppressing your gag reflex.");
@@ -963,7 +966,7 @@ public function ratsWilliamWantedANextButtonHere():void
 			output("\n\nUnable to last any longer, the mouse-boy grips your head and shoves his dick down your throat, putting serious pressure on your trapped [pc.tongue] and nearly pulling you out of your burrow!");
 
 			if (pc.canDeepthroat()) output(" And damn are you glad he’s taking charge! Your tingling throat needed the attention!");
-			output(" Salty, searing cum churns into your gut, painting your ");
+			output(" Salty, searing cum churns into your gut, painting your");
 			if (flags["USED_SNAKEBYTE"] != undefined) output(" erogenous");
 			output(" throat white. The sensation");
 			if (pc.canDeepthroat()) output(" brings you closer to cumming!");
@@ -1098,7 +1101,7 @@ public function ratsWilliamWantedANextButtonHere():void
 			if (pc.hasTail()) output(" Your [pc.tails] can’t help but wag, you’re just having so much fun watching their reactions in this unique position!");
 			output(" You may not be able to swaddle their swollen crowns in your overheating maw, but the rivulets of watery pre-seed keep their undulating tools nice and warm, and its a bounty you’re keen to slurp up. Some of it even finds its way onto your [pc.skinFurScales]!");
 			
-			output("\n\nPerhaps the entire station knows how good the keening thieves are feeling now. Cum-veins swell with potent loads of cream; the pressure becomes critical. The rogues detonate, long ribbons of cum spooling out from their lengths. Almost none of that licentious shower lands on your or your tongue, instead landing on the ground or their legs. Trickles of pearly goo cling to fur and skin in equal measure, droplets of it running down the defined tendons in their trembling limbs.");
+			output("\n\nPerhaps the entire station knows how good the keening thieves are feeling now. Cum-veins swell with potent loads of cream; the pressure becomes critical. The rogues detonate, long ribbons of cum spooling out from their lengths. Almost none of that licentious shower lands on you or your tongue, instead landing on the ground or their legs. Trickles of pearly goo cling to fur and skin in equal measure, droplets of it running down the defined tendons in their trembling limbs.");
 			output("\n\nThe rodenian’s orgasm is positively <i>violent</i>, however. She growls and shudders like a beast, shoving her fingers down her " + (CodexManager.entryViewed("Rodenians") ? "aural cunts" : "ears") + ". Savage screeches burst from her sore lungs when anal walls clench all around your invading tongue, trapping your strained kisser in there for the duration of her blissful, convulsing orgasm.");
 
 			// PC Med or High Libido,Treated,Snakebyte 
@@ -1720,7 +1723,6 @@ public function ratPostFightAdjustments(pcWon:Boolean):RatsRaider
 
 	//Find thievish rat
 	var thiefRat:RatsRaider = (CombatManager.getHostileActors().length == 2 ? (rat1.hasStatusEffect("Plunder over Pillage!") ? rat1 : rat2) : thiefRat = RatsRaider.getThiefRat());
-	output("<b>Robbed by: " + (thiefRat ? thiefRat.bustDisplay : "NOONE") + "</b>\n\n");
 	//handle rat, if found
 	if (thiefRat)
 	{
@@ -2049,7 +2051,7 @@ public function ratsJustCashThankYou():void
 		default:
 		case RatsRaider.RAT_REP_NONE:
 		case RatsRaider.RAT_REP_LOW:
-			output("\n\n<i>“Aw screw you! We need that!”</i> the rodenian snarls, but she can’t raise a finger to stop you from tugging a reward from her belt. ”</i>You prick! We’ll get that back, you can’t ignore us forever, " + ratsMisterCEO() + "!”</i>");
+			output("\n\n<i>“Aw screw you! We need that!”</i> the rodenian snarls, but she can’t raise a finger to stop you from tugging a reward from her belt. <i>“You prick! We’ll get that back, you can’t ignore us forever, " + ratsMisterCEO() + "!”</i>");
 			output("\n\n<i>“But we really need that...”</i> the mouse-boy murmurs when you take something off him, already gladdened by how much they seem to be carrying.");
 			output("\n\nYou narrowly catch the half-rodenian [rat2.boyGirl]’s lips pursing, dodging a spiteful wad of spit. Keen on moving on, you snatch a pouch from [rat2.hisHer] belt before sauntering off.");
 			output("\n\n<i>“You’ll rue this day, I swear it!”</i> the bellowing mouse-girl hurls your way, cursing up a storm that’d get her fined on just about any planet.");
@@ -2271,10 +2273,10 @@ public function ratsLossSex():void
 			output("Although no attempt was made to turn you on, you are debilitatingly aroused and can think of nothing but getting off. Your body slackens and you fall to your knees, eyes crossing amid the muted jeers of your would-be robbers. It takes you by surprise when you’re sandwiched between their bodies, duplicitous hands and paws roaming all over your body");
 			if (!pc.isNude()) output(" and clothes");
 			output(".");
-			output("\n\nYou’re sure you must be dripping, you feel unpleasantly hot and usable");
+			output("\n\nYou’re sure you must be dripping. You feel unpleasantly hot and usable");
 			if (pc.hasGenitals()) output(", to say nothing of the twitchiness in your crotch");
 			output(". It’s not long before you’re forced on your back and kept there, lamely trying to masturbate amid the cacophony.");
-			output("\n\nThe rats join you in that gropefest");
+			output("\n\nThe rats join you in the gropefest");
 			if (!pc.isNude()) output(", pawing at the clothes still on your body");
 			output(". At least they seem interested in your pleasure...");
 		}
@@ -2505,10 +2507,10 @@ public function ratsTeasingACEO():void
 		
 		if (pc.isHerm())
 		{
-			output("\n\nHer hand ");
+			output("\n\nHer hand");
 			if (rat2.isFemale()) output(" and the halfbreed girl’s squeeze");	
 			else output(" squeezes");
-			output(" your throbbing [pc.cocksLight] just before ");
+			output(" your throbbing [pc.cocksLight] just before");
 			if (rat2.isFemale()) output(" they wind their tails");
 			else output(" she winds her tail");
 			output(" around your [pc.base]");
@@ -2598,7 +2600,7 @@ public function ratsTeasingACEO():void
 		output(" Tails grind " + (pc.isBiped() ? "between your [pc.thighs]" : "against your loins") + " in reckless euphoria");
 		if (pc.hasGenitals()) output(", making sure you are never pushed too far as to cum in spite of their control");
 		output(".");
-		output("\n\nYou no doubt look... unique... from a distance. Three rampant rats swiveling and masturbating atop your form like you’re a [pc.raceCuteShort] bed that exists to improve the pleasure of anyone resting on you. Your lower half is utterly drenched in pussy juice, the [rat2.hairColor]-haired slut has seen to that with multiple orgasms. Her gratuitously wet twat is less a pussy and more like a jizz-launcher, firing off missile after erotic missile.");
+		output("\n\nYou no doubt look... unique... from a distance. Three rampant rats swiveling and masturbating atop your form like you’re [pc.aRaceCuteShort] bed that exists to improve the pleasure of anyone resting on you. Your lower half is utterly drenched in pussy juice, the [rat2.hairColor]-haired slut has seen to that with multiple orgasms. Her gratuitously wet twat is less a pussy and more like a jizz-launcher, firing off missile after erotic missile.");
 		if (pc.hasVagina()) output(" It’s the worst feeling of all, however, when your own [pc.pussies] " + (pc.hasVaginas() ? "are" : "is") + " tingling on the verge of climax, clenching down and getting ready for release, but the paw or tail pulls away every single time...");
 	}
 
@@ -3334,18 +3336,34 @@ public function ratsLossFinish(sex:Boolean = true, tally:Boolean = true):void
 
 public function ratsShowLoot():void
 {
+	var i:int = 0;
+	var ratItems:Array = []; // I case it is needed?
+	
+	// Prune non-gem items, if any.
+	i = (rat0.inventory.length - 1);
+	while (i >= 0)
+	{
+		if (rat0.inventory[i].type != GLOBAL.GEM)
+		{
+			ratItems.push(rat0.inventory[i].makeCopy());
+			rat0.inventory[i].quantity = 0;
+			rat0.inventory.splice(i, 1);
+		}
+		i--;
+	}
+	// Report stolen items.
 	if (rat0.credits > 0 || rat0.inventory.length > 0)
 	{
 		output("\n\n<b>You have lost");
 		if (rat0.credits > 0) output(" " + rat0.credits + " credits");
-		for (var i:int = 0; i < rat0.inventory.length; ++i)
+		for (i = 0; i < rat0.inventory.length; ++i)
 		{
 			if (rat0.credits > 0 || rat0.inventory.length > 1)
 			{
 				if (i == rat0.inventory.length - 1) output(" and");
 				else if (rat0.credits > 0 || i > 0) output(",");
 			}
-			output(" " + rat0.inventory[i].quantity + " " + rat0.inventory[i].shortName + " gems");
+			output(" " + rat0.inventory[i].longName + " (x" + rat0.inventory[i].quantity + ")");
 		}
 		output(".</b>");
 	}

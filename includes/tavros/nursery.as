@@ -93,7 +93,8 @@ public function npcInNurseryCafeteria():Boolean
 {
 	if(seraAtNursery()) return true;
 	if(riyaAtNursery()) return true;
-	if(reahaAtNurseryCafeteria()) return true;
+	if (reahaAtNurseryCafeteria()) return true;
+	if (roxyIsInCafeteria()) return true;
 	return false;
 }
 public function npcInNurseryCommonArea():Boolean
@@ -115,8 +116,13 @@ public function nurseryFoyerFunc():Boolean
 
 	if (flags["ELLIE_PREG_TIMER"] == 70 && flags["ELLIE_OPERATION"] == 3) return ellieEggsHatching();
 	else if (ainaKids() == 1 && ainaBirthScene()) return ainaFirstBirth();
-	else if(isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
-	else if(!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
+	else if (flags["ROXY_BIRTH_SCENE"] == 1) return roxyBirthScene();
+	else if (isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
+	else if (!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
+	
+	if (roxyNurseryRandomEvents("foyer")) return true;
+
+	if (jentaBorn() && flags["MIRRIN_JENTA_MET"] == undefined) return jentaHatchingBegins();
 	
 	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals.");
 	if (silly) output(" There’s even a cute little cartoonish cow!");
@@ -526,6 +532,8 @@ public function nurseryCommonAreaFunc():Boolean
 	}
 	
 	nurseryZilCallgirlRandomEvents();
+	if (roxyNurseryRandomEvents("common")) return true;
+	if (roxyIsExercising()) roxyExcerciseBlurb();
 	
 	if (boredJumperPregAreLaquineKidsPlaying())
 	{
@@ -563,7 +571,8 @@ public function nurseryCafeteriaFunc():Boolean
 	else pc.removeStatusEffect("Sera at Nursery");
 	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
 	else pc.removeStatusEffect("Riya at Nursery");
-	if(reahaAtNurseryCafeteria()) reahaNurseryCafeteriaBonus(btnSlot++);
+	if (reahaAtNurseryCafeteria()) reahaNurseryCafeteriaBonus(btnSlot++);
+	if (roxyIsInCafeteria()) roxyInCafeteriaBonus(btnSlot++);
 	
 	return false;
 }
@@ -616,19 +625,28 @@ public function nurseryKidsDormsFunc():Boolean
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
 
 	nurseryZilCallgirlRandomEvents();
+	if (roxyNurseryRandomEvents("children")) return true;
 	khorganBabyBlurbs();
 	tamtamBabyBlurbs();
 	ainaBabyBlurbs();
 	nurseryLaquineBlurbs();
+	mirrinBabyBlurbs();
 	var button:Number = 0;
-	button = zilBabyBonus(button);
-	button = milodanPlayOptions(button);
-	button = ellieKidVisits(button);
-	button = samBabiesVisitOptions(button);
-	button = zephyrKidsOption(button);
-	button = nurseryLaquineOptions(button);
+	button = nurseryKidsDormsButtonAdjustment(zilBabyBonus(button));
+	button = nurseryKidsDormsButtonAdjustment(milodanPlayOptions(button));
+	button = nurseryKidsDormsButtonAdjustment(ellieKidVisits(button));
+	button = nurseryKidsDormsButtonAdjustment(samBabiesVisitOptions(button));
+	button = nurseryKidsDormsButtonAdjustment(zephyrKidsOption(button));
+	button = nurseryKidsDormsButtonAdjustment(nurseryLaquineOptions(button));
+	button = nurseryKidsDormsButtonAdjustment(mirrinKidsOptions(button));
 
 	return false;
+}
+public function nurseryKidsDormsButtonAdjustment(button:Number):Number
+{
+	if(button == 5) return (button + 10);
+	
+	return button;
 }
 
 public function nurserySpecialistRooms():Boolean
@@ -763,6 +781,7 @@ public function nurseryPlayerApptFunc():Boolean
 	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
 	addButton(1, "Shower", showerMenu, "nursery"); // this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
+	addButton(2, "Storage", locationStorageMenuRoot, "nursery");
 	
 	// Belly size hotfix
 	if (!pc.isPregnant() && pc.bellyRatingMod != 0) addButton(4, "Fix Belly", nurseryFixBelly, undefined, "Fix Belly", "It seems your belly size is off...");
@@ -786,7 +805,9 @@ public function nurseryBrigetsApptFunc():Boolean
 
 public function nurserySpareApptIsOccupied():Boolean
 {
-	if(flags["SERA_CREWMEMBER"] == 0) return true;
+	if (flags["SERA_CREWMEMBER"] == 0) return true;
+	if (roxyIsInTempHousing()) return true;
+	if (amberRecruited() && !amberIsCrew()) return true;
 	return false;
 }
 public function nurserySpareApptBonus():Boolean
@@ -795,7 +816,8 @@ public function nurserySpareApptBonus():Boolean
 	
 	// For followers or grown kids and stuff.
 	if(flags["SERA_CREWMEMBER"] == 0) output(seraOnTavrosBonus(btnSlot++));
-
+	if (roxyIsInNursery()) output(roxyInSpareAptBonus(btnSlot++));
+	if(amberRecruited() && !amberIsCrew()) amberApartmentBonus(btnSlot++);
 	return false;
 }
 
@@ -1611,7 +1633,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 					if(baby.NumNeuter > 0) sexes.push(baby.NumNeuter + " ungendered");
 					if(sexes.length > 0) output(" " + CompressToList(sexes));
 				}
-				else output("<i>Unknown Sex</i>");
+				else output(" <i>Unknown Sex</i>");
 				
 				var desc:Array = [];
 				if(baby.skinTone != "NOT SET") desc.push(" " + baby.skinTone + " skin");
@@ -2438,6 +2460,9 @@ public function pregAverageLoadSizes():void
 	output("\n* <b>Milodan Male:</b> " + (new MilodanMale()).cumQ() + " mLs");
 	output("\n* <b>Milodan Male (Group):</b> " + (new MilodanMaleGroup()).cumQ() + " mLs");
 	
+	output("\n\n<b><u>MirrinPregnancy</u></b>: " + (new MirrinPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Mirrin:</b> " + chars["MIRRIN"].cumQ() + " mLs");
+	
 	output("\n\n<b><u>RenvraEggPregnancy</u></b>: " + (new RenvraEggPregnancy()).definedAverageLoadSize + " mLs");
 	output("\n* <b>Renvra:</b> " + chars["RENVRA"].cumQ() + " mLs");
 	
@@ -2542,15 +2567,15 @@ public function nurseryLaquineBlurbs():void
 		{
 			if (rand(2) == 0) 
 			{
-				output("\n\nIn the nursery's living space you're not surprised to see your infant laquines resting peacefully in the provided cribs and cradles. Doting staff see to their needs at all times, the milk never too far behind when one starts crying for food.");
-				if (boredJumperBreastFeedOK()) output(" You could probably help with that! Carrying this load of [pc.milkNoun] is hard enough, and there's no better place to put it!");					
+				output("\n\nIn the nursery’s living space you’re not surprised to see your infant laquines resting peacefully in the provided cribs and cradles. Doting staff see to their needs at all times, the milk never too far behind when one starts crying for food.");
+				if (boredJumperBreastFeedOK()) output(" You could probably help with that! Carrying this load of [pc.milkNoun] is hard enough, and there’s no better place to put it!");					
 			}
 			else
 			{
 				output("\n\nBriget is usually found in this room attending");
 				if (ChildManager.numChildrenAtNursery() > ttl) output(" to other children");
 				else output(" to daily errands");
-				output(", but right now she's supervising the staff on the care of your infant laquines. They're raised from the cribs and given their meal, patted down until they obligingly burp.");
+				output(", but right now she’s supervising the staff on the care of your infant laquines. They’re raised from the cribs and given their meal, patted down until they obligingly burp.");
 				if (boredJumperBreastFeedOK()) output(" Considering how full of [pc.milkNoun] you are, you could give your kids some warm cream right from the source!");	
 			}
 		}
@@ -2560,7 +2585,7 @@ public function nurseryLaquineBlurbs():void
 		}
 		else if (babyCnt == 0 && kidCnt > 0)
 		{
-			output("\n\nWhen they're not horsing around, the eldest among your laquine children spend a lot of time here. You can only surmise because it's a quiet place, and they have ample opportunity to help the staff. Part of you wonders if they're just trying to curry favor so the adults'll look the other way when they start tearing the place up all over again.");
+			output("\n\nWhen they’re not horsing around, the eldest among your laquine children spend a lot of time here. You can only surmise because it’s a quiet place, and they have ample opportunity to help the staff. Part of you wonders if they’re just trying to curry favor so the adults’ll look the other way when they start tearing the place up all over again.");
 		}
 	}		
 }
@@ -2644,7 +2669,7 @@ public function nurseryAgeCounts(kidType:Number,babyAge:int=1,kidAge:int=18):Arr
 		{
 			var c:Child = children[i] as Child;
 			if (c.Years < babyAge) babyCnt += c.Quantity;
-			else if  (c.Years <= kidAge)
+			else if (c.Years <= kidAge)
 			{
 				kidCnt += c.Quantity;
 				if (c.NumMale > 0) maleKids += c.NumMale;

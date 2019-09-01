@@ -84,6 +84,9 @@
 		public static const FLAG_SHORT:int									= 49;
 		public static const FLAG_FLOPPY:int									= 50; //Not for dicks, lol. Mostly for differentiating rabbit ears right now, but perhaps another use will arise down the road. Might be good for tails to help differentate tails with no muscular control
 		public static const FLAG_HYPER_PUMPED:int 							= 51;
+		public static const FLAG_HEART_SHAPED:int							= 52;
+		public static const FLAG_STAR_SHAPED:int							= 53;
+
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -138,6 +141,8 @@
 			"Short",
 			"Floppy",
 			"Hyper Pumped",
+			"Heart-Shaped",
+			"Star-Shaped",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -245,6 +250,7 @@
 		public static const TYPE_ROEHM:int									= 86;
 		public static const TYPE_XHELARFOG:int								= 87;
 		public static const TYPE_SAURMORIAN:int								= 88;
+		public static const TYPE_HYENA:int									= 89;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -336,6 +342,7 @@
 			"Roehm",
 			"Xhelarfog",
 			"Saurmorian",
+			"Hyena",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -369,6 +376,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -468,6 +476,7 @@
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -494,6 +503,7 @@
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -548,6 +558,7 @@
 			TYPE_JANERIA,
 			TYPE_FROSTWYRM,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -660,6 +671,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -778,7 +790,13 @@
 			NIPPLE_TYPE_INVERTED,
 			NIPPLE_TYPE_TENTACLED,
 		];
-				
+		
+		public static const VALID_AREOLA_FLAGS:Array = [
+			FLAG_PUMPED,
+			FLAG_HEART_SHAPED,
+			FLAG_STAR_SHAPED,
+		];
+		
 		//CUM & MILK TYPES
 		public static const FLUID_TYPE_MILK:int                                 = 0;
 		public static const FLUID_TYPE_HONEY:int                                = 1;
@@ -1251,7 +1269,14 @@
 		public static const ITEM_FLAG_SHOTGUN_WEAPON:int				= 38; //For outputing that a gun is a shotgun
 		public static const ITEM_FLAG_THROWER_WEAPON:int				= 39; //For outputing that a gun is a thrower
 		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
-		public static const ITEM_FLAG_PIERCING_BAR:int					= 41; //Piercings of the "bar" type.
+		public static const ITEM_FLAG_TOGGLED_OFF:int 					= 41; //For spaceships weapons being toggled off to save power.
+		public static const ITEM_FLAG_TWINSHOT:int 						= 42; //For weapons that fire twice.
+		public static const ITEM_FLAG_BURSTSHOT:int 						= 43; //For weapons that fire thrice.
+		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
+		public static const ITEM_FLAG_SHIP_EQUIPMENT:int 				= 45; //For things equipped on ships
+		public static const ITEM_FLAG_TURRET:int 						= 46; //For things equipped on ships
+		public static const ITEM_FLAG_PIERCING_BAR:int 					= 47; //Piercings of the "bar" type.
+		public static const ITEM_FLAG_PIERCING_HOOP:int 				= 48; //Piercings of the "hoop" type.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1295,7 +1320,14 @@
 			"Shotgun",
 			"Thrower",
 			"Launcher",
-			"Bar"
+			"Disabled",
+			"Double Shot",
+			"Burst Fire",
+			"Full-Auto Fire",
+			"Ship Equipment",
+			"Crewed Turret",
+			"Bar",
+			"Hoop"
 		];
 		
 		/**
@@ -1441,6 +1473,7 @@
 			"GATSOLD",
 			"JACQUES",
 			"JAMESAB",
+			"JASSBEFROLD",
 			"JAYECHO",
 			"JLIKESTODRAW",
 			"LAPINBEAU",
@@ -1481,6 +1514,7 @@
 			"Old Gats",
 			"Jacques00",
 			"James AB",
+			"Jass Befrold",
 			"Jay Echo",
 			"J-Likes-To-Draw",
 			"Lapinbeau",

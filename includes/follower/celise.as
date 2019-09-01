@@ -23,12 +23,23 @@ public function celiseBustDisplay():String
 	return "CELISE";
 }
 
-
 //Celise In Tavros
 public function celiseTavrosBonus(btnSlot:int = 1):void 
 {
 	output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station’s mechanics.");
 	addButton(btnSlot, "Celise", approachNonCrewCelise);
+}
+
+public function celiseShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	if(reahaIsCrew() && !curedReahaInDebt() && rand(3) == 0) desc += "\n\nCelise looks strangely [reaha.milkColor] at the moment, a cloud of discolored liquid floating listlessly inside her. Looks like she’s been feeding off a certain bovine lately...";
+	else desc += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
+	
+	addButton(btnSlot, "Celise", celiseFollowerInteractions);
+	
+	return (showBlurb ? desc : "");
 }
 //Crewmember Celise’s Screen
 public function celiseFollowerInteractions():void {
@@ -640,7 +651,7 @@ public function feedCeliseBySavin():void {
 	output("\n\n<i>“It?”</i>");
 	output("\n\nShe gives you a grin. <i>“You’ll see!”</i>");
 	output("\n\nYou gulp, but that quickly turns to a hiss of surprise as the galotian’s fingers slip down from your [pc.cunt], practically pouring into your [pc.asshole]. Your sphincter clenches instinctively, but it’s nowhere near enough to stop Celise’s advance: her fingers become so improbably thin that they can effortlessly pass through your shocked muscles, tickling the sensitive walls beyond. Your back arches instinctively, a sharp sigh of pleasure escaping your lips. Celise coos in delight, and suddenly you can feel the slim fingers inside you swelling, growing larger and larger, filling you until your hole seems to strain to accommodate the tremendous goo mass inside you.");
-	output("\n\nCelise watches you writhe and moan on her gooey insertion with rapt attention, her lips locked in a silent, plush O that looks so perfect to kiss. You wring your arms free of the gooey mass around you and pull her down, [pc.legOrLegs] wrapping around her huge hips as you taste her. Sweet and hot on your lips, your tongue probes into the galotian’s open mouth, pulling her into a tight kiss; she responds with a quick thrust into your ass, shooting so deep into you that your stomach practically bulges between you.");
+	output("\n\nCelise watches you writhe and moan on her gooey insertion with rapt attention, her lips locked in a silent, plush ‘O’ that looks so perfect to kiss. You wring your arms free of the gooey mass around you and pull her down, [pc.legOrLegs] wrapping around her huge hips as you taste her. Sweet and hot on your lips, your tongue probes into the galotian’s open mouth, pulling her into a tight kiss; she responds with a quick thrust into your ass, shooting so deep into you that your stomach practically bulges between you.");
 	output("\n\nJust as easily as she started, though, Celise withdraws, leaving you feeling so very, very empty. She breaks the kiss, her hands sliding up your body to caress your [pc.chest]. Through her transluscent arms, though, you can see her crotch shifting and twisting, the amorphous goo reforming into " + num2Text(pc.vaginaTotal() + 1) + " thick, dripping goo-cocks that flop down onto your thighs. God, they’re huge: made just for you, each more than big enough to stretch you to your limit. A soft whimper escapes your lips as the soft appendages drag down your thigh, each lining up with the hole it seems so perfectly made to match.");
 	output("\n\nCelise hovers at the very edge of penetration, letting you feel the pressure of " + num2Text(pc.vaginaTotal() + 1) + " thick shafts pressing against your holes. The merest moment of this and your body practically seizes up with dread as the goo’s huge tools press against your [pc.pussies] and ass, ready to tear you apart. All you can do is brace yourself, try to relax your fearful muscles in the face of the massive penetration about to happen.");
 	output("\n\nCelise hesitates for a moment, just long enough to give you a sultry wink and a hungry moan of anticipation before her big hips push forward. You bite your lip, fingers digging into the gooey bed around you as your [pc.pussies] and [pc.asshole] desperately try to accommodate the unrelenting force being ramming into them. You give a shrill cry of pleasure as the first of Celise’s massive goo-cocks plunges into your [pc.cunt], finally stretching your pussy-lips agape and ramming through. All at once, the momentum of the first cock carries the others through, battering through your spasming muscles. You scream, the pleasure absolutely overwhelming as ");
@@ -1235,7 +1246,7 @@ public function getDrainedSexyTimes():void {
 	pc.orgasm();
 
 	/*(old text that will not be used) Celise is hungry
-	Suddenly, a chill runs down your spine when you feel Celise’s grip on your asscheeks tighten. <i>“You know, [pc.name], you haven’t been doing a very good job of feeding me...” she says to you rather nonchalantly as one of her protrusions pushes up against the entrance to your anus.  [if (vagina = yes)] Another protrusion rubs itself against the lips of your [vagina] [if (more than one vagina)] , with another joining it at your other lower lips not long after[/] . [/] [if (cock = yes)] Simultaneously, Celise’s goo tightens into a tube about your [cock], teasing you to full hardness.[/] “You really can’t blame me for milking your whole body now that I’ve got you inside me.” She continues the matter-of-fact tone, as she prepares to violate your entrapped form.
+	Suddenly, a chill runs down your spine when you feel Celise’s grip on your asscheeks tighten. <i>“You know, [pc.name], you haven’t been doing a very good job of feeding me...” she says to you rather nonchalantly as one of her protrusions pushes up against the entrance to your anus.  [if (vagina = yes)] Another protrusion rubs itself against the lips of your [vagina] [if (more than one vagina)], with another joining it at your other lower lips not long after[/] . [/] [if (cock = yes)] Simultaneously, Celise’s goo tightens into a tube about your [cock], teasing you to full hardness.[/] “You really can’t blame me for milking your whole body now that I’ve got you inside me.” She continues the matter-of-fact tone, as she prepares to violate your entrapped form.
 	
 	You can probably still break free of her grip and kick her out of your room for trying this, but at the same time, she’s been pretty relaxed about the whole thing, so it will likely be a pretty gentle feeding too. Will you let her drain you all night?*/
 	//(old text that will not be used) Break free

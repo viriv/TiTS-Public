@@ -168,7 +168,7 @@ public function tavrosHangarStuff():Boolean
 				pc.createStatusEffect("SeenMitzi");
 				pc.setStatusMinutes("SeenMitzi",120);
 			}
-			output("\n\n<b>A buxon gabilani leans against the side of your ship, vacantly chewing bubblegum and twirling a lock of purple-dyed hair.</b> She doesn’t seem the least bit concerned about anything else.");
+			output("\n\n<b>A buxom gabilani leans against the side of your ship, vacantly chewing bubblegum and twirling a lock of purple-dyed hair.</b> She doesn’t seem the least bit concerned about anything else.");
 			addButton(btnSlot++,"Gabilani",mitziFirstShipApproach);
 		}
 		//Mitzi has been kicked off or is lurking around.
@@ -186,15 +186,24 @@ public function tavrosHangarStuff():Boolean
 
 public function merchantThoroughfareBonus():Boolean
 {
-	if(currentLocation == "9015")
+	if (currentLocation == "9015")
 	{
+		output("A neon sign displaying a pair of scissors sits next to a small store entrance with");
+		//disable nav to shear beauty if doing cum cleanup
+		if (ceriaHyperCumActive())
+		{
+			output(" a shut door and a closed sign displayed -- looks like Ceria’s still cleaning up the evidence of your passing!");
+			flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+		}
+		else output(" its doors propped open to the east, allowing you a glimpse of the salon inside.");
+		output(" The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you follow the arcing thoroughfare east, you could visit the red light zone.");
 		vendingMachineButton(0, "J'ejune");
 	}
-	if(currentLocation == "9017")
+	else if(currentLocation == "9017")
 	{
 		repeatGilBonus();
 	}
-	if(currentLocation == "9018")
+	else if(currentLocation == "9018")
 	{
 		darkChrysalisStorefront();
 		output("\n\nTo the west, you see a brightly-lit shop labeled as “Fur Effect.”");
@@ -300,8 +309,28 @@ public function northEastPlazaBonus():void
 	fisiAtResDeckAddendum(0);
 }
 
+public function resDeck11Func():Boolean
+{
+	playFynsDoorScene(0);
+	bigTiddyGFDoor(1);
+	
+	return false;
+}
+
 public function northWalkwayBonus():void
 {
+	bizzyApartmentHandler(1);
 	fisiannaApartmentHandler(0);
-	kaseApartmentHandler(1);
+	kaseApartmentHandler(2);
+}
+public function resDeck17Func():void
+{
+	veltaAptBonus();
+}
+
+public function anonBackEndBonus():Boolean
+{
+	var btnSlot:int = 0;
+	btnSlot = fadilBonus(btnSlot);
+	return false;
 }

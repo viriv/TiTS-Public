@@ -97,7 +97,7 @@ public function zilTwinsInitialD():void //GEEEEEEEEEET IIIIIIIIIIIIIIIT
 	if (pc.hasCock()) cIdx = pc.biggestCockIndex();
 	if (pc.hasVagina()) vIdx = rand(pc.vaginas.length);
 	
-	if (pc.isNude()) output("Not one to deprive yourself of an exhibtionistic oppurtunity like this, you tell the lusty zil lady you’d be fine with letting her brother get a taste of your " + (cIdx >= 0 ? "[pc.cock " + cIdx + "], reaching down to stroke your tool." : "[pc.vagina " + vIdx + "], spread your nether lips."));
+	if (pc.isNude()) output("Not one to deprive yourself of an exhibitionistic opportunity like this, you tell the lusty zil lady you’d be fine with letting her brother get a taste of your " + (cIdx >= 0 ? "[pc.cock " + cIdx + "], reaching down to stroke your tool." : "[pc.vagina " + vIdx + "], spread your nether lips."));
 	else output("You smirk at the lusty lady zil and tell her you’d be fine with letting her brother get a taste of your " + (cIdx >= 0 ? "[pc.cock " + cIdx + "]" : "[pc.vagina " + vIdx + "]") + ", going to remove your clothes and stripping yourself bare, much to the delight of both the siblings, as well as anyone else that might happen by. ");
 	output("\n\nMica seems relieved at that, and his sister only grins all the wider, letting her brother’s fully-erect honey-wand fall free from her grasp and pulling herself off the zil boy’s back.");
 	output(" <i>“Well,”</i> she coos, circling her femmy bee-brother and trailing a single finger along his svelte shoulders, <i>“The nice offworlder said yes, Mica, what are you waiting for? Go on and give them what they were promised.”</i>");
@@ -164,7 +164,7 @@ public function zilTwinsInitialD():void //GEEEEEEEEEET IIIIIIIIIIIIIIIT
 	else output("\n\n<i>“Not too bad");
 	output(",”</i> she coos, now bringing her cum-covered hand up to her subservient brother’s face, who quickly opens his mouth to start licking her fingers clean without even being told.");
 	output(" The zil woman doesn’t break eye contact as Mica cleans his own seed from her fingers and continues to talk with a wide smile on her face,");
-	output(" <i>“I’m Tetra, by the way, and I think I can say that my dear sibling and I both enjoyed this little excursion, and I don’t think either of us wouldn’t mind seeing you again, right, Mica?”</i>");
+	output(" <i>“I’m Tetra, by the way, and I think I can say that my dear sibling and I both enjoyed this little excursion. I don’t think either of us would mind seeing you again, right, Mica?”</i>");
 	output("\n\nThe zil in question pulls back from his sister’s now-clean hand, licking his lips of any stray cum, and nods hastily, <i>“Yes, sister.”</i>");
 	output("\n\nTetra smiles at that and wraps an arm around her brother’s shoulders, <i>“You should come visit us at Burt’s sometime... We like to relax there from time to time, and could always use some company, especially from offworlders like yourself.”</i>");
 	if (pc.isAss()) output("\n\nYou tell the couple you’ll consider it.");
@@ -189,7 +189,7 @@ public function zilTwinsInitialDissapointment():void
 	
 	output("You shake your head and tell the zil woman you’d rather not engage in this sort of thing, much to her dismay.");
 	output("\n\nShe frowns, still stroking her brother’s big, thick dick, and speaks up again, <i>“Aww, that’s too bad.”</i> The alien girl pauses to kiss at Mica’s neck for a moment,");
-	output(" <i>“I’m Tetra, by the way, and even though you aren’t feeling... up to it right now, I don’t think either of us wouldn’t mind seeing you again, right, Mica?”</i>");
+	output(" <i>“I’m Tetra, by the way, and even though you aren’t feeling... up to it right now, I don’t think either of us would mind seeing you again, right, Mica?”</i>");
 	output("\n\nThe femboy whimpers and trembles in his sister’s embrace, but nods hastily, <i>“Yes, sister.”</i>");
 	output("\n\nTetra smiles at that and wraps an arm around her brother’s shoulders, <i>“You should come visit us at Burt’s sometime... We like to hang out there from time to time, and could always use some company, especially from offworlders like yourself.”</i>");
 	output("\n\nWith that, she releases Mica’s throbbing cock as a big glob of pre forms on his tip, leaving him to whine at the absence of his sister’s touch.");
@@ -765,7 +765,7 @@ public function zilTwinsFuckTetra():void
 	output(" Sheathing your " + (cIdx2 >= 0 ? "[pc.cocks]" : "[pc.cock " + cIdx + "]") + " inside her a second time feels even better with Tetra now adjusted to your length and girth, gliding in easily thanks to her outpour of natural lubricants.");
 
 	output("\n\nWith the dommy twin’s guidance, you repeat the same motion again, and again, and again until you’ve built up a steady rhythm that has your insectile lover moaning quietly and gushing her sweet fluids all over.");
-	output(" All the while , Tetra keeps an eye on her brother, making sure the dejected bee boy isn’t touching himself, even with his zil cock throbbing and leaking honey-pre onto the table.");
+	output(" All the while, Tetra keeps an eye on her brother, making sure the dejected bee boy isn’t touching himself, even with his zil cock throbbing and leaking honey-pre onto the table.");
 	output(" When his sibling’s made sure he isn’t jerking off to this lovely scene, Tetra turns her gaze back to you, watching your lust-hazed, pheromone-addled face with a smile before placing a hand on the back of your head, and pushing you down to her chest.");
 	output(" You don’t protest and groan happily as your face comes to rest in the bee girl’s cleavage, feeling warm boobflesh on your cheeks.");
 	output(" For better or for worse, though, you don’t get to stay there long, because Tetra guides you out from between her C-cups and to one of her pert black nipples, with beads of honey already forming on her stiff teats.");
@@ -924,7 +924,7 @@ public function zilTwinsFuckThemAll(arg:Array):void
 	output(" Just when you’re on the brink of pushing your own hips back to get all that cock inside you again, the femboy slams his sides forward, sinking his honey-rod into you again, causing you to cry out with bliss.");
 
 	output("\n\nMica gradually speeds himself up to a steady, but vigorous thrusting, keeping you both locked in constant pleasure as you’re filled with the zil boy’s thick alien member and your [pc.vagOrAss] hugs at his tool.");
-	output(" All the while , your face is buried between Tetra’s legs, tongue-fucking her honey-cunt until she’s like a bottle of honey that just doesn’t empty, her sweet sticky stuff filling your mouth and coating your cheeks until you feel like you’re about to go into a sugar-coma.");
+	output(" All the while, your face is buried between Tetra’s legs, tongue-fucking her honey-cunt until she’s like a bottle of honey that just doesn’t empty, her sweet sticky stuff filling your mouth and coating your cheeks until you feel like you’re about to go into a sugar-coma.");
 	output(" You have the zil moaning aloud, her legs and pussy clenching every now and then when you hit a particular <i>“sweet”</i> spot, letting you know you’re doing a good job.");
 	output("\n\nWith the oral affections you’re giving her and the show her brother’s putting on it’s no surprise the dommy wasp is close to her climax. She throws her legs around your shoulders, keeping you in place as her voice breaks into a short, high-pitched cry of pleasure.");
 	output(" All of her muscles seem to tighten at once, pulling you deeper into Tetra’s slit as it clamps down around your [pc.tongue]. Muffled whimpers fill your ears as an overabundance of the zil’s sweet honey-cum floods your mouth.");

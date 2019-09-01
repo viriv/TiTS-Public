@@ -607,7 +607,7 @@ public function masturbateWhileWatchingHaleyHumphumphump():void
 		}
 		else output("from your crotch and quietly make your escape.");
 	}
-	//!PC.hasCock() && PC.hasVagina()
+	// !PC.hasCock() && PC.hasVagina()
 	else if(!pc.hasCock() && pc.hasVagina())
 	{
 		output("Fuck it, this needs tending to <i>now</i> and you’re not going to pass up the opportunity to use a sexy leithan girl as masturbation fodder. You sneakily ");
@@ -691,16 +691,20 @@ public function enteringHaleysStallRepeat():void
 		}
 	}
 	clearMenu();
-	addButton(0,"Get Fucked",getFuckedByHaleyAsATreatedFemPCRepeatSlut,undefined,"Get Fucked","Ask Haley if she needs your help to relieve her stress.");
+	if(pc.hasGenitals()) addButton(0,"Get Fucked",getFuckedByHaleyAsATreatedFemPCRepeatSlut,undefined,"Get Fucked","Ask Haley if she needs your help to relieve her stress.");
+	else addDisabledButton(0, "Get Fucked","Get Fucked", "You’ve got to have genitals for this!");
 	if(pc.isTaur() && pc.hasCock() && pc.biggestCockLength() >= 18) addButton(1,"Sandwiched",getHaleyAFuckingSandwich,undefined,"Sandwiched","Fuck the milker while Haley fills you up.")
 	else addDisabledButton(1, "Sandwiched", "Sandwiched", "You’ve got to be a big-dicked taur in order to get between them.");
 	if (!pc.hasCock()) addDisabledButton(2, "Competition", "Competition", "You can’t do that without a penis.");
 	else if (pc.biggestCockLength() >= 15) addButton(2, "Competition", haleyChallenge, undefined, "Competition", "Challenge Haley to see who can cum more.");
 	else addDisabledButton(2, "Competition", "Competition", "You need to have a bigger dick to use the taur-milker to challenge her.");
-	if (flags["MET_ELLIE"] != undefined && flags["BEAT_HALEY"] != undefined && pc.hasCock() && pc.hasVagina()) addButton(3, "Threesome", haleyEllieThreesome, undefined, "Threesome", "Ask Haley if she wants a threesome with Ellie.");
+	if (flags["MET_ELLIE"] != undefined && flags["BEAT_HALEY"] != undefined)
+	{
+		if (!pc.hasCock()) addDisabledButton(3, "Threesome", "Threesome", "You need to have a penis for this!");
+		else addButton(3, "Threesome", haleyEllieThreesome, undefined, "Threesome", "Ask Haley if she wants a threesome with Ellie.");
+	}
 	else if (flags["MET_ELLIE"] == undefined) addDisabledButton(3, "Threesome", "Threesome", "If only you knew a sexy taurgirl who’d be up for a threesome with Haley. Gotta be one of those on New Texas...");
 	else if (flags["BEAT_HALEY"] == undefined) addDisabledButton(3, "Threesome", "Threesome", "You have to beat Haley in the competition for this.");
-	else if (!pc.hasCock() || !pc.hasVagina()) addDisabledButton(3, "Threesome", "Threesome", "You currently have to be a herm for this.");
 	if(flags["MET_HALEY"] == undefined) addDisabledButton(4,"Offer Self","Offer Self","Talk to her a bit more first.");
 	else addButton(4,"Offer Self",offerSelfToHaley,undefined,"Offer Self","Offer to take the place of Haley’s milker for a day as a nice present for the pent-up taurgirl.");
 	if (pc.hasStatusEffect("Haley Bet In Progress")) { }
@@ -1283,14 +1287,14 @@ public function haleyEllieThreesome():void
 	var mainCockIdx:int = pc.cockThatFits(ppHaley.vaginalCapacity());
 	if (mainCockIdx < 0) mainCockIdx = pc.smallestCockIndex();
 	var subCockIdx:int = -1;
-	if (pc.cocks.length > 1)
+	if (pc.cocks.length > 1 && flags["HALEY_ANAL_VIRGINITY_TAKEN"] != undefined)
 	{
 		subCockIdx = pc.cockThatFits(ppHaley.analCapacity(), "volume", [mainCockIdx]);
 	}
 	
 	output("Haley slumps over the milker with a resigned sigh as you approach, then looks up when she notices your presence.");
 	output("\n\n<i>“Heya, [pc.name]. Don’t s’pose you’ve come by to help me out with my problem?”</i> she asks hopefully.");
-	if (pc.isBimbo())
+	if (pc.isBimbo() && pc.isHerm())
 	{
 		output("\n\n<i>“Hi Hales! I actually came by because I have a super good idea!”</i>");
 		output("\n\n<i>“Uh huh,”</i> she says, bemused. <i>“Go on, tell me your super good idea.”</i>");
@@ -1405,7 +1409,7 @@ public function haleyEllieThreesome():void
 	if (pc.isTaur()) output(" mount her to");
 	if (subCockIdx >= 0) output(" align your [pc.cock " + mainCockIdx + "] with her drooling pussy and your [pc.cock " + subCockIdx + "] with her raised, puffy asshole. After all... you didn’t specify <i>which</i> holes of hers you were going to fuck.");
 	else output(" align your [pc.cock " + mainCockIdx + "] with her delectable pussy - it’s drooling all over her heavy balls, her wetness dripping to the floor.");
-	output("\n\nWith your [pc.cockHeadBiggest] pressed against the wetness of Haley’s pussy, you start to push in - but it’s fucking <i>hard</i>! The amazonian taurgirl is not only ridiculously tight, but every time she fucks Ellie her passage flexes, another bead of pearlescent girlcum slipping down her flanks. Not to be deterred, you patiently wait until Haley is on her outstroke and then thrust into her with all your might.");
+	output("\n\nWith your [pc.cockHead " + mainCockIdx + "] pressed against the wetness of Haley’s pussy, you start to push in - but it’s fucking <i>hard</i>! The amazonian taurgirl is not only ridiculously tight, but every time she fucks Ellie her passage flexes, another bead of pearlescent girlcum slipping down her flanks. Not to be deterred, you patiently wait until Haley is on her outstroke and then thrust into her with all your might.");
 	output("\n\n<i>“Oh, </i>fuck<i>!”</i> she gasps, reflexively clamping down on you. Her back half begins to shudder, one of her hindlegs lifting off the ground, and you hear Ellie start to moan from under her.");
 	if (pc.isBimbo())
 	{
@@ -1685,7 +1689,7 @@ public function beHaleysMilker():void
 		if(pc.hasVagina()) pc.cuntChange(0,1500);
 		else pc.buttChange(1500);
 		output("\n\n<i>“Fuck!”</i> Haley pants, grunting in pleasure as her emissions become notably thicker and fiercer. <i>“G-gonna fuckin’... ugh! Nnnnggrrgh!”</i>");
-		output("\n\nShe lets out a dirty, feral groan of ecstasy as she staggers forward, sinking her gigantic horsecock to the hilt within you as what feels like a gallon of her spunk graces your " + (pc.hasVagina() && !pc.isPregnant(0) ? "[pc.womb].":"warm insides.") + " You cum on the spot, already so wound up from the experience of being penetrated by such an impossibly large studcock that you just can’t help yourself. The squeezing motion of your fuckhole milks not only an enormous amount of seed from her flexing flare but a few appreciative moans from the woman herself, her hands" + (pc.isTaur() ? " caressing your [pc.chest] while she empties her balls.":" out against the wall with fingers splayed and knuckles white."));
+		output("\n\nShe lets out a dirty, feral groan of ecstasy as she staggers forward, sinking her gigantic horsecock to the hilt within you as what feels like a gallon of her spunk graces your " + (pc.hasVagina() && !pc.isPregnant(0) ? "[pc.womb]":"warm insides") + ". You cum on the spot, already so wound up from the experience of being penetrated by such an impossibly large studcock that you just can’t help yourself. The squeezing motion of your fuckhole milks not only an enormous amount of seed from her flexing flare but a few appreciative moans from the woman herself, her hands" + (pc.isTaur() ? " caressing your [pc.chest] while she empties her balls.":" out against the wall with fingers splayed and knuckles white."));
 		output("\n\n<i>“Uuuhhh,”</i> Haley groans, lost to animal pleasure. <i>“Fuuuck...”</i>");
 		output("\n\nA torrential gush of equine jizz accompanies her lilting voice, her throbbing cock pumping you well past your original capacity. By the time she’s finished cumming and pulls herself free with a satisfied grunt you’ve got a sloshing paunch to your tummy, a nice visual reminder of your new role for the day. You moan in joy.");
 	}
@@ -2151,7 +2155,7 @@ public function haleysCumYouGetForLosingHerBet(hole:int):void
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	if (hole < 0) pc.loadInAss(pp);
 	else pc.loadInCunt(pp, hole);
-	pc.loadInMouth();
+	pc.loadInMouth(pp);
 	pc.orgasm();
 	clearMenu();
 	addButton(0, "Next", haleysDoneUsingYouForNow);
@@ -2254,9 +2258,10 @@ public function haleyGetsFuckedInTheAssForLosing(cockIdx:int):void
 	output("\n\n<i>“Looks like you’re looking forward to this as much as I am, Haley.”</i>");
 	if (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined)
 	{
-		output("She glances back and you past her blonde hair you catch an expression that’s unsure, if not downright nervous.");
+		output("\n\nShe glances back and you past her blonde hair you catch an expression that’s unsure, if not downright nervous.");
 		output("\n\n<i>“Haley... have you never done this before?”</i>");
 		output("\n\nShe hangs her head. Bingo. <i>“I haven’t,”</i> she mumbles, as if there were any doubt.");
+		output(" <b>Haley has lost her anal virginity!</b>");
 	}
 
 	processTime(5);
@@ -2315,8 +2320,8 @@ public function haleyIsMadeIntoASoreLoser(cockIdx:int):void
 	author("Wsan");
 
 	output("<i>“Time for a crash course, then,”</i> you say cheerfully, right before shoving the [pc.cockHead " + cockIdx + "] of your [pc.cock " + cockIdx + "] inside her asshole. The reaction is immediate.");
+	output("\n\n<i>“Nnngh!”</i> Haley groans, hands balled into fists around some hay. She clamps down on you hard, but she’s <i>just</i> lubed enough that all she really accomplishes is intimately massaging your cock as it painfully stretches her apart. <i>“Guuuh-uh!”</i>");
 	pc.cockChange();
-	output("\n\n<i>“Nnngh!”</i> Haley groans, hands balled into fists around some hay. She clamps down on you hard, but she’s </i>just<i> lubed enough that all she really accomplishes is intimately massaging your cock as it painfully stretches her apart. <i>“Guuuh-uh!”</i>");
 	output("\n\nShe breathes a shaky sigh of relief when you begin to slide back outwards, but squeals and jumps when you ram yourself back home, earning yourself a few inches more of unexplored leithan asshole.");
 	output("\n\n<i>“Fuck, you are </i>tight<i> back here,”</i> you tell her, petting her flank. <i>“Guess the bulls never took it upon themselves to introduce you to anal, huh?”</i>");
 	output("\n\nHaley doesn’t reply to your jibe, too caught up in catching her breath - she’s bent over at the torso, leaning on her arms and panting. On another rough thrust, you notice your cock is sliding over a slight protrusion in her ass, and with some exploration accompanied by girly moans from up front, you realize you’ve discovered her extremely oversized prostate.");
@@ -2572,6 +2577,7 @@ public function sillyTaurMissionaryDickIsForHaley(cockIdx:int):void
 		output("\n\nShe glances at you and you past her blonde hair you catch an expression that’s unsure, if not downright nervous.");
 		output("\n\n<i>“Haley... have you never done this before?”</i> you ask.");
 		output("\n\nShe hangs her head. Bingo. <i>“I haven’t,”</i> she mumbles, as if there were any doubt.");
+		output(" <b>Haley has lost her anal virginity!</b>");
 	}
 
 	processTime(3);
@@ -2734,7 +2740,7 @@ public function haleyRiddenHardAndPutAwayWet():void
 
 	output("<i>“Mmmm,”</i> you murmur, settling back onto her cock. <i>“Let’s see if everything they say about amazon virility is true. Gonna take you for a ride, Haley.”</i>");
 	output("\n\nYou push yourself back into the flared head of Haley’s dick immediately, hissing in pleasure as the folds around it compress upon entry and bloom again once she’s inside. Your [pc.asshole] is <i>full</i> of her, quivering and stretching around the shestud’s impressive cock as she spurts precum inside you.");
-	pp.buttChange(1500);
+	pc.buttChange(1500);
 	output("\n\n<i>“Ooh, good girl,”</i> you say, grinning down at her. <i>“All that sticky lube pumping out of your balls is gonna make this real easy.”</i>");
 	output("\n\nHaley groans in need as you thrust back roughly, working your way down her enormous shaft and spreading yourself wide. You tense your core with a grunt as you feel her bulging cockhead slip deeper, exploring new depths and covering them in oozing white spunk. Getting down to her medial ring is a struggle but a pleasant one; just having her so deep inside you is something to treasure, especially when she’s got that look of tortured pleasure written all over her face.");
 	output("\n\nShe moans and twists, her bedraggled blonde hair shifting beneath her while you gyrate your hindquarters atop her underside. More than once she almost screams with the pleasure, arching her humanoid half’s back off the ground as an accompanying gout of hot seed spills inside you. You haven’t let her cum just yet, though. That would be <i>too</i> easy.");
@@ -2854,7 +2860,7 @@ public function haleyWholesomeTaurpussySex(cockIdx:int):void
 		else output("\n\n<i>“Stars,”</i> she pants wildly, trying to catch her breath. <i>“That- that </i>behemoth<i> cock of yours is something else, [pc.name]...”</i>");
 	}
 	output("\n\nYou stay silent and instead ply Haley’s indomitable yet inexperienced body with all the pleasure she can handle. Very soon you have a strong, powerful mare all but champing at the proverbial bit while you rock her world, enjoying the way she can barely keep control of her quivering hindquarters to stay standing. Her clawed feet scrabble against the ground, pushing hay out of their path as her puzzled mind tries to figure out whether her legs should be spread or held close, if she should scream in bliss or breathlessly pant. It doesn’t seem like she’s ever going to find an answer as long as you’re inside her, her continual writhing and moaning the only constant she can come up with.");
-	output("\n\nHaley cums over and over, almost fighting for control as you keep her held in place with{taur: your legs and hindquarters/else: a steady hand} and ride her all throughout while she cries out in orgasmic ecstasy. Twenty minutes of having her mind blown finds her submissively knelt down, unable to stay completely standing while you frantically rut her spasming mareslit, the overpowering need running away with your sex-frayed mind. Only her curvy behind remains thrust obstinately into the air, your anchor amidst the mating frenzy.");
+	output("\n\nHaley cums over and over, almost fighting for control as you keep her held in place with " + (pc.isTaur() ? "your legs and hindquarters" : "a steady hand") + " and ride her all throughout while she cries out in orgasmic ecstasy. Twenty minutes of having her mind blown finds her submissively knelt down, unable to stay completely standing while you frantically rut her spasming mareslit, the overpowering need running away with your sex-frayed mind. Only her curvy behind remains thrust obstinately into the air, your anchor amidst the mating frenzy.");
 	output("\n\nYour own orgasm is the cherry on top of the whole experience,");
 	if (cockIdx < 0) output(" cumming as hard as you ever have");
 	else

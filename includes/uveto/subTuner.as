@@ -475,7 +475,7 @@ public function walkiesPart2():void
 	var lover:Boolean = false;
 	var choices:Array = [];
 	if(annoIsCrew()) choices.push(0);
-	if(syriIsCrew()) choices.push(1);
+	if(syriIsCrew() || (syriRecruited() && syriAtFreeezer())) choices.push(1);
 	if(roamingKiroAvailable()) choices.push(2);
 	var select:int = -1;
 	if(choices.length > 0) select = choices[rand(choices.length)];
@@ -506,7 +506,7 @@ public function walkiesPart2():void
 		output(" Giving you an odd, slightly lustful look, Syri turns her attention to Belle, who is just as interested in the wolfy bitch as she is in you.");
 		
 		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as “Dr. Belle Baslocvicz” before she continues. <i>“Your ‘Steele’ here has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Syri’s curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
-		output("\n\n<i>“Uh, yeeeeah,”</i> Syri says, clearly not interested in such a deal, <i>“Well, uh, I gotta get going, later, [pc.name]”</i>");
+		output("\n\n<i>“Uh, yeeeeah,”</i> Syri says, clearly not interested in such a deal, <i>“Well, uh, I gotta get going, later, [pc.name]!”</i>");
 		output("\n\nThe ausar quickly starts walking the opposite direction of the two of you, leaving you and Belle relatively alone in the wide open dome of Uveto station.");
 		if (flags["SUBTUNER_NAMED"] == undefined) flags["SUBTUNER_NAMED"] = 1;
 		lover = true;
@@ -1487,6 +1487,32 @@ public function subTunerExhibRouter():void
 	moveTo("UVS B9");
 	options[rand(options.length)]();
 }
+public function subTunerExhibEnd():void
+{
+	clearOutput();
+	author("HugsAlright");
+	showBelle();
+	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used hole");
+	if(pc.hasVagina()) output("s");
+	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
+	if(pc.hasCock()) output("handjob");
+	else output("fingering");
+	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
+	output("\n\nOnce you’re good and clean, Belle ");
+	if(!pc.isNude()) output("gives you back all your clothes and ");
+	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
+	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
+	output("\n\nYeah, that sounds like a good idea right about now.");
+
+	processTime(15);
+	pc.shower();
+	IncrementFlag("SUBTUNER_EXHIBITIONISM");
+	pc.exhibitionism(2);
+	
+	// [Next] Returns the PC outside Belle’s lab.
+	clearMenu();
+	addButton(0,"Next",leaveAccuPitchLabs);
+}
 
 //Rival
 //This can happen for any PC atm.
@@ -1619,7 +1645,6 @@ public function subTunerRivalBullshit():void
 	clearMenu();
 	addButton(0,"Next",aftermathOfRivalIncestYaCunts);
 }
-
 public function aftermathOfRivalIncestYaCunts():void
 {
 	clearOutput();
@@ -1638,35 +1663,10 @@ public function aftermathOfRivalIncestYaCunts():void
 	clearMenu();
 	addButton(0,"Next",cleanupOfRivalSluttery);
 }
-
 public function cleanupOfRivalSluttery():void
 {
-	clearOutput();
-	author("HugsAlright");
-	showBelle();
-	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
-	if(pc.hasVagina()) output("s");
-	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
-	if(pc.hasCock()) output("handjob");
-	else output("fingering");
-	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
-
-	output("\n\nOnce you’re good and clean, Belle ");
-	if(!pc.isNude()) output("gives you back all your clothes and ");
-	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
-
-	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
-
-	output("\n\nYeah, that sounds like a good idea right about now.");
-	processTime(15);
-	pc.shower();
-
-	IncrementFlag("SUBTUNER_EXHIBITIONISM");
+	subTunerExhibEnd();
 	IncrementFlag("SUBTUNER_COUSINCESTED");
-	pc.exhibitionism(2);
-	clearMenu();
-	addButton(0,"Next",leaveAccuPitchLabs);
-	//[Next] //Returns the PC outside Belle’s lab.
 }
 
 //Anno
@@ -1688,20 +1688,19 @@ public function subTunerAnnoExhib():void
 	output("\n\nYou’re too focused on those gently buzzing toys in and on you to give her an answer to that question. Instead, you get on your knees right in front of her and paw at her crotch with your hand, whining like a puppy, begging to get at the delicious folds of her sex.");
 	output("\n\n<i>“W-whoa!”</i> Anno stutters as your digits brush against her still-clothed pussy, <i>“I was hoping I’d be the one in the collar, but I gueeeess I can let you have </i>all<i> the fun for once.”</i> She gives you a smile and a wink with that before continuing, <i>“Just uh, not out here. Think we could find somewhere more... private?”</i>");
 	output("\n\n<i>If that’s what it takes for you to get Anno off, of course you can find somewhere more private.</i> You nod eagerly at her proposal, resulting in a smile from the ausar along with a wag of her big, fluffy tail.");
-	output("\n\n<i>“Umm,”</i> she ponders for a moment, <i>“I think I know a place we could go. SteeleTech has a little building they use for storage near here. It </i>should<i> be pretty empty, don’t think there’s any shipments due today.”</i>");
+	output("\n\n<i>“Umm,”</i> she ponders for a moment, <i>“I think I know a place we could go. Steele Tech has a little building they use for storage near here. It </i>should<i> be pretty empty, don’t think there’s any shipments due today.”</i>");
 	output("\n\n<i>If your new master thinks it’s a good idea, of course it is.</i> You give Anno another nod to tell her you’re ready.");
 	output("\n\nThe ausar gives you a grin, <i>“Alright! Let’s get going... uh, [pc.boyGirl].”</i>");
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",subTunerAnnoExhib2);
 }
-
 public function subTunerAnnoExhib2():void
 {
 	clearOutput();
 	author("HugsAlright");
 	showAnno(true);
-	output("After getting back up on your [pc.feet], Anno leads you around the best she can without a leash to the building she was talking about. Sleek and featureless like most of the places on the station, the SteeleTech storage’s only defining attribute is the control panel next to the door which Anno quickly taps a few keys on. Watching the ausar’s tail wagging like it is makes you think she’s just as excited for this as you are. A moment later and the door swishes open, and Anno walks her way into the storage depot, stopping in the door to look over her shoulder at you.");
+	output("After getting back up on your [pc.feet], Anno leads you around the best she can without a leash to the building she was talking about. Sleek and featureless like most of the places on the station, the Steele Tech storage’s only defining attribute is the control panel next to the door which Anno quickly taps a few keys on. Watching the ausar’s tail wagging like it is makes you think she’s just as excited for this as you are. A moment later and the door swishes open, and Anno walks her way into the storage depot, stopping in the door to look over her shoulder at you.");
 	output("\n\n<i>“Coming?”</i>");
 	output("\n\n<i>Oh, you most certainly are</i>, or are going to be, at least.");
 	output("\n\nYou follow your canine companion for a little while longer until she leads the two of you behind a suitably hidden stack of crates that should keep you lovemaking concealed well enough. When Anno finally comes to a stop, she spins around on a heel to look at you.");
@@ -1770,7 +1769,7 @@ public function subTunerAnnoExhib2():void
 
 	output("\n\n<i>“Hey... uh,”</i> Anno says between laboured breaths, <i>“Why don’t you head out... and I’ll catch up with you, think I need a breather after that.”</i>");
 	output("\n\n<i>If that’s what she thinks is best, of course you’ll head out... Belle’s probably expecting you back by now anyways.</i> You nod at the ausar girl’s suggestion and pick yourself up off your knees, though your legs are still a bit wobbly from orgasm. Anno falls backwards onto the crate again, wiping some sweat from her forehead and releasing a long, happy sigh.");
-	output("\n\nYou make your way out of the storage depot with a smile, catching a glimpse of Anno’s lazily swinging, white-furred leg. Pride that only a good pet can feel swells in your chest, leaving the SteeleTech building well fulfilled, and with a <i>very</i> happy mistr- er... employee, but for now, it’s time to get back to Belle.");
+	output("\n\nYou make your way out of the storage depot with a smile, catching a glimpse of Anno’s lazily swinging, white-furred leg. Pride that only a good pet can feel swells in your chest, leaving the Steele Tech building well fulfilled, and with a <i>very</i> happy mistr- er... employee, but for now, it’s time to get back to Belle.");
 
 	processTime(30);
 	pc.orgasm();
@@ -1778,7 +1777,6 @@ public function subTunerAnnoExhib2():void
 	clearMenu();
 	addButton(0,"Next",subTunerAnnoExhib3);
 }
-
 public function subTunerAnnoExhib3():void
 {
 	clearOutput();
@@ -1796,34 +1794,10 @@ public function subTunerAnnoExhib3():void
 	clearMenu();
 	addButton(0,"Next",subTunerAnnoExhib4);
 }
-
 public function subTunerAnnoExhib4():void
 {
-	clearOutput();
-	author("HugsAlright");
-	showBelle();
-	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
-	if(pc.hasVagina()) output("s");
-	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
-	if(pc.hasCock()) output("handjob");
-	else output("fingering");
-	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
-
-	output("\n\nOnce you’re good and clean, Belle ");
-	if(!pc.isNude()) output("gives you back all your clothes and ");
-	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
-
-	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
-	output("\n\nYeah, that sounds like a good idea right about now.");
-
-	processTime(15);
-	pc.shower();
-
-	IncrementFlag("SUBTUNER_EXHIBITIONISM");
-	pc.exhibitionism(2);
-	clearMenu();
-	addButton(0,"Next",leaveAccuPitchLabs);
-	//[Next] //Returns the PC outside Belle’s lab.
+	subTunerExhibEnd();
+	IncrementFlag("SUBTUNER_ANNOED");
 }
 
 //Syri
@@ -1906,7 +1880,6 @@ public function syriExhibStuff():void
 	clearMenu();
 	addButton(0,"Next",syriExhibStuff2);
 }
-
 public function syriExhibStuff2():void
 {
 	clearOutput();
@@ -1923,32 +1896,10 @@ public function syriExhibStuff2():void
 	clearMenu();
 	addButton(0,"Next",syriExhibStuff3);
 }
-
 public function syriExhibStuff3():void
 {
-	clearOutput();
-	author("HugsAlright");
-	showBelle();
-	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
-	if(pc.hasVagina()) output("s");
-	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
-	if(pc.hasCock()) output("handjob");
-	else output("fingering");
-	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
-	output("\n\nOnce you’re good and clean, Belle ");
-	if(!pc.isNude()) output("gives you back all your clothes and ");
-	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
-	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
-
-	output("\n\nYeah, that sounds like a good idea right about now.");
-	processTime(15);
-	pc.shower();
+	subTunerExhibEnd();
 	IncrementFlag("SUBTUNER_SYRIED");
-	IncrementFlag("SUBTUNER_EXHIBITIONISM");
-	pc.exhibitionism(2);
-	clearMenu();
-	addButton(0,"Next",leaveAccuPitchLabs);
-	//[Next] //Returns the PC outside Belle’s lab.
 }
 
 
@@ -2004,7 +1955,6 @@ public function subTunerKiroExhib():void
 	clearMenu();
 	addButton(0,"Next",subTunerKiroExhib2);
 }
-
 public function subTunerKiroExhib2():void
 {
 	clearOutput();
@@ -2021,34 +1971,10 @@ public function subTunerKiroExhib2():void
 	clearMenu();
 	addButton(0,"Next",subTunerKiroExhib3);
 }
-
 public function subTunerKiroExhib3():void
 {
-	clearOutput();
-	author("HugsAlright");
-	showBelle();
-	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
-	if(pc.hasVagina()) output("s");
-	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
-	if(pc.hasCock()) output("handjob");
-	else output("fingering");
-	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
-
-	output("\n\nOnce you’re good and clean, Belle ");
-	if(!pc.isNude()) output("gives you back all your clothes and ");
-	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
-
-	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
-	output("\n\nYeah, that sounds like a good idea right about now.");
-
-	//[Next] //Returns the PC outside Belle’s lab.
-	processTime(15);
-	pc.shower();
-	IncrementFlag("SUBTUNER_EXHIBITIONISM");
-	pc.exhibitionism(2);
-	clearMenu();
-	addButton(0,"Next",leaveAccuPitchLabs);
-	//[Next] //Returns the PC outside Belle’s lab.
+	subTunerExhibEnd();
+	IncrementFlag("SUBTUNER_KIROED");
 }
 
 //Hypnotism
@@ -2132,7 +2058,7 @@ public function sayYesToHypnoShit2():void
 	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
 	output("\n\nYeah, that sounds like a good idea right about now.");
 
-	//[Next] Exits the lab tile and adds a <i>“Belle Hypnosis”</i> flag that can trigger any of the following scenes while the PC still has it.
+	//[Next] Exits the lab tile and adds a “Belle Hypnosis” flag that can trigger any of the following scenes while the PC still has it.
 	processTime(60);
 	IncrementFlag("SUBTUNER_HYPNOED");
 	if(!pc.hasStatusEffect("Belle Hypno")) pc.createStatusEffect("Belle Hypno");
@@ -2871,7 +2797,7 @@ public function peerReviewParty2():void
 	clearOutput();
 	showBelle();
 	author("HugsAlright");
-	output("Sure enough, the guests come: a lot of well-dressed scientists and investors, as well as those friends with <i>“similar interests”</i> Belle was speaking of, people with their own pets on leashes moving around the party. There’s not many people, a small get-together if you’ve ever seen one, groups of three or four people talking over glasses of wine that you and your master drift between. Yes, you stay close to the lovely lady holding your leash the whole time as she leads you to different guests. The more scientifically-minded seem to simply inspect your appearance, analyzing the collar around your neck while Belle demonstrates some simple commands for you to follow with her colleagues. The more deviant minded, on the other hand, seem to be more interested in your simple ability to follow your master’s orders... and that tight, tight attire of yours. A few try to get a bit grabby with you, but Belle keeps them at bay.");
+	output("Sure enough, the guests come: a lot of well-dressed scientists and investors, as well as those friends with “similar interests” Belle was speaking of, people with their own pets on leashes moving around the party. There’s not many people, a small get-together if you’ve ever seen one, groups of three or four people talking over glasses of wine that you and your master drift between. Yes, you stay close to the lovely lady holding your leash the whole time as she leads you to different guests. The more scientifically-minded seem to simply inspect your appearance, analyzing the collar around your neck while Belle demonstrates some simple commands for you to follow with her colleagues. The more deviant minded, on the other hand, seem to be more interested in your simple ability to follow your master’s orders... and that tight, tight attire of yours. A few try to get a bit grabby with you, but Belle keeps them at bay.");
 	output("\n\nEventually, you come across another fellow scientist who seems to be of <i>both</i> minds. She gives your master a hearty greeting as she walks over to the both of you. <i>“Doctor Baslocvicz!”</i> she calls, out getting close enough that you can get a good look at her, <i>“I’m surprised I haven’t bumped into the heart of the party yet.”</i>");
 	output("\n\nThe woman appear to be a rahn, a bright blue one at that. She’s quite a bit shorter than Belle, her gel molded into cyan hair and looking at her with similarly colored eyes.");
 	output("\n\n<i>“Doctor Lara, good to see you again,”</i> your master says, extending an arm for Lara to shake at.");
@@ -2894,7 +2820,7 @@ public function peerReviewParty2():void
 
 	output("\n\nWith that, she’s gone, leaving you and Belle relatively alone in the middle of the room. A moment later you feel ");
 	if(ausarKaithrit()) output("fingers scritching between your ears");
-	else output("a hand patting your hand");
+	else output("a hand patting your head");
 	output(" accompanied by Belle’s voice.");
 
 	output("\n\n<i>“Good job with that, [pc.boyGirl],”</i> she coos, giving you one last good ");
@@ -2917,7 +2843,7 @@ public function peerReviewParty3():void
 	clearOutput();
 	showBelle(true);
 	author("HugsAlright");
-	output("It doesn’t take long for Belle to find a nice, comfy looking chair on the opposite end of the room, and she quickly lead you over to it. She gives you a command of <i>“Stay.”</i> as you reach the seat, and, <i>like the good puppy you are</i>, you wait there on your knees while your master sits down.");
+	output("It doesn’t take long for Belle to find a nice, comfy looking chair on the opposite end of the room, and she quickly lead you over to it. She gives you a command of, <i>“Stay,”</i> as you reach the seat, and, <i>like the good puppy you are</i>, you wait there on your knees while your master sits down.");
 
 	output("\n\nOnce she’s gotten herself settled, the lady scientist seems to forget you’re at a party and lifts her dress up and spreads her legs, allowing her two stiffening cocks and hefty balls to flop free. Your eyes go wide at the sight of Belle’s package, a wonderful musk already filling your nostrils and clouding your senses. It’s hard to resist throwing yourself onto her dicks right then and there, <i>but you wait for your orders because you’re a good puppy</i>.");
 
@@ -3185,7 +3111,21 @@ public function taurStadiumInterior():Boolean
 	
 	removeUvetoCold();
 	
-	addButton(0,"Cashier",taurStadiumCashier);
+	addButton(0, "Cashier", taurStadiumCashier);
+	
+	if (roxyIsInStadium())
+	{
+		if (flags["ROXY_MET"] >= 1)
+		{
+			output("\n\nThe sporty laquine Roxy is relaxing alone on her usual bench. She's watching the crowd lazily, only being snapped out of her rest by the occasional fan.");
+			addButton(1, "Roxy", roxyGreet,undefined,"Roxy","Touch base with Roxy.");
+		}
+		else
+		{
+			output("\n\nThrough the hustle and bustle of fortunes won and lost, you spot a coffee-colored laquine girl chilling out on one of many benches. From the way her upright ears crane and the way her neck pivots, you'd say she's people-watching. Occasionally someone approaches her holding a pen and a piece of paper. You'd guess from the flair she applies in accepting and signing those slips - and other sporty objects - she must be an athlete. A successful one.");
+			addButton(1, "Laquine", roxyGreet,undefined,"Laquine","Approach the spunky rabbit.");
+		}
+	}
 	
 	return false;
 }

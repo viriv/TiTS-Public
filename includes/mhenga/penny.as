@@ -113,7 +113,7 @@ public function showPennyBust(nude:Boolean = false):void
 	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{
 		if(pennyIsCrew()) showBust(pennyBustDisplay(true));
-		else if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17)) showBust(flahneBustDisplay(true),pennyBustDisplay(true));
+		else if(hungryFlahneWithBimboPenny()) showBust(flahneBustDisplay(true),pennyBustDisplay(true));
 		else showBust(pennyBustDisplay(true));
 	}
 	else showBust(pennyBustDisplay(nude));
@@ -235,13 +235,15 @@ public function pennyRoomDesc():Boolean {
 	else
 	{
 		output("\n\nA new officer has taken over for Penny, but they regard you with an air of business-like disinterest.");
-		if(flags["DR_BADGER_TURNED_IN"] == undefined)
+		if(!drBadgerImprisioned())
 		{
 			if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(0,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
 			else if(flags["MET_DR_BADGER"] != undefined) addButton(0,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
 			else addDisabledButton(0,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
 		}
 		else addDisabledButton(0,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
+		// IQ B-Gone
+		if(pc.hasItemByClass(IQBGone)) addButton(1,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 	}
 	return false;
 }
@@ -690,37 +692,38 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	addButton(0,"Talk",friendPennyTalkMenu);
 	if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",pennySexFirstTime);
 	else addDisabledButton(1,"Sex","You need a penis or vagina and lust at or above 33 to attempt intercourse with Penny.");
-	//Go Whine to Penny that a Mustelide was Mean to You
-	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
-	//Add [Badger Help] to Penny’s talk menu
-	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["DR_BADGER_TURNED_IN"] == undefined)
+	if(!drBadgerImprisioned())
 	{
-		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
-		else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
-		else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
-		
+		if(!pennyRecruited())
+		{
+			// Go Whine to Penny that a Mustelide was Mean to You
+			// PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
+			// Add [Badger Help] to Penny’s talk menu
+			if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
+			else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+			else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+			// Penny has the doc's raygun
+			if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
+			{
+				addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
+			}
+			// Mission complete
+			if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
+		}
 		if(flags["BADGER_QUEST"] == 1)
 		{
-			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 			if(flags["NO_ZAP_PENNY"] == undefined) 
 			{
 				if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
 				else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
 			}
 			else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
+			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 		}
 	}
 	else addDisabledButton(2,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
-	//Penny has the doc's raygun
-	if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
-	{
-		addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
-	}
-	//Mission complete
-	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
-
-	if(pc.hasItemByClass(IQBGone)) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+	// IQ B-Gone
+	if(!pennyRecruited() && pc.hasItemByClass(IQBGone)) addButton(4,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 }
 public function friendPennyTalkMenu(func:Function = null):void
 {
@@ -914,7 +917,7 @@ public function firstTimePennyShowerSex():void {
 		else if(cumQ < 2000) output(" Her belly rounds slightly from all you put into her, but the way her eyes are rolling back, you’re sure she doesn’t mind the added weight.");
 		else
 		{
-			output("Her belly balloons from all the spunk you pour into her, but the way her eyes roll back and her mouth mouths ‘more,’ you’re sure she doesn’t mind.");
+			output(" Her belly balloons from all the spunk you pour into her, but the way her eyes roll back and her mouth mouths ‘more,’ you’re sure she doesn’t mind.");
 			if(cumQ >= 5000)
 			{
 				output(" Of course, after that the pressure becomes to great, and your [pc.cum] runs out in a wave, ");
@@ -1433,44 +1436,51 @@ public function pennyGirlfriendMenu():void
 	this.addButton(0,"Talk",talkToGirfriendPenny);
 	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
 	else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
-	//Go Whine to Penny that a Mustelide was Mean to You
-	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
-	//Add [Badger Help] to Penny’s talk menu
-	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["DR_BADGER_TURNED_IN"] == undefined)
+	
+	if(!drBadgerImprisioned())
 	{
-		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
-		else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
-		else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
-		
+		if(!pennyRecruited())
+		{
+			// Go Whine to Penny that a Mustelide was Mean to You
+			// PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
+			// Add [Badger Help] to Penny’s talk menu
+			if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
+			else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
+			else addDisabledButton(2,"Locked","Locked","Someone would have to do something illegal to you to unlock this button...");
+			// Penny has the doc's raygun
+			if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
+			{
+				addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
+			}
+			// Mission complete
+			if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
+		}
 		if(flags["BADGER_QUEST"] == 1)
 		{
-			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 			if(flags["NO_ZAP_PENNY"] == undefined) 
 			{
 				if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
 				else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
 			}
 			else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
+			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 		}
 	}
 	else addDisabledButton(2,"ReportBadger","Report Dr. Badger","You already turned in Doctor Badger.");
-	//Penny has the doc's raygun
-	if(flags["BADGER_QUEST"] == -1 || flags["BADGER_QUEST"] == -2)
+	// IQ B-Gone
+	if(!pennyRecruited() && pc.hasItemByClass(IQBGone)) addButton(4,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+	
+	if(pennyRecruited()) addButton(5, "Join Crew", pennyRejoinCrew, undefined, "Join Crew", "Ask Penny to rejoin your crew and move back into your ship.");
+	else
 	{
-		addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you and Penny are planning to give her a taste of her own medicine?");
+		//[=Cave=]
+		// Add this button after having spoken to Penny about getting the Oxonium.
+		// Tooltip: Set off for the cave full of Oxonium that Penny had told you about.
+		if(flags["PENNY_CREW_ASKED"] == 1) addButton(5,"OxoniumHunt",startPenpenQuest,undefined,"Oxonium Hunt","Help Penny score that Oxonium, pay of a bunch of her debt, and convince her to join your crew.");
+		if(flags["PENNY_CREW_ASKED"] == 3) addButton(5,"Recruit",recruitPennyOfferFinal,undefined,"Recruit","Now that you’ve excavated the cave full of Oxonium, maybe Penny will be more receptive to the possibility of joining your crew?");
+		if(pennyIsCumSlut()) addButton(5,"Recruit",recruitCumslutPenny,undefined,"Recruit As Camwhore","Since Penny’s already spending most of her time jacking off, why not join you in the stars and get to indulge 100% of the time?");
 	}
-	//Mission complete
-	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
-
-	if(pc.hasItemByClass(IQBGone)) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
-
-	//[=Cave=]
-	// Add this button after having spoken to Penny about getting the Oxonium.
-	// Tooltip: Set off for the cave full of Oxonium that Penny had told you about.
-	if(flags["PENNY_CREW_ASKED"] == 1) addButton(5,"OxoniumHunt",startPenpenQuest,undefined,"Oxonium Hunt","Help Penny score that Oxonium, pay of a bunch of her debt, and convince her to join your crew.");
-	if(flags["PENNY_CREW_ASKED"] == 3) addButton(5,"Recruit",recruitPennyOfferFinal,undefined,"Recruit","Now that you’ve excavated the cave full of Oxonium, maybe Penny will be more receptive to the possibility of joining your crew?");
-	if(pennyIsCumSlut()) addButton(5,"Recruit",recruitCumslutPenny,undefined,"Recruit As Camwhore","Since Penny’s already spending most of her time jacking off, why not join you in the stars and get to indulge 100% of the time?");
+	
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -2233,7 +2243,7 @@ public function getAssFuckedByPenny(fromFaceFuck:Boolean = false):void {
 	
 	output("\n\nWith Penny’s pulsating prick nice and slathered in spit and drooling her musky pre, you deem her nice and ready for a real fucking. You slip up her svelte, vulpine body, trailing kisses and caresses up her belly to the peaks of her breasts, pushing her fingers aside to wrap your lips around one of the erect teats. You give the red bud a hard suck, pulling it back until it slips from your lips with a wet pop; Penny gasps, breath quickening as you shower her in affection. Her hands cup around your [pc.butt], lifting you into her lap, resting your head on her shoulder. She spreads your cheeks, squeezing them roughly as her [penny.cock] slips in, sliding into your [pc.butt]’s cleavage before her fingers let go, trapping her meaty shaft in your cheeks.");
 	
-	output("\n\nGrabbing the fox’s lithe shoulders for support, you start to move your hips, gently sliding along the length of her " + num2Text(Math.round(penny.cocks[0].cLength())) + "-inch shaft. You take every inch slowly, tenderly squeezing and rubbing her thick pole’s entire length until just the head is parting your cheeks before you slide back down. Penny cries out, practically trembling in your grasp as your [pc.butt] pleasures her prick, humping away until you can feel her [penny.cock] twitch violently, practically spasming as it spurts a glob of pre right on your [pc.asshole]. Warm and wet and oh so sinfully sticky, you shudder with pleasure as Penny gives you her very own lube, adding to the slick coating you’ve given her cock already. Well, she’s clearly ready and raring to go, and you can’t deny the burning need growing in your loins.");
+	output("\n\nGrabbing the fox’s lithe shoulders for support, you start to move your hips, gently sliding along the length of her " + num2Text(Math.round(penny.cocks[0].cLength())) + "-inch shaft. You take every inch slowly, tenderly squeezing and rubbing her thick pole’s entire length until just the head is parting your cheeks before you slide back down. Penny cries out, practically trembling in your grasp as your [pc.butt] pleasures her prick, humping away until you can feel her [penny.cock] twitch violently, practically spasming as it spurts a glob of pre right on your [pc.asshole]. Warm and wet and oh-so-sinfully sticky, you shudder with pleasure as Penny gives you her very own lube, adding to the slick coating you’ve given her cock already. Well, she’s clearly ready and raring to go, and you can’t deny the burning need growing in your loins.");
 	
 	output("\n\nYou press your lips to hers, locking Penny in a kiss as you rear up, grabbing her cock and holding it steady. Her fingers lock around yours, holding you for a brief second before spreading your cheeks wide, letting you glide down her throbbing shaft. It parts your walls with a second of mind-numbing pressure, her head spearing past your sphincter a second later. You both moan with shared breathless pleasure as your [pc.hips] slide down, taking inch after inch of [penny.cock], feeling your stomach churn as the thick member spreads you wide. Penny’s hands lock on your hips, guiding your descent until your butt’s on her lap, balancing on her legs as her cock twitches and spurts inside you, filling your ass with juicy fox-pre.");
 	penny.cockChange();
@@ -2342,7 +2352,7 @@ public function penniliciousPawjob():void {
 	output(". She rubs a furred paw against your [pc.leg] affectionately");
 	if(inPennyQuest() || pennyIsCrew())
 	{
-		output("before turning back to smile at you, squeezing teasingly. She does not leave you to wait long, however.");
+		output(" before turning back to smile at you, squeezing teasingly. She does not leave you to wait long, however.");
 		output(" Her fluffy paw migrates higher to press against [pc.oneCock]");
 		if(!pc.isCrotchExposed()) 
 		{
@@ -3097,7 +3107,7 @@ public function gardeFordWritesPennySmex():void {
 	{
 		output("\n\nYou position one arm under Penny’s leg and lift her pelvis up to your face. " + ((!inPennyQuest() && !pennyIsCrew()) ? "Her upper body is pushed further onto her desk, knocking papers onto the floor. ":"") + "You give her lust-engorged pussy a big lick, starting at her tiny clit and traveling all the way up to the base of her tail. The fox girl’s legs dangle in the air, her feet stretching out as far as they can in her spasms of pleasure. " + ((!inPennyQuest() && !pennyIsCrew()) ? "The foxy police-woman struggles to maintain a grip to stop herself from sliding over the edge of the desk. ":"") + "A combination of her juices and your saliva trickles down her belly all the way to the cleft of her breasts.");
 		output("\n\nThe fennec’s tail bats against your face with every pass, the soft fur feeling wonderful against your [pc.skinFurScales]. You move your tongue back down to her vagina and circle it around the edge. When you reach her hole you slide in and lick around her inner walls. <i>“Ahh, f-fuck, eat me like the predator you are, Steele,”</i> Penny slurs through her moans. You happily oblige, moving her legs over your shoulders for easier holding. Her thighs tighten around your head as your licks intensify, and you return both hands to Penny’s sonar dishes.");
-		output("\n\nThe fiesty fox-girl’s moans escalate as you stretch your tongue as far as it can go. ");
+		output("\n\nThe feisty fox-girl’s moans escalate as you stretch your tongue as far as it can go. ");
 		//if short tongue: 
 		if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("You slather her walls with your saliva, mixing it with her juices and letting it run into your mouth and down her body like a mountain stream.");
 		else output("Your tongue reaches all the way to her womb and runs little circles around her cervix. Her thighs tense against your head as each rotation is completed. The juices flow into your mouth and down her own body to pool on the table.");
@@ -3239,7 +3249,7 @@ public function teasePenny():void
 	output("\n\n<i>“You’re a lovely little cumslut, aren’t you? You’re hooked on it so badly that you can’t help yourself; you can’t keep your cock out of your mouth, you need the taste of cum so desperately.”</i>");
 	output("\n\nPenny whimpers, her movements becoming faster, her body starting to tense before the inevitable climax. Before it comes, however, you shift your position to grab her fiercely, pulling her head up and away from her cock before she can react.");
 	output("\n\n<i>“Not yet,”</i> you say, as Penny splutters helplessly. <i>“First, you have to tell me how much you want it. You have to </i>admit<i> that you’re addicted to your own cum, and that you’re going to make sure that you stuff your mouth with your own cock as much as possible from now on.”</i>");
-	output("\n\nAfter several moments of breathless gasping, Penny manages to corral her tongue enough to attempt speech, although her hands not letting up their movements for a moment doesn’t make that easy. <i>“I... mmmrrowwmm... I... oh fuck, [pc.name] I need it soOOohhhwmmm bad! Ple-ah! Please! Please let my suu-uhk! Suck my dick!”</i>");
+	output("\n\nAfter several moments of breathless gasping, Penny manages to corral her tongue enough to attempt speech, although her hands not letting up their movements for a moment doesn’t make that easy. <i>“I... mmmrrowwmm... I... oh fuck, [pc.name] I need it soOOohhhwmmm bad! Ple-ah! Please! Please let me suu-uhk! Suck my dick!”</i>");
 	output("\n\nYou grin at her, but refuse to let her head sink back down as she so urgently needs. <i>“You have to </i>admit<i> it,”</i> you hiss fiercely.");
 	output("\n\nPenny’s tongue is stretching down to reach the tip of [penny.cockHead], desperately straining to coat itself in the thick moistness dripping from her. <i>“Pl-please!”</i> she manages eventually. <i>“Please let me swallow my cum!”</i>");
 	output("\n\nPlayfully, you look down at her, still holding her back, and ask, <i>“And why should I do that, exactly?”</i>");
@@ -3932,7 +3942,7 @@ public function needPennyPanties():Boolean
 }
 
 //Acquire Cumslut Penny Panties - 1000 wrds
-public function acquireCumslootPennyPanties():void
+public function acquireCumslootPennyPanties(fromCrew:Boolean = false):void
 {
 	clearOutput();
 	showPenny(true);
@@ -3940,16 +3950,18 @@ public function acquireCumslootPennyPanties():void
 	//PUBLIC USE PENNY
 	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined)
 	{
-		output("You walk past the people waiting for Penny, getting yourself more than a few envious looks in the process. Inside Penny is again relaxing happily naked on her chair, a new and interesting kaleidoscope of cum coating her bare fur.");
-		output("\n\n<i>“[pc.name]!”</i> she calls out happily when she sees you, idly stroking her shaft along the top of her desk.");
+		if(!fromCrew) output("You walk past the people waiting for Penny, getting yourself more than a few envious looks in the process. Inside Penny is again");
+		else output("When you enter her chambers, Penny is");
+		output(" relaxing happily naked on her chair, a new and interesting kaleidoscope of cum coating her bare fur.");
+		output("\n\n<i>“[pc.name]!”</i> she calls out happily when she sees you, idly stroking her shaft along the " + (!fromCrew ? "top of her desk" : "side of her workstation") + ".");
 		//No new PG, merge in with dialogue.
-		output(" <i>“Just the sexy mate I was hoping to see.”</i> Her [penny.cock] stiffens tremendously as you approach, almost in greeting. You note that it’s coated in a few strangely-colored blobs of cum that definitely didn’t originate from inside of her. She uses them as lube, stroking herself off while reaching for a desk drawer. <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
+		output(" <i>“Just the sexy mate I was hoping to see.”</i> Her [penny.cock] stiffens tremendously as you approach, almost in greeting. You note that it’s coated in a few " + (!fromCrew ? "strangely-colored blobs of cum that definitely didn’t originate from inside of her" : "blobs of her fennec spunk") + ". She uses them as lube, stroking herself off while reaching for " + (!fromCrew ? "a desk drawer" : "her personal shelf") + ". <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
 	}
 	//Autofellatio Penny
-	else if(flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
+	else if(fromCrew || flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
 	{
 		output("Penny looks up at you as you come close, the edges of her lips curling upwards in a smile before she breaks contact with her cock, jizz and spit snapping as pulls back. <i>“[pc.name],”</i> calls after swallowing what must be a cocktail of saliva and dickjuice. <i>“Just the sexy " + pc.mf("guy","girl") + " I was hoping to see!”</i>");
-		output("\n\nSomehow, her [penny.cock] seems to get ever stiffer at the sight of you. You note that it’s covered with so much fennec spunk that it practically gleams white. Penny uses it as lube, stroking herself off while reaching for a desk drawer. <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
+		output("\n\nSomehow, her [penny.cock] seems to get ever stiffer at the sight of you. You note that it’s covered with so much fennec spunk that it practically gleams white. Penny uses it as lube, stroking herself off while reaching for " + (!fromCrew ? "a desk drawer" : "her personal shelf") + ". <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
 	}
 	//SECRET CUMSLUT PENNY
 	else
@@ -3963,8 +3975,10 @@ public function acquireCumslootPennyPanties():void
 		output("\n\nPenny giggles almost drunkenly. <i>“No, no, of course not.”</i>\n\n");
 	}
 	//MERGE: No new PG
-	output("\n\nYou hear a latch open and the gravelly sound of poorly lubricated rollers giving way.");
-	output("\n\nTriumphantly, Penny pulls a pair of functional blue panties - or what were functional blue panties once, long ago. A thick hole was clearly cut in the center of the gusset, then reinforced by an amateur seamstress’ hand. She lays them out across the tip of her pre-oozing cock and sighs. <i>“They didn’t fit right after all the throbb, and after a while, I couldn’t get them to stop smelling like cum. I even tried soaking them in my pussy while I jerked off, and it didn’t help.”</i>");
+	output("\n\nYou " + (!fromCrew ? "hear a latch open and the gravelly sound of poorly lubricated rollers giving way" : "see her hand carefully grab a case and pop it open with her cum-coverd digits") + ".");
+	output("\n\nTriumphantly, Penny pulls a pair of functional blue panties - or what were functional blue panties once, long ago. A thick hole was clearly cut in the center of the gusset, then reinforced by an amateur seamstress’ hand. She lays them out across the tip of her pre-oozing cock and sighs. <i>“They didn’t fit right after all the Throbb, and after a while, I couldn’t get them to stop smelling like cum. I even tried soaking them in my");
+	if(penny.isSquirter()) output(" gushing");
+	output(" pussy while I jerked off, and it didn’t help.”</i>");
 	output("\n\nYou arch an eyebrow, <i>“Did you try washing them?”</i>");
 	output("\n\nPenny points her cock your way, allowing you to see the center of the fabric beginning to darken with her pre-cum. <i>“Of course! What kind of cum-addled sexpot do you think I am?”</i> She giggles inanely and ");
 	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output("scoops a stray strand of spunk into her mouth");
@@ -3973,9 +3987,9 @@ public function acquireCumslootPennyPanties():void
 	output("\n\nThis close, you’ve got to admit, they smell a lot like the dick they’re mounted on... and a little like very wet pussy. <i>“How’s that?”</i> you barely remember to ask.");
 	output("\n\n<i>“They’re the ones I was wearing when you talked me into growing that dick. The first ones that ever got soaked in pre-cum from how horny I got or were used to wipe up all the gooey spunk I shot.”</i> Penny moans, and more of the fabric darkens, wicking the lusty prick-vixen’s pre-cum up.");
 	output("\n\nYou snatch them off her pole before she soaks them, having no desire to carry around a pair of cum-soaked panties.");
-	output("\n\nPenny’s dick snaps back up to full attention, and the spermy fox-girl grabs it in both hands, feverishly pumping it, jerking her hips upward with each thrust. ");
-	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output("She starts shooting cum all over herself before you can say another word. There’s no denying the eroticism of the situation, or the way it’s making your pulse race.");
-	else output("Her mouth manages to seal around the head just before it begins to unload, stretching obscenely to allow such a large object to push into her throat. You can actually hear her belly gurgling as those urethra-distending bulges fire off into her stomach, one after another.");
+	output("\n\nPenny’s dick snaps back up to full attention, and the spermy fox-girl grabs it in both hands, feverishly pumping it, jerking her hips upward with each thrust.");
+	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output(" She starts shooting cum all over herself before you can say another word. There’s no denying the eroticism of the situation, or the way it’s making your pulse race.");
+	else output(" Her mouth manages to seal around the head just before it begins to unload, stretching obscenely to allow such a large object to push into her throat. You can actually hear her belly gurgling as those urethra-distending bulges fire off into her stomach, one after another.");
 	output("\n\nYou look down at the dampened panties in your hand, your trophy for helping unleash the fennec-girl’s inner jizz-queen.");
 	output("\n\n<b>You’ve acquired Penny’s panties!</b>");
 	output("\n\nPenny pants, ");
@@ -3989,7 +4003,7 @@ public function acquireCumslootPennyPanties():void
 	pc.lust(13);
 	pc.createKeyItem("Panties - Penny's - Plain, blue, and crotchless.");
 	clearMenu();
-	addButton(0,"Next",pennyGirlfriendMenu);
+	addButton(0,"Next",(fromCrew ? pennyCrewMenu : pennyGirlfriendMenu));
 }
 
 //Requires penny to have a dick
@@ -4060,7 +4074,7 @@ public function pennyRPScene():void
 	if(pc.isBimbo()) output("<i>“I was thinking that we could do like roleplay. I’ll be a really nasty criminal who tried to like seduce you and stuff and now you’re all pent up and super horny.”</i>");
 	else output("<i>“How about some roleplay? I’ll play a dirty crook who tried to seduce you but got arrested nonetheless and now you’re all pent up and lusty.”</i> you whisper in a low tone while drawing small circles on the desk.");
 	output("\n\n<i>“That sounds fun, my mate. But are you sure? I might get a bit lost in the role.”</i> Penny’s voice is a mixture of lust and worry.");
-	output("\n\n<i>There is a predatory glint in her eyes, she’ll probably be a touch rougher than usually</i>");
+	output("\n\n<i>There is a predatory glint in her eyes, she’ll probably be a touch rougher than usual.</i>");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Yes",yesPennyLetsRP);
@@ -4374,7 +4388,8 @@ public function noPennyLetsNotStart():void
 	output("You hesitate, and tell Penny that you’re just reminding her that you haven’t forgotten; you just need a few more hours of prep time.");
 	output("\n\nPenny’s expression sours into a frown, and she plops herself back onto her chair, returning to her professional demeanor and busying herself with her paperwork. <i>“Well, I won’t ever be going anywhere until you are,”</i> she says. And that’s the end of the conversation.");
 	//Normal Menu
-	this.addButton(0,"Next",approachGirlfriendPenny);
+	clearMenu();
+	addButton(0,"Next",approachGirlfriendPenny);
 }
 
 
@@ -4577,6 +4592,8 @@ public function defeatThatZilgang():void
 	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 	//Reqs loss suck some.
 	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay,undefined,"Oral Play","Really get in there and play with a male zil’s foreskin-clad cock.");
+	else if(pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already after losing in combat....");
+	else if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addDisabledButton(3,"Oral Play","Oral Play","You need genitals for this!");
 	else addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already.... Oh, and you’ll need to have genitals too.");
 	if(pc.hasCuntTail()) addButton(4,"Tail Milk",useTailOnZilWhenUWin,undefined,"Tail Milk","Milk his sugary dick with your parasitic tail.");
 	else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
@@ -4658,7 +4675,7 @@ public function freeThoseCapturedSmuggleBros():void
 	output("\n\nThe pod’s surface explodes almost too fast to follow. First, a crease at the top unfolds into two contorted arms with membranous sheets hanging below. One backhands Penny into the wall. Her knife cartwheels through the air to embed itself in the opposite wall. A seam down the middle reveals itself, then gapes open, dumping a wave of fragrant, sex-and-flower-scented juice across the cave floor - and the captive smuggler: an ausar.");
 	output("\n\nWith him out of the way, you can finally see what you’re dealing with - a red-eyed plant-woman of startling beauty, humanoid from the genitals to the top of her head. The supporting stalks grow from the nape of her neck and just beneath her curvaceous buttocks. A dangling, tubular organ connects her loins to the ausar’s crotch all the way away on the ground. The tentacle squelches around his girth while ripples flow upward in esophageal contractions, but she continues to glare at you, hands balled into fists.");
 	output("\n\nYou make ready to fight, but the cock-bound ausar is the first to act. He leaps up onto his feet, and with a look of surprising rage, screams, <i>“Leave me alone! I need... need to fuck!”</i> He climbs upward, feet landing in supporting dimples in the membrane, then wraps himself around her waist.");
-	output("\n\nThe ziltrap, somewhat placated by this, slowly enfolds him in her arms once more, but when she shapes this pod, she forms it into more compact dimensions to for her to peak out over the top. Those red orbs follow you warily.");
+	output("\n\nThe ziltrap, somewhat placated by this, slowly enfolds him in her arms once more, but when she shapes this pod, she forms it into more compact dimensions in order for her to peak out over the top. Those red orbs follow you warily.");
 	output("\n\nPenny stumbles back with a thunderous glower and a bit of blood at the corner of her mouth. <i>“She’s stronger than she looks... but,”</i> she wipes her face against her coat’s collar, <i>“there’s no point in fighting her just to knock him out, much as it pains me to say it. Fuck him and fuck her.”</i> She pauses thoughtfully. <i>“Actually, don’t fuck her. And don’t fuck any of the rest of them. Just fuck them up.”</i> Penny barks out a manic laugh. <i>“Fuck, I’m almost getting as crazy as you, crazy. Let’s just get this done.”</i>");
 	output("\n\nYou suppose you can’t save those who don’t want to be saved.");
 	processTime(5);
@@ -5186,8 +5203,8 @@ public function druggedPennyLovesThatHypercock():void
 	output("\n\nUnable to control yourself, you let your hips jerk forwards - just once. You catch yourself after, but the damage is done. Your shaft plows right between Penny’s " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "sweat":"ziltrap") + "-drenched tits, sending shockwaves through the fox’s pillowy melons and absolutely shaming them for size. She could never properly tit-fuck you, not without a crash course in breast-enlarging drugs, but her sweet little sweater-kits can still feel wonderful as they slide through the fox-girl’s slobber. The tips of her oh-so-rigid nipples are two points blissful contact in the middle of a sea of slick-furred delight.");
 	output("\n\nPenny meets your thrust by leaning into it. She moves her hands to the top half of your mast and pulls it harder against her chest. You can feel her heartbeat thumping into your [pc.cock], fluttering in the throes of passion. She’s so slick that when she wraps her arms tight, you can glide through the middle, using her hug as a silk-furred vice. Her clenched biceps are like the muscles in the sides of a virginal pussy, begging you to dump the thickest, most virile cum-shot possible into its womb, and Penny’s dopey, wide-open maw is that womb.");
 	output("\n\nYou drool an appetizer of potent pre onto her waiting tongue, and the fox nearly cums on the spot. Her eyes cross to watch it roll out, and her pulse quickens. She slurps it down with a merry hum of enjoyment, then rolls her feisty oral organ back against your [pc.cockHead] to beg for more. <i>“Please,”</i> she slurs, barely able to speak with the central groove of her tongue welded to your bulging, leaking urethra. <i>“Please. Cum.”</i> She writhes her belly against you. Her arms pump up and down, dragging her tits with them." + (flags["PQUEST_PENNY_PODDED"] != undefined ? " Milk dribbles freely out of her nipples, probably another effect of the ziltrap’s drugs.":"") + " <i>“I’m so fucking close! I just need... I just need to make you cum.”</i> She whines in delirious arousal. <i>“<b>Please!</b> Don’t worry about where it hits me. Just do it. Put it in my mouth or on my face or in my hair or my sl-sl-slutty little cum-dump pussy! [pc.name], cum! Cum!”</i>");
-	output("\n\nYou boil over with pleasure - not just from your writhing, ecstatic lover but from the raw lusty depravity of her words. Penny’s voice feels like it’s " + (pc.balls > 1 ? "in your [pc.balls], stirring the bubbling cum-factories to brew more jism than they could ever hold":"in your body, coaxing you to produce more jism that you could ever hold") + ". A [pc.cumGem] droplet appears at your apex as you");
-	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("r flare doubles in side, soaked in sweat and so plump with blood and pheromones that you get a whiff of your own bestial scent.");
+	output("\n\nYou boil over with pleasure - not just from your writhing, ecstatic lover but from the raw lusty depravity of her words. Penny’s voice feels like it’s " + (pc.balls > 1 ? "in your [pc.balls], stirring the bubbling cum-factories to brew more jism than they could ever hold":"in your body, coaxing you to produce more jism that you could ever hold") + ". " + StringUtil.capitalize(indefiniteArticle(pc.cumGem())) + " droplet appears at your apex as you");
+	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("r flare doubles in size, soaked in sweat and so plump with blood and pheromones that you get a whiff of your own bestial scent.");
 	else if(pc.hasKnot(x)) output("r [pc.knot] inflates obscenely. Penny’s legs automatically scissor around it in a tight squeeze, giving the bestial endowment exactly what it needs to spew its entire bitch-impregnating load.");
 	else output(" swell to absolute biggest and hardest, your mammoth organ doing its best to keep any seed from escaping a phantom lover’s oh-so-impregnable pussy.");
 	output(" The first spurt flies out, and Penny is there to catch");
@@ -5198,7 +5215,7 @@ public function druggedPennyLovesThatHypercock():void
 	output(". She revels in your [pc.cumNoun].");
 	output("\n\nThe fox-woman pulls you tight a sympathetic climax rips through her. She wriggles and squirms, tits jiggling from how the bulges racing up your urethra slap past them. Each ejaculation is married to a muffled moan of delight and hurried attempts to drink down as much of the fragrant seed as possible." + (penny.hasCock() ? " Her cum splashes along your [pc.belly] and [pc.chest] as she wantonly frots the side of your bigger tool.":""));
 	if(!penny.hasCock()) output((!penny.isSquirter() ? " The vixen’s cunt dribbles, its convulsions making it feel like her cunt is stroking your [pc.thigh] with raw eagerness to be filled.":" The vixen’s cunt drenches your [pc.thigh] in a torrent of pussy-juice so thick and so forceful that for a moment you wonder how such a thing is even possible. Then she cums again, squirting just as hard. With each fresh pulse of cum, the fox-girl achieves a new climax of her own. Her body is a clutching, spunk-drenched rag-doll that just can’t seem to stop cumming no matter how far back her eyes roll or thoughtless her gurgles."));
-	output("\n\nYour " + (pc.balls > 1 ? "[pc.balls] empty":"[pc.cock] empties") + " everything you have " + (cumQ < 1000 ? "into":"onto") + " the fox. She’s squeezing you too tightly for anything else. Even when your orgasm winds down, " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "she continues to work you for more, wringing out the last drop of sperm-infused fluid in your body":"she continues to vibrate in so much feverish ecstasy that you can’t help but squeeze out the last drop of sperm-infused fluid directly onto her nose, which immediately flares to drink in the brazenly sexual odor of it all") + ". <i>“Cummy,”</i> " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "Penny babbles, sloughing off of you.":"Penny moans, losing what’s left of her motor control and flopping onto her back to ride out the end of her squirting drug-trip. Her nipples fountain milk once more, but thinner flows this time. With the chemical’s influence fading, the surprise lactation she experienced seems to be fading... though this pussy-wringing squirt appears even wetter than the last."));
+	output("\n\nYour " + (pc.balls > 1 ? "[pc.balls] empty":"[pc.cock] empties") + " everything you have " + (cumQ < 1000 ? "into":"onto") + " the fox. She’s squeezing you too tightly for anything else. Even when your orgasm winds down, " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "she continues to work you for more, wringing out the last drop of sperm-infused fluid in your body":"she continues to vibrate in so much feverish ecstasy that you can’t help but squeeze out the last drop of sperm-infused fluid directly onto her nose, which immediately flares to drink in the brazenly sexual odor of it all") + ". <i>“Cummy,”</i> " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "Penny babbles, sloughing off of you.":"Penny moans, losing what’s left of her motor control and flopping onto her back to ride out the end of her squirting drug-trip. Her nipples fountain milk once more, but in thinner flows this time. With the chemical’s influence fading, the surprise lactation she experienced seems to be fading... though this pussy-wringing squirt appears even wetter than the last."));
 	output("\n\nYou stumble back onto your [pc.butt]. Your [pc.cock] pulsates in powerful approval, refusing to soft quite yet, perhaps approving of what you’ve done to your mate.");
 	output("\n\n<i>“[pc.name],”</i> Penny whimpers, <i>“you " + pc.mf("stud","goddess") + "... you fucking...”</i> She rolls over, slowly crawling into your lap to snuggle a cum-stained cheek against your [pc.cockNoun]. <i>“Love you.”</i> She pats your thigh and smiles, tongue lapping a bit of juice from her nose. <i>“Want you to knock me up sometime... after the rush.”</i> Her eyes drift closed. <i>“Make me have lots of kits sometime, okay?”</i>");
 	output("\n\nYou’re both snoring soon after.");
@@ -5378,6 +5395,7 @@ public function finalPennyQuestRoomproc():Boolean
 	addButton(0,"Next",mainGameMenu);
 	return true;
 	*/
+	flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 
 	showBust("MINING_ROBOT",pennyBustDisplay());
 	author("Fenoxo");
@@ -5395,7 +5413,7 @@ public function finalPennyQuestRoomproc():Boolean
 		output("\n\n<i>“Whoah! Hey... no need to be hostile. I’m just surveying the area for my queen. Let’s just... ah fuck it.”</i> The golden girl yanks a heavy-caliber burst rifle off her back at levels it at the metal menaces. <i>“Come at me, fuck-faces!”</i>");
 		output("\n\nIf this soldier-myr clears off the robots before you, she could claim the resources for her queen! You suppose you’ll have assist her, if only to prove to Penny that you’re a reliable sort of Rusher.");
 		clearMenu();
-		this.addButton(0, "Attack", startPennyMiningBotFightStuff);
+		addButton(0, "Attack", startPennyMiningBotFightStuff);
 		return true;
 	}
 	//else
@@ -5403,7 +5421,7 @@ public function finalPennyQuestRoomproc():Boolean
 	{
 		output("\n\nThat makes sense. Since you haven’t been spotted, you have plenty of time to prepare for the confrontation.");
 		clearMenu();
-		this.addButton(0, "Attack", startPennyMiningBotFightStuff);
+		addButton(0, "Attack", startPennyMiningBotFightStuff);
 		return false;
 	}
 }
@@ -5413,6 +5431,7 @@ public function startPennyMiningBotFightStuff():void
 	penny.HP(penny.HPMax());
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc, penny);
+	if(myrOnMhenga()) CombatManager.setFriendlyActors(pc, penny, new Onzia());
 	var enemies:Array = [new MiningRobot(),new MiningRobot(),new MiningRobot()];
 	enemies[0].pennyQuestPrep();
 	enemies[0].long = "This dinged-up mining robot has seen better days, but its drills are still sharp and its servos strong.";
@@ -5425,7 +5444,6 @@ public function startPennyMiningBotFightStuff():void
 	CombatManager.victoryScene(defeatMiningBotsWithPenpen);
 	CombatManager.lossScene(loseToMiningBotsWithPen);
 	CombatManager.displayLocation("MINING BOTS");
-	if(myrOnMhenga()) CombatManager.setFriendlyActors(pc, penny, new Onzia());
 	CombatManager.beginCombat();
 }
 
@@ -5467,7 +5485,7 @@ public function defeatMiningBotsWithPenpen():void
 		else if(pc.isMischievous()) output("flashy");
 		else output("hard");
 		output(" smile. <i>“All good.”</i>");
-		output("\n\n<i>“Great.”</i> Penny pants, trying to catch her breath. <i>“Then let’s file this claim before some other monster reveals itself. You’ve got an inside line with SteeleTech to get a good rate on it, right?”</i>");
+		output("\n\n<i>“Great.”</i> Penny pants, trying to catch her breath. <i>“Then let’s file this claim before some other monster reveals itself. You’ve got an inside line with Steele Tech to get a good rate on it, right?”</i>");
 		output("\n\nYou nod.");
 		output("\n\n<i>“Then let’s get the paperwork rolling. A 50/50 split on all this Oxonium is going to take a pretty solid chunk out of my debt.”</i>");
 		output("\n\nYou pull out your Codex and go to work. Not long after, you and Penny are the proud recipients of <b>30,000 credits</b> - each.");
@@ -5706,7 +5724,7 @@ public function theWalkBackToTheShip():void
 	output("\n\n<i>“Really?”</i> Penny asks, and hefts her singular travel case to emphasis her next point. <i>“Everything I own fits into a few bags. Are you really saying I can’t just bunk with you?”</i>");
 	output("\n\nYou ask her how she could manage to fit her entire life into a handful of suitcases. What’s even in there?");
 	output("\n\n<i>“Some more civvy clothes; my uniform, which I bought, so I didn’t have to hand it in; clothes, my tonfas, hygiene stuff, an old codex, a tamball, my anime, and a couple other odds and ends.”</i> She shrugs at that last part. <i>“You know me.”</i>");
-	output("\n\nGetting back on topic, you tell her that she can’t set up in your quarters, unfortunately; even if she were to live out of her suitcase, it was just be too cramped for you both.");
+	output("\n\nGetting back on topic, you tell her that she can’t set up in your quarters, unfortunately; even if she were to live out of her suitcase, it would just be too cramped for you both.");
 	output("\n\nBut it’s not so bad: you tell her that she can set up in her own room, and, although only one person can live in your quarters, your bed can comfortably fit two, for all those times you’ll be ordering a ship-wide hot-bunk for the journey. And, how often will you two be looking for some time together during the work hours? You two are professionals, after all.");
 	output("\n\n<i>“I suppose that makes sense,”</i> she says with a frown. She looks into the nearest door’s viewport. <i>“This one is empty. Do I call dibs, or...?”</i>");
 	output("\n\nYou tell her that it’s all hers.");

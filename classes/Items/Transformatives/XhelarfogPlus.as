@@ -30,8 +30,8 @@ package classes.Items.Transformatives
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a SteeleTech branded snack-bar";
-			tooltip = "Similar to the more popular Terran Treats, this transformative takes the form of a snack-bar, its wrapper bearing the SteeleTech logo, and the usual amount of technobabble explaining its microsurgeons. Unlike the other item though, this is designed to give the consumer more Xhelarfog-aligned features. It’s even marked with a seal of approval from the government of Anon-Xusya B!\n\n...Wait, is that <i>actual</i> gold leaf?";
+			description = "a Steele Tech branded snack-bar";
+			tooltip = "Similar to the more popular Terran Treats, this transformative takes the form of a snack-bar, its wrapper bearing the Steele Tech logo, and the usual amount of technobabble explaining its microsurgeons. Unlike the other item though, this is designed to give the consumer more Xhelarfog-aligned features. It’s even marked with a seal of approval from the government of Anon-Xusya B!\n\n...Wait, is that <i>actual</i> gold leaf?";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -404,7 +404,7 @@ package classes.Items.Transformatives
 			{
 				output("\n\nYour legs tingle strangely, and you sit down, ready to wait out whatever happens without falling over.");
 				if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(" They seem to be (somewhat painfully) stretching and straightening themselves into a plantigrade configuration.");
-				output(" The tingling soon moves down to your feet, and you watch as three of your toes lengthen out, becoming flexible and nimble as the other two shrink, vanishing back into the main boy of your feet. Your heel too, seems to tingle, and before you know it, you’ve grown an additional, back mounted toe. Weird!");
+				output(" The tingling soon moves down to your feet, and you watch as three of your toes lengthen out, becoming flexible and nimble as the other two shrink, vanishing back into the main body of your feet. Your heel too, seems to tingle, and before you know it, you’ve grown an additional, back mounted toe. Weird!");
 				output("\n\n...You’re going to need new shoes.");
 				if (kGAMECLASS.silly) output(" Though now that you think about it, it’s never really been confirmed if any of your outfits include shoes to begin with. You don’t have a slot for them or anything. Void, what is this madness?!");
 
@@ -465,7 +465,7 @@ package classes.Items.Transformatives
 				output("<i>“-Eele?!”</i>");
 				output("\n\n<i>“[pc.Name] Steele?!”</i>")
 				output("\n\nYou open your eyes, groggy. Wait, where are you?");
-				output("\n\n" + (kGAMECLASS.flags["MET_XHELPLUS_ELIJAH"] == undefined ? "An androgynous half-ausar in a SteeleTech jumpsuit" : "Elijah") + " is standing over you, looking significantly concerned.");
+				output("\n\n" + (kGAMECLASS.flags["MET_XHELPLUS_ELIJAH"] == undefined ? "An androgynous half-ausar in a Steele Tech jumpsuit" : "Elijah") + " is standing over you, looking significantly concerned.");
 				output("\n\nYou ask what happened, looking around you and spotting your ship a scant few metres away.");
 				output("\n\n<i>“I, ah, I found you passed out. Judging by your, uh... Um... Kinda... Gooey? Yeah, gooey! Uh, your skin - I’m guessing bad reaction to the Xhelarfog drug? We’re working on it, I am so, so sorry!");
 				if (kGAMECLASS.flags["MET_XHELPLUS_ELIJAH"] != undefined) output(" ...Again.");

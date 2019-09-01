@@ -43,6 +43,9 @@ public function getDryadPregContainer():PregnancyPlaceholder
 	pp.cocks[0].cLengthRaw = 14;
 	if (flags["AMBER_EQUILICUM"] != undefined) pp.createPerk("Fixed CumQ",18000,0,0,0);
 	else pp.createPerk("Fixed CumQ", 6000, 0, 0, 0);
+	if(!pp.hasVagina()) pp.createVagina();
+	pp.shiftVagina(0, GLOBAL.TYPE_EQUINE);
+	pp.vaginas[0].bonusCapacity = 200;
 	if (flags["AMBER_DUMBFUCK"] >= 3 ) pp.createPerk("Fixed GirlCumQ", 3000, 0, 0, 0);
 	else if (flags["AMBER_DUMBFUCK"] >= 1 ) pp.createPerk("Fixed GirlCumQ", 2000, 0, 0, 0);
 	else pp.createPerk("Fixed GirlCumQ", 1000, 0, 0, 0);
@@ -57,7 +60,9 @@ public function dryadMeeting():void
 	if (flags["DRYAD_MET"] == undefined)
 	{
 		flags["DRYAD_MET"] = 1;
-		output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
+		output("\n\n");
+		showImage("AmberNakkers");
+		output("You can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
 		output("\n\n<i>“Um, hi! Listen, maybe you’ve heard this before but I really, <i>really</i> need to fuck someone before I go mad! These gene mods are great, but the ones I’ve used kinda clashed and now I go into heat multiple times a day and - look, can we just fuck?”</i>");
 	}
 	else if (flags["DRYAD_DRAINED"] != undefined)
@@ -272,7 +277,7 @@ public function dryadAss():void
 	pc.lust(30);
 	if(pc.lustQ() >= 100)
 	{
-		output("\n\nThe sensation of fullness added with the spike in lust sends you over the edge and you let out a complimentary orgasm. That was quite the experience!");
+		output("\n\nThe sensation of fullness added with the spike in lust sends you over the edge and you let out a complementary orgasm. That was quite the experience!");
 		pc.orgasm();
 	}
 	processTime(10);
@@ -482,7 +487,7 @@ public function tailCuntDryadFun():void
 	output("\n\nYou tremble against her, your body feeling weak. The cum keeps coming, filling your tail cunt until it stretches out along its whole length. To your symbiont’s credit, it stays mostly sealed around her shaft, save for a small spurt of white, milky cum running down her equine balls.");
 	output("\n\nYou’re not sure how much more of this your tail-or you-can take. When she finally finishes, she lets out a satisfied sigh, her hips giving a final buck. You pull back away from her chest with a gasp, definitely feeling worse for the wear. Your tail aches, stuffed to the brim, barely able to wriggle weakly against her shaft, looking like an overfilled condom, full to sloshing with the dryad’s near-endless load.");
 	output("\n\nThe dryad sighs deeply in satisfaction and looks down at you.");
-	output("\n\n<i>“You have no idea how much I needed that. Thanks, babe, And come back any time! It’s always rough when I’m in heat, I can really use the help.”</i>");
+	output("\n\n<i>“You have no idea how much I needed that. Thanks, babe. And come back any time! It’s always rough when I’m in heat, I can really use the help.”</i>");
 	output("\n\nBefore you can burble a response, she lets go of you and you stumble back, your tail cunt coming loose from her dick, and falling limply to the forest floor. Full and heavy, it sloshes with impact, a spatter of dryad cum spurting out from it.");
 	output("\n\nShe bends down and gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage.");
 	output("\n\nYou take a single, dizzy step forward, your swollen tail dragging on the ground behind you, then decide that you need to rest a bit before continuing. You rest on a fallen trunk, gathering your thoughts as the world spins around you. You feel bloated, stuffed, and sleepy, and think that a nap might not be so bad.");

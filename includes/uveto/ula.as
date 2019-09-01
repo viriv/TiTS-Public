@@ -298,10 +298,10 @@ public function ulaFirstTimeRemeet():void
 	showImage("UlaDildo");
 	output("The familiar form of the korgonne you saved is sprawled out on a cushy-looking bed, naked save for oodles of jangling jewelry and a fat, glossy dildo rammed between her legs. Lips parted mid-moan, she squeaks at your sudden intrusion and rolls ass-over-head over the bed to fall heavily on the floor. <i>“You!”</i> Her tail wiggles happily in the air as she climbs back up onto her mattress.");
 	output("\n\nYou note the dildo is still firmly clutched in her paw, dripping wet.");
-	output("\n\n<i>“You come visit!”</i> Springing off her mattress, the excited ball of fluff and fuck tumbles into you");
-	if(pc.tallness < 70) output(", tackling you to the ground");
-	else output(", smacking into you. You hold her there for a moment before letting her weight carry you to the ground.");
-	output(" Kisses pepper your nose. <i>“Savinged me!”</i> A slick, wet tongue smears across your cheek. <i>“You liking me!”</i>");
+	output("\n\n<i>“You come visit!”</i> Springing off her mattress, the excited ball of fluff and fuck tumbles");
+	if(pc.tallness < 70) output(" into you, tackling");
+	else output(", smacking into you. You hold her there for a moment before letting her weight carry");
+	output(" you to the ground. Kisses pepper your nose. <i>“Savinged me!”</i> A slick, wet tongue smears across your cheek. <i>“You liking me!”</i>");
 
 	//Fucked
 	if(flags["ULA_SEXED"] != undefined)
@@ -485,7 +485,7 @@ public function breedWithUla():void
 	output(" Blood thrums in your ears, your heart hammering, sending volley after volley of cock-expanding blood into your loins, pumping your [pc.cocks " + x + "] into full, proud tumescence. ");
 	if(flags["MET_ULA"] == undefined) output("The korgonne princess’s");
 	else output("Ula’s");
-	output(" belly fur tickles against your [pc.cockHead " + x + "].");
+	output(" belly fur tickles your [pc.cockHead " + x + "].");
 
 	output("\n\nWide-eyes set in cute, canine face stare up at you. <i>“");
 	if(korgiTranslate()) output("Good. I want you. I can’t stop thinking about you...");
@@ -577,7 +577,7 @@ public function breedWithUla():void
 	if(ulaPregBelly() >= 2 || flags["ULA_TOTAL_KIDS"] != undefined) output("Milk squirts over your fingers. ");
 	output("The tip of the dog-girl’s nipple feels as hard as diamond against your [pc.skinNoun]. You briefly consider sucking it, then resume frenching her, availing yourself of her kissable blue lips, letting your hands and loins enjoy her from the neck down.");
 
-	output("\n\nA spasm drags your [pc.hips] back, and primitive instincts command you to thrust in, burying your boner with a girlcum-splattering squelch. Her pussy is everywhere: in every breath, soaking your [pc.legs], staining the " + (ulaChief() ? "furs":"sheets") + ", so large in your mind that if you close your eyes you can see its rubbery folds, inviting you to fuck them raw. Now that you’ve started, you can’t stop. Your [pc.hips] bounce back, then slide back in, addicted to the friction shooting up your spine, shocking you with bolts of bliss that seem to make the smell of cunt that much stronger.");
+	output("\n\nA spasm drags your [pc.hips] back, and primitive instincts command you to thrust in, burying your boner with a girlcum-splattering squelch. Her pussy is everywhere: in every breath, soaking your [pc.legs], staining the " + (ulaChief() ? "furs":"sheets") + ", so large in your mind that if you close your eyes you can see its rubbery folds, inviting you to fuck them raw. Now that you’ve started, you can’t stop. Your [pc.hips] bounce back, then slide back in, addicted to the electric sparks shooting up your spine, shocking you with bolts of bliss that seem to make the smell of cunt that much stronger.");
 
 	output("\n\nPadded paws scrabble over your back as the petite dog-woman cums. You can feel it in the fluttering motions of her cunt and the quivering of her thighs more than anything else. The warm dribbles sliding down your [pc.thighs] are a giveaway as well. You break the kiss to watch, fucking her with long, even strokes");
 	if(pc.cockVolume(x) > ulaCapacity() && ulaPregBelly() < 1) output(", dick obscenely visible every through layers of skin and fur");
@@ -1263,7 +1263,7 @@ public function ulaMiningTalk():void
 
 	output("\n\nUla’s eyes drift closed, and her tongue slips out unthinkingly. <i>“");
 	if(!korgiTranslate()) output("Sparkle-crusts. Tools. Crafty-korg trade for rocks, then make use. Rest dropped under ice. Under ocean. No signs for alien or fang-kitties to tracking.");
-	else output("Jewelry. Tools. Craftskorg will trade for the useful gems. The rest get tossed under the ice, deep in the ocean. We don’t leave any signs for alien miners of fang-kitties to track.");
+	else output("Jewelry. Tools. Craftskorg will trade for the useful gems. The rest get tossed under the ice, deep in the ocean. We don’t leave any signs for alien miners or fang-kitties to track.");
 	output("”</i> She purrs against you. <i>“");
 	if(!korgiTranslate()) output("Korg smart. Live in Uveto’s bones. Invisibiling to fang-cats. Unbreakable. No attacking... till aliens come.");
 	else output("We korg are smart. In Uveto’s bones, we’re invisible to the fang-cats. Our home was unbreakable. Impenetrable... until the aliens came.");
@@ -1340,7 +1340,7 @@ public function ulasRoleInTheClan():void
 		else output("So silly! They said I was too headstrong and lacked the qualities of a leader. They said I needed a mate but wouldn’t let me visit males. They thought I was pussy-dumb and useless, but I showed them! You did too! If I hadn’t gotten mad and run away to meet you, the whole hold would be a milodan city by now!");
 		output("”</i> She pats at her mostly-bared crotch. <i>“");
 		if(!korgiTranslate()) output("Now no elder can tell Ula what do about males, but Ula not care. Not need korg visiting. Rather [pc.name] visit.");
-		else output("nNow no elder can tell me what to do about males and mating, but I don’t care. I don’t need a male korg to visit. I’d rather you visit.");
+		else output("Now no elder can tell me what to do about males and mating, but I don’t care. I don’t need a male korg to visit. I’d rather you visit.");
 		output("”</i> The korgonne " + (ulaChief() ? "chieftess":"princess") + " smiles sidelong at you.");
 
 		//Bimb
@@ -1388,7 +1388,7 @@ public function otherTribesTalkarydooda():void
 	output("<i>“How many other tribes does Uveto have?”</i>");
 	output("\n\nUla shrugs. <i>“");
 	if(!korgiTranslate()) output("How many stars in sky? Too many for one to know. Many. Uveto bigger than pregnant korg appetite, though less now than was.");
-	else output("How many stars are in the sky? Too many for any one person to know. Very many. Uveto’s bigger than a pregnant korg’s appetite, though there are less clans now than there was.");
+	else output("How many stars are in the sky? Too many for any one person to know. Very many. Uveto’s bigger than a pregnant korg’s appetite, though there are less clans now than there were.");
 	output("”</i> She taps her palm. <i>“");
 	if(!korgiTranslate()) output("Some milodan-killed. Some driven to snow by sparkle-mining.");
 	else output("Some were milodan-killed. Some were driven to the snows by mining.");
@@ -1541,8 +1541,8 @@ public function talkAboutSavicite():void
 	output("”</i>");
 	output("\n\nYou nod.");
 	output("\n\nUla looks at you cautiously. <i>“");
-	if(korgiTranslate()) output("We know your people want it. We know they offered credits for them. Core silliness. [pc.name]. You’re not hear to steal some, are you?")
-	else output("Know aliens want. Knowing cretids offered for. Kedrits? Core silliness. [pc.name] not here here to steal?");
+	if(korgiTranslate()) output("We know your people want it. We know they offered credits for them. Core silliness. [pc.name]. You’re not here to steal some, are you?")
+	else output("Know aliens want. Knowing cretids offered for. Kedrits? Core silliness. [pc.name] not here to steal?");
 	output("”</i>");
 	output("\n\nYou assure her that you aren’t here to steal from her tribe");
 	if(pc.isAss()) output(", however tempting the idea may be");
@@ -1850,7 +1850,7 @@ public function ulaPregApproach():void
 					}
 					else
 					{
-						output("They’re so smart They’ve already learned how to play the belly-drum!");
+						output("They’re so smart. They’ve already learned how to play the belly-drum!");
 						if(pc.isBimbo()) output(" They must have gotten it from me. You’re more body-smart than brain-smart.");
 					}
 					output("”</i> She smiles bashfully. <i>“");
@@ -1904,7 +1904,7 @@ public function ulaPregApproach():void
 					}
 					else
 					{
-						output("They’re so smart They’ve already learned how to play the belly-drum!");
+						output("They’re so smart. They’ve already learned how to play the belly-drum!");
 						if(pc.isBimbo()) output(" They must have gotten it from me. You’re more body-smart than brain-smart.");
 					}
 					output("”</i> She smiles proudly. <i>“");

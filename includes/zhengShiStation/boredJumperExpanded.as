@@ -299,7 +299,7 @@ public function jerkOnYouYaDegenerate():void
 	clearOutput();
 	showBoredJumper(true);
 	author("William");
-	output("You pull the jumper’s cock from your mouth and " + (pc.hasCock() ? "jerk":"finger") + " yourself while doing the same for her. A [enemy.furColor] paw quickly joins your hand, her [enemy.eyeColor] eyes shut as she works to get herself off with you. Urging her on, you say, <i>“Hurry up and cum! Don’t wanna get edged again, do you?”</i> With your words as ‘positive’ encouragement, both of the laquine’s paws are on her [enemy.cock] pumping so fast they’re a blur of motion and wet schlucks.");
+	output("You pull the jumper’s cock from your mouth and " + (pc.hasCock() ? "jerk":"finger") + " yourself while doing the same for her. " + StringUtil.capitalize(indefiniteArticle(enemy.furColor)) + " paw quickly joins your hand, her [enemy.eyeColor] eyes shut as she works to get herself off with you. Urging her on, you say, <i>“Hurry up and cum! Don’t wanna get edged again, do you?”</i> With your words as ‘positive’ encouragement, both of the laquine’s paws are on her [enemy.cock] pumping so fast they’re a blur of motion and wet schlucks.");
 	output("\n\nIt doesn’t take long for her bestial dick to <i>explode</i>. Huge ropes of cum shoot upwards and hit the ceiling. Unlike a human’s, her ejaculation is constant, a sizzling seed shower rains down on both of you, but mostly on her. Certainly an enviable output thanks to her big, churning balls. ");
 	if(pc.libido() <= 33) output("You focus on yourself");
 	else if(pc.libido() <= 66) output("You try to catch what comes down");
@@ -390,7 +390,7 @@ output("\n\n// Merge");
 
 output("\n\n<i>“Wait!”</i> the [enemy.furColor] furred jumper wriggles her hands. <i>“I’m not on the job right now, and I’m not armed...”</i> She twirls around and shows you she’s got nothing on her, not even a bag or pouch. She waits until you relax, then her lapine face is graced with a cheshire grin. <i>“I saw you heading this way and was wondering if you wanted to fuck without the fight. You’re not like anyone else around here, sex with you is awesome and you’re hot as hell! Your ship, right?”</i>");
 
-output("\n\nShe looks up and down your {Casstech/ship} and puts her hands on her wide hips. <i>“I’m hot and bothered right now, and I thought we could just have some sweaty fun in the bedroom instead! A nice sexual workout! It sure as hell beats anything else around here...”</i>");
+output("\n\nShe looks up and down your [pc.ship] and puts her hands on her wide hips. <i>“I’m hot and bothered right now, and I thought we could just have some sweaty fun in the bedroom instead! A nice sexual workout! It sure as hell beats anything else around here...”</i>");
 
 output("\n\nThe laquine jumper’s proposition is a tempting one. Her [enemy.furColor] fur glows with cold perspirant and her suit is obviously soaked from work. She pats her crotch and smiles cutely at you. You’re already getting a little aroused from her stewed body odor alone...");
 

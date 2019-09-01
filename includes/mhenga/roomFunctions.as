@@ -70,6 +70,8 @@ public function bountyBoardExtra():Boolean
 	var btnSlot:int = 0;
 	addButton(btnSlot++,"Bulletins",checkOutBountyBoard);
 	if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) repeatRepresentativeSatelliteShit(btnSlot++);
+	if(pennyRecruited() && !pennyIsCrew()) pennyOffCrewKickedOff(btnSlot++);
+	
 	return false;
 }
 public function checkOutBountyBoard():void
@@ -134,6 +136,8 @@ public function barBackRoomBonus():Boolean
 		else output("\n\nA bunny-girl is back here with another patron, too busy to pay any attention to you.")
 	}
 	if (zilTwinsAtBar()) zilTwinsBarBonus();
+	if(debug) addButton(4,"Oil Cheat",oilyButt);
+	else vendingMachineButton(4, "XXX");
 	return false;
 }
 
@@ -363,7 +367,7 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 			}
 		}
 		if(!hostileOnly && !pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
-		if(!hostileOnly && !pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Zil") && CodexManager.entryUnlocked("Kerokoras")) choices.push(yomaJungleEncounter);
+		if(!hostileOnly && yomaExploringTheJungle() && CodexManager.entryUnlocked("Zil") && CodexManager.entryUnlocked("Kerokoras")) choices.push(yomaJungleEncounter);
 		if(!hostileOnly && flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
 		{
 			choices.push(fZilPregEncounter);
@@ -374,6 +378,7 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 				choices.push(fZilPregEncounter);
 			}
 		}
+		if (!hostileOnly && breedwellPremiumBootyCallCheck("mhen'ga")) choices.push(breedwellPremiumBootyCallPing);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -436,7 +441,7 @@ public function jungleMiddleEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
+		if(yomaExploringTheJungle() && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
@@ -544,7 +549,7 @@ public function jungleDeepEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
+		if(yomaExploringTheJungle() && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
@@ -640,7 +645,7 @@ public function mhengaVanaeCombatZone():Boolean
 		var YOMA:int = 4;
 		
 		var choices:Array = [MAIDEN, MAIDEN, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, MIMBRANE];
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Vanae")) choices.push(YOMA);
+		if(yomaExploringTheJungle() && CodexManager.entryUnlocked("Vanae")) choices.push(YOMA);
 		var selected:int = RandomInCollection(choices);
 	
 		if (selected == MAIDEN)
@@ -1074,6 +1079,8 @@ public function defeatZilGuards():void
 	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 	//Reqs loss suck some.
 	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay,undefined,"Oral Play","Really get in there and play with a male zil’s foreskin-clad cock.");
+	else if(pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already after losing in combat....");
+	else if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addDisabledButton(3,"Oral Play","Oral Play","You need genitals for this!");
 	else addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already.... Oh, and you’ll need to have genitals too.");
 	if(pc.hasCuntTail()) addButton(4,"Tail Milk",useTailOnZilWhenUWin,undefined,"Tail Milk","Milk his sugary dick with your parasitic tail.");
 	else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");

@@ -16,7 +16,7 @@ public function landOnTarkus():void
 		output("\n\nSlowly but surely, the ship picks through shards of rock that must have once been part of the planet’s core and mantle. Further in however the field seems to largely consist of orbital debris rather than planetary ejecta: hulls of space ships and ruined clumps of satellites mashed together over centuries of disuse flit past you at thousands of kilometers per hour, making your approach difficult. More than once unidentified high velocity particles are intercepted by your shields, a grim reminder your ship is barely equipped to survive this landing. Finally you’re through. The console to your front chirps as heat shields engage and you enter the upper atmosphere.");
 		output("\n\nFor several minutes all you can hear is the hum of the shield generator as it works to deflect and absorb much of the heat created by drag and atmospheric compression as you descend.");
 		output("\n\nFinally the vibration subsides and your view is restored as the heat shields slide open, just in time for you to see yourself punch through a thick cloud layer that leaves a mask of water droplets at the edges of your cockpit window. Although still high above the planet, you make out the surface below as mostly red speckled with flecks of silver and gray. The sea resembles acrylic paints that have undergone mixing at the hands of an overzealous toddler; hideous black and green hues garishly reflect the harsh light of Tarkus’s star, KP0384128J.");
-		output("\n\nEntry process winks green and your altitude control system switches to local ref. 300 kilometers out from the beacon you slow to a polite mach one in towards the impact site of the ancient and disintegrating capital ship you saw from orbit. The ship is surrounded by mechanical detritus from all sides and powdered with red dusts from a wasteland which stretches as far as your eye can see to the east. It rests on the shore of the strange shimmering black sea. The land here is little more than a junkyard, one more world ravished by the march of progress until it was little more than a skeleton. The dead land sends a chill down your spine while you wait for permission to land. As you vector to one of the dimly lit hangars you fly past an ancient QR code dating from the brief but colorful Information Age of Man that reads simply; NOVA. <i>“Goddamn the ship is prehistoric!”</i> you think as the [PCShipModel] eases into your appointed docking bay - a hastily spray-painted square on the deck, surrounded by other explorers’ ships.");
+		output("\n\nEntry process winks green and your altitude control system switches to local ref. 300 kilometers out from the beacon you slow to a polite mach one in towards the impact site of the ancient and disintegrating capital ship you saw from orbit. The ship is surrounded by mechanical detritus from all sides and powdered with red dusts from a wasteland which stretches as far as your eye can see to the east. It rests on the shore of the strange shimmering black sea. The land here is little more than a junkyard, one more world ravished by the march of progress until it was little more than a skeleton. The dead land sends a chill down your spine while you wait for permission to land. As you vector to one of the dimly lit hangars you fly past an ancient QR code dating from the brief but colorful Information Age of Man that reads simply; NOVA. <i>“Goddamn the ship is prehistoric!”</i> you think as the [pc.ship] eases into your appointed docking bay - a hastily spray-painted square on the deck, surrounded by other explorers’ ships.");
 		flags["UNLOCKED_JUNKYARD_PLANET"] = 2;
 		CodexManager.unlockEntry("Gabilani");
 		
@@ -31,13 +31,18 @@ public function landOnTarkus():void
 }
 public function novahomeHangerBonus():Boolean
 {
-	
+
 	if(flags["CHAURMINE_LOVER"] == undefined && chaurmineRelationship() >= 50 && (flags["ABANDONED_CHAURMINE"] == undefined || flags["ABANDONED_CHAURMINE"] < 3)) novahomeChaurmineGoodbyeBonus(0);
 	return false;
 }
 
 public function westNovahomeBonus():Boolean
 {
+	if (breedwellPremiumBootyCallCheck("tarkus",1) && rand(4) == 0)
+	{
+		breedwellPremiumBootyCallPing(1);
+		return true;
+	}
 	if(flags["LASH_BOMB"] != undefined)
 	{
 		clearOutput();
@@ -58,6 +63,8 @@ public function firstTimeOnTarkusBonus():Boolean
 	}
 	
 	if (returnToShipAfterRecruitingAnno()) return true;
+
+	if(dockmasterBonus()) return true;
 	
 	return false;
 }
@@ -71,6 +78,11 @@ public function BonusFunction210():Boolean
 
 public function bonusFunction213():Boolean
 {
+	if (breedwellPremiumBootyCallCheck("tarkus",1) && rand(4) == 0)
+	{
+		breedwellPremiumBootyCallPing(1);
+		return true;
+	}
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" An enclosed bulkhead to the south houses a narrow entryway of some kind. Black marks around the perimeter of the door indicate at least one explosion has gone off on the other side.");
 	else output(" A solid metal plate has been welded over a charred doorway to the south and a bright red ‘X’ spraypainted across it.");
 	return false;
@@ -157,6 +169,7 @@ public function synthSheathMax():int
 {
 	var horseCocksTotal:int = 4;
 	if(flags["RIYA_PARTIED_YEAR"] != undefined) horseCocksTotal++;
+	if(flags["LORELEI_TALKED_FUTA"] != undefined) horseCocksTotal++;
 	return horseCocksTotal;
 }
 
@@ -175,6 +188,7 @@ public function synthSheathsUsed():int
 	if(sylvieHasCock()) synthUsed++;
 	if(chars["TUUVA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
 	if(chars["ARDIA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
+	if(chars["LORELEI"].hasCock()) synthUsed++;
 	
 	return synthUsed;
 }
@@ -236,7 +250,7 @@ public function rustPlainsEncounters():Boolean {
 		
 		var e:Array = [];
 		
-		e.push( { v: encounterALapinara, w: pc.hasStatusEffect("Lapinara Prophylactic") ? 1 : 3 } );
+		if(flags["LAPLOVE"] != undefined) e.push( { v: encounterALapinara, w: pc.hasStatusEffect("Lapinara Prophylactic") ? 1 : 3 } );
 		e.push( { v: encounterHostileRaskvelFemale, w: pc.hasStatusEffect("Raskvel Prophylactic") ? 1 : 3 } );
 		e.push( { v: raskvelGangEncounter, w: pc.hasStatusEffect("Raskvel Prophylactic") ? 1 : 3 } );
 		//If not disabled.
@@ -277,7 +291,9 @@ public function rustCoastEncounters():Boolean {
 		//If not disabled.
 		if(chaurmineAtWastes()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
 		
-		if(encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
+		if (encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
+		
+		if (breedwellPremiumBootyCallCheck("tarkus")) e.push( { v: breedwellPremiumBootyCallPing, w: 2 } );
 		
 		//Run the event
 		weightedRand(e)();

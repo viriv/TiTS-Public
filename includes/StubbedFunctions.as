@@ -17,23 +17,43 @@ public function kiroIsCrew():Boolean
 {
 	return false;
 }
+
+public function PCShipIsCasstech():Boolean
+{
+	if(shits["SHIP"] != undefined)  return (shits["SHIP"] is Casstech);
+	return false;
+}
 public function PCShipName(customName:Boolean = true):String
 {
 	// 9999 if(customName) return ActivePlayerShip.Name;
+	
+	if(customName && shits["SHIP"] != undefined) return shits["SHIP"].short;
+	if(PCShipIsCasstech()) return "Casstech Z14";
+	if(shits["SHIP"] != undefined) return shits["SHIP"].modelDisplay;
+	
 	return (PCShipManufacturer() + " " + PCShipModel());
 }
 public function PCShipManufacturer():String
 {
 	// 9999 return ActivePlayerShip.Manufacturer;
+	
 	return "Casstech";
 }
 public function PCShipModel():String
 {
 	// 9999 return ActivePlayerShip.Model;
+	
+	if(shits["SHIP"] != undefined) return shits["SHIP"].modelDisplay;
+	
 	return "Z14";
 }
 
 public function hasCapitalShip():Boolean
+{
+	return false;
+}
+
+public function PCShipHasHolodeck():Boolean
 {
 	return false;
 }

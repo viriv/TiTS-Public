@@ -634,7 +634,7 @@ public function cundarianCodexEntry():void
 	outputCodex("\n<b>Skin:</b> Grey, dark blue and mauve are the most common shades.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Features"));
-	outputCodex("Cundarians are digitigrade bipeds of slightly above average body mass in comparison to the galactic norm. Their males are taller and bulkier than the females, a dimorphism exaggerated further by the different lives they tend to lead. Cundarians have prominent, defined faces immediately recognisable to humans and ausar, with the average compliment of two eyes, a fairly flat nose, a mouth and two fin-shaped ears. They do not grow body hair, however almost all adult males sprout small tentacles from their chin and jaw. These grow slowly over the course of a male cundarian’s life, displaying how old they are. All cundarians grow plated ridges from their brows across the top of their heads, and sometimes long, dreadlock-like tentacles as well. Whether head-tentacles are present, and the size and shape of the ridges, is dependent upon an individual cundarian’s ethnicity.\n\nCundarians have a slightly top-heavy, muscular frame most notable in their males as a result of an evolution spent mostly climbing the mountainous regions of their home world of Samaria. For the same reason they have blunt, balance-imparting tails, and their legs are hoofed; three toed and keratinous, perfect for traversing rocky, vertiginous territory.\n\nProbably the cundarians’ most remarkable bodily feature is their ability to enter a torpor-like state in extreme temperatures. Across most of their body, their skin is smooth but tough, pebble-like. When they enter torpor, the chemical composition of their epidermis changes to further toughen until it enters a rock-like state across the entirety of the cundarian’s frame, virtually impervious to outside conditions. This necessitates the cundarian freeze in place, as well as drastically slowing their body and cognitive functions, but allows them to survive atmospheric conditions that would kill others for days at a time.\n\n");
+	outputCodex("Cundarians are digitigrade bipeds of slightly above average body mass in comparison to the galactic norm. Their males are taller and bulkier than the females, a dimorphism exaggerated further by the different lives they tend to lead. Cundarians have prominent, defined faces immediately recognisable to humans and ausar, with the average complement of two eyes, a fairly flat nose, a mouth and two fin-shaped ears. They do not grow body hair, however almost all adult males sprout small tentacles from their chin and jaw. These grow slowly over the course of a male cundarian’s life, displaying how old they are. All cundarians grow plated ridges from their brows across the top of their heads, and sometimes long, dreadlock-like tentacles as well. Whether head-tentacles are present, and the size and shape of the ridges, is dependent upon an individual cundarian’s ethnicity.\n\nCundarians have a slightly top-heavy, muscular frame most notable in their males as a result of an evolution spent mostly climbing the mountainous regions of their home world of Samaria. For the same reason they have blunt, balance-imparting tails, and their legs are hoofed; three toed and keratinous, perfect for traversing rocky, vertiginous territory.\n\nProbably the cundarians’ most remarkable bodily feature is their ability to enter a torpor-like state in extreme temperatures. Across most of their body, their skin is smooth but tough, pebble-like. When they enter torpor, the chemical composition of their epidermis changes to further toughen until it enters a rock-like state across the entirety of the cundarian’s frame, virtually impervious to outside conditions. This necessitates the cundarian freeze in place, as well as drastically slowing their body and cognitive functions, but allows them to survive atmospheric conditions that would kill others for days at a time.\n\n");
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Outwardly, cundarians have a sexual arrangement which is immediately recognisable to most of the rest of the galaxy. Males grow a quartet of testicles and a large, free-hanging, blunt penis; females grow a spacious vagina behind a stony cloaca. The nature of their reproduction however is unique, thanks to the physical qualities of cundarian semen.\n\nImmediately after ejaculation, cundarian semen is a moist, foam-like substance. If allowed to settle, it holds its shape and hardens into a smooth, tough but lightweight solid. After insemination has occurred within a female cundarian’s womb, the semen forms around the fertilised ova, and in a relatively short amount of time becomes a hard-shelled egg that the female can then give birth to. This enables cundarians to lay large ova much faster than they ordinarily would be able to, vital for them given that only one is laid per batch and the high turn-over of their population (see below).\n\nBeing oviparous, female cundarians do not have breasts, but do have large hips and backsides to enable frequent egg-laying. Cundarian penises are muscular and the male’s orgasm particularly powerful in order to ejaculate their semi-solid cum. A popular practice in traditional cundarian relationships is for the male to “seal” the female’s vaginal entrance with a plug of semen, broken only by the egg’s birth. This has the effect of constantly arousing the female via rubbing and stretching, “proving” her chasteness and loyalty to her partner by leaving it unbroken nonetheless.\n\n");
 	outputCodex(blockHeader("Culture"));
@@ -1425,7 +1425,7 @@ public function thraggenCodexEntry():void
 	outputCodex("Arising on the jungle world of \\\[REDACTED\\\], the thraggen survived for many millennia as hunter-gatherer tribes, hunting the towering Gryllan beasts rather than attempting agriculture, even into what would, on earth, have been analogous to the middle ages. Formed into closely-knit warrior tribes, the thraggen warred heavily against each other for territory, often resulting in clan feuds that would last for generations, and in some cases, persist to the modern day. Their early space flight was ramshackle at best, with most attempts at extraterrestrial flight merely attempts at weaponizing satellites or rapidly deploying soldiers. However, as the age of technology progressed on \\\[REDACTED\\\], the longer lives granted by advancing technology combined for the thraggen tendency to fuck rather than kill their enemies, began to lead to overpopulation of the homeworld. Hunting grounds became ever more precious, and the first major settlements, or clan holds, were established to secure precious land against rival tribes and upstart bands.");
 	outputCodex("\n\nWithout warp gates, however, the options for leaving the homeworld were few: the \\\[REDACTED\\\] system is largely made of gas giants, not terrestrial worlds. The wealthiest tribes were able to hold onto their growing empires, and grew settled; it was the younger tribes who were eventually forced to leave, packing up into primitive colony ships and setting sail for nearby worlds at near the speed of light, on voyages that would take years or decades to complete. On the backs of these young explorers, the thraggen race took to the stars, largely by crashing irrevocably on desert worlds and wasteland planets. The starward clans began to eke out an existence on the new worlds, colonizing and terraforming to the best of their abilities, though even now most thraggen worlds are rugged and deadly wastelands between the few surviving clan holds.");
 	outputCodex("\n\nThe thraggen only enter the galactic stage in 227 A.C., when a U.G.C. warp gate flew into orbit around a starward thraggen world, and activated. An element of the Terran’s Coalition Expeditionary Force arrived with it, eager to explore the new world -- and were immediately met with a rampaging horde of towering greenskins, descending upon them like wild animals. The bulk of the Terran force retreated, with several dozen captured and enslaved before the C.E.F. could leave the planet. By the time the Coalition returned with a full fleet to rescue the prisoners, they met -- to their horror and surprise -- an equal fleet of cobbled-together thraggen warships, with several more fleets on the way as the underestimated “brutes” co-opted the Ausar gates to unite their own worlds.");
-	outputCodex("\n\nThe war that immediately bloomed turned a dozen U.G.C. worlds into smokey, wasted husks before a proper response could be mustered and a military assembled. With a friendly casualty count in excess of 50 billion, the U.G.C. won. It was not a pleasant victory, nor a clean one. To this day, the surviving thraggen worlds exist in perpetual blockade, closely watched by an army of spy satellites for any signs of hostility.");
+	outputCodex("\n\nThe war that immediately bloomed turned a dozen U.G.C. worlds into smoky, wasted husks before a proper response could be mustered and a military assembled. With a friendly casualty count in excess of 50 billion, the U.G.C. won. It was not a pleasant victory, nor a clean one. To this day, the surviving thraggen worlds exist in perpetual blockade, closely watched by an army of spy satellites for any signs of hostility.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Thraggen");
 }
@@ -1707,7 +1707,7 @@ public function xhelarfogCodexEntry():void
 	outputCodex(blockHeader("Society and History"));
 	outputCodex("The environment of Anon-Xusya B is inhospitable to the point that the first Rushers to encounter it thought themselves the victim of an elaborate prank when they began receiving curious, though primitive radio messages from its surface. Despite this, the first few craft to touch down discovered this not to be the case as they were soon greeted by a small tribe of the native Xhelarfog.");
 	outputCodex("\n\nThanks to the high availability of metal, and frequent electrical storms, they had grasped the concept of electricity at a stage in their scientific development that was far earlier than the average. This is often seen as a saving grace for the species, as once word of the unusual civilization got out, they were swarmed by anthropologists - preventing mining companies from being able to take advantage of the time before the natives were declared legally sapient.");
-	outputCodex("\n\nSince then, the Xhelarfog have formed a fledgling full-planet government (under supervision of the UGC), and have integrated well into galactic society, thanks in part to an arrangement signed between themselves and the SteeleTech company - allowing them mining access in return for high level technical education. The deal is reported to have been agreed on incredibly quickly - no doubt thanks to Victor Steele personally overseeing it after existing escapades with the Xhelarfog, having been one of the original Rushers to discover the planet.");
+	outputCodex("\n\nSince then, the Xhelarfog have formed a fledgling full-planet government (under supervision of the UGC), and have integrated well into galactic society, thanks in part to an arrangement signed between themselves and the Steele Tech company - allowing them mining access in return for high level technical education. The deal is reported to have been agreed on incredibly quickly - no doubt thanks to Victor Steele personally overseeing it after existing escapades with the Xhelarfog, having been one of the original Rushers to discover the planet.");
 	CodexManager.viewedEntry("Xhelarfog");
 }
 
@@ -2308,30 +2308,67 @@ public function grayGooCodex():void
 public function lapinaraCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("LAPINARA","LAPINARA_2");
-	outputCodex(header("Lapinara"));
-	outputCodex("<i>Be wary on frontier worlds of the parasitic laquines.</i>\n\n");
-	outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
-	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
-	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 feet for all genders.");
-	outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
-	outputCodex("\n<b>Hair & Fur:</b> Hair is fast-growing, and typically very soft and curly. The hair and fur of parasitic females is typically white, but can sometimes be silver or gray. All lapinara have a thin layer of fur covering the entirety of their bodies. The hair is longer and curlier on the lower legs and forearms, resembling warmers. They have a long, puffy tuft of fuzz at the end of their long, whip-like tails.");
-	outputCodex("\n<b>Eyes:</b> Large and rabbit-like; parasitic females always have glassy, cloudy, gray eyes. They resemble crystal balls.");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Features"));
-	outputCodex("The Lapinara are a sapient, rabbit-like race on digitigrade legs. Their faces are mostly humanesque, possessing tiny, button-like, constantly wiggling noses, as well as long whiskers. Their ears are large and rabbit-like. Given their long incisors and molars built for tough grinding, they have a very powerful, painful bite. A pair of horns, similar to that of the pronghorn grow from the foreheads of all genders. Parasitic females, non-parasitic females, and fem-herms have small, perky breasts, never more than A-cup. Parasitic gender skin comes in varying shades of gray. The skin tone of the other genders is determined by their host parent.");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Environs Typically Inhabited"));
-	outputCodex("The Lapinara are a highly adaptive species. Not possessing a home planet of their own, they are a nomadic kind. Many of the parasitic variety, however, have taken up residence on Tarkus, taking advantage of the local sex-loving gabilani and raskvel, as well as any oblivious visitors.");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Reproduction"));
-	outputCodex("Parasitic females are nothing short of pests. They are sex machines, completely obsessed with implanting their eggs into an unfortunate host. While appearing to have typical male genitalia, they are actually anything but. Their “penis” is actually an ovipositor, and their “testicles” instead hold their ovaries. These faux testicles swell up considerably when they have eggs ready. The presence of eggs causes the parasitic lapinara to enter a rut-like state that doesn’t end until they are rid of them. The pre-cum of the parasitic lapinara works as an anesthetic, preventing egg implantation from hurting the host.");
-	outputCodex("\n\nThe eggs are soft-shelled, and can only continue development if they’re implanted via a host organism’s anus or vagina, where they absorb the second half of the required genetic material. Labor is initiated when the soft outer shell dissolves. This produces non-parasitic offspring that are always born in pairs, and always the same gender as the host parent. Hair, eye, and skin color is also determined by the host parent. Males and herms tend to inherit penis type from their host parent, and females and herms tend to inherit vagina type from their host parent.");
-	outputCodex("\n\nMore parasitic females are produced when one parasitic female implants her eggs in another parasitic female. The non-parasitic genders reproduce just like any human, albeit with significantly shorter pregnancies, never longer than three months, but never shorter than two.");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("History"));
-	outputCodex("The epidemic of parasitic lapinara breeding has led to the foundation of the Lapinara Sanctuary, a charity organization that cares for orphan lapinara, offers adoption, and provides oophorectomies (ovary removal) for any consenting parasitic lapinara, essentially neutering them. The removed ovaries are sold to TamaniCorp for research for the advancement of fertility-enhancing products.");
-	outputCodex("\n\nIt is currently under fierce debate whether or not unconsenting parasitic oophorectomies are ethical and should be allowed.");
+	if(flags["LAPLOVE"] == undefined)
+	{
+		showBust("LAPINARA_2","LAPINARA");
+		outputCodex(header("Lapinara"));
+		outputCodex("<i>Small, but not to be underestimated.</i>\n\n");
+		outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
+		outputCodex("\n<b>Genders:</b> Male and hermaphrodite. No gender is more common than the other.");
+		outputCodex("\n<b>Height:</b>.Typically 3-4 ft.");
+		outputCodex("\n<b>Weight:</b> About as much as a 10 year old human.");
+		outputCodex("\n<b>Hair:</b> Lapinara have normal, human-like hair on their heads, and a total lack of body hair otherwise.");
+		outputCodex("\n<b>Eyes:</b> Lapinara eyes are cloudy black, and possess keen night vision.");
+		outputCodex("\n<b>Ears:</b> Lapinara have rabbit-like ears, which can either come in perky or floppy varieties.");
+		outputCodex("\n<b>Tails:</b> Long and slender, with small poofs of fur at the end.\n\n");
+
+		outputCodex(blockHeader("Combat"));
+		outputCodex("Lapinara are small and relatively defenseless on their own merits. All members of the species have curling, devilish horns which they can use to deliver surprisingly painful headbutts, but these are useful mostly for stunning a predator so that they can escape. Like leithans, lapinara come from a world full of much larger, more dangerous life forms, and they have evolved to be dexterous and difficult to find more than physically powerful.");
+		outputCodex("\n\nLapinara off their homeworld typically become technical specialists, offsetting their stature with powerful energy weapons, drones, and heavy shields.\n\n");
+		outputCodex(blockHeader("Gender Differences"));
+		outputCodex("Lapinara have two natural genders: males and hermaphrodites. Male lapinara are much like males of other species, though they tend to be the same size as hermaphrodites and are equally as feminine in form. Hermaphrodites have small breasts that do not naturally lactate, and like males, have small human-shaped phalluses; unlike males, their testicles are by default small and wrinkled sacks containing their ovaries. These swell with eggs when the hermaphrodite is impregnated via vaginal sex, and their phallus acts as an ovipositor.");
+		outputCodex("\n\nWhen not pregnant, a hermaphrodite lapinara’s phallus acts the same way a male’s does, though it is sterile. Many uplifted lapinara choose to have this rectified through modern gene mods.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Environs Typically Inhabited"));
+		outputCodex("Lapinara come from the large, heavily forested planet of T’klar, located in Rushspace 11. Their homeworld is roughly half again the size of Earth, and is considered a <i>“primordial”</i> world, with a dense atmosphere and extremely prolific foliage across all land masses. T’klar is inhabited by many strains of megafauna, with many species of titanic lizards ranging from dinosaur-like to draconic, which has caused the only sapient species on the planet, the lapinara, to evolve to be small and evasive. Upliftment has been a difficult process due to the scattered nature of the races, effectively reduced to a speed of one family or clan at a time. Uplifted lapinara are mostly concentrated on the space station and terraformed moon over their homeworld, but have slowly begun to stretch their legs across the rest of the galaxy. Especially with Rush 14 now in effect, many uplifted lapinara are finally venturing out to claim their fortunes.\n\n");
+		outputCodex(blockHeader("Reproduction"));
+		outputCodex("Lapinara have a relatively unique brand of reproduction that has only become more interesting since their upliftment during the 11th Planet Rush. Normally, a hermaphrodite lapinara will be inseminated by a partner, which causes her otherwise empty <i>“testicles”</i> which contain their ovaries to produce a load of fertilized eggs. This causes the scrotum to swell considerably, from an otherwise flaccid sack to taut over a pair of baseball-sized eggs. She must then oviposit these eggs into another partner to complete the reproductive cycle - among lapinara, the host for the parasitic young is usually their own father, or a close friend or family member of the mother.");
+		outputCodex("\n\nA lapinara’s eggs require roughly three months after implantation to be ready to lay, and typically come in pairs or in fours.");
+		outputCodex("\n\nThe most unique facet of lapinara reproduction, however, comes when they mate with non-lapinara. Eggs implanted into members of other species show their parasitic nature by hybridizing with the host’s DNA, imparting traits of the host onto the young. For example, a lapinara egg implanted into an ausar might gain furry limbs, a knotted phallus, and canid eyes, while one implanted into a leithan might gain chitin plates and even extra limbs. This hybridization can even cause new and unique sexual characteristics to appear, such as fully female lapinara or genetic males with breasts. No two alien-hybrid lapinara are necessarily alike, even from the same clutch.\n\n");
+		outputCodex(blockHeader("Society"));
+		outputCodex("Natural lapinara society is primarily made up of small clans and family units, trying to survive the depredations of their dangerous homeworld and its many species of megafauna. Some small permanent cities exist on the southern continent, where the forests are less dense and mountains provide a natural defense against predators, but otherwise the species has little in the way of a unified culture or society.\n\n");
+		outputCodex(blockHeader("Relationships"));
+		outputCodex("Lapinara are an outgoing and gregarious race, though naturally timid in times of danger. They have a strong instinct for cooperation, a useful trait given the dangers of their homeworld. First contact with the Lapinara came from a Gryvain Heartland Republic scientific vessel looking for potential colony worlds, and while the dense atmosphere of T’klar is enough to enable natural gryvain flight, it was decided to uplift the natives rather than attempt to dispatch the local megafauna. On a technical level, T’klar is now part of the Republic (itself part of the Confederacy), though this is largely a formality as the gryvain of the system have either settled on the planet’s largest moon or remain in the station overhead where they continue to uplift small groups of lapinara.\n\n");
+		outputCodex(blockHeader("Technology"));
+		outputCodex("Lapinara have no technology of their own beyond flint tools and spears, but over the last few hundred years of upliftment have taken relatively well to Confederate tech.");
+	}
+	else
+	{
+		showBust("LAPINARA_2","LAPINARA");
+		outputCodex(header("Lapinara"));
+		outputCodex("<i>Be wary on frontier worlds of the parasitic laquines.</i>\n\n");
+		outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
+		outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
+		outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 feet for all genders.");
+		outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
+		outputCodex("\n<b>Hair & Fur:</b> Hair is fast-growing, and typically very soft and curly. The hair and fur of parasitic females is typically white, but can sometimes be silver or gray. All lapinara have a thin layer of fur covering the entirety of their bodies. The hair is longer and curlier on the lower legs and forearms, resembling warmers. They have a long, puffy tuft of fuzz at the end of their long, whip-like tails.");
+		outputCodex("\n<b>Eyes:</b> Large and rabbit-like; parasitic females always have glassy, cloudy, gray eyes. They resemble crystal balls.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Features"));
+		outputCodex("The Lapinara are a sapient, rabbit-like race on digitigrade legs. Their faces are mostly humanesque, possessing tiny, button-like, constantly wiggling noses, as well as long whiskers. Their ears are large and rabbit-like. Given their long incisors and molars built for tough grinding, they have a very powerful, painful bite. A pair of horns, similar to that of the pronghorn grow from the foreheads of all genders. Parasitic females, non-parasitic females, and fem-herms have small, perky breasts, never more than A-cup. Parasitic gender skin comes in varying shades of gray. The skin tone of the other genders is determined by their host parent.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Environs Typically Inhabited"));
+		outputCodex("The Lapinara are a highly adaptive species. Not possessing a home planet of their own, they are a nomadic kind. Many of the parasitic variety, however, have taken up residence on Tarkus, taking advantage of the local sex-loving gabilani and raskvel, as well as any oblivious visitors.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Reproduction"));
+		outputCodex("Parasitic females are nothing short of pests. They are sex machines, completely obsessed with implanting their eggs into an unfortunate host. While appearing to have typical male genitalia, they are actually anything but. Their “penis” is actually an ovipositor, and their “testicles” instead hold their ovaries. These faux testicles swell up considerably when they have eggs ready. The presence of eggs causes the parasitic lapinara to enter a rut-like state that doesn’t end until they are rid of them. The pre-cum of the parasitic lapinara works as an anesthetic, preventing egg implantation from hurting the host.");
+		outputCodex("\n\nThe eggs are soft-shelled, and can only continue development if they’re implanted via a host organism’s anus or vagina, where they absorb the second half of the required genetic material. Labor is initiated when the soft outer shell dissolves. This produces non-parasitic offspring that are always born in pairs, and always the same gender as the host parent. Hair, eye, and skin color is also determined by the host parent. Males and herms tend to inherit penis type from their host parent, and females and herms tend to inherit vagina type from their host parent.");
+		outputCodex("\n\nMore parasitic females are produced when one parasitic female implants her eggs in another parasitic female. The non-parasitic genders reproduce just like any human, albeit with significantly shorter pregnancies, never longer than three months, but never shorter than two.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("History"));
+		outputCodex("The epidemic of parasitic lapinara breeding has led to the foundation of the Lapinara Sanctuary, a charity organization that cares for orphan lapinara, offers adoption, and provides oophorectomies (ovary removal) for any consenting parasitic lapinara, essentially neutering them. The removed ovaries are sold to TamaniCorp for research for the advancement of fertility-enhancing products.");
+		outputCodex("\n\nIt is currently under fierce debate whether or not unconsenting parasitic oophorectomies are ethical and should be allowed.");
+	}
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Lapinara");
 }
@@ -2834,7 +2871,7 @@ public function lurelingsCodexEntry():void
 	outputCodex(blockHeader("Power of the Lurelings"));
 	outputCodex("Lurelings are a native species of the icy moon of Uveto VII, and are one of the most dangerous creatures encountered on the world - when they wish to be. Lurelings are an aquatic species of exceptional intelligence (generally believed to be at ausar/human levels or higher), yet their deep-sea origins and physical inability or cultural refusal to make contact make their motivations and goals all but unknowable. Lurelings are perfectly capable of communication, yet refuse to make their presence known to, much less discourse with, the colonists unless the given lureling is in immediate and overwhelming distress.");
 	outputCodex("\n\nWhat <i>is</i> known about them, however, is that lurelings are very large, very ugly amphibians resembling something between a frog and an angler fish, with four stubby legs propelling a teardrop-shaped body that supports an immense head. Their heads play home to a large, circle-shaped mouth filled with concentric rows of teeth that rotate like a drill, allowing the lureling to tunnel through surface ice with ease.");
-	outputCodex("\n\nWhat makes lurelings truly interesting - and dangerous - to the Uvetan colonists, however, is their native psionic ability and how they manifest it. Like several other native species (such as the frostwyrms and korgonne), lurelings have developed extranormal mental powers, and thus far all encountered lurelings possess this power, rather than only a select few individuals as with most psionically active species. Also abnormally, all known lurelings exercise the same mental power: the ability to dominate and control others.");
+	outputCodex("\n\nWhat makes lurelings truly interesting - and dangerous - to the Uvetan colonists, however, is their native psionic ability and how they manifest it. Like several other native species (such as the frostwyrms and milodans), lurelings have developed extranormal mental powers, and thus far all encountered lurelings possess this power, rather than only a select few individuals as with most psionically active species. Also abnormally, all known lurelings exercise the same mental power: the ability to dominate and control others.");
 	outputCodex("\n\nThe lurelings’ mental domination seems to be an understood and integral part of the ecology of primitive Uvetan species, and has been for many millenia. Each lureling finds and dominates a single, weak-willed surfacer by projecting its mental powers through the ice (usually while the intended victim is sleeping or otherwise vulnerable). Once a lureling asserts its mental dominance, the bond is usually permanent, and the victim will spend the rest of his or her life as a puppet (called “marions” by the locals) to their lureling master, following it from above the ice.");
 	outputCodex("\n\nWhile that alone would be cause for great concern among the natives, the lurelings have asserted and confirmed their intelligence in a most horrifying way: research indicates they <i>breed</i> their marions, creating bloodlines particularly well-suited to serving a lureling. Specific traits such as obedience, stamina, and even beauty have been shown to take preference among species bred by lurelings. Young lurelings will often take control of newborn or young children born of their parents’ marions: some speculate that breeding puppets is associated in some way with the lurelings’ own breeding season.");
 	outputCodex("\n\n");
@@ -3189,7 +3226,7 @@ public function treatmentCodexEntry():void
 	outputCodex(blockHeader("Female Mental Effects"));
 	outputCodex("The mental effects propagate over a period of 48 hours, plus or minus 12. They start with a rapid loss of willpower and end with a huge dip in perceived intelligence. Both are relative to the user’s original aptitude; particularly strong-willed women seemed best able to handle their new drives and shorter attention spans. Actual I.Q.s are unchanged, though new cows have great difficulty maintaining motivation for nonsexual pursuits, leading to a bimbo stereotype. Promises of longer milkings for higher scores increased standardized test results to near pre-treatment levels. Adding a fuck from a treated male, or bull, as a prize eliminated the discrepancy.");
 	outputCodex("\n\nThose changes are gradual enough that most girls barely notice them. One secondary effect that every girl notices and is happy to talk about is the all-encompassing EUPHORIA that being treated brings. It too starts slow and ramps up over the 48 hour period, but it’s impossible not to notice how natural smiling becomes or how easy it is to lose oneself in the simpler pleasures afterward. Everyday activities like bathing become exquisitely enjoyable, almost spiritual activities for treated cow-girls.");
-	outputCodex("\n\nAnother important secondary characteristic of the Treatment is an increase in libido. Treated women find themselves almost comically easily aroused, and with heightened libidos and a happy disposition, they’ll find themselves fucking and breeding many times more often than untreated individuals. While many women display concern about this before taking the Treatment, there has not been a single cow reporting displeasure with this facet of her life after a month of time to adjust. New Texas has not had a reported case of depression in three centuries.");
+	outputCodex("\n\nAnother important secondary characteristic of the Treatment is an increase in libido. Treated women find themselves almost comically easily aroused, and with heightened libidos and a happy disposition, they’ll find themselves fucking and breeding many times more often than untreated individuals. While many women display concern about this before taking the Treatment, there has not been a single cow reporting displeasure with this facet of her life after a month of time to adjust. New Texas has not had a reported case of adult depression in three centuries.");
 	outputCodex("\n\nMany more effects can manifest as part of the Treatment. Their appearance and strength seem largely randomized. Whether this is intentionally part of the Treatment’s design or accidental benefit is unknown.");
 	outputCodex("\n\n<b>Additional Female Mental Effects:</b>");
 	outputCodex("\n<b>*</b> Oral Fixation. (Common: Normally low intensity.)");
@@ -3488,8 +3525,9 @@ public function mechanicsCodex():void
 	outputCodex("<i>What the hell do all the weird little flags in the tooltips mean?</i>\n\n");
 	outputCodex("Many weapons and armors in the universe react in different ways to each other. To help identify possible interactions between these items, this Codex has been equipped with the capability to automatically identify and tag these with <b>item flags</b>. The estimated effects of the various flags are detailed below.");
 	outputCodex("\n\n");
-	outputCodex(blockHeader("Armor Flags"));
-	outputCodex("<b>Ablative:</b> Indicative of heavy armor like platemail. These types of armors can be easily defeated by crushing, blunt impacts, but are resistant to blades and bullets.");
+	outputCodex(blockHeader("Armor Defense Flags"));
+	outputCodex("<i>These flags will alter the damage values taken relative to the damage type.</i>");
+	outputCodex("\n<b>Ablative:</b> Indicative of heavy armor like platemail. These types of armors can be easily defeated by crushing, blunt impacts, but are resistant to blades and bullets.");
 	outputCodex("\n\t<b>*</b> 25% resistant to Penetrating");
 	outputCodex("\n\t<b>*</b> 15% resistant to Bullet");
 	outputCodex("\n\t<b>*</b> 25% vulnerable to Crushing");
@@ -3506,14 +3544,65 @@ public function mechanicsCodex():void
 	outputCodex("\n\t<b>*</b> 25% resistant to Crushing");
 	outputCodex("\n\t<b>*</b> 15% resistant to Bullet");
 	outputCodex("\n\t<b>*</b> 25% vulnerable to Penetrating");
+	outputCodex("\n<b>Grounded:</b> Outfits with the grounded trait are resistent to EMP shocks and prevent them from stunning the wearer.");
+	outputCodex("\n<b>Easy:</b> As the name implies, armor that is labeled ‘easy’ makes physical combat less difficult by giving an extra 50% resistance, up to a maximum of 100% resistance, to any given damage type.");
 	outputCodex("\n\n");
-	outputCodex(blockHeader("Weapon Flags"));
-	outputCodex("<b>Bullet:</b> This indicates that the weapon uses bullets to convey damage to its targets. Many armors offer at least some resistance to bullets, but never enough for this style of kinetic combat to go out of style.");
+	outputCodex(blockHeader("Armor Style Flags"));
+	outputCodex("<i>These flags define the outfit’s or undergarment’s particular style and will be mostly cosmetic unless otherwise stated.</i>");
+	outputCodex("\n<b>Covers Body:</b> This is particularly for accessory items that cover the body as extra outerwear (such as jackets and overcoats).");
+	outputCodex("\n<b>Airtight:</b> This signifies that the outfit is completely sealed to ensure no outside fluids or gasses can seep inside and affect the wearer.");
+	outputCodex("\n<b>Swimwear:</b> Clothing ideally used for recreational activities, namely in areas that promote swimming, are considered swimwear.");
+	outputCodex("\n<b>Body Conforming:</b> This describes clothing that conforms to the wearer’s body shape, preserving an almost-nude form.");
+	outputCodex("\n<b>Transparent:</b> When a piece of clothing is see-through, it may alter its sexiness bonus value depending on whether or not the part or parts it is worn over are readily visible. To fully take advantage of this kind of item’s sexiness bonus would require not covering the affected areas.");
+	outputCodex("\n<b>Stretchable:</b> The elasticity of this clothing’s material may stretch across the wearer’s body to boost sexiness, and possibly stretching to the point of becoming transparent--specifically for the hips, butt and breast area.");
+	outputCodex("\n<b>Chest Exposed:</b> The chest area is left exposed. The chest (especially with the presence of breasts and nipples) can be considered naked if no other garment or anatomy is covering the area.");
+	outputCodex("\n<b>Groin Exposed:</b> The pelvic area is left exposed. The groin (especially with the presence of genitalia) can be considered naked if no other garment or anatomy is covering the area.");
+	outputCodex("\n<b>Ass Exposed:</b> The rear area is left exposed. The ass (namely the anus) can be considered naked if no other garment or anatomy is covering the area.");
+	outputCodex("\n<b>Fully Exposed:</b> The chest, groin and ass are left exposed. Any part can be considered naked if their respective areas are uncovered by other garments or anatomy.");
+	outputCodex("\n<b>Vaginal Chastity:</b> Underwear that prevents vaginal penetration.");
+	outputCodex("\n<b>Anal Chastity:</b> Underwear that prevents anal penetration.");
+	outputCodex("\n<b>Vaginal Cum-Sealed:</b> Underwear that prevents cumflation leakage from the vaginal orifice.");
+	outputCodex("\n<b>Anal Cum-Sealed:</b> Underwear that prevents cumflation leakage from the anal orifice.");
+	outputCodex("\n<b>Anti-Gravity:</b> Some outfits or garments are equipped with anti-gravity technology to help lift and support anatomy that would be considered too heavy in normal-gravity-level environments.");
+	outputCodex("\n<b>Power Armor:</b> This primarily describes suits that are equipped with high-grade mobility and strength augmenting technology. Such armors are more commonly utilized in construction or frontline warfare.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Weapon Damage Flags"));
+	outputCodex("<i>These flags define the damage type, possibly affecting the overall damage value.</i>");
+	outputCodex("\n<b>Bullet:</b> This indicates that the weapon uses bullets to convey damage to its targets. Many armors offer at least some resistance to bullets, but never enough for this style of kinetic combat to go out of style.");
 	outputCodex("\n<b>Crushing:</b> The crushing flag is almost always found on blunt melee weapons, though rare projectile weapons are not unheard of.");
 	outputCodex("\n<b>Energy Weapon:</b> This indicates that a weapon delivers its payload via energy, a hallmark of laser-based, electrical, or plasma weaponry.");
 	outputCodex("\n<b>Explosive:</b> As indicated by their name, explosive weapons detonate with concussive force.");
 	outputCodex("\n<b>Laser:</b> Laser weapons fire their payload in the form of beams of cohesive energy. Some items offer great defense against lasers, but no one can deny the effectiveness of the near-instant transmission of burning death.");
 	outputCodex("\n<b>Penetrating:</b> Weapons with the penetrating quality are often melee weapons - anything you can use to stab someone or something with.");
+	outputCodex("\n<b>Shield Bypass:</b> The damage dealt by weapons with this property have the ability to bypass shields.");
+	outputCodex("\n<b>Targets Shield:</b> The damage dealt by weapons with this property only affects shields.");
+	outputCodex("\n<b>Draining:</b> The damage dealt by weapons with this property steals half of the opponent’s shield.");
+	outputCodex("\n<b>Greater Draining:</b> The damage dealt by weapons with this property steals 90% of the opponent’s shield.");
+	outputCodex("\n<b>Vampiric:</b> The damage dealt by weapons with this property steals half of the opponent’s health.");
+	outputCodex("\n<b>Greater Vampiric:</b> The damage dealt by weapons with this property steals 90% of the opponent’s health.");
+	outputCodex("\n<b>Burn DoT Chance:</b> When the opponent takes health damage, weapons with this trait have a 20% chance to apply burn damage over time.");
+	outputCodex("\n<b>Stun Chance:</b> When the opponent takes health or lust damage, weapons with this trait have a 25% chance to apply stun.");
+	outputCodex("\n<b>Cannot Crit:</b> Critical damage is prevented for any weapon with this trait.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Weapon Ability Flags"));
+	outputCodex("<i>These flags indicate any special effects or properties the weapon has.</i>");
+	outputCodex("\n<b>Bonus Hit Rate:</b> Item removes the additional miss-chances from bonus attacks.");
+	outputCodex("\n<b>Double Shot:</b> (Ship Arsenal) Weapon will fire twice.");
+	outputCodex("\n<b>Burst Fire:</b> (Ship Arsenal) Weapon will fire three times.");
+	outputCodex("\n<b>Full-Auto Fire:</b> (Ship Arsenal) Weapon will fire constantly with up to four times the damage.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Weapon Style Flags"));
+	outputCodex("<i>These flags define the weapon’s particular style and will be mostly cosmetic unless otherwise stated.</i>");
+	outputCodex("\n<b>Rifle:</b> The item is a rifle-style ranged weapon.");
+	outputCodex("\n<b>Pistol:</b> The item is a hand gun-style ranged weapon.");
+	outputCodex("\n<b>Shotgun:</b> The item is a shotgun-style ranged weapon.");
+	outputCodex("\n<b>Thrower:</b> The item is a ranged weapon that sprays, emits or otherwise throws projectiles.");
+	outputCodex("\n<b>Launcher:</b> The item is a ranged weapon with self-launching projectiles.");
+	outputCodex("\n<b>Bow Weapon:</b> The item is a bow and arrow-style ranged weapon.");
+	outputCodex("\n<b>Energy Weapon:</b> The weapon is primarily energy-based or electronically-powered.");
+	outputCodex("\n<b>Lust Weapon:</b> The weapon is primarily lust-oriented, dealing some form of lust-based damage.");
+	outputCodex("\n<b>Power Armor:</b> The item is designed to ideally be used with power armor.");
+	outputCodex("\n<b>Ship Equipment:</b> The item is exclusively used for the ship.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Item Mechanics");
 }

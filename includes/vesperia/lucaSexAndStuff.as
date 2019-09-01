@@ -342,7 +342,7 @@ public function justTalkWithLuca():void
 				case GLOBAL.CLASS_MERCENARY: output("\n\n<i>“Before the rush I was part of a mercenary group. We would usually just chase down pirates, but sometimes we’d get specific bounties to track down. Lots of boring traveling with small moments of intense firefights.”</i>"); break;
 				default: case GLOBAL.CLASS_ENGINEER: output("\n\n<i>“Before the rush my job was essentially working security as a tech " + pc.mf("guy", "gal") + ". I’d set up, build, repair and or program all sorts of things. I worked on everything from turrets and robots to blasters and electrified clubs.”</i>");
 			}
-			output("\n\n<i>“" + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "I guess we have a lot in common [pc.name]." : "Well that’s much more exciting than my career.") + " I suppose I should tell you about Ophira. She’s one of the main singers and dancers for <i>“The Lost Stars”</i> opera group. She always says that if her group ever comes to Vesperia I’ll get front row seats.");
+			output("\n\n<i>“" + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "I guess we have a lot in common [pc.name]." : "Well that’s much more exciting than my career.") + " I suppose I should tell you about Ophira. She’s one of the main singers and dancers for <i>“The Lost Stars”</i> opera group. She always says that if her group ever comes to Vesperia I’ll get front row seats.”</i>");
 			output("\n\n<i>“What’s your twin up to?”</i>");
 			output("\n\n<i>“Cali is a field medic in the Galactic Rush. Last time we spoke she was working in a triage center dealing with a bunch of idiot rushers that don’t understand that unexplored alien worlds are full of danger. What are you hoping to get out of the rush?”</i>");
 			output("\n\nThus begins the story of your adventure. It takes a while and Luca asks a question here and there, but you manage to explain your quest and the things you’ve experienced so far. Luca quietly contemplates what you’ve told her. You break the silence by asking what her little sisters are up to.");
@@ -682,14 +682,15 @@ public function lucaIsVeryTastyInYourMouth():void
 	author("RequiemForAMeme");
 	processTime(40);
 
-	output("At this point Luca is panting uncontrollably and her hands can only gently caress your [pc.hair] lest she break the rhythm. You yourself can’t stop moaning like " + (pc.hasFur() ? "an animal in heat" : "a whore") + ". You don’t even know when you started bobbing your head, you just know it feels too good to stop. Each taste of precum in more delicious than the next. You want her to fill you with her seed, no you need her to at this point. ");
+	output("At this point Luca is panting uncontrollably and her hands can only gently caress your [pc.hair] lest she break the rhythm. You yourself can’t stop moaning like " + (pc.hasFur() ? "an animal in heat" : "a whore") + ". You don’t even know when you started bobbing your head, you just know it feels too good to stop. Each taste of precum in more delicious than the next. You want her to fill you with her seed, no--you need her to at this point.");
 	output("\n\n<i>“If you’re making sounds like that, I guess you’re ready for the main course.”</i>");
 	output("\n\nYou freeze at the words, your mind overloaded on far too many things at once. Then you move your head down. This time there’s no wait. Luca’s crown glides through the entrance of your throat. Your mouth and throat are coated with so much saliva and precum you slide down Luca’s shaft like a well lubed onahole. With one swift deepthroating you’re kissing her base again. But it’s not just for her now, it’s for the both of you.");
 	output("\n\nYou’re going to milk her cock with your mouth and throat for every drop it has. You begin face fucking yourself on Luca’s throbbing cock. With the increasing amount of precum, you know she loves it. You slide up and down her shaft as tightly and quickly as you can. But she doesn’t cum. You moan louder and louder, knowing it causes your throat to vibrate around her perfect thickness. You’re so close, but she won’t give in.");
 	output("\n\nYou have a lightbulb moment as you fuck your throat with Luca’s meat stick. You pull yourself forward with your arms. You try to push her as deep as you can as you press against her base. You look up at Luca with your needy and wanton [pc.eyes].");
 	output("\n\nLocking eyes with you Luca gives out a whorish cry as something in her mind breaks. Her hands drop to her sides as her body seizes up. You feel her cock engorge as her seed surges up. With you hilted her spunk pumps straight into your stomach. Your [pc.belly] swells as you ride a euphoria you’ve never experienced before.");
-	if (pc.isHerm()) output(" Your cock sprays " + (pc.cumQ() < 250 ? "drops" : (pc.cumQ() < 1000 ? "spurts" : "ropes")) + " of [pc.cum] and your pussy contracts in neglect as your [pc.girlCum] " + (pc.wettestVaginalWetness() < 3 ? "drips" : "streams") + " down your legs, drenching the floor below you.");
-	else if (pc.hasCock()) output(" Your own cock starts spraying " + (pc.cumQ() < 250 ? "drops" : (pc.cumQ() < 1000 ? "spurts" : "ropes")) + " of [pc.cum] showering the floor below you.");
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
+	if (pc.isHerm()) output(" Your cock sprays " + (cumQ < 250 ? "drops" : (cumQ < 1000 ? "spurts" : "ropes")) + " of [pc.cum] and your pussy contracts in neglect as your [pc.girlCum] " + (pc.wettestVaginalWetness() < 3 ? "drips" : "streams") + " down your legs, drenching the floor below you.");
+	else if (pc.hasCock()) output(" Your own cock starts spraying " + (cumQ < 250 ? "drops" : (cumQ < 1000 ? "spurts" : "ropes")) + " of [pc.cum] showering the floor below you.");
 	else if (pc.hasVagina()) output(" Your own pussy contracts in neglect as your [pc.girlCum] " + (pc.isSquirter() ? "drenches the floor below you." : (pc.wettestVaginalWetness() < 3 ? "drips." : "streams down your legs.")));
 	output("\n\nYou feel each thick, sticky, heavenly drop of her seed flow into you. Quickly her cum overflows from your throat and into your mouth. The taste is so perfect that you try to seal your lips around her base to keep it there, but there’s just too much cum. It begins leaking from the corners of your mouth and then starts falling from your lower lip like a fountain. ");
 	output("\n\nYour body goes on autopilot as you slowly slip off of Luca’s cock. When her cock finally escapes your mouth, she showers you both with her apparently endless seed. Eventually the flow stops and her cock begins to soften. You kneel before Luca completely filled and covered with her spunk. You both stay like that in a blissful euphoric post-fuck state for nearly half an hour.");
@@ -734,8 +735,8 @@ public function lucaFucksYourAss():void
 
 	output("Luca smiles and quickly switches places with Sebastian. She grabs your [pc.hand] and leads you to her room. As soon as the door hisses closed Luca tells you to stand next to her bed. She darts across the room to her workstation and starts messing with a panel built into the wall.");
 	output("\n\nAs you take your place, the lights dim and about a dozen silent little robots start floating across the room. At the bottom of each robot is a dull light source flickering like a candle. A moment later a" + (flags["LUCA_SEXED"] + rand(3) >= 5 ? " familiar" : "") + " smooth jazz song quitely fills the room.");
-	if (pc.isNude()) output("\n\nLuca turns from her workstation and looks you up and down. " + (pc.mf("a","b") == "b" && pc.thickness >= 50 ? "She sucks in a long breath and whistles. <i>“God you are just perfect." : "”</i>You are such a tease.") + " You know that right? I am going to fucking ravage that ass of yours.”</i>");
-	else output("\n\nLuca turns from her workstation and looks you up and down. <i>“Take your clothes off. Put on a show for me.”</i> You remove your [pc.assCovers], taking your time doing your best to entertain your partner. " + (pc.mf("a","b") == "b" && pc.thickness >= 50 ? "She sucks in a long breath and whistles. <i>“God you are just perfect." : "”</i>You are such a tease.") + " You know that right? I am going to fucking ravage that ass of yours.”</i>");
+	if (pc.isNude()) output("\n\nLuca turns from her workstation and looks you up and down. " + (pc.mf("a","b") == "b" && pc.thickness >= 50 ? "She sucks in a long breath and whistles. <i>“God you are just perfect." : "<i>“You are such a tease.") + " You know that right? I am going to fucking ravage that ass of yours.”</i>");
+	else output("\n\nLuca turns from her workstation and looks you up and down. <i>“Take your clothes off. Put on a show for me.”</i> You remove your [pc.assCovers], taking your time doing your best to entertain your partner. " + (pc.mf("a","b") == "b" && pc.thickness >= 50 ? "She sucks in a long breath and whistles. <i>“God you are just perfect." : "<i>“You are such a tease.") + " You know that right? I am going to fucking ravage that ass of yours.”</i>");
 	output("\n\nShe sashays towards you stopping only when her firm melons press against your [pc.chest]. She caresses your [pc.face] and pulls you into a passionate kiss. Her tongue invades your mouth, overpowering your own. You softly moan in response. Then she pulls away, letting her teeth lightly drag your bottom lip with her.");
 	output("\n\n<i>“Turn around, crawl on the bed, and grab hold of the headboard,”</i> Luca orders.");
 	output("\n\nYou try to speak, but Luca quickly moves a finger to your lips, clicking her tongue three times. <i>“Good sluts follow orders.”</i> She nods towards the headboard. <i>“On your knees" + (pc.hasKnees() ? "." : ", or whatever, I suppose.") + "”</i>");
@@ -746,7 +747,7 @@ public function lucaFucksYourAss():void
 	if (pc.hasPerk("Buttslut")) output(" needy");
 	output(" pucker. Luca probes at your ass liberally lubing you up for her monstrous member. She idly hums in tune with the background jazz as she slips two fingers into your " + (pc.isAssTight() ? "tight" : (pc.elasticity >= 5 ? "stretchy" : "open")) + " rear.");
 	output("\n\nEven though she is preparing for the main event, you’re nearly getting off");
-	if (pc.hasGenitals()) output(". " + StringUtil.capitalize(pc.cockAndVagina("[pc.eachCock] is rigid and throbbing, just begging to be touched", "[pc.eachPussy] is sopping wet and achingly empty"), false));
+	if (pc.hasGenitals()) output(". " + StringUtil.capitalize(pc.cockAndVagina("[pc.EachCock] is rigid and throbbing, just begging to be touched", "[pc."+(pc.isHerm()?"e":"E")+"achPussy] is sopping wet and achingly empty", " and "), false));
 	output(". You moan through the gag and fight the urge to cum just from her fingers.");
 	output("\n\n<i>“Just a bit longer,”</i> she tells you. Your eyes roll as she plays with and stretches your backdoor. Each time you think you might orgasm, she changes the rhythm and number of fingers. You whine and beg with unintelligible noises hoping she’ll finally take you.");
 	output("\n\nShe pulls her fingers out and lets her slick right hand slide down your back. You feel her shaft thread up through your buttcheeks. Her fingers firmly grab " + (pc.hasHair() ? "a handful of your [pc.hair]" : (pc.hasHorns() ? "one of your [pc.horns]" : "the back of your head")) + ". Her other hand steadies your trembling hips as she hotdogs her dick with your [pc.ass].");
@@ -763,7 +764,8 @@ public function lucaFucksYourAss():void
 	output(" rump. <i>“Good [pc.boyGirl].”</i>");
 	output("\n\nLuca pulls her dick back until just the crown is touching your pucker. Her hands move to firmly take hold of your [pc.hips]. She slams her schlong back into your [pc.ass] unrelentingly. Sawing back and forth once again, she absolutely ravages your ass. Her cock feels as hard as metal as she takes you both to your peaks. <i>“Ga- gonna- I’m gonna- I’m CUMMING!”</i> Luca smashes her hips into your backside, filling you completely with her dick as she unloads her seed into you.");
 	output("\n\nYou orgasm along with her");
-	if (pc.hasGenitals()) output(", " + pc.cockAndVagina("[pc.eachCock] spraying a " + (pc.cumQ() < 1000 ? "tiny" : (pc.cumQ() < 10000 ? "excessive" : "inhuman")) + " amount of seed down onto her sheets", "[pc.eachPussy] " + (pc.wettestVaginalWetness() < 3 ? "slightly" : (pc.wettestVaginalWetness() < 5 ? "somewhat" : "absolutely")) + " drenching your lover’s legs"));
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
+	if (pc.hasGenitals()) output("," + pc.cockAndVagina(" [pc.eachCock] spraying a " + (cumQ < 1000 ? "tiny" : (cumQ < 10000 ? "excessive" : "inhuman")) + " amount of seed down onto her sheets", " [pc.eachPussy] " + (pc.wettestVaginalWetness() < 3 ? "slightly" : (pc.wettestVaginalWetness() < 5 ? "somewhat" : "absolutely")) + " drenching your lover’s legs"));
 	output(". Her cock blasts wave after wave of semen into your guts as she cums. Each and every gush");
 	if (pc.hasPerk("Buttslut")) output(" sends a rush of pleasure to your slut-addled mind and");
 	output(" fills you until your [pc.stomach] distends from the amount.");
@@ -891,7 +893,7 @@ public function lucaDenialGo():void
 	if (flags["LUCA_DENIED"] == undefined)
 	{
 		output("\n\nLuca hums along with the music as she moves around the bed. You do your best to watch her blurry and dark form while she places smooth bracelets around your wrists and ankles. <i>“These are special gravity cuffs [pc.name]. Right now you can move your limbs freely.”</i> You wiggle your arms and legs a bit to check. <i>“And now...”</i> An electronic revving sound emanates from the bracelets. <i>“Try moving again.”</i> You try to move your [pc.arms] and [pc.legOrLegs], but only end up wiggling in place. <i>“Excellent. Now before we begin, I want to remind you that if at anytime you feel uncomfortable and want to stop you only need to say the word. All right?”</i>");
-		output("\n\n<i>“I’ll remember”</i>.");
+		output("\n\n<i>“I’ll remember.”</i>");
 		output("\n\nLuca positions herself on the bed sitting next to you. <i>“Now then, we are going to play a simple game.”</i> She drags a single finger up from your waist to your [pc.chest]. <i>“The rules are simple. Rule one: until we’re finished I am your Mistress, and you are my pet slut.”</i> Her finger continues to travel up until she stops on your [pc.lipsChaste]. <i>“Rule two, you don’t move or speak unless I give you permission.”</i> She pushes her finger between them. <i>“If you break the rules, I punish you. Understood?”</i>");
 		output("\n\nYou nod and lightly suck on her finger.");
 	}
@@ -899,7 +901,7 @@ public function lucaDenialGo():void
 	{
 		output("\n\nLuca hums along with the music as she moves around the bed. You do your best to watch her blurry and dark from as she places smooth gravity cuffs around your wrists and ankles. <i>“Do you remember the rules?”</i> Luca asks.");
 		output("\n\n<i>“Yes Mistress I remember. And if I feel uncomfortable I’ll use the safeword.”</i>");
-		output("\n\nLuca positions herself on the bed sitting next to you. She leans down and kisses you. ");
+		output("\n\nLuca positions herself on the bed sitting next to you. She leans down and kisses you.");
 	}
 
 	output("\n\n<i>“Good. Now let’s begin.”</i>");
@@ -920,7 +922,7 @@ public function lucaDenialStarts():void
 	if (pc.tone < 25) output(" soft");
 	else if (pc.tone < 50) output(" average");
 	else if (pc.tone < 75) output(" toned");
-	else output("chiseled");
+	else output(" chiseled");
 	output(" form. With each stroke and touch, she barely misses your most sensitive areas, each time coming slightly closer to that oh-so-pleasurable than the last.");
 	output("\n\nShe stops and places a hand on your waist right above" + pc.cockAndVagina(" [pc.eachCock]", " [pc.eachPussy]") + ". With her previous ministrations, your body is completely relaxed, and you melt to her touch. With utmost care she brings her hands down to your neglected " + (pc.isHerm() ? "sexes." : "sex."));
 	output("\n\nUsing a delightfully slow and tender touch she brings" + pc.cockAndVagina(" [pc.eachCock] to a full rigid mast", " [pc.eachPussy] to a hot wet mess") + ". Unable to hold yourself back you thrust your [pc.hips] into her hands. Luca tsks and slaps the side of your [pc.thigh].");
@@ -929,8 +931,8 @@ public function lucaDenialStarts():void
 	output("\n\n<i>“If you want me to touch you again you had better put your tongue to use.”</i>");
 	output("\n\nYou quickly follow your Mistress’s order and put your [pc.tongue] to work. " + (pc.hasLongTongue() ? "You dive into her pussy forcing your eager muscle deeper and deeper. She moans blithely as you start twisting your oral organ and lapping at her deepest parts." : "Your eager muscle dives into her pussy as deep as you can.") + " You remove your tongue and tilt your head ever so slightly to get at her clit. Luca sinks down a bit further onto your face in response, presenting you with the gift of even better access to her delectable love button. You alternate between diving into her sex and stimulating her pleasure bud.");
 	output("\n\nLuca lets out a sigh of satisfaction as she returns to tending to" + pc.cockAndVagina(" [pc.eachCock]", " [pc.eachPussy]") + ". Just as you start to run out of air, she lifts herself from your face and brings her lips to your " + (pc.hasCock() ? "crown" : "own clit") + ". She plants a soft kiss before repositioning herself again. You stifle a grunt and keep yourself from moving as Luca leaves the bed.");
-	output("\n\nLuca returns after a brief moment and crawls up the bed to you. She spreads your legs just a bit further as she gets to work on keeping you aroused. One hand tends to " + pc.cockAndVagina("[pc.eachCock]", "[pc.eachPussy]") + " while the other begins to play with your backdoor. You feel her hot breath on you as she leans closer to your privates.");
-	output("\n\nYou feel her lick your inner thighs then pull away. " + StringUtil.capitalize(pc.cockAndVagina("her hands return to [pc.eachCock] and with a hard ‘click’ locks a ring around " + (pc.hasCocks() ? "each" : "the") + " base.", "you feel a blunt ribbed object slide into [pc.eachPussy].", " Then "), false) + " Finally the first of several slime-covered metallic beads are crammed into your ");
+	output("\n\nLuca returns after a brief moment and crawls up the bed to you. She spreads your legs just a bit further as she gets to work on keeping you aroused. One hand tends to" + pc.cockAndVagina(" [pc.eachCock]", " [pc.eachPussy]") + " while the other begins to play with your backdoor. You feel her hot breath on you as she leans closer to your privates.");
+	output("\n\nYou feel her lick your inner thighs then pull away. " + StringUtil.capitalize(pc.cockAndVagina("her hands return to [pc.eachCock] and with a hard ‘click’ locks a ring around " + (pc.hasCocks() ? "each" : "the") + " base.", "you feel a blunt ribbed object slide into [pc.eachPussy].", " Then "), false) + " Finally the first of several slime-covered metallic beads are crammed into your");
 	if (pc.hasPerk("Buttslut")) output(" wanton");
 	output(" pucker. Once the last bead is in, you feel your entire lower region start to faintly vibrate and buzz.");
 	output("\n\n<i>“These will keep you nice and on edge while I go back to the lounge for a few hours,”</i> Luca tells you. <i>“Don’t think about cumming either. My little ones will be keeping an eye on you.”</i>");
@@ -968,14 +970,15 @@ public function lucaWillEvenFinishYouOffYouLuckyDogYou():void
 	// luca will play with this vag
 	var x:int = rand(pc.vaginas.length);
 
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	if (pc.isHerm())
 	{
 		output("\n\nHer hug loosens, and her hands drift down to your [pc.cocks] and your [pc.vaginas]. You hear a " + (pc.hasCocks() ? "series of hard ‘clicks’" : "hard ‘click’") + " once again as Luca removes the " + (pc.hasCocks() ? "rings" : "ring") + " around your " + (pc.hasCocks() ? "dongs" : "dong") + ". She then wraps one hand around [pc.oneCock] while the other grabs the end of " + (pc.hasVaginas() ? "a" : "the") + " dildo in your [pc.vagina]. <i>“Feel free to thrust, [pc.name]. This is all for you.”</i>");
-		output("\n\nLuca starts working [pc.eachCock] with quick, light strokes that tighten into longer, slower ones, only to fade back into more rapid, feathery caresses. Meanwhile she uses the dildo to fuck your [pc.pussy " + x + "] lightly twisting it in circles then switching to long hard plunges. With the steady buzzing in your ass and the expert hands working your phallus and quim, you can’t help but thrust into her. You cry out and jerk helplessly in her grip as Luca brings you to climax. [pc.eachCock] sprays");
-		if (pc.cumQ() < 1000) output(" drops");
-		else if (pc.cumQ() < 6000) output(" spurts");
-		else if (pc.cumQ() < 20000) output(" ropes");
-		else if (pc.cumQ() < 50000) output(" gallons");
+		output("\n\nLuca starts working [pc.eachCock] with quick, light strokes that tighten into longer, slower ones, only to fade back into more rapid, feathery caresses. Meanwhile she uses the dildo to fuck your [pc.pussy " + x + "] lightly twisting it in circles then switching to long hard plunges. With the steady buzzing in your ass and the expert hands working your phallus and quim, you can’t help but thrust into her. You cry out and jerk helplessly in her grip as Luca brings you to climax. [pc.EachCock] sprays");
+		if (cumQ < 1000) output(" drops");
+		else if (cumQ < 6000) output(" spurts");
+		else if (cumQ < 20000) output(" ropes");
+		else if (cumQ < 50000) output(" gallons");
 		else output(" an inhuman amount");
 		output(" of [pc.cum] onto yourself and your lover at the same time your [pc.vaginas] " + (pc.hasVaginas() ? "contract" : "contracts") + " in delight. [pc.GirlCum]");
 		if (pc.wettestVaginalWetness() < 3) output(" drips down onto");
@@ -987,10 +990,10 @@ public function lucaWillEvenFinishYouOffYouLuckyDogYou():void
 	{
 		output("\n\nHer hug loosens, and her hands drift down to [pc.eachCock]. You hear a " + (pc.hasCocks() ? "series of hard ‘clicks’" : "hard ‘click’") + " once again as Luca removes the " + (pc.hasCocks() ? "rings" : "ring") + " around your " + (pc.hasCocks() ? "dongs" : "dong") + ". She then wraps both hands around your " + (pc.hasCocks() ? "shafts" : "shaft") + ". <i>“Feel free to thrust, [pc.name]. This is all for you.”</i>");
 		output("\n\nLuca starts working [pc.eachCock] with quick, light strokes that tighten into longer, slower ones, only to fade back into more rapid, feathery caresses. With the steady buzzing in your ass and the expert hands on your " + (pc.hasCocks() ? "phalli" : "phallus") + " you can’t help but thrust into her. You cry out and jerk helplessly in her grip as Luca brings you to climax.");
-		if (pc.cumQ() < 1000) output(" Your [pc.cum] squirts out, covering your lover’s hands and your own thighs.");
-		else if (pc.cumQ() < 6000) output(" Your [pc.cum] comes out in small ropes, covering your lover’s hands, your [pc.chest] and [pc.legOrLegs], and the sheets.");
-		else if (pc.cumQ() < 20000) output(" Buckets of [pc.cum] blast from your " + (pc.hasCocks() ? "dicks" : "dick") + " as Luca continues to stroke your " + (pc.hasCocks() ? "shafts" : "shaft") + ". You drench yourself and your lover’s arms, along with the front of the bed in your seed.");
-		else if (pc.cumQ() < 50000) output(" Gallons of [pc.cum] launch from your " + (pc.hasCocks() ? "dicks" : "dick") + " as Luca continues to stroke your " + (pc.hasCocks() ? "shafts" : "shaft") + ". You completely drench both yourself and your lover, along with her bed in your seed.");
+		if (cumQ < 1000) output(" Your [pc.cum] squirts out, covering your lover’s hands and your own thighs.");
+		else if (cumQ < 6000) output(" Your [pc.cum] comes out in small ropes, covering your lover’s hands, your [pc.chest] and [pc.legOrLegs], and the sheets.");
+		else if (cumQ < 20000) output(" Buckets of [pc.cum] blast from your " + (pc.hasCocks() ? "dicks" : "dick") + " as Luca continues to stroke your " + (pc.hasCocks() ? "shafts" : "shaft") + ". You drench yourself and your lover’s arms, along with the front of the bed in your seed.");
+		else if (cumQ < 50000) output(" Gallons of [pc.cum] launch from your " + (pc.hasCocks() ? "dicks" : "dick") + " as Luca continues to stroke your " + (pc.hasCocks() ? "shafts" : "shaft") + ". You completely drench both yourself and your lover, along with her bed in your seed.");
 		else output(" An inhuman amount of [pc.cum] erupts from your " + (pc.hasCocks() ? "dicks" : "dick") + " as Luca continues to stroke your " + (pc.hasCocks() ? "shafts" : "shaft") + ". A deluge of your spooge falls upon yourself and your lover. By the time you’re finished, it feels like you’ve ejected an entire tub of seed.");
 	}
 	else if (pc.isFemale())
@@ -1005,8 +1008,8 @@ public function lucaWillEvenFinishYouOffYouLuckyDogYou():void
 
 	output("\n\nBoth of you are breathing heavily as Luca pulls you into another embrace. You try to relax in the afterglow of your orgasm and allow yourself to rest in her arms. You tremble and shiver in her grasp every so often, each time eliciting a comforting coo and tender pet on the head. She holds you that way for roughly ten minutes before letting go.");
 	output("\n\nLuca tells you to clean up first while she tends to the mess you two made.");
-	if (pc.cumQ() >= 20000) output(" Feeling bad for making most of it, you volunteer to help, but she tells you this isn’t her first time dealing with a fuck-ton of cum and insists you clean up first.");
-	output(" You carefully make your way to the shower and, once the water is flowing, you use the opportunity to remove the once buzzing beads in your backdoor. After you’re thoroughly clean, you come out " + (pc.cumQ() < 20000 ? "to find the bed perfectly clean and tidy." : "a squad of drones still cleaning your mess."));
+	if (cumQ >= 20000) output(" Feeling bad for making most of it, you volunteer to help, but she tells you this isn’t her first time dealing with a fuck-ton of cum and insists you clean up first.");
+	output(" You carefully make your way to the shower and, once the water is flowing, you use the opportunity to remove the once buzzing beads in your backdoor. After you’re thoroughly clean, you come out " + (cumQ < 20000 ? "to find the bed perfectly clean and tidy." : "a squad of drones still cleaning your mess."));
 	output("\n\nLuca walks by and boops you on the nose before taking your place in the shower. <i>“Don’t wait up [pc.name],”</i> she says with a wink as the door closes.");
 	output("\n\nWith that said, you");
 	if (!pc.isNude()) output(" get dressed and");
@@ -1116,7 +1119,7 @@ public function lucaToyFuckSomethingFunctionNamesYeah():void
 	output("\n\nShe starts with three straps around each of your [pc.thighs], then six more straps around your [pc.chest] and back. Taking the straps from your hands, the dzaan pulls your arms behind your back. She uses them to bind your forearms together then wraps a set of long straps around your upper body, keeping your arms fully locked in place.");
 	output("\n\nShe presses a button on a remote, and you feel yourself lifted off the ground slightly. You find yourself floating face-down a few feet off the ground, held up by nearly a dozen straps and cords. " + (pc.hasKnees() ? "Finally she bends your knees shut, bringing your ankles next to your thighs and binds your legs." : "Finally she bends your [pc.legOrLegs] into position to be securely bound."));
 	output("\n\nLuca walks around you admiring you and her work. Her hands and fingers trail across your body as she moves. Finally she stops at your head and raises you up until your eye level. She pulls you into a deep kiss then pulls away just as quick to gaze into your [pc.eyes].");
-	output("\n\n<i>“This is your last chance, [pc.name]. Either say our magic word or bite down.”</i>She presents you with a " + (flags["LUCA_FUCKTOYD"] > 3 ? "the leather gag covered in your bite marks" : "pristine leather gag") + ". <i>“If you don’t want this, we can call it quits right now. But if you bite down, then you are mine. My own personal fuck toy. I will use you however and whenever I want until I’m satisfied. Understood?”</i>");
+	output("\n\n<i>“This is your last chance, [pc.name]. Either say our magic word or bite down.”</i> She presents you with " + (flags["LUCA_FUCKTOYD"] > 3 ? "the leather gag covered in your bite marks" : "a pristine leather gag") + ". <i>“If you don’t want this, we can call it quits right now. But if you bite down, then you are mine. My own personal fuck toy. I will use you however and whenever I want until I’m satisfied. Understood?”</i>");
 	
 	addButton(0, lucaSafeWord, lucaWontUseYouAsAFucktoy);
 	addButton(1, "Bite Down", lucasGagIsTastyAsWell);
@@ -1180,15 +1183,16 @@ public function lucasGagIsTastyAsWell():void
 	if (pc.hasVagina()) output(" clit");
 	else if (pc.balls <= 0) output(" taint"); // no vag and internal balls get this -LF
 	output(". Her member widens, stretching you further as a hot jet of semen blasts your " + (x < 0 ? "insides" : "womb") + ". Her cock ceaselessly unloads more and more of her seed into you. With a gagged scream of lust,");
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	if (pc.isHerm()) output(" her orgasm sets off your [pc.cocks] and [pc.vaginas], unleashing a simultaneous burst of [pc.cum] and [pc.girlCum] all over the legs of you and your mistress, and the floor.");
-	else if (pc.hasCock()) output(" her orgasm sets your [pc.cocks] off too, " + (pc.cumQ() < 250 ? "thin" : (pc.cumQ() < 1000 ? "thick" : "large")) + " ropes of your [pc.cum] " + (pc.cumQ() < 2000 ? "oozing" : "splattering") + " against the floor below.");
+	else if (pc.hasCock()) output(" her orgasm sets your [pc.cocks] off too, " + (cumQ < 250 ? "thin" : (cumQ < 1000 ? "thick" : "large")) + " ropes of your [pc.cum] " + (cumQ < 2000 ? "oozing" : "splattering") + " against the floor below.");
 	else if (pc.hasVagina()) output(" her orgasm sets you off, your [pc.vaginas] " + (pc.isSquirter() ? "spurting" : "oozing") + " [pc.girlCum] uselessly against your mistress’s legs.");
-	output("\n\n" + (pc.cumQ() < 250 && !pc.isSquirter() ? "Luca is still pumping more of her baby batter into you long after your orgasm is finished." : "You and Luca finish your lengthy orgasms around the same time.") + " Your [pc.belly] is stretched, looking a few months pregnant. Breathing heavily, Luca pulls out of your well used " + (x < 0 ? "pussy" : "ass") + ", her seed leaking from you like water from a faucet.");
+	output("\n\n" + (cumQ < 250 && !pc.isSquirter() ? "Luca is still pumping more of her baby batter into you long after your orgasm is finished." : "You and Luca finish your lengthy orgasms around the same time.") + " Your [pc.belly] is stretched, looking a few months pregnant. Breathing heavily, Luca pulls out of your well used " + (x < 0 ? "pussy" : "ass") + ", her seed leaking from you like water from a faucet.");
 	output("\n\nLuca walks around you");
-	if (pc.cumQ() >= 2000 || pc.isSquirter()) output(" stepping in the mess you made");
+	if (cumQ >= 2000 || pc.isSquirter()) output(" stepping in the mess you made");
 	output(". She undoes the leather gag and caresses your face. <i>“You were perfect, [pc.name].”</i> She plants a soft kiss on your [pc.lipsChaste]. Her praise makes your chest well up with pride. <i>“Let’s get you cleaned up.”</i>");
 	output("\n\nLuca moves around you and undoes the straps on your [pc.legOrLegs] first and lowers you to the");
-	if (pc.cumQ() >= 2000) output(" [pc.cumVisc]");
+	if (cumQ >= 2000) output(" [pc.cumVisc]");
 	output(" ground. After that, she swiftly undoes the rest of bindings on your body. She checks your skin for bruises then pets your head. <i>“That was amazing,”</i> she tells you with a smile.");
 	output("\n\nLuca snaps her fingers, and a drone brings you a sweet drink you’ve become all to familiar with. <i>“Drink up " + pc.mfn("handsome", "beautiful", "cute") + ".”</i> You down the drink and Luca leads you to her bathroom. She dotes on you, gently washing your body and massaging your muscles. After you’re both dry she takes you to a reclining chair in her room and pulls you onto her lap.");
 	output("\n\nA drone places a blanket over you both while Luca uses a remote to bring up a selection of holos. <i>“What do you think? Comedy? Romance? Action? Adventure? Mystery? I can keep listing off genres.”</i>");
@@ -1279,7 +1283,7 @@ public function lucaProvesToHaveAWealthOfLiquidAssets():void
 	output("\n\nYou tilt your head back to make draining the false dong as easy as possible. The cool liquid trickles down your throat. You feel your mistress sitting next to you, which compels you to dutifully fulfill her order. As you’re tonguing the head of the dildo, you feel it slide further into your mouth. It keeps going until it’s head is pushing against the entrance of your");
 	if (canThroatLuca()) output(" pliant");
 	output(" throat.");
-	output("\n\nYour [pc.tongue] " + (pc.hasLongTongue() ? "wraps around the dildo" : "flattens against the bottom of the dildo") + " as is pushes into your gullet. The plastic schlong stretches your oral fuck tunnel as it goes deeper. The peach flavored liquid is spread throughout your throat as the dildo pulls out and pushes in. Soon the dildo is sliding in and out with slick wet sounds.");
+	output("\n\nYour [pc.tongue] " + (pc.hasLongTongue() ? "wraps around the dildo" : "flattens against the bottom of the dildo") + " as it pushes into your gullet. The plastic schlong stretches your oral fuck tunnel as it goes deeper. The peach flavored liquid is spread throughout your throat as the dildo pulls out and pushes in. Soon the dildo is sliding in and out with slick wet sounds.");
 	if (lucaFixation()) output("\n\nYou hum happily around the dildo. With each dive into your maw, pleasure radiates through you. The smooth and fast throat fucking you’re getting from the dildo is getting you close. Then it stops. You whine as the lovely toy is removed.");
 	else output("\n\nAs the motions begin to feel pleasant the dildo stops. It is slowly removed with the last of the peach liquid being squeezed into your throat. You whine when it isn’t immediately replaced by the real thing.");
 	output("\n\n<i>“Don’t worry slut. You won’t have to wait much longer,”</i> she tells you. <i>“<i>Zero gravity.</i>”</i>");
@@ -1302,22 +1306,23 @@ public function lucaProvesToHaveAWealthOfLiquidAssets():void
 	else output(" night");
 	if (pc.hasGenitals())
 	{
+		var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 		output(", your body spasming in ecstasy,");
 		if (pc.isHerm())
 		{
 			output(" [pc.cocks] and [pc.vaginas] cumming at the same time, your [pc.cum]");
-			if (pc.cumQ() < 250) output(" dripping down to");
-			else if (pc.cumQ() < 1000) output(" spraying");
-			else if (pc.cumQ() < 5000) output(" splattering against");
+			if (cumQ < 250) output(" dripping down to");
+			else if (cumQ < 1000) output(" spraying");
+			else if (cumQ < 5000) output(" splattering against");
 			else output(" erupting towards");
 			output(" the floor below and [pc.girlCum] " + (pc.isSquirter() ? "gushing" : "oozing") + " against your [pc.legOrLegs]");
 		}
 		else if (pc.hasCock())
 		{
 			output(" [pc.eachCock] sending your [pc.cum]");
-			if (pc.cumQ() < 250) output(" dripping down to");
-			else if (pc.cumQ() < 1000) output(" spraying");
-			else if (pc.cumQ() < 5000) output(" splattering against");
+			if (cumQ < 250) output(" dripping down to");
+			else if (cumQ < 1000) output(" spraying");
+			else if (cumQ < 5000) output(" splattering against");
 			else output(" erupting towards");
 			output(" the floor below");
 		}
@@ -1582,7 +1587,7 @@ public function lucaTriesBeingACocksleeveForAChange(x:int):void
 	output("\n\nYour soon-to-be cocksleeve nods and climbs atop her bed. You follow her");
 	if (pc.hasKnees()) output(" on your knees");
 	output(", kneading her well rounded ass as she moves. You watch with delight as she squirms in your hands, her cock becoming rigid and her pussy drenching itself in anticipation. She moans to your touch as you continue to tease the areas around her wanton sex.");	
-	if (flags["LUCA_SWITCHED"] == 0) output(" An idea strikes you when you see her ass gape oh so slightly.");
+	if (flags["LUCA_SWITCHED"] == 0) output(" An idea strikes you when you see her ass gape oh-so-slightly.");
 	output("\n\nYou release Luca and reach out for the box of supplies she provided. <i>“Hands behind your back,”</i> you command. She does as you say and grunts, falling forward into her pillows and pushing her ass into the air. With her hands just above the dimples of her butt, you take a leather strap and bind her wrists together - not too tight, just enough to keep them in place.");
 	output("\n\nWith her hands now bound, you return to teasing your horny Dzaan. This time you give her a bit more and let your digits play with the entrance of her pussy. She moans through her gag and tries to thrust back against your fingers. You slap her ass and reach back into the box. <i>“Tsk. Tsk. You will wait, slut,”</i> you bark.");
 	output("\n\nYou remove the nubby dildo and bring it’s length against the lips of her sopping wet snatch. Letting her womanly sex lubricate the fake dong, you return to groping her behind. Once it’s completely dripping with Luca’s natural lube, you press the head of the dildo against the ring of her ass. She lets out a muffled yelp, but it turns into a long, drawn-out moan as the dildo slides into her.");
@@ -1598,7 +1603,8 @@ public function lucaTriesBeingACocksleeveForAChange(x:int):void
 	output(" you bottom out. You hold [pc.cock " + x + "] in place, savoring the feeling of her hot folds squeezing down around you. When the aphrodisiac takes affect and carnal heat burns through your length, you groan happily. The vibration coming from the dildo in her ass makes the sensation all the better.");
 	output("\n\nA soft whimper and a wiggle of her hips pulls you out of your momentary bliss, reminding you of the needy Dzaan before you. <i>“Good slut,”</i> you say with a low voice. You pull out of her and hum with pleasure when her hungry quim clamps down around [pc.cock " + x + "], amplifying the vibrations coming from above. You decide to give your shameless slut exactly what she wants and thrust back into her. Luca’s unleashes gagging squeals of delight as you stuff her full of cock.");
 	output("\n\nYou repeat the motion, pulling out of her snatch and pushing in again. Each time you make sure you thrust a bit faster than before. Within a few minutes of pounding Luca’s pussy, you’re basking in her depraved cries of pleasure, and the sensations of your pulsing dong savoring lubricious folds. The utter intensity of your vigorous fucking brings your slut to orgasm.");
-	output("\n\nHer cum erupts from her cock once while her cunt spasms around your own. The sudden tightness combined with the vibrations just above your length push you to join her in climax. You pull back and thrust into your bound slut one last time as her girlcum gushes outward. Your [pc.cock " + x + "] swells and convulses, [pc.cum] " + (pc.cumQ() < 5000 ? "emptying" : "flooding") + " into her drenched pussy" + (pc.isHerm() ? " while [pc.eachPussy] climaxes uselessly with your male orgasm." : ".") + (pc.cumQ() < 5000 ? " You groan loudly while Luca whimpers beneath you as your load fills her womb." : " You groan loudly while Luca whimpers beneath you as your colossal load fills her womb, making her belly expand. You pump as much [pc.cum] into her as she can take and then some. Excess flows out of her cunt until she looks several months pregnant."));
+	var cumQ:Number = pc.cumQ();
+	output("\n\nHer cum erupts from her cock once while her cunt spasms around your own. The sudden tightness combined with the vibrations just above your length push you to join her in climax. You pull back and thrust into your bound slut one last time as her girlcum gushes outward. Your [pc.cock " + x + "] swells and convulses, [pc.cum] " + (cumQ < 5000 ? "emptying" : "flooding") + " into her drenched pussy" + (pc.isHerm() ? " while [pc.eachPussy] climaxes uselessly with your male orgasm." : ".") + (cumQ < 5000 ? " You groan loudly while Luca whimpers beneath you as your load fills her womb." : " You groan loudly while Luca whimpers beneath you as your colossal load fills her womb, making her belly expand. You pump as much [pc.cum] into her as she can take and then some. Excess flows out of her cunt until she looks several months pregnant."));
 	output("\n\nWith a satisfied sigh, you pull your cum-covered cock out of your lover and lean forward to undo the straps on her wrists. She shivers and twitches beneath you, recoiling from her orgasm while the dildo continues to vibrate within her ass. You switch the bumpy dong off and then remove it. Laying Luca on her side, you unfasten the gag. When the ball comes out you hear her take a long breath.");
 
 	pc.orgasm();
@@ -1618,8 +1624,8 @@ public function lucaLetsYouHaveACuntfulOfHerDick(x:int):void
 	output("\n\n<i>“Let’s get you on the bed now. On all fours.”</i>");
 	output("\n\nYour soon-to-be cocktoy nods and climbs atop her bed. Following after her");
 	if (pc.hasKnees()) output(" on your knees");
-	output(" , you knead her well rounded ass as she moves, watching with delight as she squirms in your hands, her cock firming and her pussy oozing in anticipation. She moans at your touch as you continue to tease the areas around her wanton sex.");
-	if (flags["LUCA_SWITCHED"] == 0) output(" An idea strikes you when you see her ass gape oh so slightly.");
+	output(", you knead her well rounded ass as she moves, watching with delight as she squirms in your hands, her cock firming and her pussy oozing in anticipation. She moans at your touch as you continue to tease the areas around her wanton sex.");
+	if (flags["LUCA_SWITCHED"] == 0) output(" An idea strikes you when you see her ass gape oh-so-slightly.");
 	output("\n\nYou release Luca and reach out for the box of supplies she provided. <i>“Lie down on your back and put your hands above your head,”</i> you command. She does as you say, turning to face you then lowering herself until she’s flat. With her hands against the headboard, you take a leather strap and bind her wrists together - not to tight, just enough to keep them in place. Then you take a second strap and tie the binding to the headboard.");
 	output("\n\nWith her hands now bound, you return to teasing your horny Dzaan. This time you give her a bit more and grasp and rub her bulging penis. She moans through her gag and tries to thrust into your hands. You slap her thigh and reach back into the box. <i>“Tsk. Tsk. You will wait, slut,”</i> you bark.");
 	output("\n\nYou grab one of the leashes, one where the the more you pull, the tighter it becomes. You make a show of examining the leash as you position yourself above your immobile lover. Once her eyes are completely fixed on your hands, you lean down and fasten the leash around her neck. Luca takes a deep breath through her nostrils and shudders beneath you.");
@@ -1699,7 +1705,7 @@ public function lucaBeingALoveyDoveyDomme():void
 	output("\n\nLuca radiates elation as you watch her switch places with Sebastian. You lick your [pc.lipsChaste] when you notice her cock swell in anticipation. You take each other’s hand and make your way to her room. Once the door hisses closed, you");
 	if (!pc.isNude()) output(" strip away your [pc.gear] and");
 	output(" kneel in the center of the room.");
-	output("\n\nYou watch her leisurely remove her dress as she walks across the floor to her workstation. Her hips sashay back and forth, and you watch her round ass jiggle with the motions. She glances back at you from time to time as she sets the mood." + pc.cockAndVagina(" [pc.EachCock]", "[pc.EachPussy]") + (pc.isHerm() || pc.hasCocks() || pc.hasVagina() ? " heat" : " heats") + " up in a conditioned response to the soft jazz and dancing lights that fill the room.");
+	output("\n\nYou watch her leisurely remove her dress as she walks across the floor to her workstation. Her hips sashay back and forth, and you watch her round ass jiggle with the motions. She glances back at you from time to time as she sets the mood." + pc.cockAndVagina(" [pc.EachCock]", " [pc."+(pc.isHerm()?"e":"E")+"achPussy]") + (pc.isHerm() || pc.hasCocks() || pc.hasVagina() ? " heat" : " heats") + " up in a conditioned response to the soft jazz and dancing lights that fill the room.");
 	output("\n\n<i>“So then...”</i> Luca turns and steps towards you. With each step, she twists her hips, forcing her cock to bounce as it swells. Her inner thighs are becoming slick with a womanly sheen. <i>“Based on the quiver of those lips and that hungry look in your [pc.eyes] I think I know what you want.”</i> She stops before you, her hands stroking her cock to full hardness. <i>“But I want to hear you say it. Tell me " + pc.mfn("handsome", "beautiful", "cutie") + ", what is it that you desire?”</i>");
 	output("\n\nActions speak louder than words. You purse your [pc.lips] and kiss the underside of her shaft. You earn a soft coo from Luca as her hands travel up to the top of your head. You take the moment to let your [pc.tongue] lap at her magenta rod and taste her flavor. She pets your [pc.hair] and urges you onward with heavy breaths. <i>“Keep going,”</i> she whispers.");
 	output("\n\nEager to earn a helping of her seed in your [pc.belly], you take her eleven inch cock into your hands. You pull and stroke the length as your lips and tongue move upwards. Finally, when your [pc.lips] meet her thick crown, you take her into your mouth, kissing and licking her precum-leaking head. <i>“Oh fuck, that’s intense,”</i> Luca whispers. The taste makes your eyes roll back, but you maintain focus and move your hands away from her shaft. One cups her cum swollen sack, feeling her balls churn with an inhuman load all for you. The other dives into her sweltering and drenched womanhood.");
@@ -1713,11 +1719,12 @@ public function lucaBeingALoveyDoveyDomme():void
 	output("\n\nYou look up at your mistress, somewhat desperate to see her writhing in pleasure. You’re instantly rewarded with Luca’s intensely flushed face and heaving chest pillows. She looks down at you with lust-filled eyes and gaping mouth. She abruptly stops her thrusting with her cock down your gullet. She stammers <i>“You- you can’t- you can’t look at me like that!”</i>");
 	output("\n\nSeeing her flustered and so close to your sweet reward, you take matters into your own hands and continue your sensuous ministrations. Luca gasps and whimpers, holding you tightly as you bob your head up and down her throbbing cock. Her words are nonsensical-some mix between praising you and shameless moaning. Between her cock, her balls, and her pussy she can’t hold back a second longer and cums.");
 	output("\n\n<i>“Oh fuck. Oh Fuck I can’t-”</i> She holds your firmly against her smooth groin while her cock swells, her load surges through it and directly into your gullet. <i>“You’re so goooood,”</i> her voice strains as she roughly handles your " + (pc.hasHair() ? "hair" : "head") + ". Luca’s copious spunk pumps into your stomach, filling and warming you until your [pc.belly] looks swollen with her seed.");
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	if (pc.isHerm()) output(" [pc.EachCock] and [pc.vaginas] climax together, unleashing your [pc.cum] and [pc.girlCum] all over");
-	else if (pc.hasCock()) output(" [pc.EachCock] unloads " + (pc.cumQ() < 1000 ? "spurts" : (pc.cumQ() < 5000 ? "ropes" : "gallons")) + " of [pc.cum] all over");
+	else if (pc.hasCock()) output(" [pc.EachCock] unloads " + (cumQ < 1000 ? "spurts" : (cumQ < 5000 ? "ropes" : "gallons")) + " of [pc.cum] all over");
 	else if (pc.hasVagina()) output(" Your [pc.vaginas] " + (pc.hasVaginas() ? "contract" : "contracts") + " in neglect as your [pc.girlCum] " + (pc.wettestVaginalWetness() < 3 ? "drips down" : (pc.wettestVaginalWetness() < 5 ? "streams down" : "completely drenches")));
 	output(" your [pc.legOrLegs] and the floor below you.");
-	output("\n\nAs Luca continues to orgasm, she pulls out into your mouth, filling it with freshly puddled futa cream before pulling out and showing your [pc.face] and [pc.hair]. She stumbles back, collapsing onto her bed with stuttered deep breaths. Pearlescent strands of spunk and spit link you to her glossy delicious looking cock.");
+	output("\n\nAs Luca continues to orgasm, she pulls out into your mouth, filling it with freshly puddled futa cream before pulling out and showering your [pc.face] and [pc.hair]. She stumbles back, collapsing onto her bed with stuttered deep breaths. Pearlescent strands of spunk and spit link you to her glossy delicious looking cock.");
 
 	pc.loadInMouth(luca);
 
@@ -1753,35 +1760,36 @@ public function lucaDammitIAlreadyDidTheSlowRideThingWithAkana():void
 	output("\n\nHeld so tenderly in her arms and fully intoxicated by your wanton lust, all you can think about is the hot throbbing cock casually burrowing in and out of you. Each time you sink down and bottom out against her, warm globs of precum pump into you while " + (x < 0 ? "her cock stuffs your ass." : "her blunt head kisses your womb."));
 	output("\n\nLuca loosens the embrace just enough to pull your face in front of her own. You see thin trails of tears moving down her flushed face and her mouth agape with heavy gasps. <i>“Kiss me, [pc.name],”</i> she begs. <i>“Please.”</i> Your [pc.lipsChaste] greet hers before you have time to think, your [pc.tongue] interlocking with Luca’s. As you passionately kiss your mistress, her cock swells, flooding your " + (x < 0 || pc.isPregnant(x) ? "fuck tunnel" : "womb") + " with her seed.");
 
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	if (pc.isHerm())
 	{
-		output("\n\nYour body tenses up, your limbs locking you in place around her. You both moan into each other reaching climax together. Your love tunnel spasms around her massive member as it fills you with it’s spunk. [pc.EachPussy] gushes, " + (pc.wettestVaginalWetness() < 3 ? "smearing" : (pc.wettestVaginalWetness() < 5 ? "splattering" : "covering")) + " Luca’s thighs with your [pc.girlCum]. At the same time");
-		if (pc.cumQ() < 20000)
+		output("\n\nYour body tenses up, your limbs locking you in place around her. You both moan into each other reaching climax together. Your love tunnel spasms around her massive member as it fills you with its spunk. [pc.EachPussy] gushes, " + (pc.wettestVaginalWetness() < 3 ? "smearing" : (pc.wettestVaginalWetness() < 5 ? "splattering" : "covering")) + " Luca’s thighs with your [pc.girlCum]. At the same time");
+		if (cumQ < 20000)
 		{
 			output(" [pc.eachCock] erupts,");
-			if (pc.cumQ() < 5000) output(" smearing");
-			else if (pc.cumQ() < 10000) output(" splattering");
+			if (cumQ < 5000) output(" smearing");
+			else if (cumQ < 10000) output(" splattering");
 			else output(" covering");
 			output(" both of your chests with your [pc.cum], as you continue to ride Luca’s shaft.");
 		}
 		else output(" an inhuman amount of [pc.cum] explodes from [pc.eachCock] as you continue to ride Luca’s shaft, a spooge deluge falling upon yourself and your lover.");
-		output(" Your lover luridly groans her orgasm persists, her seed overflowing from your well-used womanhood.");
+		output(" Your lover luridly groans as her orgasm persists, her seed overflowing from your well-used womanhood.");
 	}
 	else if (pc.isMale())
 	{
-		output("\n\nYour body tenses up, your limbs locking you in place around her. You both moan into each other reaching climax together. Your [pc.ass] spasms around her massive member as it fills you with it’s spunk.");
-		if (pc.cumQ() < 20000)
+		output("\n\nYour body tenses up, your limbs locking you in place around her. You both moan into each other reaching climax together. Your [pc.ass] spasms around her massive member as it fills you with its spunk.");
+		if (cumQ < 20000)
 		{
 			output(" [pc.EachCock] erupts,");
-			if (pc.cumQ() < 5000) output(" smearing");
-			else if (pc.cumQ() < 10000) output(" splattering");
+			if (cumQ < 5000) output(" smearing");
+			else if (cumQ < 10000) output(" splattering");
 			else output(" covering");
 			output(" both of your chests with your [pc.cum], as you continue to ride Luca’s shaft.");
 		}
 		else output(" An inhuman amount of [pc.cum] explodes from [pc.eachCock] as you continue to ride Luca’s shaft, a spooge deluge falling upon yourself and your lover.");
-		output(" Your lover luridly groans her orgasm persists, her seed overflowing from your well-used backdoor.");
+		output(" Your lover luridly groans as her orgasm persists, her seed overflowing from your well-used backdoor.");
 	}
-	else if (pc.isFemale()) output("\n\nYour body tenses up, your limbs locking you in place around her. You both moan into each other, reaching climax together. Your love tunnel spasms around her massive member as it fills you with it’s spunk. [pc.EachPussy] gushes, " + (pc.wettestVaginalWetness() < 3 ? "smearing" : (pc.wettestVaginalWetness() < 5 ? "splattering" : "covering")) + " Luca’s thighs with your [pc.girlCum], as you continue to ride her shaft. Your lover luridly groans her orgasm persists, her seed overflowing from your well-used womanhood.");
+	else if (pc.isFemale()) output("\n\nYour body tenses up, your limbs locking you in place around her. You both moan into each other, reaching climax together. Your love tunnel spasms around her massive member as it fills you with its spunk. [pc.EachPussy] gushes, " + (pc.wettestVaginalWetness() < 3 ? "smearing" : (pc.wettestVaginalWetness() < 5 ? "splattering" : "covering")) + " Luca’s thighs with your [pc.girlCum], as you continue to ride her shaft. Your lover luridly groans as her orgasm persists, her seed overflowing from your well-used womanhood.");
 
 	output("\n\nOnce her orgasm subsides, you lean back into Luca’s embrace, your head falling once again onto her shoulders. You rest in her arms, basking in the aftershocks of your orgasm. At times you tremble, earning a pet and soothing whisper of praise from your mistress. You stay locked in her grasp for nearly twenty minutes as her cock goes soft within you.");
 
@@ -1811,7 +1819,7 @@ public function lucaShowersAfterMakingLuuv():void
 	output("\n\n<i>“Wait,”</i> you say turning her towards you. <i>“Mistress.”</i> You reach out to her big, firm breasts cupping them. Luca faintly whimpers as you give her melons a good grope. With a wry smile she returns the act, her hands falling upon your [pc.hips] and pulling you close. You continue to knead her thick bosom as her hands drift to your [pc.butt], lightly grabbing and pinching at your cheeks. Your reciprocated groping earns you a series of sloppy wet kisses from your now lust-driven lover.");
 	output("\n\nYou pull away with a difficult breath. <i>“Mistress.”</i>");
 	output("\n\n<i>“You don’t get to stop if that’s what you’re about to ask. Not after getting me riled up again,”</i> she says motioning to her erect cock.");
-	output("\n\n<i>“No that’s not what I want,”</i> you correct. You purse your [pc.lips] into a nice <i>“O”</i> and tantalizingly lick your way around. <i>“I want you to use me. Be rough with my mouth and don’t stop until you’re satisfied. Fast and hard, if you would, please.”</i>");
+	output("\n\n<i>“No, that’s not what I want,”</i> you correct. You purse your [pc.lips] into a nice <i>“O”</i> and tantalizingly lick your way around. <i>“I want you to use me. Be rough with my mouth and don’t stop until you’re satisfied. Fast and hard, if you would, please.”</i>");
 	output("\n\nLuca pulls you into a much more gentle kiss. <i>“What did I do to deserve such a perfect cumslut like you?”</i>");
 	output("\n\n<i>“Just by being yourself mistress,”</i> you say with a wide grin.");
 	output("\n\nYour lover’s wet, slippery hands touch the back of your head and " + (pc.hasHair() ? "run through your [pc.hair]" : "caress you") + ". She urges your downward, a bit forcefully, her emerald eyes locked on your [pc.lips]. You follow along with the dzaan herm’s silent orders and lower yourself. You do so at your own pace, however, and trail kisses down her drenched magenta skin, stopping at her firm E-cups. You give each aroused puffy nipple a few light, teasing licks followed by a soft peck, then continue on your descent.");
@@ -1820,7 +1828,7 @@ public function lucaShowersAfterMakingLuuv():void
 	output("\n\nThe dzaan thrusts forward into your pliant and cock-hungry maw, her hands " + (pc.hasHorns() || (pc.hairStyle.indexOf("pigtail") != -1) ? "using your " + (pc.hasHorns() ? "[pc.horns]" : "pigtails") + " as handles" : "taking hold of your " + (pc.hasHair() ? "hair" : "head")) + ". You take a series of quick breaths as she shallowly spears her length in and out of your mouth. The scent of her dick overpowers all else, your heart skipping a beat as it fills your nostrils. You do your best to keep your tongue and lips at work as she uses your head as a cocksleeve. <i>“Oh yeah. Keep wiggling your tongue... just like that...”</i>");
 	output("\n\nHer grip around your " + (pc.hasHorns() ? "horns" : (pc.hasHair() ? "hair" : "scalp")) + " tightens as her thrusts come faster and harder, her cock beginning to fuck your sexed up gullet. <i>“Almost there, my precious cumdump!”</i> As she finishes her sentence, a nearly addicting heat and arousal spreads through your [pc.lips], then through your mouth and throat. The fantastic, oral ecstasy shakes you to the core, the rest of your body becoming pointless in the face of the pleasure you now feel.");
 	output("\n\n<i>“Oh Fuck Yes! You are just the perfect cocksucker!”</i> Luca gasps, her cock plowing your maw wide. <i>“Oh god [pc.name], you make me want to be an Alpha. I wish I could keep you to myself, have you and your magical mouth at my beck and call. Doesn’t that sound great? I could keep you here as my Beta and fuck you like this every morning and every night.”</i> She holds you up tightly against her crotch for a particularly hard thrust, nearly choking you on her dick. <i>“Hoooh, fuck that’s such a good feeling.”</i>");
-	output("\n\nShe then continues her fervent face-fuck. <i>“We’re absolutely doing this again. I won’t take no for an answer. Not when you have such a great cocksleeve for a mouth.”</i> Her approval gives you a warm feeling of of euphoric submission. <i>“I know you’re thirsty, my " + pc.mfn("handsome", "beautiful", "cute") + " slut.”</i> You moan, low and stifled around her girthy, fragrant, throat-stretching shaft. <i>“Don’t worry I’m- fuck I’m so close now.”</i> The lustful desperation in her voice matches the imperativeness of her thrusts.");
+	output("\n\nShe then continues her fervent face-fuck. <i>“We’re absolutely doing this again. I won’t take no for an answer. Not when you have such a great cocksleeve for a mouth.”</i> Her approval gives you a warm feeling of euphoric submission. <i>“I know you’re thirsty, my " + pc.mfn("handsome", "beautiful", "cute") + " slut.”</i> You moan, low and stifled around her girthy, fragrant, throat-stretching shaft. <i>“Don’t worry I’m- fuck I’m so close now.”</i> The lustful desperation in her voice matches the imperativeness of her thrusts.");
 	output("\n\nA few moments later into her feverish face-fuck, you hear Luca stutter, <i>“I’m so- so- I’m gonna- gonna- CUM!”</i> She hilts herself in you as her delicious spunk rushes down into your throat. Luca moans loudly and shamelessly, her hands keeping you in place, her cock throbbing as her load fills your stomach and distends your [pc.belly] once again. Her voluptuous hips jerk, rubbing your face against her smooth skin and forcing your widespread [pc.lips] to continually kiss the base of her thick meat. You accept it all with submissive joy, from her enraptured squeals of delight to her seed filling you until it overwhelms the sweet taste of her shaft.");
 	output("\n\nAs your mistress’s orgasm dies down she pulls out of your well-used throat and mouth, her seed splashing your face and hair. <i>“Aw... damn...”</i> Her voice is heavy with quick shallow breathing. <i>“All my hard work for nothing...”</i> Her words trailing off into the sound of running water. She wipes away a layer of her spunk from your face and you look at the magenta futa with a wide, happy smile. She sighs, returning your sentiment with her own grin. She pets your head as you tend to her cum and spit-shined meat, only pulling away once her cock is fully clean of any excess fluids. <i>“You’re the best, [pc.name],”</i> she tells you. <i>“I wouldn’t trade " + (flags["LUCA_GENTLE"] == 0 ? "this moment" : "these moments") + " for anything.”</i>");
 	// [pc.orallyFilled]

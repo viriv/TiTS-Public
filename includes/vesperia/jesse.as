@@ -120,7 +120,7 @@ public function firstTimeApproachJesseI():void
 	output("\n\nYou ask her what her name is.");
 	output("\n\n<i>“O-oh, I thought you needed a... oh, blimey, um. My name’s Jesse, " + pc.mf("sir","madam") + ". Jesse Lyon-Bowner. O-officially, Miss Lyon-Bowner of Traders Universalis LTD,”</i> she rehearses, her attention focusing on you. <i>“Put simply, I work as a go-between for company A and company B, sometimes to company C and very sometimes to company Z.”</i>");
 	output("\n\nQuite the title. Fair’s fair so you introduce yourself back.");
-	output("\n\n<i>“Steele. [pc.name] Steele, general galactic gallivanter and heir to SteeleTech,”</i> you say with a certain smugness, looking to impress.");
+	output("\n\n<i>“Steele. [pc.name] Steele, general galactic gallivanter and heir to Steele Tech,”</i> you say with a certain smugness, looking to impress.");
 	output("\n\nJesse’s thin eyebrows rise in surprise and strangely, the marks on her forehead match her eye movements by widening across her skin.");
 	output("\n\n<i>“</i>The<i> Steele?! Oh. Oh wow,”</i> she says out loud, putting her hands to her open jaw. <i>“" + pc.mf("Mister","Miss") + " Steele, it is an absolute honor.”</i>");
 	output("\n\nShe elegantly outstretches her hand for a shake.");
@@ -493,7 +493,7 @@ public function jesseTalkMaleParts():void
 		if (silly) output(" Maybe even literally, AHOHO.");
 	}
 	else if (pc.isMischievous()) output("\n\n<i>“Is that your way of saying you’ve got a special butthole?”</i> You smirk, trying not to laugh.");
-	else output("\n\n<i>“What an amazing way of saying you’d enjoy a [pc.race] shaft in that cute butt of yours,”</i> you say, raising an eyebrow at her.");
+	else output("\n\n<i>“What an amazing way of saying you’d enjoy [pc.aRace] shaft in that cute butt of yours,”</i> you say, raising an eyebrow at her.");
 	output("\n\nImmediately, her eyelids clench and her face flushes once again. She’s still smiling, however.");
 	output("\n\n<i>“Y-yes... yes! I really shouldn’t beat myself up about it,”</i> she exclaims, having a mini-moment of epiphany.");
 	output("\n\n<i>“I-I love. Mmm.... big... veiny... throbby... dicks. There, I said it!”</i>");
