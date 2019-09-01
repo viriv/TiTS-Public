@@ -24,6 +24,7 @@ package classes.Tattoo
 			addFlag(GLOBAL.TATTOO_FLAG_RIGHT_BUTT);
 			addFlag(GLOBAL.TATTOO_FLAG_FULL_BUTT);
 			addFlag(GLOBAL.TATTOO_FLAG_ABOVE_CROTCH);
+			addFlag(GLOBAL.TATTOO_FLAG_RHETT_TATTOO);
 		}
 		
 		public override function getDescription(target:Creature):String

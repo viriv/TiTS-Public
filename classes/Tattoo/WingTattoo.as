@@ -11,6 +11,7 @@ package classes.Tattoo
 			
 			addFlag(GLOBAL.TATTOO_FLAG_UPPER_BACK);
 			addFlag(GLOBAL.TATTOO_FLAG_LOWER_BACK);
+			addFlag(GLOBAL.TATTOO_FLAG_RHETT_TATTOO);
 		}
 		
 		public override function getDescription(target:Creature):String

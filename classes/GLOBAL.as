@@ -1206,6 +1206,7 @@
 		public static const TATTOO_FLAG_RIGHT_BUTT:int                 = 12;
 		public static const TATTOO_FLAG_FULL_BUTT:int                  = 13;
 		public static const TATTOO_FLAG_ABOVE_CROTCH:int               = 14;
+		public static const TATTOO_FLAG_RHETT_TATTOO:int			   = 15;//if missing this flag at rhetts removal, gives warning that tattoo might not be recoverable
 		
 
 		// ITEM FLAGS

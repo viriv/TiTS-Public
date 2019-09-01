@@ -539,31 +539,31 @@ public function rhettTattoosRemovalPartSelection():void
 	
 	clearMenu();
 	
-	if(pc.hasFaceTattoo()) addButton(0, "Face", rhettTattoosRemovalPayment, "face");
+	if (pc.hasFaceTattoo()) addButton(0, "Face", rhettTattoosRemovalPayment, pc.faceTattoo);
 	else addDisabledButton(0, "Face", "Face", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasNeckTattoo()) addButton(1, "Neck", rhettTattoosRemovalPayment, "neck");
+	if(pc.hasNeckTattoo()) addButton(1, "Neck", rhettTattoosRemovalPayment, pc.neckTattoo);
 	else addDisabledButton(1, "Neck", "Neck", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasUpperBackTattoo()) addButton(2, "Upper Back", rhettTattoosRemovalPayment, "upper back");
+	if(pc.hasUpperBackTattoo()) addButton(2, "Upper Back", rhettTattoosRemovalPayment, pc.upperBackTattoo);
 	else addDisabledButton(2, "Upper Back", "Upper Back", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasLowerBackTattoo()) addButton(3, "Lower Back", rhettTattoosRemovalPayment, "lower back");
+	if(pc.hasLowerBackTattoo()) addButton(3, "Lower Back", rhettTattoosRemovalPayment, pc.lowerBackTattoo);
 	else addDisabledButton(3, "Lower Back", "Lower Back", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasLeftChestTattoo()) addButton(4, "Left Chest", rhettTattoosRemovalPayment, "left chest");
+	if(pc.hasLeftChestTattoo()) addButton(4, "Left Chest", rhettTattoosRemovalPayment, pc.leftChestTattoo);
 	else addDisabledButton(4, "Left Chest", "Left Chest", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasRightChestTattoo()) addButton(5, "Right Chest", rhettTattoosRemovalPayment, "right chest");
+	if(pc.hasRightChestTattoo()) addButton(5, "Right Chest", rhettTattoosRemovalPayment, pc.rightChestTattoo);
 	else addDisabledButton(5, "Right Chest", "Right Chest", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasFullChestTattoo()) addButton(6, "Full Chest", rhettTattoosRemovalPayment, "full chest");
+	if(pc.hasFullChestTattoo()) addButton(6, "Full Chest", rhettTattoosRemovalPayment, pc.fullChestTattoo);
 	else addDisabledButton(6, "Full Chest", "Full Chest", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasLeftArmTattoo()) addButton(7, "Left Arm", rhettTattoosRemovalPayment, "left arm");
+	if(pc.hasLeftArmTattoo()) addButton(7, "Left Arm", rhettTattoosRemovalPayment, pc.leftArmTattoo);
 	else addDisabledButton(7, "Left Arm", "Left Arm", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasRightArmTattoo()) addButton(8, "Right Arm", rhettTattoosRemovalPayment, "right arm");
+	if(pc.hasRightArmTattoo()) addButton(8, "Right Arm", rhettTattoosRemovalPayment, pc.rightArmTattoo);
 	else addDisabledButton(8, "Right Arm", "Right Arm", "There's no tattoo here that Rhett can remove!");
 	
 	/*if(pc.hasLeftLegTattoo()) addButton(9, "Left Leg", rhettTattoosRemovalPayment, "left leg");
@@ -572,13 +572,13 @@ public function rhettTattoosRemovalPartSelection():void
 	if(pc.hasRightLegTattoo()) addButton(10, "Right Leg", rhettTattoosRemovalPayment, "right leg");
 	else addDisabledButton(10, "Right Leg", "Right Leg", "There's no tattoo here that Rhett can remove!");*/
 	
-	if(pc.hasLeftButtTattoo()) addButton(9, "Left Buttock", rhettTattoosRemovalPayment, "left buttock");
+	if(pc.hasLeftButtTattoo()) addButton(9, "Left Buttock", rhettTattoosRemovalPayment, pc.leftButtTattoo);
 	else addDisabledButton(11, "Left Buttock", "Left Buttock", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasRightButtTattoo()) addButton(10, "Right Buttock", rhettTattoosRemovalPayment, "right buttock");
+	if(pc.hasRightButtTattoo()) addButton(10, "Right Buttock", rhettTattoosRemovalPayment, pc.rightButtTattoo);
 	else addDisabledButton(12, "Right Buttock", "Right Buttock", "There's no tattoo here that Rhett can remove!");
 	
-	if(pc.hasFullButtTattoo()) addButton(11, "Full Butt", rhettTattoosRemovalPayment, "full butt");
+	if(pc.hasFullButtTattoo()) addButton(11, "Full Butt", rhettTattoosRemovalPayment, pc.fullButtTattoo);
 	else addDisabledButton(13, "Full Butt", "Full Butt", "There's no tattoo here that Rhett can remove!");
 	
 	//addButton(14, "Back", rhettBackOut);
@@ -590,10 +590,12 @@ public function rhettTattoosRemovalPartSelection():void
 }
 
 //Confirm removal payment
-public function rhettTattoosRemovalPayment(location:String):void
+public function rhettTattoosRemovalPayment(location:TattooClass):void
 {
 	clearOutput();
 	author("Jim T");
+	
+	if(!location.hasFlag(GLOBAL.TATTOO_FLAG_RHETT_TATTOO)) output("<b>YOU PROBABLY CAN'T GET THIS TATTOO BACK AFTER REMOVAL!!!</b>\n\n");
 	
 	output("<i>“That'll be 50 credits,”</i> Rhett announces, gesturing to the tattooed android manning the counter. <i>“Just give it to him, and we'll get started.”</i>");
 	
@@ -604,7 +606,7 @@ public function rhettTattoosRemovalPayment(location:String):void
 }
 
 //Removal Scene
-public function rhettTattoosRemoval(location:String):void
+public function rhettTattoosRemoval(location:TattooClass):void
 {
 	clearOutput();
 	author("Jim T");
@@ -635,68 +637,7 @@ public function rhettTattoosRemoval(location:String):void
 	else output("As usual, your body is pretty mod happy");
 	output("”</i>.");
 	
-	switch(location)
-	{
-		case "face":
-			pc.removeTattoo(pc.faceTattoo);
-		break;
-		
-		case "neck":
-			pc.removeTattoo(pc.neckTattoo);
-		break;
-		
-		case "upper back":
-			pc.removeTattoo(pc.upperBackTattoo);
-		break;
-		
-		case "lower back":
-			pc.removeTattoo(pc.lowerBackTattoo);
-		break;
-		
-		case "left chest":
-			pc.removeTattoo(pc.leftChestTattoo);
-		break;
-		
-		case "right chest":
-			pc.removeTattoo(pc.rightChestTattoo);
-		break;
-		
-		case "full chest":
-			pc.removeTattoo(pc.fullChestTattoo);
-		break;
-		
-		case "left arm":
-			pc.removeTattoo(pc.leftArmTattoo);
-		break;
-		
-		case "right arm":
-			pc.removeTattoo(pc.rightArmTattoo);
-		break;
-		
-		case "left leg":
-			pc.removeTattoo(pc.leftLegTattoo);
-		break;
-		
-		case "right leg":
-			pc.removeTattoo(pc.rightLegTattoo);
-		break;
-		
-		case "left buttock":
-			pc.removeTattoo(pc.leftButtTattoo);
-		break;
-		
-		case "right buttock":
-			pc.removeTattoo(pc.rightButtTattoo);
-		break;
-		
-		case "full butt":
-			pc.removeTattoo(pc.fullButtTattoo);
-		break;
-		
-		case "above crotch":
-			pc.removeTattoo(pc.aboveCrotchTattoo);
-		break;
-	}
+	pc.removeTattoo(location);
 	
 	output("\n\n<b>Your tattoo is now removed!</b>");
 	
