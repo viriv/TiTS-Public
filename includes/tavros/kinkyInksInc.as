@@ -595,7 +595,7 @@ public function rhettTattoosRemovalPayment(location:TattooClass):void
 	clearOutput();
 	author("Jim T");
 	
-	if(!location.hasFlag(GLOBAL.TATTOO_FLAG_RHETT_TATTOO)) output("<b>YOU PROBABLY CAN'T GET THIS TATTOO BACK AFTER REMOVAL!!!</b>\n\n");
+	if(!location.hasFlag(GLOBAL.TATTOO_FLAG_RHETT_TATTOO)) output("<b>THIS ISN'T A TATTOO YOU CAN BUY BACK SO YOU PROBABLY CAN'T GET THIS TATTOO AGAIN AFTER REMOVAL!!!</b>\n\n");
 	
 	output("<i>“That'll be 50 credits,”</i> Rhett announces, gesturing to the tattooed android manning the counter. <i>“Just give it to him, and we'll get started.”</i>");
 	
