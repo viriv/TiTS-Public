@@ -1695,7 +1695,7 @@
 			if(vaginas.length <= 0) return true;//0 is technically all? so true? keeps people with 0 vaginas from getting pierced
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if(breastRows[i].piercing is EmptySlot) return false;
+				if(vaginas[i].piercing is EmptySlot) return false;
 			}
 			return true;
 		}
@@ -17370,7 +17370,7 @@
 			clearList();
 			
 			var tatAdjective:Array = [];
-			if(hasAboveCrotchTattoo() && rand(7) == 0)//TODO: implement
+			if(hasAboveCrotchTattoo() && rand(7) == 0)
 			{
 				tatAdjective.push("inked", "tattooed");
 				switch(aboveCrotchTattoo.tattooType)
