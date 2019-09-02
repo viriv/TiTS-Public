@@ -408,7 +408,7 @@ public function actuallyPierceYourself(args:Array):void
 		if(!infiniteItems()) pc.inventory.splice(pc.inventory.indexOf(item), 1);
 	}
 	//Text for it!
-	output("A quick pinch is all it takes to pierce yourself. Your upgraded immune system assists your body in sealing the wound and preventing infection. All finished, you can admire the placement of " + item.longName + " on your ");
+	output("A quick pinch is all it takes to pierce yourself. Your upgraded immune system assists your body in sealing the wound and preventing infection. All finished, you can admire the placement of " + item.description + " on your ");
 	if(InCollection(slot, ["nipples", "ears", "brows", "clits"]) && !item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_MULTIPLE))
 	{
 		if(slot == "nipples") output("nipple");
@@ -1821,7 +1821,7 @@ public function actuallyRemoveAPiercing(args:Array):void
 {
 	clearOutput();
 	showName("PIERCING\nREMOVAL");
-	output("You gingerly remove your the piercing in question.\n\n");
+	output("You gingerly remove the piercing in question.\n\n");
 	
 	var slot:String = args[0];
 	var x:int = (args.length > 1 ? args[1] : 0);

@@ -25,7 +25,7 @@ package classes.Items.Piercings
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a " + color + " " + piercingType;
+			this.description = "a " + color + " " + piercingType + " piercing";
 			
 			this.tooltip = "This " + color + " " + piercingType + " is a classic, purely ornamental choice. Like all modern piercings, it is self-piercing and guaranteed sanitary for multiple uses. It has no effect beyond enhancing your own personal style.";
 			
