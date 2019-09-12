@@ -31,7 +31,7 @@ public function approachRhett():void
 	clearOutput();
 	author("Jim T");
 	
-	IncrementFlag("MET_RHETT");//set hasMet flag
+	IncrementFlag("MET_RHETT");
 	
 	output("A shirtless, utterly tattooed man slithers towards you–slithers because his entire lower half seems to be entirely naga-like. His midnight serpent scales are lined with silver tribal tattoos, while his pale, humanoid torso is conversely covered in black wicked-looking ink. You get the impression he's staring at you, but it's hard to tell; the well-toned man is wearing a pair of mirrored shades, and he's stony-faced, making him hard to read.");
 	output("\n\n<i>“... Here for some ink?”</i> he asks, whipping out a thin, white stick. He lights it up and no smoke comes out, though the end glows.");
@@ -50,7 +50,7 @@ public function approachRhett():void
 	
 	processTime(3);
 	clearMenu();
-	addButton(0, "Next", meetRhett);//move to standard meeting
+	addButton(0, "Next", meetRhett);
 }
 
 //Standard Rhett meet
@@ -69,16 +69,16 @@ public function meetRhett():void
 public function rhettMenu():void
 {
 	clearMenu();
-	addButton(0, "Appearance", rhettAppearance, undefined, "Appearance", "Checkout the tattooed snakeman.");//look snek over
-	addButton(1, "Talk", rhettTalk, undefined, "Talk", "Talk with Rhett.");//talk about snek stuff
-	addButton(2, "Tattoos", rhettTattoos, undefined, "Tattoo", "Get a tattoo.");//get a tattoo
-	addButton(3, "Piercings", rhettPiercings, undefined, "Piercings", "Get a piercing.");//get a piercing
-	if(pc.hasTattoo()) addButton(4, "TatRemoval", rhettTattoosRemovalPartSelection, undefined, "Removal", "Remove a tattoo.");//remove a tattoo
-	else addDisabledButton(4, "TatRemoval", "TatRemoval", "You have no removable tattoos!")//don't bother giving the option if no tattoos exist
-	if(pc.lust() >= 33) addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");//sex the snek
-	else addDisabledButton(5, "Sex", "Sex", "You aren’t aroused enough for sex right now.");//gotta meet the lust requirments first
+	addButton(0, "Appearance", rhettAppearance, undefined, "Appearance", "Checkout the tattooed snakeman.");
+	addButton(1, "Talk", rhettTalk, undefined, "Talk", "Talk with Rhett.");
+	addButton(2, "Tattoos", rhettTattoos, undefined, "Tattoo", "Get a tattoo.");
+	addButton(3, "Piercings", rhettPiercings, undefined, "Piercings", "Get a piercing.");
+	if(pc.hasTattoo()) addButton(4, "TatRemoval", rhettTattoosRemovalPartSelection, undefined, "Removal", "Remove a tattoo.");
+	else addDisabledButton(4, "TatRemoval", "TatRemoval", "You have no removable tattoos!")
+	if(pc.lust() >= 33) addButton(5, "Sex", rhettSexMenu, undefined, "Sex", "Fuck the shopkeep.");
+	else addDisabledButton(5, "Sex", "Sex", "You aren’t aroused enough for sex right now.");
 	addButton(6, "Sky Sap", rhettSkySap, undefined, "Sky Sap", "Talk about Rhett's use for Sky Sap.");
-	addButton(14, "Leave", mainGameMenu);//exit the shop menu
+	addButton(14, "Leave", mainGameMenu);
 }
 
 //Apperance
@@ -156,9 +156,9 @@ public function talkToRhettAboutSpecies():void
 	{
 		output("You ask him about what species he is, assuming it isn't the result of modding.");
 		output("\n\n<i>“Nope. Born this way. Half-akhid,”</i> he answers, taking a drag from his smokeless cigarette.");
-		IncrementFlag("MET_AKHID");//set metAkhid flag
+		IncrementFlag("MET_AKHID");
 	}
-	else//if repeat or met another akhid
+	else
 	{
 		output("You ask him about his species. Was he modded to be half-akhid, or was he born that way? ");
 		output("\n\n<i>“Born this way,”</i> he answers, taking a drag from his smokeless cigarette. ");
@@ -216,7 +216,7 @@ public function rhettTattoos():void
 	
 	clearMenu();
 	//tattooVars = [type, (optional attribute i.e. wing type/text), location, color]
-	addButton(0, "Tribal", rhettTattoosBodyPartSelection, [new TribalTattoo(), undefined]);//create a blank tattoo here to get access to flags of that type for menus in next function. The attributes of the tattoo don't get set until the very end though
+	addButton(0, "Tribal", rhettTattoosBodyPartSelection, [new TribalTattoo(), undefined]);//create a blank tattoo here to get access to flags of that type for menus in next function. The attributes of the tattoo don't get set until the very end
 	addButton(1, "Floral", rhettTattoosBodyPartSelection, [new FloralTattoo(), undefined]);
 	addButton(2, "Skull", rhettTattoosBodyPartSelection, [new SkullTattoo(), undefined]);
 	addButton(3, "Dragon", rhettTattoosBodyPartSelection, [new DragonTattoo(), undefined]);
@@ -235,7 +235,7 @@ public function rhettTattoosWingsOptions(tattooVars:Array):void
 	
 	clearMenu();
 	//tattooVars = [type, (optional attribute i.e. wing type/text), location, color]
-	addButton(0, "Bat", rhettTattoosBodyPartSelection, [tattooVars[0], "bat"]);//add wing type to tattooVars and move on to body part selection
+	addButton(0, "Bat", rhettTattoosBodyPartSelection, [tattooVars[0], "bat"]);
 	addButton(1, "Feather", rhettTattoosBodyPartSelection, [tattooVars[0], "feather"]);
 	addButton(2, "Butterfly", rhettTattoosBodyPartSelection, [tattooVars[0], "butterfly"]);
 	addButton(14, "Back", rhettBackOut);
@@ -250,7 +250,7 @@ public function rhettTattoosTextOptions(tattooVars:Array):void
 	output("<i>What do you want written?</i>")
 	
 	displayInput();
-	userInterface.textInput.text = "";//pressing the hotkey to get here will insert that character anyways? I don't understand how the input works
+	userInterface.textInput.text = "";
 	userInterface.textInput.maxChars = 33;
 	
 	clearMenu();
@@ -259,7 +259,7 @@ public function rhettTattoosTextOptions(tattooVars:Array):void
 	output("\n\n\n");
 }
 
-// Illegal character input check (just a copy of what is used for player name at character creation minus the check for cheats)
+//Illegal character input check (just a copy of what is used for player name at character creation minus the check for cheats)
 public function rhettTattoosHasIllegalInput(sText:String = ""):Boolean
 {
 	if(sText.indexOf(" ") == 0) return true;
@@ -288,7 +288,7 @@ public function rhettTattoosTextSanitation(tattooVars:Array):void
 		return;
 	}
 	
-	removeInput();//remove text entry box
+	removeInput();
 	rhettTattoosBodyPartSelection([tattooVars[0], userInterface.textInput.text]);
 }
 
@@ -300,10 +300,10 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 	function btnInc():void
 	{
 		btnIdx++;
-		if(btnIdx % 14 == 0)//if number of buttons would overwrite the back button in the bottom right slot
+		if(btnIdx % 14 == 0)
 		{
-			addButton(btnIdx + 15, "Back", rhettBackOut);//add back button to next page of buttons
-			btnIdx++;//skip the bottom right slot
+			addButton(btnIdx + 15, "Back", rhettBackOut);
+			btnIdx++;
 		}
 	}
 	var btnIdx:int = 0;
@@ -314,11 +314,11 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 	
 	clearMenu();
 	
-	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FACE))//check if the selected type of tattoo has flag to be put on faces
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FACE))
 	{
-		if(!pc.hasFaceTattoo()) addButton(btnIdx, "Face", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "face"]);//if pc does not yet have a face tattoo then add button
-		else addDisabledButton(btnIdx, "Face", "Face", "Rhett can't tattoo your face when it already has a tattoo!");//if pc does have a tattoo already then add disabled button
-		btnInc();//run function to get next button slot index
+		if(!pc.hasFaceTattoo()) addButton(btnIdx, "Face", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "face"]);
+		else addDisabledButton(btnIdx, "Face", "Face", "Rhett can't tattoo your face when it already has a tattoo!");
+		btnInc();
 	}
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_NECK))
@@ -337,7 +337,7 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LOWER_BACK))
 	{
-		if(pc.hasLowerBackTattooOfType(GLOBAL.TATTOO_SLUT_STAMP)) addDisabledButton(btnIdx, "Lower Back", "Lower Back", "Sera's slut stamp is already here!");//this seems like it should block off tattoos. TODO:edit sera scenes to remove lower back tattoos and replace with slut stamp/also make slut stamp a tattoo so this check isn't needed
+		if(pc.hasLowerBackTattooOfType(GLOBAL.TATTOO_SLUT_STAMP)) addDisabledButton(btnIdx, "Lower Back", "Lower Back", "Sera's slut stamp is already here!");
 		else if(!pc.hasLowerBackTattoo()) addButton(btnIdx, "Lower Back", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "lower back"]);
 		else addDisabledButton(btnIdx, "Lower Back", "Lower Back", "Rhett can't tattoo your lower back when it already has a tattoo!");
 		btnInc();
@@ -357,7 +357,7 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 		btnInc();
 	}
 	
-	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FULL_CHEST))//disallow left right and full tattoos even if left+right = full because colors can be different on left and right and merging them causes a mix up
+	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_FULL_CHEST))
 	{
 		if(!pc.hasChestTattoo()) addButton(btnIdx, "Full Chest", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "full chest"]);
 		else addDisabledButton(btnIdx, "Full Chest", "Full Chest", "Rhett can't tattoo your full chest when it already has a tattoo!")
@@ -377,20 +377,6 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 		else addDisabledButton(btnIdx, "Right Arm", "Right Arm", "Rhett can't tattoo your right arm when it already has a tattoo!");
 		btnInc();
 	}
-	
-	/*if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_LEG))
-	{
-		if(!pc.hasLeftLegTattoo()) addButton(btnIdx, "Left Leg", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "left leg"]);
-		else addDisabledButton(btnIdx, "Left Leg", "Left Leg", "Rhett can't tattoo your left leg when it already has a tattoo!");
-		btnInc();
-	}
-	
-	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_RIGHT_LEG))
-	{
-		if(!pc.hasRightLegTattoo()) addButton(btnIdx, "Right Leg", rhettTattoosColorSelection, [tattooVars[0], tattooVars[1], "right leg"]);
-		else addDisabledButton(btnIdx, "Right Leg", "Right Leg", "Rhett can't tattoo your right leg when it already has a tattoo!");
-		btnInc();
-	}*/
 	
 	if(tattooVars[0].hasFlag(GLOBAL.TATTOO_FLAG_LEFT_BUTT))
 	{
@@ -422,7 +408,7 @@ public function rhettTattoosBodyPartSelection(tattooVars:Array):void
 		btnInc();
 	}
 	
-	addButton(14, "Back", rhettBackOut);//set back button of first button page
+	addButton(14, "Back", rhettBackOut);
 }
 
 //Tattoo color selection
@@ -449,7 +435,7 @@ public function rhettTattoosColorSelection(tattooVars:Array):void
 	addButton(11, "Pink", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "pink"]);
 	addButton(14, "Back", rhettBackOut);
 	
-	if(flags["RHETT_LUMINOUS_TATTOOS"] != undefined)//player has given rhett enough sky sap to unlock luminous colors
+	if(flags["RHETT_LUMINOUS_TATTOOS"] != undefined)
 	{
 		addButton(12, "Lum. Violet", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "luminous violet"]);
 		addButton(13, "Lum. Purple", rhettTattoosPayment, [tattooVars[0], tattooVars[1], tattooVars[2], "luminous purple"]);
@@ -482,11 +468,10 @@ public function rhettTattoosOuch(tattooVars:Array):void
 	clearOutput();
 	author("Jim T");
 	//tattooVars = [type, (optional attribute), location, color]
-	//assign tattoo attributes
-	tattooVars[0].optionalTattooAttribute = tattooVars[1];//add optional attribute (wing type/text) to tattoo
-	tattooVars[0].tattooLocation = tattooVars[2];//add location to tattoo
-	tattooVars[0].color = tattooVars[3];//add color to tattoo
-	pc.addTattoo(tattooVars[0]);//assign tattoo to pc slot
+	tattooVars[0].optionalTattooAttribute = tattooVars[1];
+	tattooVars[0].tattooLocation = tattooVars[2];
+	tattooVars[0].color = tattooVars[3];
+	pc.addTattoo(tattooVars[0]);
 	
 	
 	output("After you transfer the credits, you follow Rhett into his parlor in the back. ");
@@ -565,12 +550,6 @@ public function rhettTattoosRemovalPartSelection():void
 	
 	if(pc.hasRightArmTattoo()) addButton(8, "Right Arm", rhettTattoosRemovalPayment, pc.rightArmTattoo);
 	else addDisabledButton(8, "Right Arm", "Right Arm", "There's no tattoo here that Rhett can remove!");
-	
-	/*if(pc.hasLeftLegTattoo()) addButton(9, "Left Leg", rhettTattoosRemovalPayment, "left leg");
-	else addDisabledButton(9, "Left Leg", "Left Leg", "There's no tattoo here that Rhett can remove!");
-	
-	if(pc.hasRightLegTattoo()) addButton(10, "Right Leg", rhettTattoosRemovalPayment, "right leg");
-	else addDisabledButton(10, "Right Leg", "Right Leg", "There's no tattoo here that Rhett can remove!");*/
 	
 	if(pc.hasLeftButtTattoo()) addButton(9, "Left Buttock", rhettTattoosRemovalPayment, pc.leftButtTattoo);
 	else addDisabledButton(9, "Left Buttock", "Left Buttock", "There's no tattoo here that Rhett can remove!");
@@ -654,7 +633,7 @@ public function rhettPiercings():void
 	output("You tell Rhett you'd like a piercing. The half-akhid man puts out his cigarette and gives a little nod.");
 	output("\n\n<i>“... What kind you after?”</i> he asks.");
 	
-	clearMenu();//get piercing type
+	clearMenu();
 	//create array of vars describing piercing(type, color, placement, (placementIndex)) that gets passed along as args for final piecing scene
 	//placementIndex is for when pcs have multiple of a part that can be pierced pc.bRow[0], pc.cocks[3], etc...
 	addButton(0, "Ring", rhettPiercingsColorSelection, ["ring"]);
@@ -671,8 +650,8 @@ public function rhettPiercingsColorSelection(piercingVars:Array):void
 	
 	output("<i>“What color piercing where you thinking of getting? We've got these kinds in stock.”</i>");
 	
-	clearMenu();//get piercing color
-	addButton(0, "Black", rhettPiercingsBodySelection, [piercingVars[0], "black"]);//piercingVars = [type, color] so far
+	clearMenu();
+	addButton(0, "Black", rhettPiercingsBodySelection, [piercingVars[0], "black"]);
 	addButton(1, "White", rhettPiercingsBodySelection, [piercingVars[0], "white"]);
 	addButton(2, "Silver", rhettPiercingsBodySelection, [piercingVars[0], "silver"]);
 	addButton(3, "Copper", rhettPiercingsBodySelection, [piercingVars[0], "copper"]);
@@ -696,7 +675,7 @@ public function rhettPiercingsBodySelection(piercingVars:Array):void
 	output("<i>“What part you looking at getting pierced?”</i>");
 	
 	clearMenu();
-	switch(piercingVars[0])//functions generate selection and restrict unusable body part buttons menus based off type
+	switch(piercingVars[0])
 	{
 		case "ring": rhettRingPiercingsMenu(piercingVars); break;
 		case "stud": rhettStudPiercingsMenu(piercingVars); break;
@@ -708,9 +687,6 @@ public function rhettPiercingsBodySelection(piercingVars:Array):void
 //Generate avaliable button options for ring piercing
 public function rhettRingPiercingsMenu(piercingVars:Array):void
 {
-	//piercingVars = [type, color, placement]
-	//if piercing is unable to go in body part then it is just given a disabled button
-	//otherwise checks done to see if body part is already pierced
 	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "ears"]);
 	else addDisabledButton(0, "Ears", "Ears", "Rhett can't pierce your ears when they already have a piercing in them!");
 	
@@ -727,22 +703,18 @@ public function rhettRingPiercingsMenu(piercingVars:Array):void
 	
 	addDisabledButton(5, "Tongue", "Tongue", "Rhett can't do tongue ring piercings.");
 	
-	//special method to check if every nipple is already pierced and thus make Nipples button disabled before going to row select
 	if(!pc.hasPiercedEveryNipple()) addButton(6, "Nipples", rhettPiercingsBRowSelection, [piercingVars[0], piercingVars[1], "nipples"]);
 	else if(!pc.hasNipples()) addDisabledButton(6, "Nipples", "Nipples", "You don't have any nipples to pierce!");
 	else addDisabledButton(6, "Nipples", "Nipples", "Rhett can't pierce your nipples when they are" + (pc.bRows() > 1 ? " all" : "") + " already pierced!");
 	
-	//special method to check if every cock is already pierced and thus make Cock button disabled before going to cock select
 	if(!pc.hasPiercedEveryCock()) addButton(7, "Cock", rhettPiercingsCockSelection, [piercingVars[0], piercingVars[1], "cock"]);
 	else if(!pc.hasCock()) addDisabledButton(7, "Cock", "Cock", "You don't have a cock to pierce!");
 	else addDisabledButton(7, "Cock", "Cock", "Rhett can't pierce your" + (pc.hasCocks() ? " cocks when they are all" : " cock when it's") + " already pierced!");
 	
-	//special method to check if every vagina is already pierced and thus make Vagina button disabled before going to vagina select
 	if(!pc.hasPiercedEveryVagina()) addButton(8, "Vagina", rhettPiercingsVaginaSelection, [piercingVars[0], piercingVars[1], "vagina"]);
 	else if(!pc.hasVagina()) addDisabledButton(8, "Vagina", "Vagina", "You don't have a vagina to pierce!");
 	else addDisabledButton(8, "Vagina", "Vagina", "Rhett can't pierce your" + (pc.hasVaginas() ? " vaginas when they are all" : " vagina when it's") + " already pierced!");
 	
-	//special method to check if every clit is already pierced and thus make Clit button disabled before going to row select
 	if(!pc.hasPiercedEveryClit()) addButton(9, "Clit", rhettPiercingsClitVaginaSelection, [piercingVars[0], piercingVars[1], "clit"]);
 	else if(!pc.hasVagina()) addDisabledButton(9, "Clit", "Clit", "You don't have a clit to pierce!");
 	else addDisabledButton(9, "Clit", "Clit", "Rhett can't pierce your" + (pc.hasVaginas() ? " clits when they are all" : " clit when it's") + " already pierced!");
@@ -751,9 +723,6 @@ public function rhettRingPiercingsMenu(piercingVars:Array):void
 //Generate avaliable button options for stud piercing
 public function rhettStudPiercingsMenu(piercingVars:Array):void
 {
-	//piercingVars = [type, color, placement]
-	//if piercing is unable to go in body part it is given a disabled button from start
-	//other checks done to see if body part is already pierced
 	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "ears"]);
 	else addDisabledButton(0, "Ears", "Ears", "Rhett can't pierce your ears when they already have a piercing in them!");
 	
@@ -773,17 +742,14 @@ public function rhettStudPiercingsMenu(piercingVars:Array):void
 	
 	addDisabledButton(6, "Nipples", "Nipples", "Rhett can't do nipple stud piercings.");
 	
-	//special method to check if every cock is already pierced and thus make Cock button disabled before going to cock select
 	if(!pc.hasPiercedEveryCock()) addButton(7, "Cock", rhettPiercingsCockSelection, [piercingVars[0], piercingVars[1], "cock"]);
 	else if(!pc.hasCock()) addDisabledButton(7, "Cock", "Cock", "You don't have a cock to pierce!");
 	else addDisabledButton(7, "Cock", "Cock", "Rhett can't pierce your" + (pc.hasCocks() ? " cocks when they are all" : " cock when it's") + " already pierced!");
 	
-	//special method to check if every vagina is already pierced and thus make Vagina button disabled before going to vagina select
 	if(!pc.hasPiercedEveryVagina()) addButton(8, "Vagina", rhettPiercingsVaginaSelection, [piercingVars[0], piercingVars[1], "vagina"]);
 	else if(!pc.hasVagina()) addDisabledButton(8, "Vagina", "Vagina", "You don't have a vagina to pierce!");
 	else addDisabledButton(8, "Vagina", "Vagina", "Rhett can't pierce your" + (pc.hasVaginas() ? " vaginas when they are all" : " vagina when it's") + " already pierced!");
 	
-	//special method to check if every clit is already pierced and thus make Clit button disabled before going to row select
 	if(!pc.hasPiercedEveryClit()) addButton(9, "Clit", rhettPiercingsClitVaginaSelection, [piercingVars[0], piercingVars[1], "clit"]);
 	else if(!pc.hasClit()) addDisabledButton(9, "Clit", "Clit", "You don't have a clit to pierce!");
 	else addDisabledButton(9, "Clit", "Clit", "Rhett can't pierce your" + (pc.hasVaginas() ? " clits when they are all" : " clit when it's") + " already pierced!");
@@ -792,9 +758,6 @@ public function rhettStudPiercingsMenu(piercingVars:Array):void
 //Generate avaliable button options for bar piercing
 public function rhettBarPiercingsMenu(piercingVars:Array):void
 {
-	//piercingVars = [type, color, placement]
-	//if piercing is unable to go in body part it is given a disabled button from start
-	//other checks done to see if body part is already pierced
 	if(pc.earPiercing is EmptySlot) addButton(0, "Ears", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], "ears"]);
 	else addDisabledButton(0, "Ears", "Ears", "Rhett can't pierce your ears when they already have a piercing in them!");
 	
@@ -806,7 +769,6 @@ public function rhettBarPiercingsMenu(piercingVars:Array):void
 	addDisabledButton(4, "Belly", "Belly", "Rhett can't do belly bar piercings.");
 	addDisabledButton(5, "Tongue", "Tongue", "Rhett can't do tongue bar piercings");
 	
-	//special method to check if every nipple is already pierced and thus make Nipples button disabled before going to row select
 	if(!pc.hasPiercedEveryNipple()) addButton(6, "Nipples", rhettPiercingsBRowSelection, [piercingVars[0], piercingVars[1], "nipples"]);
 	else if(!pc.hasNipples()) addDisabledButton(6, "Nipples", "Nipples", "You don't have any nipples to pierce!");
 	else addDisabledButton(6, "Nipples", "Nipples", "Rhett can't pierce your nipples when they are" + (pc.bRows() > 1 ? " all" : "") + " already pierced!");
@@ -819,23 +781,21 @@ public function rhettBarPiercingsMenu(piercingVars:Array):void
 //Check if player has more than one set of nipples
 public function rhettPiercingsBRowSelection(piercingVars:Array):void
 {
-	//piercingVars = [type, color, placement, placementIndex]
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.bRows() == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one set just use it, don't both offering choice
+	if(pc.bRows() == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);
 	else
 	{
 		output("Select breast row to apply piercing to.");
 		
 		clearMenu();
-		for(var i:int = 0; i < pc.bRows(); i++)//loop through each set of breasts
+		for(var i:int = 0; i < pc.bRows(); i++)
 		{
-			
-			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)//add back buttons to button page when rolling over to new page
+			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)
 			output("\n" + "<b>#" + (i + 1) + ":</b> " + "[pc.breastCupSize " + i + "] [pc.breasts " + i + "]");
-			if(!pc.hasNipplePiercing(i)) addButton(i, "Row " + (i + 1) + " Nipples", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
-			else addDisabledButton(i, "Row " + (i + 1), "Row " + (i + 1), "Rhett can't pierce this row since they are already pierced!");//if already pierced add disabled button
+			if(!pc.hasNipplePiercing(i)) addButton(i, "Row " + (i + 1) + " Nipples", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);
+			else addDisabledButton(i, "Row " + (i + 1), "Row " + (i + 1), "Rhett can't pierce this row since they are already pierced!");
 		}
 	}
 }
@@ -843,11 +803,10 @@ public function rhettPiercingsBRowSelection(piercingVars:Array):void
 //Check if player has more than one cock
 public function rhettPiercingsCockSelection(piercingVars:Array):void
 {
-	//piercingVars = [type, color, placement, placementIndex]
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.cocks.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one just use it, don't both offering choice
+	if(pc.cocks.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);
 	else
 	{
 		output("Select cock to apply piercing to.");
@@ -855,10 +814,10 @@ public function rhettPiercingsCockSelection(piercingVars:Array):void
 		clearMenu();
 		for(var i:int = 0; i < pc.totalCocks(); i++)
 		{
-			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)//add back buttons to button page when rolling over to new page
+			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)
 			output("\n" + "<b>#" + (i + 1) + ":</b> " + "[pc.cockNounComplex " + i + "]");
-			if(!pc.hasPiercedCocks(i)) addButton(i, "Cock " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
-			else addDisabledButton(i, "Cock " + (i + 1), "Cock " + (i + 1), "Rhett can't pierce this cock since it is already pierced!");//if already pierced add disabled button
+			if(!pc.hasPiercedCocks(i)) addButton(i, "Cock " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);
+			else addDisabledButton(i, "Cock " + (i + 1), "Cock " + (i + 1), "Rhett can't pierce this cock since it is already pierced!");
 		}
 	}
 }
@@ -866,11 +825,10 @@ public function rhettPiercingsCockSelection(piercingVars:Array):void
 //Check if player has more than one vagina
 public function rhettPiercingsVaginaSelection(piercingVars:Array):void
 {
-	//piercingVars = [type, color, placement, placementIndex]
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one just use it don't both offering choice
+	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);
 	else
 	{
 		output("Select vagina to apply piercing to.");
@@ -878,10 +836,10 @@ public function rhettPiercingsVaginaSelection(piercingVars:Array):void
 		clearMenu();
 		for(var i:int = 0; i < pc.vaginas.length; i++)
 		{
-			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)//add back button to button page when rolling over to new page
+			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)
 			output("\n" + "<b>#" + (i + 1) + ":</b> " + "[pc.vaginaNoun " + i + "]");
-			if(pc.vaginas[i].piercing is EmptySlot) addButton(i, "Vagina " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
-			else addDisabledButton(i, "Vagina " + (i + 1), "Vagina " + (i + 1), "Rhett can't pierce this vagina sicne it already is already pierced!");//if already pierced add disabled button
+			if(pc.vaginas[i].piercing is EmptySlot) addButton(i, "Vagina " + (i + 1), rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);
+			else addDisabledButton(i, "Vagina " + (i + 1), "Vagina " + (i + 1), "Rhett can't pierce this vagina sicne it already is already pierced!");
 		}
 	}
 }
@@ -893,7 +851,7 @@ public function rhettPiercingsClitVaginaSelection(piercingVars:Array):void
 	clearOutput();
 	author("Jim T");
 	
-	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);//if only one just use it don't both offering choice
+	if(pc.vaginas.length == 1) rhettPiercingsPayment([piercingVars[0], piercingVars[1], piercingVars[2], 0]);
 	else
 	{
 		output("Select vagina to apply clit piercing to.");
@@ -901,10 +859,10 @@ public function rhettPiercingsClitVaginaSelection(piercingVars:Array):void
 		clearMenu();
 		for(var i:int = 0; i < pc.vaginas.length; i++)
 		{
-			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)//add back button to button page when rolling over to new page
+			if(i % 15 == 0) addButton(i + 14, "Back", rhettBackOut)
 			output("\n" + "<b>#" + (i + 1) + ":</b> " + "[pc.vaginaNoun " + i + "]");
-			if( pc.vaginas[i].clitPiercing is EmptySlot) addButton(i, "Vagina " + (i + 1) + " Clit", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);//if not yet pierced add avalible option
-			else addDisabledButton(i, "Vagina " + (i + 1) + " clit", "Vagina " + (i + 1) + " Clit", "Rhett can't pierce this clit since it already is pierced!");//if already pierced add disabled button
+			if( pc.vaginas[i].clitPiercing is EmptySlot) addButton(i, "Vagina " + (i + 1) + " Clit", rhettPiercingsPayment, [piercingVars[0], piercingVars[1], piercingVars[2], i]);
+			else addDisabledButton(i, "Vagina " + (i + 1) + " clit", "Vagina " + (i + 1) + " Clit", "Rhett can't pierce this clit since it already is pierced!");
 		}
 	}
 }
@@ -932,8 +890,8 @@ public function rhettPiercingsOuch(piercingVars:Array):void
 	switch(piercingVars[2])//switch on body part
 	{
 		case "ears":
-			pc.earPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]);//pierce body part with ([piercingVars[0] = piercingType, piercingVars[1] = color])
-			piercingIsAre = " are";//set to are since ears are plural
+			pc.earPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]);
+			piercingIsAre = " are";
 		break;
 		case "eyebrow": pc.eyebrowPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 		case "nose": pc.nosePiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
@@ -941,8 +899,8 @@ public function rhettPiercingsOuch(piercingVars:Array):void
 		case "belly": pc.bellyPiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 		case "tongue": pc.tonguePiercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 		case "nipples":
-			pc.breastRows[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]);//pierce body part [piercingVars[3] = multipleBodyPartIndex] with ([piercingVars[0] = piercingType, piercingVars[1] = color])
-			piercingIsAre = " are";//set to are since nipples are plural
+			pc.breastRows[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]);
+			piercingIsAre = " are";
 		break;
 		case "cock": pc.cocks[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
 		case "vagina": pc.vaginas[piercingVars[3]].piercing = new RhettSimplePiercing(piercingVars[0], piercingVars[1]); break;
@@ -1016,7 +974,7 @@ public function rhettSexMenu():void
 	
 	clearMenu();
 	
-	if(pc.isTaur())//get rejected
+	if(pc.isTaur())
 	{
 		output("You saucily suggest to Rhett that you get better acquainted. You're left staring at his perfectly formed, yet utterly unreadable face. After an awkward moment, he coughs.");
 		output("\n\n<i>“Sorry.... but I'm not really into 'taurs,”</i> he scratches the side of his head, <i>“Nothing personal, but I like to constrict my lovers. With all the body and wrapping, I can't get a good hold.”</i>");
@@ -1024,12 +982,12 @@ public function rhettSexMenu():void
 	}
 	else
 	{
-		if(flags["RHETT_FUCKED"] == undefined)//is pc first timer with Rhett
+		if(flags["RHETT_FUCKED"] == undefined)
 		{
 			output("You saucily suggest to Rhett that you get better acquainted. You're left staring at his perfectly formed, yet utterly unreadable face. After a moment of what you <i>assume</i> is consideration, the half-akhid man flicks away his nim-leaf into an ashtray, then gives a curt nod.");
 			if(pc.isNaga()) output(" <i>“Well, you're definitely my type...”</i> Rhett appreciatively remarks, stroking his chin.");
 		}
-		else//repeat encounter
+		else
 		{
 			output("You suggest to Rhett that perhaps you pick up from last time, in the back room? You're left staring at his perfectly formed, yet utterly unreadable face. Does he not want to do it? After a brief, apparently thoughtful pause, the half-akhid man flicks away his nim-leaf into an ashtray, then gives a curt nod.");
 			if(pc.isNaga()) output("\n\n<i>“Sure. You're always a welcome sight, particularly naked...”</i> Rhett appreciatively remarks.");
@@ -1057,23 +1015,23 @@ public function rhettSexMenu():void
 			}
 		}
 		
-		if(!pc.isNude())//strip sequence
+		if(!pc.isNude())
 		{
-			if(pc.hasArmor()) output("[pc.armor]");//start with armor if they got it
+			if(pc.hasArmor()) output("[pc.armor]");
 			
-			if(pc.hasUpperGarment() && !pc.hasArmor()) output(pc.upperUndergarment.longName);//start with/move to top undergarment if they got it
+			if(pc.hasUpperGarment() && !pc.hasArmor()) output(pc.upperUndergarment.longName);
 			
-			if(pc.hasLowerGarment() && !pc.hasArmor() && !pc.hasUpperGarment()) output(pc.lowerUndergarment.longName);//start with/move to bottom undergarmet if they got it
+			if(pc.hasLowerGarment() && !pc.hasArmor() && !pc.hasUpperGarment()) output(pc.lowerUndergarment.longName);
 			
 			output(" is hastily whipped off");
-			if(pc.hasArmor() && (pc.hasUpperGarment() || pc.hasLowerGarment()) || (pc.hasUpperGarment() && pc.hasLowerGarment()))//if pc has 2+ pieces of clothing
+			if(pc.hasArmor() && (pc.hasUpperGarment() || pc.hasLowerGarment()) || (pc.hasUpperGarment() && pc.hasLowerGarment()))
 			{
 				output(" followed by your ");
-				if(pc.hasArmor() && pc.hasUpperGarment()) output(pc.upperUndergarment.longName);//armor + top undergarmet
-				else output(pc.lowerUndergarment.longName);//no top undergarment
+				if(pc.hasArmor() && pc.hasUpperGarment()) output(pc.upperUndergarment.longName);
+				else output(pc.lowerUndergarment.longName);
 			}
 			
-			if(pc.hasArmor() && pc.hasUpperGarment() && pc.hasLowerGarment()) output(" and " + pc.lowerUndergarment.longName);//if pc has all 3 pieces of clothing
+			if(pc.hasArmor() && pc.hasUpperGarment() && pc.hasLowerGarment()) output(" and " + pc.lowerUndergarment.longName);
 			
 			if(pc.isNaga()) output(". He then");
 			else output(", before you're returned to his clutches.");
@@ -1144,26 +1102,26 @@ public function rhettOrgasmDenial():void
 	
 	output(", it probes and strokes");
 	
-	if(pc.hasVagina()) output(" your tender pussy lips");//pc has vagina
-	else if(pc.hasCock()) output(" the tender flesh between your shaft and asshole");//pc has cock
-	else if(pc.balls > 0) output(" the tender flesh between your balls and asshole");//pc has no cock but has balls
-	else output(" the tender flesh between your groin and asshole");//pc is neuter
+	if(pc.hasVagina()) output(" your tender pussy lips");
+	else if(pc.hasCock()) output(" the tender flesh between your shaft and asshole");
+	else if(pc.balls > 0) output(" the tender flesh between your balls and asshole");
+	else output(" the tender flesh between your groin and asshole");
 	
 	output(" , drawing lazily back and forth. You quiver impotently in his powerfully coiled grasp");
 	if(pc.isNaga()) output(", your upper half feeling chained and restrained. Only able to move your snake-tail and mouth, you moan as your");
 	else output(", like every inch of you is chained and restrained. All you have is control of your mouth, which you use to moan as your");
 	
-	if(pc.hasVagina()) output(" snatch");//pc has vagina
-	else if(pc.balls > 0) output(" ball-bridge");//pc has balls
-	else output(" perineum");//pc has cock but no balls or is neuter
+	if(pc.hasVagina()) output(" snatch");
+	else if(pc.balls > 0) output(" ball-bridge");
+	else output(" perineum");
 	
 	output(" is mercilessly stroked, teased, and tormented.");
-	if(pc.hasVagina())output(" Your girl juices shamelessly dribble on to his taunting tail-tip, your pussy eagerly lubing itself for his future entry.");//pc has vagina
-	else if(pc.hasCock()) output(" Pressing pointedly against your taint, the pressure reaches deep into your flesh, stimulating your prostate from the outside. You quake and dribble [pc.cumVisc] fluid from your dick-tip!");//pc has cock
-	else output(" It rubs a little bit against your flexing ring, making you quake in delight.");//pc is neuter
+	if(pc.hasVagina())output(" Your girl juices shamelessly dribble on to his taunting tail-tip, your pussy eagerly lubing itself for his future entry.");
+	else if(pc.hasCock()) output(" Pressing pointedly against your taint, the pressure reaches deep into your flesh, stimulating your prostate from the outside. You quake and dribble [pc.cumVisc] fluid from your dick-tip!");
+	else output(" It rubs a little bit against your flexing ring, making you quake in delight.");
 	
 	output("\n\n<i>“I could keep you like this for ages, you know,”</i> the tattooed man informs you, dragging his tip sloooowly along your");
-	if(pc.hasVagina()) output(" slick lips, then pushes it in, lightly pressing against your clit.");//pc has vagina
+	if(pc.hasVagina()) output(" slick lips, then pushes it in, lightly pressing against your clit.");
 	else output(" clenching ridge.");
 	
 	output(" <i>“On the brink of orgasm. Without release.”</i>");
@@ -1178,24 +1136,24 @@ public function rhettOrgasmDenial():void
 	output("\n\n<i>“~I'm going to go crazy! Please, please, I'll love you forever, I'll live with your cock in my mouth, I'll do anything–juh-just let me get off~!”</i>");
 	output("\n\nThere's the slightest and most merciful <i>stroke</i> against your privates. Everything–EVERYTHING–goes white. You let out a erotic scream and convulse uncontrollably in his clutches");
 	
-	if(pc.hasVagina())//pc has vagina
+	if(pc.hasVagina())
 	{
 		output(" drooling and squirting your [pc.girlCumVisc] [pc.girlCumNoun]");
 		
-		if(pc.hasCock()) output(" and spurting out an ungodly amount of your [pc.cumVisc] [pc.cumNoun]");//pc is herm
+		if(pc.hasCock()) output(" and spurting out an ungodly amount of your [pc.cumVisc] [pc.cumNoun]");
 		
 		output(" against his scales.");
 		if(!pc.isSquirter()) output(" You're not even a squirter, and you <i>still</i> spastically squirt from your snatch; that's how built up you are!");
 	}
-	else if(pc.hasCock()) output(" spurting out an ungodly amount of your [pc.cumVisc] [pc.cumNoun] against his scales.");//pc has cock but no vagina
-	else output(",");//pc is neuter
+	else if(pc.hasCock()) output(" spurting out an ungodly amount of your [pc.cumVisc] [pc.cumNoun] against his scales.");
+	else output(",");
 	
 	output(" You're left feeling like you're floating in some unspeakably infinite space... filled with love and pleasure... a mindless happiness that just never, ever seems to end...");
 	output("\n\n... When you finally slip out of that unspeakably happy place, you feel like you crash hard–like an angel falling back to earth. You're shivering a lot, but you feel strangely warm and hugged. It takes you a long while to realise you're still in Rhett's scales, and he's lightly stroking your [pc.hair], speaking to you in surprisingly soothing tones.");
 	output("\n\n<i>“There there, kid. You're okay. I've got you,”</i> Rhett tells you, and you blink dazedly. <i>“... You were in sub-space. Happens after a lot of play like that. Big highs come with big falls, you know.”</i>");
 	output("\n\nYou flush, your whole lower body");
-	if(pc.hasVagina() || pc.hasCock()) output(" impossibly sticky");//pc is not neuter
-	else output(" tingling and hot");//pc is neuter
+	if(pc.hasVagina() || pc.hasCock()) output(" impossibly sticky");
+	else output(" tingling and hot");
 	
 	output(". Once you're finally able to stand again, the half-akhid man releases you from his scales. Your heart beats at a million miles an hour as you leave the back room, feeling on cloud nine. Meanwhile, <i>he</i> slips out after you, looking totally cool and composed, as if nothing had even happened! Still, he does seem to check out your ass as you walk out, his mouth quirking into the tiniest, self-satisfied smile.");
 	if(flags["RHETT_FUCKED"] == undefined) IncrementFlag("RHETT_FUCKED");
@@ -1227,59 +1185,59 @@ public function rhettBlowjob():void
 	output("\n\nFor some reason, Rhett's encouragement makes your heart flutter, and you redouble your oral efforts. Wrapping your [pc.lips] fully around his swollen glans, you lash and lick it with your tongue. It tastes a tiny bit salty, and yet somehow delicious; definitely the taste of a man. Filled with lascivious greed, you stick your tongue in his cock hole, trying to lick along every last bit of his dick, not wanting a single inch of his magnificent tool to go unsavoured. A throaty groan from above fills you with pride; he's enjoying it! A tiny dribble of pre-cum dribbles onto your tongue, slathering it with his slick spunk. Gulping it down, you draw his throbbing staff forward and against the back of your throat–you want more!");
 	output("\n\nYou're not the only one; the half serpent man is pressing his hips instinctively forward, trying to break the barrier separating him and your throat. You gag and splutter, copious amounts of drool sloppily running out your mouth and down your cheeks. He pulls back an inch, and you take a moment to breathe, before <i>you</i> try and push his sizable glans down your throat! Another gag, but you <i>swear</i> you got an inch further this time! A few more attempts, and your face must be a mess; your spit-slicked mouth now wetter than any pussy. When you press forward this time, you feel a slight resistance... and then your throat give way! His throbbing manhood suddenly slips deep into your throat, and you let out a muffled moan; <i>now</i> your mouth is a perfect sheathe for his dick!");
 	output("\n\nLetting out a loud, enthusiastic groan, Rhett begins to slip in and out of your mouth, his cock head plumbing deep within your throat. Something's beating against your upper lip, and when you go cross eyed, you see a small lump on his upper dick. It kind of looks like a dusky clit! As he rubs it against you, his moans intensify, and even more slick goodness slips down your eagerly open throat. You press yourself forward, deliberately trying to brush and stimulate his bump, feeling his cock head flex excitedly in your gullet each and every time. You're so excited that you can't hold back, and begin to tremble–right on the verge of creaming your poor");
-	if(pc.hasCock() || pc.hasVagina())//pc not neuter
+	if(pc.hasCock() || pc.hasVagina())
 	{
-		if(pc.hasCock())//pc has cock
+		if(pc.hasCock())
 		{
 			output(" [pc.cocksNoun]")
-			if(pc.hasVagina()) output(" and [pc.pussiesNoun]!");//pc is herm
+			if(pc.hasVagina()) output(" and [pc.pussiesNoun]!");
 		}
-		else output(" [pc.pussiesNoun]!");//pc has vagina but no cock
+		else output(" [pc.pussiesNoun]!");
 	}
-	else output(" self!");//pc is neuter
+	else output(" self!");
 	
 	output("\n\nJust as you're quaking and about to cum first, Rhett fiercely grabs the back of your head, thrusting himself until his waist is pressing against your prostrate lips! With a throaty moan, his thick manhood twitches against your tongue and throat. Warm slickness shoots in a long, gooey stream down your throat. You let out a muffled whimper and climax right there and then");
-	if(pc.hasCock() || pc.hasVagina())//pc not neuter
+	if(pc.hasCock() || pc.hasVagina())
 	{
-		if(pc.hasCock())//pc has cock
+		if(pc.hasCock())
 		{
 			output(" shooting");
-			if(!pc.hasCocks()) output(" a");//singluar cock
+			if(!pc.hasCocks()) output(" a");
 			
 			output(" [pc.cumColor]");
 			if(pc.cumQ() < 100) output(" splutter");
 			else if(pc.cumQ() < 400) output(" stream");
 			else output(" surge");
 			
-			if(pc.hasCocks()) output("s");//multiple cocks
+			if(pc.hasCocks()) output("s");
 			
 			output(" out of your pinned prick");
-			if(pc.hasCocks()) output("s");//multiple cocks
+			if(pc.hasCocks()) output("s");
 			
-			if(pc.hasVagina())//pc is herm
+			if(pc.hasVagina())
 			{
 				output(" and")
 				
 				if(pc.isSquirter()) output(" squirting");
 				else output(" drooling");
 				
-				if(!pc.hasVaginas()) output(" a");//singluar vagina
+				if(!pc.hasVaginas()) output(" a");
 				
 				output(" [pc.girlCumVisc] stream");
-				if(pc.hasVaginas()) output("s");//multiple vaginas
+				if(pc.hasVaginas()) output("s");
 				
 				output(" of [pc.girlCumNoun] down your [pc.thighs]");
 			}
 		}
-		else if(pc.hasVagina())//pc has vagaina but no cock
+		else if(pc.hasVagina())
 		{
 			if(pc.isSquirter()) output(" squirting");
 			else output(" drooling");
 			
-			if(!pc.hasVaginas()) output(" a");//singluar vagina
+			if(!pc.hasVaginas()) output(" a");
 			
 			output(" [pc.girlCumVisc] stream");
-			if(pc.hasVaginas()) output("s");//multiple vaginas
+			if(pc.hasVaginas()) output("s");
 			
 			output(" of [pc.girlCumNoun] down your [pc.thighs]");
 		}
@@ -1293,7 +1251,7 @@ public function rhettBlowjob():void
 	output(" Wandering out to the store, you touch your lips with a dreamy expression, followed by the tattoed half-akhid. When you look behind you, you swear you see a hint of a satisfied grin on his face.");
 	if(flags["RHETT_FUCKED"] == undefined) IncrementFlag("RHETT_FUCKED");
 	
-	IncrementFlag("RHETT_SUCKED");//set/increment for stat tracker
+	IncrementFlag("RHETT_SUCKED");
 	processTime(30);
 	pc.orgasm();
 	pc.loadInMouth(chars["RHETT"]);
@@ -1317,7 +1275,7 @@ public function rhettAssFuck():void
 	
 	output(" His squeezing serpentine body seems to be tighter around your [pc.legs], keeping them particularly pinned. Loosening around your upper half, you can't see the taut, tattooed man anywhere. <i>Where has he gone,</i> you wonder?");
 	output("\n\nYou gasp as you feel a deliciously stiff body pressing against your back, intimately close. A pair of strong arms slip around your waist, and there's a biting at your [pc.ear]. Just a nip, followed by a whisper. <i>“... ");
-	if(flags["RHETT_FUCKED"] == undefined) output("Time to put that sweet ass of yours to work.”</i>");//gets set/incremented at end of method
+	if(flags["RHETT_FUCKED"] == undefined) output("Time to put that sweet ass of yours to work.”</i>");
 	else output("I told you, I'm going to use your ass.”</i>");
 	
 	output("\n\nYou can feel a stiffness even <i>harder</i> than his chiseled pecs, pointedly pressing between your buttocks. With your [pc.legs] caught and coiled, and your hips now seized, you're utterly at Rhett's mercy! The serpentine man seizes the chance to slip his rigidity up and into your [pc.asshole], slowly sheathing himself inside of your");
@@ -1325,7 +1283,7 @@ public function rhettAssFuck():void
 	else output(" rump.");
 	
 	output(" You gasp at the");
-	if(flags["RHETT_ANAL_FUCKED"] == undefined) output(" surprisingly");//gets set/incremented at end of method
+	if(flags["RHETT_ANAL_FUCKED"] == undefined) output(" surprisingly");
 	else output(" amazingly");
 	
 	output(" <i>long</i> and <i>thick</i> intruder as it inches upward, until his bulbous cockhead is flexing inside the deepest depths of your [pc.skinColor] butt.");
@@ -1351,10 +1309,10 @@ public function rhettAssFuck():void
 	else output(" rectum.");
 	
 	output("\n\nWith each and every thrust, your defense wavers, and your pucker loosens another inch–allowing him to claim you deeper and more totally. Your mind is swooning with ass-induced pleasure. All you can think about, again and again, is how totally and one-sidedly you're being fucked by this muscular man. As his dick delves into you, right up to the hilt, he gives a pointed squeeze of his shaft and tip, sending you right over the edge! With a quivering cry, you cream yourself right there and then");
-	if(pc.hasCock() || pc.hasVagina())//pc is not neuter
+	if(pc.hasCock() || pc.hasVagina())
 	{
 		output(",");
-		if(pc.hasCock())//pc has cock
+		if(pc.hasCock())
 		{
 			output(" shooting");
 			if(pc.cumQ() < 100) output(" tiny spurts");
@@ -1362,7 +1320,7 @@ public function rhettAssFuck():void
 			else output(" sloppy streams");
 			
 			output(" of hot [pc.cumNoun] through the air and up against your own belly");
-			if(pc.hasVagina())//pc is herm
+			if(pc.hasVagina())
 			{
 				output(" and");
 				if(pc.isSquirter())
@@ -1383,7 +1341,7 @@ public function rhettAssFuck():void
 				}
 			}
 		}
-		else//pc has vagina but no cock
+		else
 		{
 			if(pc.isSquirter())
 			{
@@ -1410,7 +1368,7 @@ public function rhettAssFuck():void
 	
 	if(flags["RHETT_FUCKED"] == undefined) IncrementFlag("RHETT_FUCKED");
 	
-	IncrementFlag("RHETT_ANAL_FUCKED");//set/increment for stat tracker
+	IncrementFlag("RHETT_ANAL_FUCKED");
 	processTime(30);
 	pc.orgasm();
 	pc.loadInAss(chars["RHETT"]);
@@ -1427,7 +1385,7 @@ public function rhettPineapple():void
 	output("You cry out the safe-word, totally tapping out early. You're immediately released from the half-akhid's grasp, and he gives a curt little nod. <i>“Right, tell me if you change your mind.”</i>");
 	output("\n\nRhett slithers back to the storefront, and you");
 	if(pc.isNude()) output(" follow");
-	else output(" pick up your clothes, following");//add flavor test if pc was wearing clothes at start of encounter
+	else output(" pick up your clothes, following");
 	
 	output(" him back out. He's already calmly leaning back against the counter, looking as though nothing even happened.");
 	
@@ -1472,21 +1430,21 @@ public function rhettGiveSkySap():void
 	clearOutput();
 	author("Jim T");
 	
-	var quanitity:int = pc.numberOfItemByClass(SkySap);//get number player has on them
+	var quanitity:int = pc.numberOfItemByClass(SkySap);
 	
-	for (var x:int = quanitity ; x > 0; x--) IncrementFlag("RHETT_SKY_SAP");//add to Rhett's count
-	pc.destroyItemByClass(SkySap, -1);//remove all sky sap from player
+	for (var x:int = quanitity ; x > 0; x--) IncrementFlag("RHETT_SKY_SAP");
+	pc.destroyItemByClass(SkySap, -1);
 	
-	if(flags["RHETT_LUMINOUS_TATTOOS"] == undefined && flags["RHETT_SKY_SAP"] > 9)//player just gave enough to unlock luminous colors
+	if(flags["RHETT_LUMINOUS_TATTOOS"] == undefined && flags["RHETT_SKY_SAP"] > 9)
 	{
 		IncrementFlag("RHETT_LUMINOUS_TATTOOS");//unlock luminous colors(Luminous Violet, Luminous Purple, Luminous Blue, Luminous Pink, Luminous Orange, Luminous Green, Luminous Silver, Glowing Gold)
 		output("<i>“Great. We've finally got enough to start doing luminous tattoos again. And here's " + (quanitity * 50) + " credits for the sap. You've been a big help”</i>");
 	}
 	else
 	{
-		output("<i>“Thanks. Here's " + (quanitity * 50 ) + " credits for the trouble. ");//inform player they got paid
+		output("<i>“Thanks. Here's " + (quanitity * 50 ) + " credits for the trouble. ");
 		
-		if(flags["RHETT_SKY_SAP"] < 10)//if player is working towards luminous colors
+		if(flags["RHETT_SKY_SAP"] < 10)
 		{
 			if(flags["RHETT_SKY_SAP"] < 8) output("Bring in several more");
 			else if(flags["RHETT_SKY_SAP"] < 9) output("A couple more");
@@ -1502,3 +1460,4 @@ public function rhettGiveSkySap():void
 	clearMenu();
 	addButton(0, "Next", meetRhett);
 }
+
