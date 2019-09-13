@@ -26,7 +26,7 @@ package classes.Tattoo
 		
 		public override function onEquip(target:Creature):void
 		{
-			target.createPerk("Barcoded",0,0,0,0,"A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.")
+			target.createPerk("Barcoded", 0, 0, 0, 0, "A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.")
 		}
 		
 		public override function onRemove(target:Creature):void

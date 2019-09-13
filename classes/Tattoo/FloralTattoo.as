@@ -70,16 +70,6 @@ package classes.Tattoo
 					ret = "Wrapping around " + (matchingLeftTattoo ? "both your arms" : "your right arm") + "  are vines and flowers, each blossoming in " + this.color + (matchingLeftTattoo && target.rightArmTattoo.color != target.leftArmTattoo.color ? " or " + target.leftArmTattoo.color : "") + ".";
 				break;
 				
-				/*case "left leg"://TODO: single/more than 2 leg shenans?
-					matchingRightTattoo = target.hasRightLegTattooOfType(this.tattooType);
-					ret = "Running up and around your " + (matchingRightTattoo ? "legs" : "your left leg") + " are flower-like markings. They're literally part of your [pc.skinFurScalesNoun].";//no mention of tattoo color in docs
-				break;
-				
-				case "right leg"://TODO: single/more than 2 leg shenans?
-					matchingLeftTattoo = target.hasLeftLegTattooOfType(this.tattooType);
-					ret = "Running up and around your " + (matchingLeftTattoo ? "legs" : "your right leg") + " are flower-like markings. They're literally part of your [pc.skinFurScalesNoun].";//no mention of tattoo color in docs
-				break;*/
-				
 				case "left buttock":
 					matchingRightTattoo = target.hasRightButtTattooOfType(this.tattooType);
 					ret = "Your " + (matchingRightTattoo ? "buttocks are" : "left buttock is") + " covered in " + this.color + (matchingRightTattoo && target.rightButtTattoo.color != target.leftButtTattoo.color ? " and " + target.rightButtTattoo.color : "") + "  flowers. Whenever someone glimpses at your butt, they get a floral display!"

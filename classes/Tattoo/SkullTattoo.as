@@ -30,7 +30,7 @@ package classes.Tattoo
 			
 			switch(this.tattooLocation)
 			{
-				case "face": ret = "Your entire face is done in a grim-reaper like visage. A skull has been tattooed on it in " + this.color + (this.color == "black" ? "" : ", the sockets of your eyes done in black ink") + ". It gives you a fierce, death-like visage."; break;//docs had typo? "sockets of your done in black ink". Also removed that tidbit if whole tattoo is black anyways
+				case "face": ret = "Your entire face is done in a grim-reaper like visage. A skull has been tattooed on it in " + this.color + (this.color == "black" ? "" : ", the sockets of your eyes done in black ink") + ". It gives you a fierce, death-like visage."; break;
 				
 				case "upper back": ret = "Anyone looking at your back are left staring into the eye-sockets of a gigantic skull, " + this.color + " and grinning. Side-art stretches out from your boney back-guardian and across your shoulder blades."; break;
 				
@@ -38,12 +38,12 @@ package classes.Tattoo
 				
 				case "left chest":
 					matchingRightTattoo = target.hasRightChestTattooOfType(this.tattooType);
-					ret = "A " + (matchingRightTattoo ? "pair of " : "") + this.color + (matchingRightTattoo && target.rightChestTattoo.color != target.leftChestTattoo.color ? " and " + target.rightChestTattoo.color : "") + " skull" + (matchingRightTattoo ? "s" : "") + " emblazon" + (matchingRightTattoo ? "" : "s") + " the top of " + (matchingRightTattoo ? "both your " + (target.hasBreasts() ? "breasts" : "pecs") : "your left " + (target.hasBreasts() ? "breast" : "pec"))  + ". Ornamental sideart spreads out from " + (matchingRightTattoo ? "their" : "its") + " skeletal sides, drawing even more attention to the artistic mark" + (matchingRightTattoo ? "s" : "") + ".";//seems like L+R are two skulls? and full would be one single skull so L+R don't merge into full
+					ret = "A " + (matchingRightTattoo ? "pair of " : "") + this.color + (matchingRightTattoo && target.rightChestTattoo.color != target.leftChestTattoo.color ? " and " + target.rightChestTattoo.color : "") + " skull" + (matchingRightTattoo ? "s" : "") + " emblazon" + (matchingRightTattoo ? "" : "s") + " the top of " + (matchingRightTattoo ? "both your " + (target.hasBreasts() ? "breasts" : "pecs") : "your left " + (target.hasBreasts() ? "breast" : "pec"))  + ". Ornamental sideart spreads out from " + (matchingRightTattoo ? "their" : "its") + " skeletal sides, drawing even more attention to the artistic mark" + (matchingRightTattoo ? "s" : "") + ".";
 				break;
 				
 				case "right chest":
 					matchingLeftTattoo = target.hasLeftChestTattooOfType(this.tattooType);
-					ret = "A " + (matchingLeftTattoo ? "pair of " : "") + this.color + (matchingLeftTattoo && target.rightChestTattoo.color != target.leftChestTattoo.color ? " and " + target.leftChestTattoo.color : "") + " skull" + (matchingLeftTattoo ? "s" : "") + " emblazon" + (matchingLeftTattoo ? "" : "s") + " the top of " + (matchingLeftTattoo ? "both your " + (target.hasBreasts() ? "breasts" : "pecs") : "your right " + (target.hasBreasts() ? "breast" : "pec"))  + ". Ornamental sideart spreads out from " + (matchingLeftTattoo ? "their" : "its") + " skeletal sides, drawing even more attention to the artistic mark" + (matchingLeftTattoo ? "s" : "" ) + ".";//seems like L+R are two skulls? and full would be one single skull so L+R don't merge into full
+					ret = "A " + (matchingLeftTattoo ? "pair of " : "") + this.color + (matchingLeftTattoo && target.rightChestTattoo.color != target.leftChestTattoo.color ? " and " + target.leftChestTattoo.color : "") + " skull" + (matchingLeftTattoo ? "s" : "") + " emblazon" + (matchingLeftTattoo ? "" : "s") + " the top of " + (matchingLeftTattoo ? "both your " + (target.hasBreasts() ? "breasts" : "pecs") : "your right " + (target.hasBreasts() ? "breast" : "pec"))  + ". Ornamental sideart spreads out from " + (matchingLeftTattoo ? "their" : "its") + " skeletal sides, drawing even more attention to the artistic mark" + (matchingLeftTattoo ? "s" : "" ) + ".";
 				break;
 				
 				case "full chest"://this is actually different from left + right chest unlike all other tattoo types which were a merge of the two
@@ -59,16 +59,6 @@ package classes.Tattoo
 					matchingLeftTattoo = target.hasLeftArmTattooOfType(this.tattooType);
 					ret = "Protecting " + (matchingLeftTattoo ? "both your arms are" : "your right arm is a") + " " + this.color + (matchingLeftTattoo && target.rightArmTattoo.color != target.leftArmTattoo.color ? " and " + target.leftArmTattoo.color : "") + " skull" + (matchingLeftTattoo ? "s" : "") + ".";
 				break;
-				
-				/*case "left leg"://there were two leg description types one seemingly for lower and the other upper but this is the only tattoo with this distinction so for the time being the second upper tattoo type is ignored
-					matchingRightTattoo = target.hasRightLegTattooOfType(this.tattooType);
-					ret = (matchingRightTattoo ? "Death-like stamps mark" : "A death-like stamp marks") + " your " + (matchingRightTattoo ? "legs" : "left leg") + ". " + (matchingRightTattoo ? "They're" : "It's") + " literally part of your [pc.skinFurScalesNoun].";
-				break;
-				
-				case "right leg"://there were two leg description types one seemingly for lower and the other upper but this is the only tattoo with this distinction so for the time being the second upper tattoo type is ignored
-					matchingLeftTattoo = target.hasLeftLegTattooOfType(this.tattooType);
-					ret = (matchingLeftTattoo ? "Death-like stamps mark" : "A death-like stamp marks") + " your " + (matchingLeftTattoo ? "legs" : "right leg") + ". " + (matchingLeftTattoo ? "They're" : "It's") + " literally part of your [pc.skinFurScalesNoun].";
-				break;*/
 				
 				default: ret = ""; break;
 			}

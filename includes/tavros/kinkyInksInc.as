@@ -1460,4 +1460,3 @@ public function rhettGiveSkySap():void
 	clearMenu();
 	addButton(0, "Next", meetRhett);
 }
-
