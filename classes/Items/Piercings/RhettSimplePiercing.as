@@ -7,8 +7,8 @@ package classes.Items.Piercings
 	
 	public class RhettSimplePiercing extends ItemSlotClass
 	{
-		public var color:String;//color of piercing
-		public var piercingType:String;//ring/bar/stud
+		public var color:String;
+		public var piercingType:String;
 		
 		public function RhettSimplePiercing(piercingType:String = "ring", color:String = "black") 
 		{

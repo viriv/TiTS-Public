@@ -9,9 +9,9 @@ package classes
 	import flash.utils.getDefinitionByName;
 	public class TattooClass implements ISaveable
 	{
-		public var color:String = "";//color of tattoo
-		public var tattooType:int = GLOBAL.NO_TATTOO;//style of tattoo art
-		public var optionalTattooAttribute:String = "";//wing type/text/etc...
+		public var color:String = "";
+		public var tattooType:int = GLOBAL.NO_TATTOO;
+		public var optionalTattooAttribute:String = "";
 		public var tattooLocation:String = "";
 		
 		public var tattooFlags:Array = new Array();
