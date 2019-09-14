@@ -13,6 +13,35 @@ import classes.TattooClass;
 import classes.Items.Miscellaneous.SkySap;
 //AUTHOR - JimThermic
 
+/*
+MET_RHETT		0/undefined nope
+				1 yep met the shopkeep
+
+MET_AKHID		0/undefined nope
+				1 yep met snake race
+
+RHETT_LUMINOUS_TATTOOS		0/undefined not yet unlocked
+							1 unlocked extra tattoo colors
+
+RHETT_HAS_WORKED_ON_BEFORE	0/undefined not yet
+							1+ gotten a tattoo/piercing here before
+
+RHETT_FUCKED	0/undefined not sexed yet
+				1+ tracker for total number of times sexed(any scene)
+
+RHETT_ORGASM_DENIAL	0/undefined not seen orgasm denial scene yet
+					1+ tracker for codex info
+
+RHETT_SUCKED	0/undefined not seen blowjob scene yet
+				1+ tracker for codex info
+
+RHETT_ANAL_FUCKED	0/undefined not seen ass fuck scene yet
+					1+ tracker for codex info
+					
+RHETT_SKY_SAP	0/undfined not yet given any sky sapp
+				1-10 tracker to unlock luminous tattoos
+*/
+
 //Piercing salon
 public function kinkyInksIncBonusFunc():Boolean
 {
