@@ -216,12 +216,12 @@ public function rhettTattoos():void
 	
 	clearMenu();
 	//tattooVars = [type, (optional attribute i.e. wing type/text), location, color]
-	addButton(0, "Tribal", rhettTattoosBodyPartSelection, [new TribalTattoo(), undefined]);//create a blank tattoo here to get access to flags of that type for menus in next function. The attributes of the tattoo don't get set until the very end
+	addButton(0, "Tribal", rhettTattoosBodyPartSelection, [new TribalTattoo(), undefined]);
 	addButton(1, "Floral", rhettTattoosBodyPartSelection, [new FloralTattoo(), undefined]);
 	addButton(2, "Skull", rhettTattoosBodyPartSelection, [new SkullTattoo(), undefined]);
 	addButton(3, "Dragon", rhettTattoosBodyPartSelection, [new DragonTattoo(), undefined]);
-	addButton(4, "Wings", rhettTattoosWingsOptions, [new WingTattoo()]);//wings have to pick a wing type, so they get an extra function before body part selection
-	addButton(5, "Text", rhettTattoosTextOptions, [new TextTattoo()]);//extra function to get player to enter message to be tatted
+	addButton(4, "Wings", rhettTattoosWingsOptions, [new WingTattoo()]);
+	addButton(5, "Text", rhettTattoosTextOptions, [new TextTattoo()]);
 	addButton(14, "Back", rhettFristChanceBackOut);
 }
 
