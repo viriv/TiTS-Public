@@ -1432,7 +1432,7 @@ public function rhettGiveSkySap():void
 	
 	var quanitity:int = pc.numberOfItemByClass(SkySap);
 	
-	for (var x:int = quanitity ; x > 0; x--) IncrementFlag("RHETT_SKY_SAP");
+	for (var x:int = quanitity ; x > 0 && flags["RHETT_SKY_SAP"] < 10; x--) IncrementFlag("RHETT_SKY_SAP");
 	pc.destroyItemByClass(SkySap, -1);
 	
 	if(flags["RHETT_LUMINOUS_TATTOOS"] == undefined && flags["RHETT_SKY_SAP"] > 9)
